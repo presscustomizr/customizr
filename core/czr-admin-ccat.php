@@ -609,7 +609,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
 
                   <div class="last-feature col">
                     <h3 style="font-size:1.3em;"><?php _e( 'Follow us','customizr' ); ?></h3>
-                    <p class="tc-follow"><a href="<?php echo esc_url( CZR_WEBSITE . 'blog' ); ?>" target="_blank"><img style="border:none;width:auto;" src="<?php echo CZR_BASE_URL . CZR_ASSETS_PREFIX.'back/img/pc.png' ?>" alt="Press Customizr" /></a></p>
+                    <p class="tc-follow"><a href="<?php echo esc_url( CZR_WEBSITE . 'blog' ); ?>" target="_blank"><img style="border:none;width:auto;" src="<?php echo CZR_BASE_URL . CZR_ASSETS_PREFIX.'back/img/pc.png?' . CUSTOMIZR_VER ?>" alt="Press Customizr" /></a></p>
                     <!-- Place this tag where you want the widget to render. -->
 
                   </div><!-- .feature-section -->
@@ -715,7 +715,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
         $parent_theme      = $parent_theme_data->Name . ' ' . $parent_theme_data->Version;
       }
       ?>
-<div class="wrap">
+<div class="wrap tc-config-info">
 <h3><?php _e( 'System Informations', 'customizr' ); ?></h3>
 <h4 style="text-align: left"><?php _e( 'Please include the following informations when posting support requests' , 'customizr' ) ?></h4>
 <textarea readonly="readonly" onclick="this.focus();this.select()" id="system-info-textarea" name="tc-sysinfo" title="<?php _e( 'To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C (Mac).', 'customizr' ); ?>" style="width: 800px;min-height: 800px;font-family: Menlo,Monaco,monospace;background: 0 0;white-space: pre;overflow: auto;display:block;">

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v4.1.47\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2019-11-13 14:14:07+00:00\n"
+"POT-Creation-Date: 2019-11-26 15:21:41+00:00\n"
 "PO-Revision-Date: 2015-08-22 15:54+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Customizr translation contributors <contact@presscustomizr."
@@ -288,55 +288,55 @@ msgstr ""
 msgid "Custom Page Example"
 msgstr ""
 
-#: build/free/customizr/core/class-fire-resources_scripts.php:372
+#: build/free/customizr/core/class-fire-resources_scripts.php:373
 #: build/free/customizr/inc/czr-init-ccat.php:4262
-#: core/class-fire-resources_scripts.php:372
+#: core/class-fire-resources_scripts.php:373
 #: inc/_dev/class-fire-resources.php:341 inc/czr-init-ccat.php:4262
 msgid "Permanently dismiss"
 msgstr ""
 
-#: build/free/customizr/core/class-fire-resources_scripts.php:528
-#: core/class-fire-resources_scripts.php:528
+#: build/free/customizr/core/class-fire-resources_scripts.php:527
+#: core/class-fire-resources_scripts.php:527
 msgid "Welcome in the Customizr theme"
 msgstr ""
 
-#: build/free/customizr/core/class-fire-resources_scripts.php:531
-#: core/class-fire-resources_scripts.php:531
+#: build/free/customizr/core/class-fire-resources_scripts.php:530
+#: core/class-fire-resources_scripts.php:530
 msgid "The theme offers a wide range"
+msgstr ""
+
+#: build/free/customizr/core/class-fire-resources_scripts.php:532
+#: core/class-fire-resources_scripts.php:532
+msgid "of customization options"
 msgstr ""
 
 #: build/free/customizr/core/class-fire-resources_scripts.php:533
 #: core/class-fire-resources_scripts.php:533
-msgid "of customization options"
-msgstr ""
-
-#: build/free/customizr/core/class-fire-resources_scripts.php:534
-#: core/class-fire-resources_scripts.php:534
 msgid "to let you create the best possible websites."
 msgstr ""
 
-#: build/free/customizr/core/class-fire-resources_scripts.php:537
-#: core/class-fire-resources_scripts.php:537
+#: build/free/customizr/core/class-fire-resources_scripts.php:536
+#: core/class-fire-resources_scripts.php:536
 msgid "If you need inspiration, you can visit our online demos"
 msgstr ""
 
-#: build/free/customizr/core/class-fire-resources_scripts.php:539
-#: core/class-fire-resources_scripts.php:539
+#: build/free/customizr/core/class-fire-resources_scripts.php:538
+#: core/class-fire-resources_scripts.php:538
 msgid "Customizr Demo 1"
 msgstr ""
 
-#: build/free/customizr/core/class-fire-resources_scripts.php:541
-#: core/class-fire-resources_scripts.php:541
+#: build/free/customizr/core/class-fire-resources_scripts.php:540
+#: core/class-fire-resources_scripts.php:540
 msgid "Customizr Demo 2"
 msgstr ""
 
-#: build/free/customizr/core/class-fire-resources_scripts.php:544
-#: core/class-fire-resources_scripts.php:544
+#: build/free/customizr/core/class-fire-resources_scripts.php:543
+#: core/class-fire-resources_scripts.php:543
 msgid "To help you getting started with Customizr, we have published"
 msgstr ""
 
-#: build/free/customizr/core/class-fire-resources_scripts.php:546
-#: core/class-fire-resources_scripts.php:546
+#: build/free/customizr/core/class-fire-resources_scripts.php:545
+#: core/class-fire-resources_scripts.php:545
 msgid "a short guide here."
 msgstr ""
 

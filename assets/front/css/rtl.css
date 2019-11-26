@@ -2609,7 +2609,7 @@ blockquote > * {
   font-size: 0.75em;
 }
 
-.small, .tabs .nav-link, .woocommerce #content div.product .woocommerce-tabs ul.tabs li a, label, input[type=number], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-author .post-author__wrapper .post-author-title, .post-author__wrapper figure figcaption .action-link, .post-author__wrapper figure figcaption .comment-reply-link, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, .woocommerce .woocommerce-message,
+.small, .tabs .nav-link, .woocommerce #content div.product .woocommerce-tabs ul.tabs li a, label, input[type=number], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-author .post-author__wrapper .post-author-title, .post-author__wrapper figure figcaption .action-link, .post-author__wrapper figure figcaption .comment-reply-link, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .wp-block-image figcaption, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, .woocommerce .woocommerce-message,
 .woocommerce .woocommerce-error-list,
 .woocommerce .woocommerce-info, small {
   font-size: 0.833333em;
@@ -9422,14 +9422,14 @@ section.post-content {
   margin-top: 0;
 }
 
-.wp-caption-text {
+.wp-caption-text, .wp-block-image figcaption {
   color: #777;
   text-align: right;
   margin: 1.25em 0;
   padding: 0;
 }
 
-.wp-caption-text::before {
+.wp-caption-text::before, .wp-block-image figcaption::before {
   content: '';
   border-top: 2px solid #313131;
   width: 4em;
