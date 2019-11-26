@@ -25,7 +25,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
               add_action( 'czr_ajax_dismiss_welcome_note_front'   , array( $this , 'czr_fn_dismiss_welcome_note_front' ) );
 
               //stores the front scripts map in a property
-              $this -> tc_script_map = $this -> czr_fn_get_script_map();
+              $this->tc_script_map = $this -> czr_fn_get_script_map();
 
          }
 
@@ -71,14 +71,14 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      //magnific popup
                      'tc-mfp' => array(
                           'path' => $_libs_path,
-                          'files' => array( 'jquery-magnific-popup.js', 'jquery-magnific-popup.min.js' ),
+                          'files' => array( 'jquery-magnific-popup.min.js' ),
                           'dependencies' => array( 'jquery' ),
                           'in_footer' => true,
                      ),
                      //flickity
                      'tc-flickity' => array(
                           'path' => $_libs_path,
-                          'files' => array( 'flickity-pkgd.js' ),
+                          'files' => array( 'flickity-pkgd.min.js' ),
                           'dependencies' => array( 'jquery' )
                      ),
                      //waypoints
@@ -96,13 +96,13 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      //holder
                      'tc-holder' => array(
                           'path' => $_libs_path,
-                          'files' => array( 'holder.min.js', 'holder.min.js' ),
+                          'files' => array( 'holder.min.js' ),
                           'dependencies' => array( 'jquery' )
                      ),
                      //mcustom scrollbar
                      'tc-mcs' => array(
                           'path' => $_libs_path,
-                          'files' => array( 'jquery-mCustomScrollbar.js', 'jquery-mCustomScrollbar.min.js' ),
+                          'files' => array( 'jquery-mCustomScrollbar.min.js' ),
                           'dependencies' => array( 'jquery' ),
                      ),
                      /*
@@ -209,6 +209,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                    false
                );
 
+               // load concatenated js script when not in CZR_DEBUG_MODE or CZR_DEV
                if ( $this -> czr_fn_load_concatenated_front_scripts() ) {
                      // if ( $this -> czr_fn_is_lightbox_required() ) {
                      //       $this -> czr_fn_enqueue_script( 'tc-mfp' );
@@ -421,16 +422,13 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
          * @since Customizr 3.3+
          */
          function czr_fn_enqueue_script( $_handles = array() ) {
-
                if ( empty($_handles) )
                  return;
 
-               $_map = $this -> tc_script_map;
+               $_map = $this->tc_script_map;
                //Picks the requested handles from map
                if ( 'string' == gettype($_handles) && isset($_map[$_handles]) ) {
-
                      $_scripts = array( $_handles => $_map[$_handles] );
-
                }
                else {
 
@@ -463,12 +461,12 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
          * @since Customizr 3.3+
          */
          private function czr_fn_normalize_script_args( $_handle, $_params ) {
-
                //Do we load the minified version if available ?
-               if ( count( $_params['files'] ) > 1 )
-                     $_filename = !$this->_minify_js ? $_params['files'][0] : $_params['files'][1];
-               else
-                     $_filename = $_params['files'][0];
+               if ( count( $_params['files'] ) > 1 ) {
+                    $_filename = !$this->_minify_js ? $_params['files'][0] : $_params['files'][1];
+                } else {
+                    $_filename = $_params['files'][0];
+                }
 
                //default is false
                $_params[ 'in_footer' ] = isset( $_params[ 'in_footer' ] ) ? $_params[ 'in_footer' ] : false;
@@ -496,6 +494,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
 
          /**
          * Helper
+         * 'CZR_DEBUG_MODE' = isset( $_GET['czr_debug'] ) && 1 == $_GET['czr_debug']
          *
          * @return boolean
          * @package Customizr

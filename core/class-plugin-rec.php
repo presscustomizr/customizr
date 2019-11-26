@@ -67,7 +67,7 @@ function czr_fn_maybe_render_rec_notice() {
         <p><?php echo $message; ?></p>
         <span class="czr-rec-button"><a class="button button-primary button-hero activate-now" href="<?php echo esc_attr( $button_link ); ?>" data-name="Nimble Builder" data-slug="nimble-builder"><?php echo $button_text; ?></a></span>
       </div>
-      <div class="czr-tgmpa-img-block"><img src="<?php echo get_template_directory_uri() . '/assets/back/img/nimble_customizr_145.gif'; ?>" alt="Nimble Builder" title="Nimble Builder" class="czr-nimble-img"></div>
+      <div class="czr-tgmpa-img-block"><img src="https://f060d5e1352d17626dec-db6380d80b2761f95de6177fb4431643.ssl.cf5.rackcdn.com/img/nimble_customizr_145.gif" alt="Nimble Builder" title="Nimble Builder" class="czr-nimble-img"></div>
     </div>
   </div>
   <?php

@@ -24,8 +24,7 @@ module.exports = {
       '!inc/init-pro.php',
       '!custom-skins/**',
       '!inc/_dev/**',
-      '!inc/assets/less/**',
-      '!assets/czr/_dev/**',
+
       '!lang_pro/**',
 
       /*modern style dev*/
@@ -35,6 +34,27 @@ module.exports = {
 
       '!assets/front/js/_front_js_fmk/**', //front js modern and classic dev fmk
       '!assets/front/js/_parts/**', //front js modern and classic dev parts
+
+      // only needed for dev
+      '!assets/czr/_dev/**',
+      '!assets/front/js/libs/jquery-plugins/**',
+
+      // modern
+      '!assets/front/js/libs/bootstrap-classical.js',
+      '!assets/front/js/libs/flickity-pkgd.js',
+      '!assets/front/js/libs/jquery-magnific-popup.js',
+      '!assets/front/js/libs/jquery-mCustomScrollbar.js',
+      '!assets/front/js/libs/waypoints.js',
+      '!assets/front/js/libs/holder.js',
+      '!assets/front/js/libs/modernizr.js',
+      '!assets/front/js/libs/smoothscroll.js',
+
+      // classic
+      '!inc/assets/less/**',
+      '!assets/front/js/libs/fancybox/jquery.fancybox-1.3.4.css',
+      '!assets/front/js/libs/fancybox/jquery.fancybox-1.3.4.js',
+      '!inc/assets/js/main-ccat.js',
+      '!inc/assets/js/main-ccat.min.js',
 
       /* don't deploy the dev css + sass files including custom bootstrap */
       '!assets/front/css/_dev/**',
