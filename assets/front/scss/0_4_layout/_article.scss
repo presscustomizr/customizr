@@ -805,7 +805,7 @@ section.post-related-articles {
 section.post-content { margin-top:0; }
 
 // adapt for Gutenberg
-// @see https://github.com/presscustomizr/hueman/issues/835
+// @see https://github.com/presscustomizr/customizr/issues/1789
 .wp-caption-text, .wp-block-image figcaption {
   @extend .small;
   color: $grey;
