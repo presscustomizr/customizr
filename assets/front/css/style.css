@@ -6530,6 +6530,17 @@ form.czr-form .czr-focus.in-focus > label i.icn-close {
   padding: 0;
 }
 
+.wp-block-gallery .blocks-gallery-item {
+  padding: 0;
+}
+
+.wp-block-gallery .blocks-gallery-image figcaption, .wp-block-gallery .blocks-gallery-item figcaption {
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: auto;
+}
+
 .gallery-item dt {
   text-align: inherit;
   padding: 0.8rem;

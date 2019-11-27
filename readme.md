@@ -1,4 +1,4 @@
-# Customizr v4.1.47 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.48 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,11 @@ See headers of each files for further details.
 
 ## Changelog
 https://github.com/presscustomizr/customizr/releases
+
+= 4.1.48 November 27th 2019 =
+* fixed : broken style for caption of images and galleries when embedded as Gutenberg blocks. fixes #1789
+* improved : removed unused files to reduces theme's folder size. fixes #1788
+* updated : Nimble Builder admin notification
 
 = 4.1.47 November 13th 2019 =
 * Successfully tested with WordPress 5.3

@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.3
-Stable tag: 4.1.47
+Stable tag: 4.1.48
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,15 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.47 =
-Successfully tested with WordPress 5.3. Fine tuning of post/page navigation options, in particular for the case when home is a static page.
+= 4.1.48 =
+Enhanced style for caption of images and galleries when embedded as Gutenberg blocks. Reduced theme's folder size.
 
 == Changelog ==
+= 4.1.48 November 27th 2019 =
+* fixed : broken style for caption of images and galleries when embedded as Gutenberg blocks. fixes #1789
+* improved : removed unused files to reduces theme's folder size. fixes #1788
+* updated : Nimble Builder admin notification
+
 = 4.1.47 November 13th 2019 =
 * Successfully tested with WordPress 5.3
 * improved : fine tuning of post/page navigation options, in particular for the case when home is a static page

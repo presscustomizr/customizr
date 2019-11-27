@@ -1,5 +1,5 @@
 /*!
- * Customizr v4.1.47
+ * Customizr v4.1.48
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -6962,12 +6962,20 @@ article .no-thumb figcaption {
 }
 .wp-caption .wp-caption-text,
 .tc-gallery-style .gallery-caption,
-.entry-caption {
+.entry-caption,
+.wp-block-image figcaption {
   font-style: italic;
   font-size: 12px;
-  font-size: 0.7rem;
-  line-height: 1.3em;
+  font-size: 0.75rem;
+  line-height: 1.5em;
   color: #757575;
+}
+.wp-block-gallery .blocks-gallery-image figcaption,
+.wp-block-gallery .blocks-gallery-item figcaption {
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: auto;
 }
 /* Text meant only for screen readers. */
 .screen-reader-text {
