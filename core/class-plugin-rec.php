@@ -3,7 +3,7 @@
 function czr_fn_rec_notice_is_dismissed() {
   $dismissed = get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true );
   $dismissed_array = array_filter( explode( ',', (string) $dismissed ) );
-  return in_array( REC_NOTICE_ID, $dismissed_array );
+  return ( defined('NIMBLE_RECOMMENDATION_OFF') && true === NIMBLE_RECOMMENDATION_OFF ) || in_array( REC_NOTICE_ID, $dismissed_array );
 }
 
 add_action( 'admin_notices', 'czr_fn_maybe_render_rec_notice' );
@@ -26,13 +26,15 @@ function czr_fn_maybe_render_rec_notice() {
           )
       );
 
-  $message = sprintf( '<span style="font-weight:normal; font-style:italic">%1$s<br/> %2$s<br/>%3$s</span>',
-    __( 'Nimble Page Builder is a free, easy to use yet powerful page builder used by 40K+ WordPress websites.',  'customizr'),
+  $message = sprintf( '<span style="font-weight:normal;">%1$s<br/> %2$s<br/>%3$s<br/>%4$s</span>',
+    __( 'Developers of the Customizr theme have created Nimble Builder, a free, powerful yet easy-to-use page builder already active on 40K+ WordPress websites.',  'customizr'),
+    __( 'It allows you to drag and drop mobile-ready sections on <i>really</i> any page of your site, including home, posts, pages, products, archives, 404, search pages, ...', 'customizr' ),
     sprintf(
-        __( 'It allows you to create mobile ready column layouts, and to drag-and-drop modules like post grids, buttons, widget zones, maps, icons, or beautiful pre-built sections with engaging %1$s, in any page of your site. Nimble Builder uses the live customizer which is the native WordPress interface for real-time design.', 'customizr' ),
-        sprintf('<a href="%1$s" target="_blank" title="%2$s">%2$s</a>', esc_url('demo.presscustomizr.com/nimble-builder/'), __('parallax backgrounds', 'customizr') )
+        __( 'You can insert simple text zones, but also create %1$s, insert post grids, column structures, buttons, widget zones, maps, icons, and much more, or use pre-designed sections with professional %2$s.', 'customizr'),
+        sprintf('<a href="%1$s" target="_blank" title="%2$s">%2$s</a>', esc_url('nimblebuilder.com/mp4-video-background-with-delay/'), __('video backgrounds', 'customizr') ),
+        sprintf('<a href="%1$s" target="_blank" title="%2$s">%2$s</a>', esc_url('demo.presscustomizr.com/nimble-builder/'), __('parallax effect', 'customizr') )
     ),
-    __( "The plugin has been designed to integrate perfectly with the Customizr theme. Lightweight and safe.", 'customizr')
+    __( "The plugin is lightweight and has been designed to integrate seamlessly with Customizr and any WordPress theme.", 'customizr')
   );
 
   if ( $is_nimble_installed ) {

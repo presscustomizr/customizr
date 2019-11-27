@@ -332,6 +332,9 @@ credits : Gutenberg team @wordpress */
 .czr-rec-text-block {
   width: calc( 100% - 252px );
 }
+.czr-rec-text-block p {
+  font-size: 14px;
+}
 .czr-rec-button {
   display: block;
   margin: 0.5em 0.5em 0 0;
