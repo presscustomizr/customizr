@@ -206,8 +206,14 @@ class CZR_gallery {
             $link  = wp_get_attachment_url( $id );
             $attr  = 'data-lb-type="grouped-gallery"' . $title;
 
-            return $markup . czr_fn_post_action( $link, $class = '', $attr,  $echo = false );
-
+            // check for existence of the function to fix issue when previewing customizations of Nimble Builder
+            // see https://github.com/presscustomizr/nimble-builder/issues/562
+            // because fn not declared when customizing
+            if ( function_exists( 'czr_fn_post_action' ) ) {
+                return $markup . czr_fn_post_action( $link, $class = '', $attr,  $echo = false );
+            } else {
+                return $markup;
+            }
       }
 
 
