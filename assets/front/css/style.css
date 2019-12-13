@@ -6588,6 +6588,7 @@ section[class^="post-"] .gallery.row {
 
 .czr-gallery .gallery-item {
   width: 50%;
+  margin: 0 0 1rem;
 }
 
 .czr-gallery.gallery-columns-1 .gallery-item {
