@@ -1796,9 +1796,32 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
         else if ( in_array( $icon_class, $_fa_solid_icons ) ){
             $fa_group = 'fas';
         }
-
         $icon_class   = "{$fa_group} {$icon_class}";
 
+        // links like tel:*** or skype:**** or call:**** should work
+        // implemented for https://github.com/presscustomizr/social-links-modules/issues/7
+        $social_link = 'javascript:void(0)';
+
+        $is_blank_target = ( isset($item['social-target']) && false != $item['social-target'] );
+
+        // set the relationship attribute
+        // fixes : https://github.com/presscustomizr/social-links-modules/issues/8
+        // fixes : https://github.com/presscustomizr/hueman/issues/842
+        $rel_attr = 'rel="nofollow"';
+        if ( $is_blank_target ) {
+            // fix potential performance and security issues with other attributes
+            // @see https://web.dev/external-anchors-use-rel-noopener
+            $rel_attr = 'rel="nofollow noopener noreferrer"';
+        }
+
+        if ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) {
+            if ( false !== strpos($item['social-link'], 'callto:') || false !== strpos($item['social-link'], 'tel:') || false !== strpos($item['social-link'], 'skype:') ) {
+                $social_link = esc_attr( $item['social-link'] );
+                $rel_attr = '';//we don't need to set a relationship attribute in this case
+            } else {
+                $social_link = esc_url( $item['social-link'] );
+            }
+        }
 
         /* Maybe build inline style */
         $social_color_css      = isset($item['social-color']) ? esc_attr($item['social-color']) : $_default_color[0];
@@ -1808,7 +1831,7 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
 
         $style_attr            = $style_props ? sprintf(' style="%1$s"', $style_props ) : '';
 
-        array_push( $_social_links, sprintf('<a rel="nofollow" class="social-icon%6$s" %1$s title="%2$s" aria-label="%2$s" href="%3$s" %4$s %7$s><i class="%5$s"></i></a>',
+        array_push( $_social_links, sprintf('<a %8$s class="social-icon%6$s" %1$s title="%2$s" aria-label="%2$s" href="%3$s" %4$s %7$s><i class="%5$s"></i></a>',
           //do we have an id set ?
           //Typically not if the user still uses the old options value.
           //So, if the id is not present, let's build it base on the key, like when added to the collection in the customizer
@@ -1816,11 +1839,12 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
           // Put them together
             ! czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'czr_socials_'. $key : $item['id'] ),
             isset($item['title']) ? esc_attr( $item['title'] ) : '',
-            ( isset($item['social-link']) && ! empty( $item['social-link'] ) ) ? esc_url( $item['social-link'] ) : 'javascript:void(0)',
+            $social_link,
             ( isset($item['social-target']) && false != $item['social-target'] ) ? ' target="_blank"' : '',
             $icon_class,
             $link_icon_class,
-            $style_attr
+            $style_attr,
+            $rel_attr
         ) );
     }
 
