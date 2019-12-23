@@ -32,11 +32,14 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   * return model params array()
   */
   function czr_fn_extend_params( $model = array() ) {
-      //merge with args
+      // merge with args.
       $model                              = parent::czr_fn_extend_params( $model );
 
       $model[ 'content_wrapper_breadth' ] = in_array( $model[ 'content_wrapper_breadth' ], array( 'full', 'semi-narrow', 'narrow' ) ) ?
             $model[ 'content_wrapper_breadth' ] : 'full';
+
+      // force categories to be shown below the title in post list plain full content.
+      $model[ 'split_layout' ] = $model[ 'show_full_content' ] ? false : $model[ 'split_layout' ];
 
       return $model;
   }
@@ -57,16 +60,16 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   }
   /*
   * Fired just before the view is rendered
-  * @hook: pre_rendering_view_{$this -> id}, 9999
+  * @hook: pre_rendering_view_{$this->id}, 9999
   */
   /*
   * Each time this model view is rendered setup the current post list item
   * and add it to the post_list_items_array
   */
   function czr_fn_setup_late_properties() {
-      //all post lists do this
-      if ( ! $this -> show_full_content && czr_fn_is_loop_start() )
-          $this -> czr_fn_setup_text_hooks();
+      // all post lists do this.
+      if ( ! $this->show_full_content && czr_fn_is_loop_start() )
+          $this->czr_fn_setup_text_hooks();
 
       $this->post_list_items[] = $this->czr_fn__get_post_list_item();
   }
@@ -74,16 +77,16 @@ class CZR_post_list_plain_model_class extends CZR_Model {
 
   /*
   * Fired just before the view is rendered
-  * @hook: post_rendering_view_{$this -> id}, 9999
+  * @hook: post_rendering_view_{$this->id}, 9999
   */
   function czr_fn_reset_late_properties() {
     if ( czr_fn_is_loop_end() ) {
-      if ( ! $this -> show_full_content )
-        //all post lists do this
-        $this -> czr_fn_reset_text_hooks();
+      if ( ! $this->show_full_content )
+        // all post lists do this.
+        $this->czr_fn_reset_text_hooks();
 
-      //reset alternate items at loop end
-      $this -> czr_fn_reset_post_list_items();
+      // reset alternate items at loop end.
+      $this->czr_fn_reset_post_list_items();
     }
   }
 
@@ -92,39 +95,39 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   *  Public getters
   */
   function czr_fn_get_article_selectors() {
-    return $this -> czr_fn__get_post_list_item_property( 'article_selectors' );
+    return $this->czr_fn__get_post_list_item_property( 'article_selectors' );
   }
 
   function czr_fn_get_cat_list() {
-    return $this -> czr_fn__get_post_list_item_property( 'cat_list' );
+    return $this->czr_fn__get_post_list_item_property( 'cat_list' );
   }
 
   function czr_fn_get_cat_list_class() {
-    return $this -> czr_fn__get_post_list_item_property( 'cat_list_class' );
+    return $this->czr_fn__get_post_list_item_property( 'cat_list_class' );
   }
 
   function czr_fn_get_entry_header_inner_class() {
-    return $this -> czr_fn__get_post_list_item_property( 'entry_header_inner_class' );
+    return $this->czr_fn__get_post_list_item_property( 'entry_header_inner_class' );
   }
 
   function czr_fn_get_content_inner_class() {
-    return $this -> czr_fn__get_post_list_item_property( 'content_inner_class' );
+    return $this->czr_fn__get_post_list_item_property( 'content_inner_class' );
   }
 
   function czr_fn_get_media_class() {
-    return $this -> czr_fn__get_post_list_item_property( 'media_class' );
+    return $this->czr_fn__get_post_list_item_property( 'media_class' );
   }
 
   function czr_fn_get_has_post_media() {
-    return $this -> czr_fn__get_post_list_item_property( 'has_post_media' );
+    return $this->czr_fn__get_post_list_item_property( 'has_post_media' );
   }
 
   function czr_fn_get_print_start_wrapper() {
-    return $this -> wrapped && czr_fn_is_loop_start();
+    return $this->wrapped && czr_fn_is_loop_start();
   }
 
   function czr_fn_get_print_end_wrapper() {
-    return $this -> wrapped && czr_fn_is_loop_end();
+    return $this->wrapped && czr_fn_is_loop_end();
   }
 
   /*
@@ -139,12 +142,12 @@ class CZR_post_list_plain_model_class extends CZR_Model {
     $current_post_format         = in_the_loop() ? get_post_format() : '';
 
     /* retrieve category list */
-    $cat_list                    = $this -> czr_fn__get_cat_list();
+    $cat_list                    = $this->czr_fn__get_cat_list();
 
     /* Build inner elements classes */
     $cat_list_class = $entry_header_inner_class = $content_inner_class = array( 'col-12' );
 
-    //split layout
+    // split layout.
     if ( $this->split_layout && $cat_list && 'narrow' != $this->content_wrapper_breadth ) {
       $bp                  = 'narrow' == $this->content_wrapper_breadth ? 'lg' : 'xl';
       $cat_list_text_align = is_rtl() ? 'left' : 'right';
@@ -155,16 +158,16 @@ class CZR_post_list_plain_model_class extends CZR_Model {
       array_push( $cat_list_class, "col-{$bp}-3 text-{$bp}-{$cat_list_text_align}" );
     }
 
-    $article_selectors           = $this -> czr_fn__get_article_selectors( $cat_list );
+    $article_selectors           = $this->czr_fn__get_article_selectors( $cat_list );
 
-    //add the aspect ratio class for all media types (except audio )
-    //$media_class                 = 'audio' == $current_post_format ? '' : 'czr__r-w16by9';
+    // add the aspect ratio class for all media types (except audio ).
+    // $media_class                 = 'audio' == $current_post_format ? '' : 'czr__r-w16by9';
 
-    //we decided to show the original featured image
+    // we decided to show the original featured image.
     $media_class = '';
 
     return array(
-        //add the aspect ratio class for all images types
+        // add the aspect ratio class for all images types.
         'media_class'              => $media_class,
         'article_selectors'        => $article_selectors,
         'cat_list'                 => $cat_list,
@@ -181,7 +184,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   */
   protected function czr_fn__get_cat_list() {
     /* Post list plain showing excerpts limits the category to show to 3 */
-    $cat_list                  = ! $this -> show_full_content ? czr_fn_get_property( 'cat_list', 'post_metas',  array( 'limit' => 3 ) ) : czr_fn_get_property( 'cat_list', 'post_metas');
+    $cat_list                  = ! $this->show_full_content ? czr_fn_get_property( 'cat_list', 'post_metas',  array( 'limit' => 3 ) ) : czr_fn_get_property( 'cat_list', 'post_metas');
     return $cat_list;
   }
 
@@ -197,7 +200,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
       ! $cat_list       ? 'no-cat-list' : ''
     );
 
-    $id_suffix               = is_main_query() ? '' : "_{$this -> id}";
+    $id_suffix = is_main_query() ? '' : "_{$this->id}";
 
     return czr_fn_get_the_post_list_article_selectors( array_filter($post_class), $id_suffix );
   }
@@ -243,7 +246,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   * @since Customizr 3.2.0
   */
   function czr_fn_set_excerpt_length( $length ) {
-    $_custom = $this -> excerpt_length;
+    $_custom = $this->excerpt_length;
     return ( false === $_custom || !is_numeric($_custom) ) ? $length : $_custom;
   }
 
@@ -265,7 +268,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
   * @since Customizr 4.0
   */
   function czr_fn_reset_post_list_items() {
-    $this -> post_list_items = array();
+    $this->post_list_items = array();
   }
 
 }
