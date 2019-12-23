@@ -2,8 +2,8 @@
 Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
-Tested up to: 5.3
-Stable tag: 4.1.49
+Tested up to: 5.3.2
+Stable tag: 4.1.50
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,14 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.49 =
-100% compatible with WordPress 5.3.1. Fixes various bugs related to WordPress galleries when using Nimble Builder.
+= 4.1.50 =
+100% compatible with WordPress 5.3.2. Improves security for links to cross-orign destinations (social profiles, footer credits). Improves the style of posts when displayed in full text => categories are not displayed in a dedicated column anymore.
 
 == Changelog ==
+= 4.1.50 December 23rd 2019 =
+* fixed : Improves security for links to cross-orign destinations (social profiles, footer credits) => Add rel="noopener" or rel="noreferrer" when relevant
+* fixed : display categories below the title when the post list layout is set to plain text full content. fixes #1792
+
 = 4.1.49 December 12th 2019 =
 * fixed : php error when inserting a WP gallery with Nimble WP editor module, which breaks customizer preview
 * fixed : missing vertical spacing for WP galleries inserted with Nimble Builder WP editor
