@@ -10,7 +10,7 @@
   </p>
   <p class="czr-credits">
     <span class="czr-designer">
-      <span class="czr-wp-powered"><span class="czr-wp-powered-text"><?php _e( 'Powered by', 'customizr') ?>&nbsp;</span><a class="czr-wp-powered-link fab fa-wordpress" title="<?php _e( 'Powered by WordPress', 'customizr' ) ?>" href="<?php echo esc_url( __( 'https://wordpress.org/', 'customizr' ) ); ?>" target="_blank"></a></span><span class="czr-designer-text">&nbsp;&ndash;&nbsp;<?php printf( __('Designed with the %s', 'customizr'), sprintf( '<a class="czr-designer-link" href="%1$s" title="%2$s">%2$s</a>', esc_url( CZR_WEBSITE . 'customizr' ), __('Customizr theme', 'customizr') ) ); ?></span>
+      <span class="czr-wp-powered"><span class="czr-wp-powered-text"><?php _e( 'Powered by', 'customizr') ?>&nbsp;</span><a class="czr-wp-powered-link fab fa-wordpress" title="<?php _e( 'Powered by WordPress', 'customizr' ) ?>" href="<?php echo esc_url( __( 'https://wordpress.org/', 'customizr' ) ); ?>" target="_blank" rel="noopener noreferrer"></a></span><span class="czr-designer-text">&nbsp;&ndash;&nbsp;<?php printf( __('Designed with the %s', 'customizr'), sprintf( '<a class="czr-designer-link" href="%1$s" title="%2$s">%2$s</a>', esc_url( CZR_WEBSITE . 'customizr' ), __('Customizr theme', 'customizr') ) ); ?></span>
     </span>
   </p>
 </div>

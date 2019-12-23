@@ -1840,7 +1840,7 @@ function czr_fn_get_social_networks( $output_type = 'string' ) {
             ! czr_fn_is_customizing() ? '' : sprintf( 'data-model-id="%1$s"', ! isset( $item['id'] ) ? 'czr_socials_'. $key : $item['id'] ),
             isset($item['title']) ? esc_attr( $item['title'] ) : '',
             $social_link,
-            ( isset($item['social-target']) && false != $item['social-target'] ) ? ' target="_blank"' : '',
+            $is_blank_target ? ' target="_blank"' : '',
             $icon_class,
             $link_icon_class,
             $style_attr,
