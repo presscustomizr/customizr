@@ -19,6 +19,7 @@ Implements a better search form ( displayed when clicking on the magnifying glas
 == Changelog ==
 = 4.1.51 January 21st 2020 =
 * fixed : [Search form] current implementation can be misleading => added a search button next to the search input field. fixes #1795
+* added : "flipboard" social network to the list of icons
 
 = 4.1.50 December 23rd 2019 =
 * fixed : Improves security for links to cross-orign destinations (social profiles, footer credits) => Add rel="noopener" or rel="noreferrer" when relevant
