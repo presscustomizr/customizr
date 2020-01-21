@@ -166,11 +166,33 @@ select {
 //and the comment reply
 form.czr-form {
   &.search-form {
+    .form-group {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+    }
     label {
       @include clearfix;
-      width: 100%
+      position: relative!important;
+      width: calc(75% - 5px);
+      margin-right: 5px;
+      input {
+        padding-left: 26px;
+        line-height: 40px;
+        width: 100%;
+      }
+    }//label
+    input[type=submit] {
+      padding: 10px;
+      font-weight: 600;
+      display: inline-block;
+      cursor: pointer;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      line-height: 20px;
+      width: 25%;
     }
-  }
+  }//.search-form
 
   label {
     @extend .caps;
@@ -231,23 +253,6 @@ form.czr-form {
           @else {
               float: left;
           }
-        }
-
-        /* search form */
-        i.icn-close {
-          @if ( true == $is_rtl ) {
-              margin-left: -2em;
-          }
-          @else {
-              margin-right: -2em;
-          }
-          border-radius:100%;
-          height:2em;
-          width:2em;
-          line-height: 2em;
-          @include opacity(0);
-          @include transition-transform(0.3s ease);
-          @include transform(translateY(-110%));
         }
         #czr-comments & {
           padding: 0.5rem;
