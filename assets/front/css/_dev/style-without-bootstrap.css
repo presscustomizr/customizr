@@ -3825,9 +3825,17 @@ select {
   outline: none;
 }
 
+form.czr-form.search-form .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 form.czr-form.search-form label {
   *zoom: 1;
-  width: 100%;
+  position: relative !important;
+  width: calc(75% - 5px);
+  margin-right: 5px;
 }
 
 form.czr-form.search-form label:before, form.czr-form.search-form label:after {
@@ -3837,6 +3845,23 @@ form.czr-form.search-form label:before, form.czr-form.search-form label:after {
 
 form.czr-form.search-form label:after {
   clear: both;
+}
+
+form.czr-form.search-form label input {
+  padding-left: 26px;
+  line-height: 40px;
+  width: 100%;
+}
+
+form.czr-form.search-form input[type=submit] {
+  padding: 10px;
+  font-weight: 600;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  line-height: 20px;
+  width: 25%;
 }
 
 form.czr-form label {
@@ -3887,27 +3912,10 @@ form.czr-form .czr-focus label {
   transition: -ms-transform 0.3s ease;
   transition: -webkit-transform 0.3s ease;
   transition: transform 0.3s ease;
-  /* search form */
 }
 
 form.czr-form .czr-focus label span {
   float: left;
-}
-
-form.czr-form .czr-focus label i.icn-close {
-  margin-right: -2em;
-  border-radius: 100%;
-  height: 2em;
-  width: 2em;
-  line-height: 2em;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  opacity: 0;
-  transition: -ms-transform 0.3s ease;
-  transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  -webkit-transform: translateY(-110%);
-  transform: translateY(-110%);
 }
 
 #czr-comments form.czr-form .czr-focus label {
