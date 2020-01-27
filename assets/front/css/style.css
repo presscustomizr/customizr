@@ -2609,7 +2609,7 @@ blockquote > * {
   font-size: 0.75em;
 }
 
-.small, .tabs .nav-link, .woocommerce #content div.product .woocommerce-tabs ul.tabs li a, label, input[type=number], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-author .post-author__wrapper .post-author-title, .post-author__wrapper figure figcaption .action-link, .post-author__wrapper figure figcaption .comment-reply-link, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .wp-block-image figcaption, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, .woocommerce .woocommerce-message,
+.small, .tabs .nav-link, .woocommerce #content div.product .woocommerce-tabs ul.tabs li a, label, input[type=number], form.czr-form.search-form input[type=submit], .grid-container__alternate .entry-footer, .grid-container__classic .tc-content, .grid-container__plain .post-info, .grid-container__plain .author-info, .grid-container__plain .post-tags, .grid-container__square-mini .czr-related-post, .grid-container__square-mini .entry-header, .grid-container__square-mini blockquote, .entry-header .tax__container, .entry-header .post-info, .page__header .header-content .post-info, .post-section-title, .post-author .post-author__wrapper .post-author-title, .post-author__wrapper figure figcaption .action-link, .post-author__wrapper figure figcaption .comment-reply-link, .pagination.post-pagination, .comment-meta time, #cancel-comment-reply-link, .comment-respond .comment-notes, .comment-respond .logged-in-as, .wp-caption-text, .wp-block-image figcaption, .widget_calendar thead tr, .widget_calendar caption, .widget_calendar tfoot, .colophon__row .footer__credits, .woocommerce .woocommerce-message,
 .woocommerce .woocommerce-error-list,
 .woocommerce .woocommerce-info, small {
   font-size: 0.833333em;
@@ -6386,8 +6386,10 @@ form.czr-form.search-form .form-group {
 form.czr-form.search-form label {
   *zoom: 1;
   position: relative !important;
-  width: calc(75% - 5px);
   margin-right: 5px;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 form.czr-form.search-form label:before, form.czr-form.search-form label:after {
@@ -6413,7 +6415,7 @@ form.czr-form.search-form input[type=submit] {
   -webkit-border-radius: 3px;
   border-radius: 3px;
   line-height: 18px;
-  width: 25%;
+  text-transform: none;
 }
 
 form.czr-form label {

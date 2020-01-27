@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.3.2
-Stable tag: 4.1.51
+Stable tag: 4.1.52
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,13 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.51 =
-Implements a better search form ( displayed when clicking on the magnifying glass icon ), more suited to web standards. 100% compatible with WordPress 5.3.2.
+= 4.1.52 =
+Text in search button can be truncated in sidebar.
 
 == Changelog ==
+= 4.1.52 January 27th 2020 =
+* fixed : text in search button can be truncated in sidebar. fixes #179
+
 = 4.1.51 January 21st 2020 =
 * fixed : [Search form] current implementation can be misleading => added a search button next to the search input field. fixes #1795
 * added : "flipboard" social network to the list of icons
