@@ -174,8 +174,11 @@ form.czr-form {
     label {
       @include clearfix;
       position: relative!important;
-      width: calc(75% - 5px);
+      // width: calc(75% - 5px);
       margin-right: 5px;
+      -webkit-box-flex:1;
+      -ms-flex:1;
+      flex:1;
       input {
         padding-left: 26px;
         line-height: 40px;
@@ -185,12 +188,14 @@ form.czr-form {
     input[type=submit] {
       padding: 10px;
       font-weight: 600;
+      @extend .small;
       display: inline-block;
       cursor: pointer;
       -webkit-border-radius: 3px;
       border-radius: 3px;
       line-height: 18px;
-      width: 25%;
+      text-transform: none;
+      // width: 25%;
     }
   }//.search-form
 
