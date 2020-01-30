@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr-Pro v2.1.15\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2019-12-23 18:10:05+00:00\n"
-"PO-Revision-Date: 2020-01-28 11:42+0100\n"
+"POT-Creation-Date: 2020-01-27 21:30:52+00:00\n"
+"PO-Revision-Date: 2020-01-28 11:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -45,8 +45,7 @@ msgstr "Theme-Aktivierungsschlüssel"
 #: addons/activation-key/activation/class_activation_key.php:34
 msgid "Enter your Activation Key and press \"Save Changes\""
 msgstr ""
-"Geben Sie Ihren Aktivierungsschlüssel ein und klicken Sie auf \"Änderungen "
-"speichern\""
+"Gib deinen Aktivierungsschlüssel ein und klicke auf \"Änderungen speichern\""
 
 #: addons/activation-key/activation/class_activation_key.php:35
 msgid "Activation Key"
@@ -75,7 +74,7 @@ msgstr "Jetzt Lizenz erneuern."
 #: addons/activation-key/activation/class_activation_key.php:41
 msgid "You are not receiving updates for bug fixes and new features anymore."
 msgstr ""
-"Sie erhalten keine Updates mehr für Fehlerbehebungen und neue Funktionen."
+"Du erhältst keine Updates mehr für Fehlerbehebungen und neue Funktionen."
 
 #: addons/activation-key/activation/class_activation_key.php:42
 msgid "unlimited"
@@ -86,7 +85,7 @@ msgid ""
 "Your key is valid, you are safely receiving the latest theme updates for bug "
 "fixes and new features."
 msgstr ""
-"Ihr Schlüssel ist gültig, Sie erhalten sicher die neuesten Theme-Updates für "
+"Dein Schlüssel ist gültig, Du erhältst sicher die neuesten Theme-Updates für "
 "Fehlerbehebungen und neue Funktionen."
 
 #: addons/activation-key/activation/class_activation_key.php:44
@@ -99,7 +98,7 @@ msgstr "Lebenslanger Aktivierungsschlüssel."
 
 #: addons/activation-key/activation/class_activation_key.php:46
 msgid "You have %1$s / %2$s sites activated."
-msgstr "Sie haben %1$s von maximal %2$s Seiten aktiviert."
+msgstr "Du hast %1$s von maximal %2$s Seiten aktiviert."
 
 #: addons/activation-key/activation/class_activation_key.php:47
 msgid "Key expired %s."
@@ -142,7 +141,7 @@ msgid ""
 "Updating this theme will lose any customizations you have made. 'Cancel' to "
 "stop, 'OK' to update."
 msgstr ""
-"Durch das Aktualisieren dieses Themes gehen alle von Ihnen vorgenommenen "
+"Durch das Aktualisieren dieses Themes gehen alle von dir vorgenommenen "
 "Anpassungen verloren. 'Abbrechen' zum Stoppen, 'OK' zum Aktualisieren."
 
 #: addons/activation-key/activation/class_activation_key.php:56
@@ -152,7 +151,7 @@ msgid ""
 "a>."
 msgstr ""
 "<strong>%1$s %2$s</strong> steht zur Verfügung. <a href=\"%3$s\" class="
-"\"thickbox\" title=\"% 4s\">Erfahren Sie, was neu ist</a> oder <a href=\"%5$s"
+"\"thickbox\" title=\"% 4s\">Erfahre, was neu ist</a> oder <a href=\"%5$s"
 "\"%6$s>Jetzt aktualisieren</a>."
 
 #: addons/activation-key/activation/class_activation_key.php:118
@@ -163,7 +162,7 @@ msgstr "%1$s Schlüssel"
 
 #: addons/activation-key/activation/class_activation_key.php:177
 msgid "You did not activate the Customizr Pro theme key yet."
-msgstr "Sie haben den Theme-Schlüssel für Customizr Pro noch nicht aktiviert."
+msgstr "Du hast den Theme-Schlüssel für Customizr Pro noch nicht aktiviert."
 
 #: addons/activation-key/activation/class_activation_key.php:180
 msgid ""
@@ -175,24 +174,25 @@ msgid ""
 "for the theme."
 msgstr ""
 "Es ist <span style='text-decoration: underline;'>wichtig, den Schlüssel zu "
-"aktivieren,</span> damit Sie in Ihrem Dashboard Hinweise auf neue Versionen "
-"erhalten. Auf diesem Weg ist gewährleistet, dass <span style='text-"
-"decoration: underline;'>Ihre Webseite immer kompatibel zu neuesten WordPress "
-"ist</span>und dass Sie alle aktuellen Funktionen und Fehlerbehebungen für "
-"das Theme haben."
+"aktivieren,</span> damit du in deinem Dashboard Hinweise auf neue Versionen "
+"erhältst. Auf diesem Weg ist gewährleistet, dass <span style='text-"
+"decoration: underline;'>deine Webseite immer kompatibel zu neuesten "
+"WordPress ist</span>und dass du alle aktuellen Funktionen und "
+"Fehlerbehebungen für das Theme hast."
 
 #: addons/activation-key/activation/class_activation_key.php:181
 msgid "Why should you keep your Wordpress theme up to date ?"
-msgstr "Warum sollten Sie Ihr Wordpress-Theme aktuell halten?"
+msgstr "Warum solltest du dein Wordpress-Theme aktuell halten?"
 
 #: addons/activation-key/activation/class_activation_key.php:183
 msgid "Enter your activation key now"
-msgstr "Geben Sie Ihren Aktivierungsschlüssel jetzt ein"
+msgstr "Gib deinen Aktivierungsschlüssel jetzt ein"
 
 #: addons/activation-key/activation/class_activation_key.php:187
 msgid "You'll find your key in your purchase receipt email or in your"
 msgstr ""
-"Sie finden Ihren Schlüssel in Ihrer E-Mail zum Kauf des themes oder in Ihrem"
+"Du findest deinen Schlüssel in deiner E-Mail zum Kauf des themes oder in "
+"deinem"
 
 #: addons/activation-key/activation/class_activation_key.php:189
 msgid "account"
@@ -200,7 +200,7 @@ msgstr "Konto"
 
 #: addons/activation-key/activation/class_activation_key.php:195
 msgid "OK got it. Remind me later."
-msgstr "OK, verstanden. Erinnern Sie mich später."
+msgstr "OK, verstanden. Erinnere mich später."
 
 #: addons/activation-key/activation/class_activation_key.php:196
 #: core/czr-admin-ccat.php:403
@@ -227,7 +227,7 @@ msgid ""
 "This can happen sometimes when your host server filters requests to remote "
 "servers."
 msgstr ""
-"Dies kann manchmal passieren, wenn Ihr Host-Server Anfragen an entfernte "
+"Dies kann manchmal passieren, wenn dein Host-Server Anfragen an entfernte "
 "Server filtert."
 
 #: addons/activation-key/activation/class_activation_key.php:333
@@ -235,8 +235,8 @@ msgid ""
 "If the problem persists after several tries, please follow those simple "
 "steps to update your theme : "
 msgstr ""
-"Wenn das Problem nach mehreren Versuchen weiterhin besteht, folgen Sie bitte "
-"diesen einfachen Schritten, um Ihre Theme zu aktualisieren: "
+"Wenn das Problem nach mehreren Versuchen weiterhin besteht, folge bitte "
+"diesen einfachen Schritten, um dein Theme zu aktualisieren: "
 
 #: addons/activation-key/activation/class_activation_key.php:336
 msgid "Connect to"
@@ -244,11 +244,11 @@ msgstr "Verbinde mit"
 
 #: addons/activation-key/activation/class_activation_key.php:338
 msgid "your account"
-msgstr "Ihr Konto"
+msgstr "Dein Konto"
 
 #: addons/activation-key/activation/class_activation_key.php:341
 msgid "Download the latest version of the theme"
-msgstr "Laden Sie die neueste Version des Themes"
+msgstr "Lade die neueste Version des Themes"
 
 #: addons/activation-key/activation/class_activation_key.php:344
 msgid "Install the theme ( check "
@@ -260,7 +260,7 @@ msgstr "Dieser Leitfaden"
 
 #: addons/activation-key/activation/class_activation_key.php:347
 msgid "if you're not sure how to install a theme )"
-msgstr "Wenn Sie nicht sicher sind, wie Sie ein Theme installieren )"
+msgstr "Wenn du nicht sicher bist, wie du ein theme installierst )"
 
 #: addons/activation-key/activation/class_activation_key.php:408
 msgid ""
@@ -272,11 +272,11 @@ msgstr ""
 
 #: addons/activation-key/activation/class_activation_key.php:468
 msgid "Your activation key expired on %s."
-msgstr "Ihr Aktivierungsschlüssel ist in %s abgelaufen."
+msgstr "Dein Aktivierungsschlüssel ist in %s abgelaufen."
 
 #: addons/activation-key/activation/class_activation_key.php:475
 msgid "Your activation key has been disabled."
-msgstr "Ihr Aktivierungsschlüssel wurde deaktiviert."
+msgstr "Dein Aktivierungsschlüssel wurde deaktiviert."
 
 #: addons/activation-key/activation/class_activation_key.php:480
 msgid "Invalid activation key."
@@ -284,7 +284,7 @@ msgstr "Ungültiger Aktivierungsschlüssel."
 
 #: addons/activation-key/activation/class_activation_key.php:486
 msgid "Your activation key is not active for this URL."
-msgstr "Ihr Aktivierungsschlüssel ist für diese URL nicht aktiv."
+msgstr "Dein Aktivierungsschlüssel ist für diese URL nicht aktiv."
 
 #: addons/activation-key/activation/class_activation_key.php:490
 #: addons/activation-key/activation/class_activation_key.php:782
@@ -294,12 +294,12 @@ msgstr "Dies scheint ein ungültiger Aktivierungsschlüssel für %s zu sein."
 #: addons/activation-key/activation/class_activation_key.php:490
 #: addons/activation-key/activation/class_activation_key.php:782
 msgid "your product"
-msgstr "Ihr Produkt"
+msgstr "Dein Produkt"
 
 #: addons/activation-key/activation/class_activation_key.php:495
 #: addons/activation-key/activation/class_activation_key.php:737
 msgid "Your key has reached its activation limit."
-msgstr "Ihr Schlüssel hat seine Aktivierungsgrenze erreicht."
+msgstr "Dein Schlüssel hat seine Aktivierungsgrenze erreicht."
 
 #: addons/activation-key/activation/class_activation_key.php:499
 msgid ""
@@ -308,29 +308,29 @@ msgid ""
 "correct activation key. Sometimes there can be a missing character at the "
 "beginning or at the end."
 msgstr ""
-"<u>Ein Fehler ist aufgetreten, bitte versuchen Sie es noch einmal </u>. In "
-"den meisten Fällen liegt es an einem falschen Schlüssel, wie zum Beispiel "
-"einem fehlenden Zeichen. Vergewisseren Sie sich, dass Sie den richtigen "
-"Aktivierungsschlüssel kopiert haben. Manchmal liegt es an einem fehlenden "
+"<u>Ein Fehler ist aufgetreten, bitte versuche es noch einmal </u>. In den "
+"meisten Fällen liegt es an einem falschen Schlüssel, wie zum Beispiel einem "
+"fehlenden Zeichen. Vergewissere dich, dass du den richtigen "
+"Aktivierungsschlüssel kopiert hast. Manchmal liegt es an einem fehlenden "
 "Zeichen am Anfang oder am Ende."
 
 #: addons/activation-key/activation/class_activation_key.php:500
 msgid "Where can you find your activation key ?"
-msgstr "Wo finden Sie Ihren Aktivierungsschlüssel ?"
+msgstr "Wo findest du deinen Aktivierungsschlüssel ?"
 
 #: addons/activation-key/activation/class_activation_key.php:519
 msgid "You've reached the limit of activated websites for your current plan."
 msgstr ""
-"Sie haben die Grenze der aktivierten Webseiten für Ihren aktuellen Plan "
+"Du hast die Grenze der aktivierten Webseiten für deinen aktuellen Plan "
 "erreicht."
 
 #: addons/activation-key/activation/class_activation_key.php:522
 msgid "Connect to your account on presscustomizr.com"
-msgstr "Verbinden Sie sich mit Ihrem Konto auf presscustomizr.com"
+msgstr "Verbinden dich mit deinem Konto auf presscustomizr.com"
 
 #: addons/activation-key/activation/class_activation_key.php:524
 msgid "and upgrade your plan."
-msgstr "und aktualisieren Sie Ihren Plan."
+msgstr "und aktualisiere deinen Plan."
 
 #: addons/activation-key/activation/class_activation_key.php:565
 msgid "An error occurred, please try again."
@@ -345,8 +345,8 @@ msgid ""
 "Key is not activated for this website yet. Enter your key and press "
 "\"Activate Key\"."
 msgstr ""
-"Key ist für diese Website noch nicht aktiviert. Geben Sie Ihren Schlüssel "
-"ein und klicken Sie auf \"Schlüssel aktivieren\"."
+"Key ist für diese Website noch nicht aktiviert. Gib deinen Schlüssel ein und "
+"klicke auf \"Schlüssel aktivieren\"."
 
 #: addons/activation-key/activation/class_activation_key.php:750
 msgid "Key is activated for this website."
@@ -357,7 +357,7 @@ msgid ""
 "This can for example happen if you try to use a Bundle key instead of the "
 "product key."
 msgstr ""
-"Dies kann zum Beispiel passieren, wenn Sie versuchen, statt des "
+"Dies kann zum Beispiel passieren, wenn du versuchst, statt des "
 "Produktschlüssels einen Bundle-Schlüssel zu verwenden."
 
 #: addons/activation-key/activation/class_activation_key.php:784
@@ -382,13 +382,13 @@ msgid ""
 "customizr-pro\" title=\"Press Customizr\" target=\"_blank\">presscustomizr."
 "com</a> and "
 msgstr ""
-"Möglicherweise müssen Sie prüfen, ob es Updates für <a href=\"https://"
+"Möglicherweise musst du prüfen, ob es Updates für <a href=\"https://"
 "presscustomizr.com/extension/customizr-pro\" title=\"Press Customizr\" "
 "target=\"_blank\">presscustomizr.com</a> und "
 
 #: addons/activation-key/updates/class_theme_updater.php:135
 msgid "upload the theme manually"
-msgstr "Laden Sie das Theme manuell hoch"
+msgstr "Lade das Theme manuell hoch"
 
 #: addons/bundle/contact-info/pc-contact-info.php:169
 msgid "Contact Information"
@@ -426,7 +426,7 @@ msgid ""
 "Make sure the topbar is displayed. You can control the visibility of the "
 "topbar in the %s."
 msgstr ""
-"Vergewissern Sie sich, dass die obere Leiste angezeigt wird. Sie können die "
+"Vergewissere dich, dass die obere Leiste angezeigt wird. Du kannst die "
 "Sichtbarkeit der oberen Leiste in den %s steuern."
 
 #: addons/bundle/contact-info/pc-contact-info.php:200
@@ -455,8 +455,8 @@ msgid ""
 "<strong>Note:</strong>You need to click on the refresh button below to see "
 "the code applied to your site live preview."
 msgstr ""
-"<strong> Hinweis: </strong> Sie müssen auf den Refresh-Button unten klicken, "
-"um den Code zu sehen, der auf Ihrer Website als Live-Vorschau angewendet "
+"<strong> Hinweis: </strong> Du musst auf den Refresh-Button unten klicken, "
+"um den Code zu sehen, der auf deiner Website als Live-Vorschau angewendet "
 "wird."
 
 #: addons/bundle/custom-scripts/pc-custom-scripts.php:80
@@ -465,7 +465,7 @@ msgstr "Aktualisieren"
 
 #: addons/bundle/custom-scripts/pc-custom-scripts.php:87
 msgid "Add your custom scripts to the <head> of your site"
-msgstr "Fügen Sie Ihre eigenen Skripte in den <head> Ihrer Website ein"
+msgstr "Füge deine eigenen Skripte in den <head> deiner Website ein"
 
 #: addons/bundle/custom-scripts/pc-custom-scripts.php:92
 msgid ""
@@ -475,22 +475,22 @@ msgid ""
 "analytics/devguides/collection/analyticsjs/\" title=\"google-analytics\" "
 "target=\"_blank\">Google Analytics</a>"
 msgstr ""
-"Jeder Code, den Sie hier platzieren, wird im Kopfbereich jeder Seite Ihrer "
-"Website erscheinen. Dies ist besonders nützlich, wenn Sie ein Tracking-Pixel "
+"Jeder Code, den du hier platzierst, wird im Kopfbereich jeder Seite deiner "
+"Website erscheinen. Dies ist besonders nützlich, wenn du ein Tracking-Pixel "
 "für einen Zugangszähler wie <a href = \"https://developers.google.com/"
 "analytics/devguides/collection/analyticsjs/\" title = \"Google-Analytics\" "
-"target = \"_ blank\" > Google Analytics</a> eingegeben haben"
+"target = \"_ blank\" > Google Analytics</a> eingegeben hast"
 
 #: addons/bundle/custom-scripts/pc-custom-scripts.php:98
 msgid "Add your custom scripts before the </body> of your site"
-msgstr "Fügen Sie eigenen Skripte vor </body> Ihrer Website hinzu"
+msgstr "Füge deine eigenen Skripte vor </body> deiner Website hinzu"
 
 #: addons/bundle/custom-scripts/pc-custom-scripts.php:107
 msgid ""
 "Any code you place here will appear at the very bottom of every page of your "
 "site, just before the closing &lt;/body&gt; tag."
 msgstr ""
-"Jeder Code, den Sie hier platzieren, wird ganz unten auf jeder Seite Ihrer "
+"Jeder Code, den du hier platzierst, wird ganz unten auf jeder Seite deiner "
 "Website erscheinen, kurz vor dem Schließen &lt;/body &gt; Tag."
 
 #: addons/bundle/footer-customizer/footer-customizer.php:52
@@ -513,7 +513,7 @@ msgstr "Fußbereich credits"
 
 #: addons/bundle/footer-customizer/footer-customizer.php:125
 msgid "Customize the footer credits"
-msgstr "Passen Sie den Fußbereich an"
+msgstr "Passe den Fußbereich an"
 
 #: addons/bundle/footer-customizer/footer-customizer.php:173
 #: addons/bundle/footer-customizer/templates/footer/footer_credits.php:43
@@ -610,7 +610,7 @@ msgstr ""
 
 #: addons/bundle/grid-customizer/tc_grid_customizer.php:235
 msgid "Masonry grid layout"
-msgstr "Raster-Layout"
+msgstr "Masonry Raster-Layout"
 
 #: addons/bundle/grid-customizer/tc_grid_customizer.php:236
 msgid "Plain excerpt layout"
@@ -722,8 +722,8 @@ msgid ""
 "Note : bear in mind that some grid customizer effects look better when the "
 "excerpt's length is limited to only a few words."
 msgstr ""
-"Hinweis: Denken Sie daran, dass einige Raster-Customizer-Effekte besser "
-"aussehen, wenn die Länge des Ausschnitts auf nur wenige Wörter begrenzt ist."
+"Hinweis: Denke daran, dass einige Rastercustomizer-Effekte besser aussehen, "
+"wenn die Länge des Ausschnitts auf nur wenige Wörter begrenzt ist."
 
 #: addons/bundle/grid-customizer/utils/classes/class_utils_gc.php:75
 msgid "Grid Customizer"
@@ -750,20 +750,20 @@ msgid ""
 "Applies beautiful reveal effects to your posts. <strong>Note :</strong> the "
 "Grid Customizer limits the excerpt's length to ensure an optimal rendering."
 msgstr ""
-"Wendet schöne Effekte auf Ihre Beiträge an. <strong>Hinweis :</strong> Der "
+"Wendet schöne Effekte auf deine Beiträge an. <strong>Hinweis :</strong> Der "
 "Raster-Customizer begrenzt die Länge des Ausschnitts, um ein optimales "
 "Rendering zu gewährleisten."
 
 #: addons/bundle/grid-customizer/utils/classes/class_utils_gc.php:88
 msgid "Select the hover effect"
-msgstr "Wählen Sie den Hover-Effekt"
+msgstr "Wähle den Hover-Effekt"
 
 #: addons/bundle/grid-customizer/utils/classes/class_utils_gc.php:94
 msgid ""
 "Depending on the choosen effect, you might want to adjust the title and / or "
 "the excerpt length with the options above."
 msgstr ""
-"Je nach gewähltem Effekt können Sie den Titel und/oder die Ausschnittlänge "
+"Je nach gewähltem Effekt kannst du den Titel und/oder die Ausschnittlänge "
 "mit den oben genannten Optionen anpassen."
 
 #: addons/bundle/grid-customizer/utils/classes/class_utils_gc.php:98
@@ -852,7 +852,7 @@ msgstr "Ältere %s"
 
 #: addons/bundle/infinite/infinite-scroll/class_infinite.php:830
 msgid "Scroll back to top"
-msgstr "Scrollen Sie zurück nach oben"
+msgstr "Scrolle zurück nach oben"
 
 #: addons/bundle/infinite/infinite-scroll/class_infinite.php:1592
 msgid "Proudly powered by WordPress"
@@ -875,7 +875,7 @@ msgid ""
 "When this option is enabled, your posts are revealed when scrolling down, "
 "from the most recent to the oldest one, like on a Facebook wall."
 msgstr ""
-"Wenn diese Option aktiviert ist, werden Ihre Beiträge beim Runterscrollen "
+"Wenn diese Option aktiviert ist, werden deine Beiträge beim Runterscrollen "
 "aufgedeckt, von der letzten bis zur ältesten, wie auf einer Facebook-Seite."
 
 #: addons/bundle/infinite/init-pro-infinite.php:458
@@ -898,7 +898,7 @@ msgid ""
 "Mobile devices : when the infinite scroll is enabled, load posts "
 "automatically when scrolling."
 msgstr ""
-"Mobile Endgeräte: Wenn \"unendlich scrollen\" aktiviert ist, werden die "
+"Mobile Endgeräte: Wenn die \"unendlich scrollen\" aktiviert ist, werden die "
 "Beiträge beim Scrollen automatisch geladen."
 
 #: addons/bundle/infinite/init-pro-infinite.php:477
@@ -911,18 +911,18 @@ msgstr ""
 
 #: addons/bundle/infinite/init-pro-infinite.php:486
 msgid "Enable infinite scroll in your home/blog"
-msgstr "Aktivieren Sie unendliches Scrollen in Ihrem Home-/Blog"
+msgstr "Aktiviere unendliches Scrollen in deinem Home-/Blog"
 
 #: addons/bundle/infinite/init-pro-infinite.php:495
 msgid ""
 "Enable infinite scroll in your Archives (archives, categories, author posts)"
 msgstr ""
-"Aktivieren Sie unendliches Scrollen in Ihren Archiven (Archive, Kategorien, "
+"Aktiviere unendliches Scrollen in deinen Archiven (Archive, Kategorien, "
 "Autorenbeiträge)"
 
 #: addons/bundle/infinite/init-pro-infinite.php:504
 msgid "Enable infinite scroll in your search results"
-msgstr "Aktiviere Sie \"unendlich scrollen\" in Ihren Suchergebnissen"
+msgstr "Aktiviere \"unendlich scrollen\" in deinen Suchergebnissen"
 
 #: addons/bundle/menu-customizer/utils/classes/class_utils_mc.php:48
 msgid "Side Menu Reveal Animation"
@@ -930,7 +930,7 @@ msgstr "Seitenmenü-Animation"
 
 #: addons/bundle/menu-customizer/utils/classes/class_utils_mc.php:49
 msgid "Select an animation to reveal the side menu"
-msgstr "Wählen Sie eine Animation aus, um das Seitenmenü zu zeigen"
+msgstr "Wähle eine Animation aus, um das Seitenmenü zu zeigen"
 
 #: addons/bundle/menu-customizer/utils/classes/class_utils_mc.php:53
 msgid "Reveal"
@@ -1037,9 +1037,8 @@ msgid ""
 "You can choose to display only the sticky posts. If you're not sure how to "
 "set a sticky post, check"
 msgstr ""
-"Sie können auswählen, dass nur die oben gehaltenen Beiträge angezeigt "
-"werden. Wenn Sie nicht genau wissen, wie ein Beitrag oben gehalten wird, "
-"schlagen Sie nach"
+"Du kannst auswählen, dass nur die oben gehaltenen Beiträge angezeigt werden. "
+"Wenn du nicht genau weißt, wie ein Beitrag oben gehalten wird, schlag nach"
 
 #: addons/bundle/slider/back/classes/class_back_slider.php:275
 #: core/core-settings-map.php:1164
@@ -1069,7 +1068,7 @@ msgstr "Button-Text (maximale Länge 80 Zeichen)"
 #: addons/bundle/slider/back/classes/class_back_slider.php:323
 #: addons/bundle/slider/utils/classes/class_utils_slider.php:44
 msgid "Apply a category filter to your posts slider"
-msgstr "Tragen Sie einen Kategorienfilter für Ihren Beitrags-Slider ein"
+msgstr "Trage einen Kategorienfilter für deinen Beitrags-Slider ein"
 
 #: addons/bundle/slider/utils/classes/class_utils_slider.php:50
 #: core/core-settings-map.php:1032
@@ -1077,13 +1076,13 @@ msgid ""
 "Click inside the above field and pick post categories you want to display. "
 "No filter will be applied if empty."
 msgstr ""
-"Klicken Sie in das Feld oberhalb und wählen Sie Beitragskategorien, die Sie "
-"anzeigen möchten. Wenn leer, wird kein Filter angewandt."
+"Klicke in das Feld oberhalb und wähle deine Beitragskategorien, die du "
+"anzeigen möchtest. Wenn leer, wird kein Filter angewandt."
 
 #: addons/bundle/slider/utils/classes/class_utils_slider.php:52
 #: core/core-settings-map.php:1034
 msgid "Learn more about post categories in WordPress"
-msgstr "Lernen Sie mehr über die Beitrags-Kategorien in WordPress"
+msgstr "Lerne mehr über die Beitrags-Kategorien in WordPress"
 
 #: addons/fpu/back/classes/class_back_fpu.php:51
 #: addons/wfc/back/classes/class_admin_font_customizer.php:587
@@ -1168,8 +1167,8 @@ msgid ""
 "Featured page description text : use the page or post excerpt or set your "
 "own custom text in the WordPress customizer screen %s."
 msgstr ""
-"Ausgewählter Text zur Seitenbeschreibung: Verwenden Sie den Seiten- oder "
-"Beitragsauszug oder setzen Sie Ihren eigenen benutzerdefinierten Text in den "
+"Ausgewählter Text zur Seitenbeschreibung: Verwende den Seiten- oder "
+"Beitragsauszug oder setze deinen eigenen benutzerdefinierten Text in den "
 "WordPress-Customizer-Bildschirm %s."
 
 #: addons/fpu/front/classes/class_front_fpu.php:532
@@ -1286,16 +1285,14 @@ msgid ""
 "You need to select a page/post first. Leave this field empty if you want to "
 "use the excerpt. You can include HTML tags."
 msgstr ""
-"Sie müssen zuerst eine Seite / einen Beitrag auswählen. Lassen Sie dieses "
-"Feld leer, wenn Sie den Auszug benutzen wollen. Sie können HTML-Tags "
-"einfügen."
+"Du musst zuerst eine Seite / einen Beitrag auswählen. Lasse dieses Feld "
+"leer, wenn du den Auszug benutzen willst. Du kannst HTML-Tags einfügen."
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:373
 msgid ""
 "Enable the WordPress responsive image feature for the Featured Pages images"
 msgstr ""
-"Aktivieren Sie die responsive Bildfunktion für die Bilder von empfohlenen "
-"Seiten"
+"Aktiviere die responsive Bildfunktion für die Bilder von empfohlenen Seiten"
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:374
 msgid ""
@@ -1304,9 +1301,9 @@ msgid ""
 "this option to safely verify that your images are displayed nicely."
 msgstr ""
 "Dieses Feature wurde mit WordPress Version 4.4+ (Dezember 2015) eingeführt "
-"und könnte geringfügige Nebeneffekte auf einige Ihrer bestehenden Bilder "
-"haben. Wählen/deaktvieren Sie diese Einstellung, um sicherzustellen, dass "
-"Ihre Bilder richtig angezeigt werden."
+"und könnte geringfügige Nebeneffekte auf einige deiner bestehenden Bilder "
+"haben. Wähle/deaktviere diese Einstellung, um sicherzustellen, dass deine "
+"Bilder richtig angezeigt werden."
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:384
 msgid " &#45; Select &#45; "
@@ -1358,7 +1355,7 @@ msgstr "Empfohlene Seiten"
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:426
 msgid "Customize your featured pages"
-msgstr "Passen Sie Ihre empfohlenen Seiten an"
+msgstr "Passe deine empfohlenen Seiten an"
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:461
 #: core/core-settings-map.php:1296
@@ -1372,8 +1369,7 @@ msgstr "Standort wählen"
 #: addons/fpu/utils/classes/class_utils_fpu.php:486
 msgid "Define a custom hook to display your featured pages"
 msgstr ""
-"Definieren Sie einen benutzerdefinierten hook, um empfohlene Seiten "
-"anzuzeigen"
+"Definiere einen benutzerdefinierten hook, um empfohlene Seiten anzuzeigen"
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:489
 msgid ""
@@ -1382,11 +1378,11 @@ msgid ""
 "WordPress template, simply add <?php do_action(\"my_custom_hook\") ?> where "
 "you want to display your featured pages."
 msgstr ""
-"Fügen Sie einen individuellen Hook in dieses Feld ein, ohne "
-"Anführungszeichen, Leerzeichen oder Sonderzeichen (es wird entfernt). Ex: my "
-"_ custom _ hook. Dann fügen Sie in Ihrem WordPress-Template einfach <? php "
-"do _ action (\"my _ custom _ hook\") ?> an der Stelle ein, wo Sie Ihre "
-"empfohlenen Seiten anzeigen möchten."
+"Füge deinen individuellen Hook in dieses Feld ein, ohne Anführungszeichen, "
+"Leerzeichen oder Sonderzeichen (es wird entfernt). Ex: my _ custom _ hook. "
+"Dann füge in deinem WordPress-Template einfach <? php do _ action (\"my _ "
+"custom _ hook\") ?> an der Stelle ein, wo du deine empfohlenen Seiten "
+"anzeigen möchtest."
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:498
 msgid "Featured pages number"
@@ -1398,7 +1394,7 @@ msgid ""
 "featured pages"
 msgstr ""
 "1) Setze eine Reihe von empfohlenen Seiten. 2) Speichern und Aktualisieren "
-"der Seite 3) Bearbeiten Sie Ihre empfohlenen Seiten"
+"der Seite 3) Bearbeite deine empfohlenen Seiten"
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:511
 msgid "Featured pages layout"
@@ -1446,8 +1442,8 @@ msgid ""
 "Uncheck the option above to disable the featured images."
 msgstr ""
 "Die Bilder sind mit dem \"empfohlenen Bild\" der einzelnen Seiten oder "
-"Beiträge gesetzt. Deaktivieren Sie die Option oben, um die empfohlenen "
-"Bilder zu deaktivieren."
+"Beiträge gesetzt. Deaktiviere die Option oben, um die empfohlenen Bilder zu "
+"deaktivieren."
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:562
 #: addons/fpu/utils/classes/class_utils_fpu.php:633
@@ -1461,7 +1457,7 @@ msgid ""
 "page/post thumbnail will be displayed instead of the random color."
 msgstr ""
 "Wenn diese Option aktiviert ist und du die zufällige Farboption aktiviert "
-"hast, wird Ihr Seiten- /Beitrags-Miniaturbild anstelle der zufälligen Farbe "
+"hast, wird dein Seiten- /Beitrags-Miniaturbild anstelle der zufälligen Farbe "
 "angezeigt."
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:571
@@ -1516,7 +1512,8 @@ msgstr "Title/Ausschnittfarbe"
 #: addons/fpu/utils/classes/class_utils_fpu.php:636
 msgid "If enabled, your custom color will override the random color."
 msgstr ""
-"Wenn aktiviert, wird Ihre angepasste Farbe die zufällige Farbe überschreiben."
+"Wenn aktiviert, wird deine angepasste Farbe die zufällige Farbe "
+"überschreiben."
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:645
 msgid "Limit excerpt to 200 chars."
@@ -1526,7 +1523,7 @@ msgstr "Begrenze den Auszug auf 200 Zeichen."
 msgid ""
 "Uncheck this option if you want to disable the default limit of the excerpt."
 msgstr ""
-"Deaktivieren Sie diese Option, wenn Sie die Standardbegrenzung des Auszugs "
+"Deaktiviere diese Option, wenn du die Standardbegrenzung des Auszugs "
 "deaktivieren möchtest."
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:657
@@ -1555,13 +1552,13 @@ msgstr "Button-Textfarbe"
 #: addons/fpu/utils/classes/class_utils_fpu.php:713
 msgid "If you are using WooCommerce, allow your products to be featured"
 msgstr ""
-"Wenn Sie WooCommerce verwenden, lassen Sie es zu, dass Ihre Produkte "
-"vorgestellt werden"
+"Wenn du WooCommerce verwendest, lasse es zu, dass deine Produkte vorgestellt "
+"werden"
 
 #: addons/fpu/utils/classes/class_utils_fpu.php:716
 msgid "When you change this option, you need to publish and refresh the page."
 msgstr ""
-"Wenn Sie diese Option ändern, müssen Sie die Seite veröffentlichen und "
+"Wenn du diese Option änderst, musst du die Seite veröffentlichen und "
 "aktualisieren."
 
 #: addons/wfc/back/classes/class_admin_font_customizer.php:43
@@ -1724,8 +1721,8 @@ msgstr "Alle Einstellungen werden auf Standard zurückgesetzt"
 #: addons/wfc/back/classes/class_admin_font_customizer.php:515
 msgid "Are you sure you want to reset all your font settings to default?"
 msgstr ""
-"Sien Sie sicher, dass Sie alle Ihre Schrifteinstellungen auf Standard "
-"zurücksetzen wollen?"
+"Bist du sicher, dass du alle deine Schrifteinstellungen auf Standard "
+"zurücksetzen willst?"
 
 #: addons/wfc/back/classes/class_admin_font_customizer.php:516
 #: addons/wfc/back/czr-base-fmk/czr-base-fmk.php:461
@@ -1753,7 +1750,7 @@ msgstr "Individuell"
 
 #: addons/wfc/back/classes/class_admin_font_customizer.php:520
 msgid "Please specify a CSS selector"
-msgstr "Geben Sie bitte einen CSS-Selektor an"
+msgstr "Gib bitte einen CSS-Selektor an"
 
 #: addons/wfc/back/classes/class_admin_font_customizer.php:521
 msgid "Select a font family"
@@ -1765,7 +1762,7 @@ msgstr "Vordefinierte Selektoren"
 
 #: addons/wfc/back/classes/class_admin_font_customizer.php:523
 msgid "Define a custom selector"
-msgstr "Definieren Sie einen individuellen Selektor"
+msgstr "Definiere einen individuellen Selektor"
 
 #: addons/wfc/back/classes/class_admin_font_customizer.php:524
 msgid "Web Safe Fonts"
@@ -1781,7 +1778,7 @@ msgstr "Bestätige bitte die Entfernung der Anpassungen für"
 
 #: addons/wfc/back/classes/class_admin_font_customizer.php:527
 msgid "Make sure to use valid css selectors."
-msgstr "Achten Sie darauf, gültige css-Selektoren zu verwenden."
+msgstr "Achte darauf, gültige css-Selektoren zu verwenden."
 
 #: addons/wfc/back/classes/class_admin_font_customizer.php:528
 msgid "This css selector is not valid."
@@ -1809,7 +1806,7 @@ msgstr ""
 #: core/czr-base-fmk/czr-base-fmk.php:243 core/czr-customize-ccat.php:857
 #: inc/czr-front-ccat.php:776 inc/czr-front-ccat.php:783
 msgid "Close"
-msgstr "Schließen"
+msgstr "Schliessen"
 
 #: addons/wfc/back/czr-base-fmk/czr-base-fmk.php:240
 #: core/czr-base-fmk/czr-base-fmk.php:244 core/czr-customize-ccat.php:858
@@ -1827,7 +1824,7 @@ msgstr "Fertig !"
 #: core/czr-base-fmk/czr-base-fmk.php:247 core/czr-customize-ccat.php:864
 #: core/czr-customize-ccat.php:884
 msgid "Learn more about this in the documentation"
-msgstr "Erfahren Sie mehr in der Dokumentation"
+msgstr "Erfahre mehr in der Dokumentation"
 
 #: addons/wfc/back/czr-base-fmk/czr-base-fmk.php:245
 #: core/czr-base-fmk/czr-base-fmk.php:249 core/czr-customize-ccat.php:886
@@ -1897,7 +1894,7 @@ msgstr "Hinzufügen"
 #: core/czr-base-fmk/czr-base-fmk.php:551
 msgid "Are you sure you want to remove : <strong>{{ data.title }} ?</strong>"
 msgstr ""
-"Sind Sie sicher, dass Sie das rückgängig machen möchten: <strong>{{ data."
+"Bist du sicher, dass du das rückgängig machen möchtest : <strong>{{ data."
 "title }} ?</strong>"
 
 #: addons/wfc/back/czr-base-fmk/czr-base-fmk.php:1562
@@ -1929,8 +1926,8 @@ msgstr "Keine Ergebnisse gefunden."
 msgid ""
 "Pick a predefined text element to customize or define a custom selector."
 msgstr ""
-"Wählen Sie ein vordefiniertes Textelement aus, um einen individuellen "
-"Selektor anzupassen oder zu definieren."
+"Wähle ein vordefiniertes Textelement aus, um einen individuellen Selektor "
+"anzupassen oder zu definieren."
 
 #: addons/wfc/back/czr_tmpl/wfc-module-tmpl.php:18
 msgid "CSS Selector"
@@ -1962,7 +1959,7 @@ msgid ""
 "You can narrow down the list of Google fonts available for a particular "
 "language."
 msgstr ""
-"Sie können die Liste der Google-Schriften, die für eine bestimmte Sprache "
+"Du kannst die Liste der Google-Schriften, die für eine bestimmte Sprache "
 "verfügbar sind, eingrenzen."
 
 #: addons/wfc/back/czr_tmpl/wfc-module-tmpl.php:56
@@ -1971,7 +1968,7 @@ msgstr "Schriftname"
 
 #: addons/wfc/back/czr_tmpl/wfc-module-tmpl.php:63
 msgid "Visit the %1$s to find inspiration."
-msgstr "Besuchen Sie die%1$s, um Anregungen zu erhalten."
+msgstr "Besuche die%1$s, um Anregungen zu erhalten."
 
 #: addons/wfc/back/czr_tmpl/wfc-module-tmpl.php:66
 msgid "Google Fonts showcase"
@@ -2052,7 +2049,7 @@ msgstr "Spiele mit schönen Schriften!"
 
 #: addons/wfc/utils/classes/class_utils_wfc.php:63
 msgid "Manage your customized text elements."
-msgstr "Verwalten Sie Ihre individuellen Textelemente."
+msgstr "Verwalte deine individuellen Textelemente."
 
 #: addons/wfc/utils/classes/class_utils_wfc.php:64
 msgid "The New WFC"
@@ -2268,7 +2265,7 @@ msgstr "Layout im Customizr-Theme ändern"
 
 #: core/class-fire-placeholders.php:106 core/class-fire-placeholders.php:131
 msgid "See the theme documentation."
-msgstr "Lesen Sie die Theme-Dokumentation."
+msgstr "Lies die Theme-Dokumentation."
 
 #: core/class-fire-placeholders.php:120
 msgid "The right sidebar has no widgets"
@@ -2276,7 +2273,7 @@ msgstr "Die rechte Seitenleiste hat keine Widgets"
 
 #: core/class-fire-placeholders.php:121 core/class-fire-placeholders.php:167
 msgid "Add widgets to the footer %s or %s."
-msgstr "Fügen Sie Widgets zum Footer %s oder %s hinzu."
+msgstr "Füge Widgets zum Footer %s oder %s hinzu."
 
 #: core/class-fire-placeholders.php:166
 msgid "The footer has no widgets"
@@ -2299,8 +2296,8 @@ msgstr "Springe nun zum Customizer"
 #: core/class-fire-placeholders.php:188 core/core-settings-map.php:1696
 msgid "Don't know how to set a featured image to a post? Learn how in the %s."
 msgstr ""
-"Sie wissen nicht, wie Sie ein Beitragsbild Ihrem Beitrag hinzufügen können? "
-"Erfahren Sie dies in der %s."
+"Du weißt nicht, wie du ein Beitragsbild deinem Beitrag hinzufügen kannst? "
+"Erfahre dies in der %s."
 
 #: core/class-fire-placeholders.php:189 core/class-fire-placeholders.php:208
 #: core/core-settings-map.php:1697 core/core-settings-map.php:1767
@@ -2310,34 +2307,34 @@ msgstr "WordPress Dokumentation"
 #: core/class-fire-placeholders.php:202
 msgid "You can display your page's featured image here if you have set one."
 msgstr ""
-"Sie können das Beitragsbild der Seite hier anzeigen, wenn Sie eins "
-"eingestellt haben."
+"Du kannst das Beitragsbild der Seite hier anzeigen, wenn du eins eingestellt "
+"hast."
 
 #: core/class-fire-placeholders.php:207 core/core-settings-map.php:1766
 msgid "Don't know how to set a featured image to a page? Learn how in the %s."
 msgstr ""
-"Sie wissen nicht wie man ein Beitragsbild in einer Seite einstellt? Lernen "
-"Sie, wie es geht in %s."
+"Du weißt nicht wie man ein Beitragsbild in einer Seite einstellt? Lerne wie "
+"es geht in %s."
 
 #: core/class-fire-placeholders.php:222 core/class-fire-placeholders.php:289
 msgid ""
 "Did you know you can easily speed up your page load by deferring the loading "
 "of the non visible images?"
 msgstr ""
-"Wussten Sie, dass Sie das Laden Ihrer Seite beschleunigen können, indem Sie "
-"das Laden nicht sichtbarer Bilder verzögern?"
+"Wusstest du, dass du das Laden deiner Seite beschleunigen kannst, indem du "
+"das Laden nicht sichtbarer Bilder verzögerst?"
 
 #: core/class-fire-placeholders.php:224 core/class-fire-placeholders.php:291
 msgid ""
 "%s and check the option 'Load images on scroll' under 'Website Performances' "
 "section."
 msgstr ""
-"%s und schauen Sie sich die Einstellung 'Bilder beim Scrollen laden' im "
-"Abschnitt 'Website Performance' an."
+"%s und schaue dir die Einstellung 'Bilder beim Scrollen laden' im Abschnitt "
+"'Website Performance' an."
 
 #: core/class-fire-placeholders.php:330
 msgid "Add widgets to the zone :"
-msgstr "Fügen Sie Widgets in die Zone ein:"
+msgstr "Füge Widgets in die Zone ein:"
 
 #: core/class-fire-placeholders.php:853
 msgid "This notice is visible for admin users only."
@@ -2377,11 +2374,11 @@ msgstr "der Anpassungsoptionen"
 
 #: core/class-fire-resources_scripts.php:533
 msgid "to let you create the best possible websites."
-msgstr "um Sie die bestmöglichen Webseiten entwerfen zu lassen."
+msgstr "um dich die bestmöglichen Webseiten entwerfen zu lassen."
 
 #: core/class-fire-resources_scripts.php:536
 msgid "If you need inspiration, you can visit our online demos"
-msgstr "Wenn Sie Inspiration brauchen, können Sie unsere Online-Demos besuchen"
+msgstr "Wenn du Inspiration brauchst, kannst du unsere Online-Demos besuchen"
 
 #: core/class-fire-resources_scripts.php:538
 msgid "Customizr Demo 1"
@@ -2393,15 +2390,15 @@ msgstr "Customizr Demo 2"
 
 #: core/class-fire-resources_scripts.php:543
 msgid "To help you getting started with Customizr, we have published"
-msgstr "Um Ihnen zu helfen, mit Customizr zu beginnen, veröffentlichten wir"
+msgstr "Um dir zu helfen, mit Customizr zu beginnen, veröffentlichten wir"
 
 #: core/class-fire-resources_scripts.php:545
 msgid "a short guide here."
-msgstr "hier eine kurze Anleitung."
+msgstr "eine kurze Anleitung hier."
 
 #: core/class-plugin-rec.php:22
 msgid "Customizr theme recommends %1$s."
-msgstr "Customizr theme empfiehlt%1$s."
+msgstr "Customizr Thema empfiehlt%1$s."
 
 #: core/class-plugin-rec.php:25
 msgid "Nimble Page Builder"
@@ -2423,8 +2420,8 @@ msgid ""
 "page of your site, including home, posts, pages, products, archives, 404, "
 "search pages, ..."
 msgstr ""
-"Es erlaubt Ihnen, per Drag & Drop mobile-ready-Abschnitte auf <i>wirklich</"
-"i> jede beliebige Seite Ihrer Website zu ziehen, einschließlich Home, "
+"Es erlaubt dir, per Drag & Drop mobile-ready-Abschnitte auf <i>wirklich</i> "
+"jede beliebige Seite deiner Website zu ziehen, einschließlich Home, "
 "Beiträge, Seiten, Produkte, Archive, 404, Suchseiten, ..."
 
 #: core/class-plugin-rec.php:33
@@ -2433,7 +2430,7 @@ msgid ""
 "column structures, buttons, widget zones, maps, icons, and much more, or use "
 "pre-designed sections with professional %2$s."
 msgstr ""
-"Sie können einfach Textzonen einfügen, aber auch %1$s, Beitragsraster, "
+"Du kannst einfach Textzonen einfügen, aber auch %1$s, Beitragsraster, "
 "Spaltenstrukturen, Buttons, Widget-Zonen, Karten, Icons und vieles mehr "
 "erstellen oder vordefinierte Abschnitte mit professionellen %2$s verwenden."
 
@@ -2475,8 +2472,7 @@ msgstr "&mdash; Demo-Slider &mdash;"
 
 #: core/core-functions.php:1662
 msgid "Please fill the email input with a valid email address"
-msgstr ""
-"Füllen Sie bitte die E-Mail-Adresse mit einer gültigen E-Mail-Adresse aus"
+msgstr "Fülle bitte die E-Mail-Adresse mit einer gültigen E-Mail-Adresse aus"
 
 #: core/core-settings-map.php:169
 msgid "Display the site title next to the logo"
@@ -2525,16 +2521,16 @@ msgid ""
 "This is the color used to style your links and other clickable elements of "
 "the theme like buttons and slider arrows."
 msgstr ""
-"Dies ist die verwendete Farbe, um Ihre Links und andere anklickbare Elemente "
-"des Theme wie Schaltflächen und Slider-Pfeile zu gestalten."
+"Dies ist die verwendete Farbe, um deine Links und andere anklickbare "
+"Elemente des Theme wie Schaltflächen und Slider-Pfeile zu gestalten."
 
 #: core/core-settings-map.php:293
 msgid ""
 "Select a beautiful font pair (headings &amp; default fonts) or single font "
 "for your website."
 msgstr ""
-"Wählen Sie ein hübsches Schriftpaar (Überschriften &amp; Fließtext) oder "
-"eine einzelne Schriftart für Ihre Website aus."
+"Wähle ein hübsches Schriftpaar (Überschriften &amp; Fließtext) oder eine "
+"einzelne Schriftart für deine Website aus."
 
 #: core/core-settings-map.php:300
 msgid ""
@@ -2545,14 +2541,14 @@ msgid ""
 "texts or paragraphs."
 msgstr ""
 "Diese Schriftauswahl ermöglicht eine Vorschau und Auswahl von Schriftpaaren "
-"oder einzelnen Schriftarten. Wenn Sie ein Schriftpaar auswählen, wird die "
+"oder einzelnen Schriftarten. Wenn du ein Schriftpaar auswählst, wird die "
 "erste Schrift auf die Überschriften angewendet: Website-Name , Website-"
 "Beschreibung, Überschrift h1, h2, h3, während die zweite als "
-"Standardschriftart für alle Texte oder Absätze Ihrer Website verwendet wird."
+"Standardschriftart für alle Texte oder Absätze deiner Website verwendet wird."
 
 #: core/core-settings-map.php:305
 msgid "Set your website default font size in pixels."
-msgstr "Setzen Sie die Standardschriftgröße Ihrer Website in Pixel."
+msgstr "Setze die Standardschriftgröße deiner Website in Pixel."
 
 #: core/core-settings-map.php:313
 msgid ""
@@ -2564,7 +2560,7 @@ msgstr ""
 
 #: core/core-settings-map.php:329 core/init-base.php:1129
 msgid "Create and organize your social links"
-msgstr "Erstellen und bearbeiten Sie Ihre Social Links"
+msgstr "Erstelle und Bearbeite deine Social Links"
 
 #: core/core-settings-map.php:349
 msgid "Smooth scroll on click"
@@ -2644,8 +2640,8 @@ msgstr "Dynamisches Zentrieren der Slider-Bilder auf jeglichen Geräten"
 #: core/core-settings-map.php:425
 msgid "Improve your page speed by loading smaller images for mobile devices"
 msgstr ""
-"Verbessern Sie Ihre Seitengeschwindigkeit, indem Sie kleinere Bilder für "
-"mobile Geräte laden"
+"Verbessere deine Seitengeschwindigkeit, indem du kleinere Bilder für mobile "
+"Geräte lädst"
 
 #: core/core-settings-map.php:429
 msgid ""
@@ -2654,9 +2650,9 @@ msgid ""
 "this option to safely verify that your images are displayed nicely."
 msgstr ""
 "Dieses Feature wurde mit WordPress Version 4.4+ (Dezember 2015) eingeführt "
-"und könnte geringfügige Nebeneffekte auf einige Ihrer bestehenden Bilder "
-"haben. Wählen/deaktvieren Sie diese Einstellung, um sicherzustellen, dass "
-"Ihre Bilder richtig angezeigt werden."
+"und könnte geringfügige Nebeneffekte auf einige deiner bestehenden Bilder "
+"haben. Wähle/deaktviere diese Einstellung, um sicherzustellen, dass deine "
+"Bilder richtig angezeigt werden."
 
 #: core/core-settings-map.php:449
 msgid "Sliders : use parallax scrolling"
@@ -2665,7 +2661,7 @@ msgstr "Sliders: Verwende Parallax Scrolling"
 #: core/core-settings-map.php:453
 msgid "If enabled, your slides scroll slower than the page (parallax effect)."
 msgstr ""
-"Falls aktiviert, scrollen die Slides langsamer als die Seite (Parallax "
+"Falls aktiviert, scrollen Deine Slides langsamer als die Seite (Parallax "
 "Effect)"
 
 #: core/core-settings-map.php:469
@@ -2678,9 +2674,9 @@ msgid ""
 "content. Note : the Biographical info field must be filled out in the user "
 "profile."
 msgstr ""
-"Wählen Sie diese Einstellung, um unterhalb der Einzelansicht von Beiträgen "
-"einen Block mit Informationen über den Autor anzuzeigen. Hinweis: das "
-"Biographie-Informationsfeld muss im Benutzerprofil ausgefüllt werden."
+"Wähle diese Einstellung, um unterhalb der Einzelansicht von Beiträgen einen "
+"Block mit Informationen über den Autor anzuzeigen. Hinweis: das Biographie-"
+"Informationsfeld muss im Benutzerprofil ausgefüllt werden."
 
 #: core/core-settings-map.php:490
 msgid "Enable Smooth Scroll"
@@ -2717,8 +2713,8 @@ msgstr " Markiere die aktiven Menüpunkte"
 #: core/core-settings-map.php:554
 msgid "Apply a transparent background to your header on home."
 msgstr ""
-"Wenden Sie einen transparenten Hintergrund auf Ihren Header auf der "
-"Startseite an."
+"Wende einen transparenten Hintergrund auf deinen Header auf der Startseite "
+"an."
 
 #: core/core-settings-map.php:558
 msgid ""
@@ -2754,9 +2750,9 @@ msgid ""
 "can be populated with various blocks like a menu, your social links, or your "
 "contact information ( pro )."
 msgstr ""
-"Sie können eine Inhaltszone über dem Header anzeigen, die Topbar genannt "
-"wird. Die obere Leiste kann mit verschiedenen Blöcken wie einem Menü, Ihren "
-"sozialen Links oder Ihren Kontaktdaten (pro) gefüllt werden."
+"Du kannst eine Inhaltszone über dem Header anzeigen, die Topbar genannt "
+"wird. Die obere Leiste kann mit verschiedenen Blöcken wie einem Menü, deinen "
+"sozialen Links oder deinen Kontaktdaten (pro) gefüllt werden."
 
 #: core/core-settings-map.php:601
 msgid "Social links in the topbar"
@@ -2819,7 +2815,7 @@ msgstr "Desktopgeräte: %s"
 
 #: core/core-settings-map.php:700
 msgid "set the tagline location"
-msgstr "Setzen Sie den Untertitel-Standort"
+msgstr "Setze den Untertitel-Standort"
 
 #: core/core-settings-map.php:708
 msgid "In the topbar"
@@ -2854,9 +2850,9 @@ msgid ""
 "If you want to display the search icon in your topbar, make sure the topbar "
 "is displayed by checking \"Display a topbar\" above."
 msgstr ""
-"Wenn Sie das Suchsymbol in der Top-Bar anzeigen möchten, vergewissern Sie "
-"sich, dass die Top-Bar angezeigt wird, indem Sie oben auf \"Anzeige einer "
-"Top-Bar\" klicken."
+"Wenn du das Suchsymbol in der Top-Bar anzeigen möchtest, vergewissere dich, "
+"dass die Top-Bar angezeigt wird, indem du oben auf \"Anzeige einer Top-Bar\" "
+"klickst."
 
 #: core/core-settings-map.php:738 core/core-settings-map.php:848
 #: inc/czr-init-ccat.php:2544
@@ -2870,7 +2866,7 @@ msgid ""
 "your cart next to your header's tagline."
 msgstr ""
 "WooCommerce: Auswählen, um ein Einkaufswagen-Icon anzuzeigen, das die Anzahl "
-"von Gegenständen in Ihrem Einkaufswagen neben dem Untertitel Ihres Headers "
+"von Gegenständen in deinem Einkaufswagen neben dem Untertitel deines Headers "
 "wiedergibt."
 
 #: core/core-settings-map.php:755 core/core-settings-map.php:859
@@ -2887,7 +2883,7 @@ msgstr "Nicht sichtbar beim Scrollen der Seite"
 
 #: core/core-settings-map.php:761 core/core-settings-map.php:865
 msgid "Reveal on scroll up"
-msgstr "Beim Scrollen aufdecken"
+msgstr "Beim scrollen aufdecken"
 
 #: core/core-settings-map.php:762 core/core-settings-map.php:866
 msgid "Always visible"
@@ -2895,8 +2891,7 @@ msgstr "Immer sichtbar"
 
 #: core/core-settings-map.php:770
 msgid "select the header block to stick on scroll"
-msgstr ""
-"wählen Sie den Header-Block aus, der beim Scrollen oben gehalten werden soll"
+msgstr "wähle den Header-Block aus, um beim Scrollen oben zu halten"
 
 #: core/core-settings-map.php:774
 msgid "Topbar"
@@ -2915,7 +2910,7 @@ msgid ""
 "When your header ( containing the site title or logo ) is gluing to the top "
 "of a page, this option will make the title or logo smaller."
 msgstr ""
-"Wenn Ihr Header (mit dem Website-Titel oder Logo) an der Oberseite einer "
+"Wenn dein Header (mit dem Website-Titel oder Logo) an der Oberseite einer "
 "Seite klebt, wird diese Option den Titel oder das Logo kleiner machen."
 
 #: core/core-settings-map.php:806
@@ -2930,7 +2925,7 @@ msgstr "Mobile Geräte"
 
 #: core/core-settings-map.php:807
 msgid "Select the menu(s) to use for mobile devices"
-msgstr "Wählen Sie das/die Menü/s für mobile Geräte aus"
+msgstr "Wähle das/die Menü/s für mobile Geräte aus"
 
 #: core/core-settings-map.php:811
 msgid "Specific Mobile Menu"
@@ -2954,10 +2949,10 @@ msgid ""
 "thin bar on top, where the menu is revealed when clicking on the hamburger "
 "button. This option let you choose which menu will be displayed."
 msgstr ""
-"Wenn Ihre Besucher ein Smartphone oder ein Tablet verwenden, wird der Header "
-"zu einem dünnen Balken oben, wo das Menü beim Anklicken der Hamburger-Taste "
-"angezeigt wird. Mit dieser Option können Sie wählen, welches Menü angezeigt "
-"wird."
+"Wenn deine Besucher ein Smartphone oder ein Tablet verwenden, wird der "
+"Header zu einem dünnen Balken oben, wo das Menü beim Anklicken der Hamburger-"
+"Taste angezeigt wird. Mit dieser Option kannst du wählen, welches Menü "
+"angezeigt wird."
 
 #: core/core-settings-map.php:818
 msgid ""
@@ -3003,8 +2998,8 @@ msgid ""
 "Make sure you have assigned a menu to this location in the menu panel."
 msgstr ""
 "Ein horizontales Menü kann im Hauptheader mit dieser Option angezeigt "
-"werden. Vergewissern Sie sich, dass Sie diesem Menü einen Platz in der Menü-"
-"Oberfläche zugeordnet haben."
+"werden. Vergewisser dich, dass du diesem Menü ein Platz in der Menü-"
+"Oberfläche zugeordnet hast."
 
 #: core/core-settings-map.php:917
 msgid "Main menu design"
@@ -3028,8 +3023,8 @@ msgstr "Menü in der Seitenleiste (vertikal)"
 msgid ""
 "Make sure that you have assigned your menus to the relevant locations %s."
 msgstr ""
-"Vergewissern Sie sich, dass Sie Ihre Menüs den entsprechenden Orten "
-"zugeordnet haben %s."
+"Vergewisser dich, dass du deine Menüs den entsprechenden Orten zugeordnet "
+"hast %s."
 
 #: core/core-settings-map.php:929 core/core-settings-map.php:2551
 msgid "in the menu panel"
@@ -3068,7 +3063,7 @@ msgstr "Menüposition (für das horizontale Menü)"
 
 #: core/core-settings-map.php:975
 msgid "Select a submenu expansion option"
-msgstr "Wählen Sie die Art der Vergrößerung des Untermenüs"
+msgstr "Wähle die Art der Vergrößerung des Untermenüs"
 
 #: core/core-settings-map.php:980
 msgid "Expand submenus on hover"
@@ -3095,12 +3090,12 @@ msgid ""
 "Use with caution : provide an alternative way to navigate in your website "
 "for your users."
 msgstr ""
-"Vorsicht: stellen Sie Ihren Benutzern einen alternativen Weg zur Navigation "
-"auf Ihrer Website zur Verfügung."
+"Vorsicht: stelle deinen Benutzern einen alternativen Weg zur Navigation auf "
+"deiner Website zur Verfügung."
 
 #: core/core-settings-map.php:1041
 msgid "Set the number of posts to display"
-msgstr "Legen Sie die Anzahl der Beiträge fest, die angezeigt werden sollen"
+msgstr "Lege die Anzahl der Beiträge fest, die angezeigt werden sollen"
 
 #: core/core-settings-map.php:1046
 msgid "Jump to the blog design options"
@@ -3120,7 +3115,7 @@ msgstr "Keine Beiträge oder Seite anzeigen"
 
 #: core/core-settings-map.php:1073
 msgid "Your latest posts"
-msgstr "Ihre letzten Beiträge"
+msgstr "Deine letzten Beiträge"
 
 #: core/core-settings-map.php:1074
 msgid "A static page"
@@ -3140,7 +3135,7 @@ msgstr "Navigation auf Ihrer Homepage anzeigen"
 
 #: core/core-settings-map.php:1109
 msgid "Apply a category filter to your home / blog posts"
-msgstr "Wenden Sie einen Kategorie-Filter auf Ihrer Startseite/Blogbeiträge an"
+msgstr "Wende einen Kategorie-Filter auf deiner Startseite/Blogbeiträge an"
 
 #: core/core-settings-map.php:1119
 msgid "Set up the front page layout"
@@ -3178,8 +3173,8 @@ msgid ""
 "The button text will be limited to 80 chars max. Leave this field empty to "
 "hide the button"
 msgstr ""
-"Der Text-Button ist auf maximal 80 Zeichen begrenzt. Lassen Sie dieses Feld "
-"leer, um den Button auszublenden"
+"Der Text-Button ist auf maximal 80 Zeichen begrenzt. Lass dieses Feld leer, "
+"um den Button auszublenden"
 
 #: core/core-settings-map.php:1213
 msgid "Full width slider"
@@ -3200,7 +3195,7 @@ msgstr "in ms: 1000 ms = 1 Sekunde"
 
 #: core/core-settings-map.php:1236 core/czr-admin-ccat.php:1650
 msgid "Apply a dark overlay on your slider's images"
-msgstr "Wenden Sie eine dunkle Überlagerung auf die Bilder Ihres Schiebers an"
+msgstr "Wende eine dunkle Überlagerung auf die Bilder deines Schiebers an"
 
 #: core/core-settings-map.php:1248
 msgid "Display navigation dots"
@@ -3224,19 +3219,19 @@ msgstr "Diese Höhe auf alle Slider anwenden"
 
 #: core/core-settings-map.php:1280
 msgid "Replace the default image slider's height"
-msgstr "Ersetzt die Höhe des Standard-Sliders"
+msgstr "Ersetze die Höhe des Standard-Sliders"
 
 #: core/core-settings-map.php:1286
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
 msgstr ""
-"Ist diese Option ausgewählt, werden Ihre Bilder beim Hochladen an die "
+"Ist diese Option ausgewählt, werden deine Bilder beim Hochladen an die "
 "benutzerdefinierte Höhe angepasst. Dies beschleunigt den Seitenaufbau."
 
 #: core/core-settings-map.php:1287
 msgid "You might want to regenerate your thumbnails."
-msgstr "Sie möchen möglicherweise die Vorschaubilder neu generieren."
+msgstr "Du möchtst möglicherweise die Vorschaubilder neu generieren."
 
 #: core/core-settings-map.php:1295
 msgid "Featured pages options"
@@ -3252,12 +3247,12 @@ msgid ""
 "edit screen). Uncheck the option above to disable the featured page images."
 msgstr ""
 "Die Bilder werden durch das Beitragsbild auf jeder Seite (in der Ansicht "
-"Seite bearbeiten) festgelegt. Wählen Sie die Einstellung oben ab, um die "
-"Seiten-Beitragsbilder zu deaktivieren."
+"Seite bearbeiten) festgelegt. Wähle die Einstellung oben ab, um die Seiten-"
+"Beitragsbilder zu deaktivieren."
 
 #: core/core-settings-map.php:1342
 msgid "Choose the global default layout"
-msgstr "Wählen Sie das globale Standardlayout"
+msgstr "Wähle das globale Standardlayout"
 
 #: core/core-settings-map.php:1346
 msgid "Note : the home page layout has to be set in the home page section"
@@ -3279,7 +3274,7 @@ msgstr ""
 
 #: core/core-settings-map.php:1365
 msgid "Choose the posts default layout"
-msgstr "Wählen Sie das Standardlayout für Beiträge"
+msgstr "Wähle das Standardlayout für Beiträge"
 
 #: core/core-settings-map.php:1375
 msgid "Choose the pages default layout"
@@ -3292,7 +3287,7 @@ msgid ""
 "individually. Learn how in the %s."
 msgstr ""
 "Die obigen Layout-Optionen definieren das globale Erscheinungsbild für "
-"Beiträge und Seiten. Sie können aber auch das Layout für jeden Beitrag und "
+"Beiträge und Seiten. Du kannst aber auch das Layout für jeden Beitrag und "
 "Seite individuell festlegen. Hier steht wie das geht: %s."
 
 #: core/core-settings-map.php:1382
@@ -3318,7 +3313,7 @@ msgstr "Position der Autor-Information"
 #: core/core-settings-map.php:1397 core/core-settings-map.php:1414
 #: core/core-settings-map.php:1431
 msgid "Right after the post content"
-msgstr "Direkt nach dem Beitrags-Inhalt"
+msgstr "Direkt nach dem Beitrags Inhalt"
 
 #: core/core-settings-map.php:1398 core/core-settings-map.php:1415
 #: core/core-settings-map.php:1432
@@ -3349,9 +3344,9 @@ msgid ""
 "will automatically add a pagination link block at the bottom of the page."
 msgstr ""
 "Diese Option definiert die maximale Anzahl von Beiträgen oder "
-"Suchergebnissen, die in einer Liste von Beiträgen Ihrer Website angezeigt "
+"Suchergebnissen, die in einer Liste von Beiträgen deiner Website angezeigt "
 "werden: Blogseite, Archivseite, Suchseite. Wenn die Anzahl der angezeigten "
-"Elemente größer als Ihre Einstellung ist, wird das Theme automatisch einen "
+"Elemente größer als deine Einstellung ist, wird das Theme automatisch einen "
 "Seitennummerierungs-Block am unteren Rand der Seite hinzufügen."
 
 #: core/core-settings-map.php:1480
@@ -3517,8 +3512,8 @@ msgid ""
 "You can display the featured image (also called the post thumbnail) of your "
 "posts before their content, when they are displayed individually."
 msgstr ""
-"Sie können das Beitragsbild Ihrer Beiträge (auch Beitrags-Vorschaubild "
-"genannt) vor Ihrem Inhalt anzeigen, wenn sie einzeln angezeigt werden."
+"Du kannst das Beitragsbild deiner Beiträge (auch Beitrags-Vorschaubild "
+"genannt) vor ihrem Inhalt anzeigen, wenn sie einzeln angezeigt werden."
 
 #: core/core-settings-map.php:1705 core/core-settings-map.php:1775
 #: inc/czr-init-ccat.php:3009
@@ -3527,8 +3522,7 @@ msgstr "Maximale Höhe der Vorschaubilder in Pixeln einstellen"
 
 #: core/core-settings-map.php:1717 core/core-settings-map.php:1787
 msgid "Set the thumbnail's max height in pixels for smartphones"
-msgstr ""
-"Setzen Sie die maximale Höhe des Miniaturbildes in Pixeln für Smartphones"
+msgstr "Setze die maximale Höhe des Miniaturbildes in Pixeln für Smartphones"
 
 #: core/core-settings-map.php:1727
 msgid "Related posts"
@@ -3555,7 +3549,7 @@ msgid ""
 "You can display the featured image (also called the post thumbnail) of your "
 "pages before their content, when they are displayed individually."
 msgstr ""
-"Sie können das Beitragsbild (auch Beitrags-Vorschaubild genannt) auf Ihren "
+"Du kannst das Beitragsbild (auch Beitrags-Vorschaubild genannt) auf deinen "
 "Seiten vor dem Inhalt anzeigen lassen, wenn diese individuell angezeigt "
 "werden."
 
@@ -3629,7 +3623,7 @@ msgstr "Beitrags-Metadaten auf Beitragslisten (Archiv, Blogseite) anzeigen"
 
 #: core/core-settings-map.php:1916
 msgid "Select the metas to display"
-msgstr "Wählen Sie aus, welche Metadaten angezeigt werden sollen"
+msgstr "Wähle aus, welche Metadaten angezeigt werden sollen"
 
 #: core/core-settings-map.php:1917
 msgid "Display hierarchical taxonomies (like categories)"
@@ -3810,7 +3804,7 @@ msgid ""
 "Enabling this option will glue your footer to the bottom of the screen, when "
 "pages are shorter than the viewport's height."
 msgstr ""
-"Wenn Sie diese Option aktivieren, wird die Fußzeile auf die Unterseite des "
+"Wenn du diese Option aktivierst, wird die Fußzeile auf die Unterseite des "
 "Bildschirms geklebt, wenn Seiten kürzer sind als die Höhe des "
 "Ansichtsfensters."
 
@@ -3825,7 +3819,7 @@ msgstr "Position des „Nach oben“-Pfeils"
 #: core/core-settings-map.php:2252
 msgid "Add your custom css here and design live! (for advanced users)"
 msgstr ""
-"Fügen Sie benutzerdefiniertes CSS hier hinzu und designen Sie live! (für "
+"Füge benutzerdefiniertes CSS hier hinzu und designe live! (für "
 "fortgeschrittene Benutzer)"
 
 #: core/core-settings-map.php:2256
@@ -3833,8 +3827,8 @@ msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
 msgstr ""
-"Verwenden Sie dieses Feld, um kleine Abschnitte CSS zu testen. Für wichtige "
-"CSS-Anpassungen empfiehlt sich die Änderung der style.css in einem"
+"Verwenden dieses Feld, um kleine Abschnitte CSS zu testen. Für wichtige CSS-"
+"Anpassungen empfiehlt sich die Änderung der style.css in einem"
 
 #: core/core-settings-map.php:2257
 msgid "child theme."
@@ -3894,12 +3888,12 @@ msgid ""
 "by logged in users with administration capabilities."
 msgstr ""
 "Wenn diese Option aktiviert ist, werden verschiedene Hilfehinweise und "
-"einige Platzhalterblöcke am Frontend Ihrer Website angezeigt. Sie sind nur "
+"einige Platzhalterblöcke am Frontend deiner Website angezeigt. Sie sind nur "
 "für angemeldete Benutzer mit Administratoren-Berechtigung sichtbar."
 
 #: core/core-settings-map.php:2329
 msgid "Load Font Awesome resources"
-msgstr "Laden Sie Font Awesome Ressourcen"
+msgstr "Lade Font Awesome Ressourcen"
 
 #: core/core-settings-map.php:2333
 msgid "Use with caution"
@@ -3912,12 +3906,12 @@ msgid ""
 "plugin do it for you."
 msgstr ""
 "Wenn aktiviert, werden die Font Awesome Icons und CSS im Frontend geladen. "
-"Sie könnten die Font Awesome Icons auch mit einem benutzerspezifischen Code "
+"Du könntest die Font Awesome Icons auch mit einem benutzerspezifischen Code "
 "oder einem Plugin laden."
 
 #: core/core-settings-map.php:2336
 msgid "Check out some example of uses"
-msgstr "Schauen Sie sich einige Anwendungsbeispiele an"
+msgstr "Schau dir einige Anwendungsbeispiele an"
 
 #: core/core-settings-map.php:2357
 msgid "Automatically adapt the font size to the width of the devices"
@@ -3928,14 +3922,14 @@ msgid ""
 "When this option is enabled, your font size will automatically resize to be "
 "better displayed in mobile devices."
 msgstr ""
-"Wenn diese Optionen aktiviert sind, wird Ihre Schriftgröße automatisch "
+"Wenn diese Optionen aktiviert sind, wird deine Schriftgröße automatisch "
 "skaliert, um besser in mobilen Geräten angezeigt zu werden."
 
 #: core/core-settings-map.php:2360
 msgid ""
 "This option can sometimes reduce too much the headings font-size on mobiles."
 msgstr ""
-"Diese Option kann manchmal zu sehr die Überschriften-Schriftgröße auf "
+"Diese Option kann manchmal zu sehr die Überschriften Schriftgröße auf "
 "Mobiltelefonen reduzieren."
 
 #: core/core-settings-map.php:2372
@@ -3954,11 +3948,11 @@ msgstr ""
 
 #: core/core-settings-map.php:2377
 msgid "Set the Modern or Classical design style"
-msgstr "Stellen Sie den modernen oder klassischen Designstil ein"
+msgstr "Stelle den modernen oder klassischen Designstil ein"
 
 #: core/core-settings-map.php:2377
 msgid "Select a design style for the theme"
-msgstr "Wählen Sie einen Designstil für das Theme"
+msgstr "Wähle einen Designstil für das Theme"
 
 #: core/core-settings-map.php:2381
 msgid "Modern"
@@ -3973,8 +3967,8 @@ msgid ""
 "You are using a child theme. This option must be changed from the parent "
 "theme. Activate the parent from %s."
 msgstr ""
-"Sie verwenden ein Child-Theme. Diese Option muss vom Eltern-Theme geändert "
-"werden. Aktivieren Sie das Eltern-Theme von %s."
+"Du verwendest ein Child-Theme. Diese Option muss vom Eltern-Theme geändert "
+"werden. Aktiviere das Eltern-Theme von %s."
 
 #: core/core-settings-map.php:2387
 msgid "Appearance > themes"
@@ -4045,8 +4039,8 @@ msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgid_plural ""
 "Your theme supports %s menus. Select which menu appears in each location."
 msgstr[0] ""
-"Dieses Theme unterstützt %s Menü. Wählen Sie aus, welches Menü Sie verwenden "
-"möchten."
+"Dieses Theme unterstützt %s Menü. Wähle aus, welches Menü du verwenden "
+"möchtest."
 msgstr[1] ""
 "Dieses Theme unterstützt %s Menüs. Bitte wähle aus, welches Menü an welcher "
 "Stelle erscheinen soll."
@@ -4054,7 +4048,7 @@ msgstr[1] ""
 #: core/core-settings-map.php:2540 core/core-settings-map.php:2548
 msgid "You can create new menu and edit your menu's content %s."
 msgstr ""
-"Sie können neue Menüs erstellen und den Inhalt Ihrer Menüs bearbeiten %s."
+"Du kannst neue Menüs erstellen und den Inhalt deiner Menüs bearbeiten %s."
 
 #: core/core-settings-map.php:2543
 msgid "on the Menus screen in the Appearance section"
@@ -4082,7 +4076,7 @@ msgstr "Primäre Farbe des Theme"
 
 #: core/core-settings-map.php:2585
 msgid "Pick a primary color for the theme"
-msgstr "Wählen Sie eine Primärfarbe für das Theme"
+msgstr "Wähle eine Primärfarbe für das Theme"
 
 #: core/core-settings-map.php:2589
 msgid "Font picker and font size"
@@ -4194,7 +4188,7 @@ msgstr "Frontend-Icons (Font Awesome)"
 
 #: core/core-settings-map.php:2787
 msgid "Adaptative font size on mobile devices"
-msgstr "Automatische Anpassung der Schriftgröße auf mobilen Geräten"
+msgstr "Automatische Anpassung der Schriftgrößeauf mobilen Geräten"
 
 #: core/core-settings-map.php:2792
 msgid "Theme style"
@@ -4217,12 +4211,12 @@ msgid ""
 "You need to select a page first. Leave this field empty if you want to use "
 "the page excerpt."
 msgstr ""
-"Sie müssen erst eine Seite auswählen. Lassen Sie dieses Feld leer, wenn Sie "
-"den Seiten-Auszug verwenden möchten."
+"Du musst erst eine Seite auswählen. Lasse dieses Feld leer, wenn du den "
+"Seiten-Auszug verwenden möchten."
 
 #: core/czr-admin-ccat.php:380
 msgid "Good, you've recently upgraded to"
-msgstr "Gut, Sie haben vor kurzem ein Upgrade durchgeführt auf"
+msgstr "Gut, du hast vor kurzem ein Upgrade durchgeführt auf"
 
 #: core/czr-admin-ccat.php:382
 msgid "version"
@@ -4236,7 +4230,7 @@ msgstr ""
 
 #: core/czr-admin-ccat.php:393
 msgid "Read the latest release notes"
-msgstr "Lesen Sie die neuesten Versionshinweise"
+msgstr "Lies die neuesten Versionshinweise"
 
 #: core/czr-admin-ccat.php:516
 msgid "About Customizr"
@@ -4261,16 +4255,16 @@ msgstr "Demo-Website"
 
 #: core/czr-admin-ccat.php:573
 msgid "Read the changelog"
-msgstr "Lesen Sie den Changelog"
+msgstr "Lese den Changelog"
 
 #: core/czr-admin-ccat.php:586
 msgid ""
 "You are using a child theme of Customizr %1$s : always check the %2$s after "
 "upgrading to see if a function or a template has been deprecated."
 msgstr ""
-"Sie verwenden ein untergeordnetes Theme von Customizr %1$s: Überprüfen Sie "
-"immer die %2$s nach der Aktualisierung, um festzustellen, ob eine Funktion "
-"oder eine Vorlage als veraltet gilt."
+"Du verwendest ein untergeordnetes Theme von Customizr %1$s: Überprüfe immer "
+"die %2$s nach der Aktualisierung, um festzustellen, ob eine Funktion oder "
+"eine Vorlage als veraltet gilt."
 
 #: core/czr-admin-ccat.php:605
 msgid "Happy user of Customizr?"
@@ -4281,9 +4275,9 @@ msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
 "a nice review! <br />(We are addicted to your feedbacks...)"
 msgstr ""
-"Wenn Sie mit diesem Theme zufrieden sind, teilen Sie dies auf wordpress.org "
-"mit und geben Customizr eine positive Bewertung! <br />(Wir sehnen uns nach "
-"Ihrem Feedback…)"
+"Wenn du mit diesem Theme zufrieden bist, teile es auf wordpress.org mit und "
+"gib Customizr eine positive Bewertung! <br />(Wir sehnen uns nach deinem  "
+"Feedback…)"
 
 #: core/czr-admin-ccat.php:611
 msgid "Follow us"
@@ -4295,7 +4289,7 @@ msgstr "Customizr-Pro holen"
 
 #: core/czr-admin-ccat.php:628
 msgid "Easily take your web design one step further"
-msgstr "Bringen Sie Ihr Webdesign ganz einfach einen Schritt weiter"
+msgstr "Bringe dein Webdesign ganz einfach einen Schritt weiter"
 
 #: core/czr-admin-ccat.php:630
 msgid ""
@@ -4306,10 +4300,10 @@ msgid ""
 "your websites."
 msgstr ""
 "Das Customizr Pro WordPress Theme erlaubt es allen eine wunderschöne, "
-"professionelle und mobil-freundliche Webseite in wenigen Minuten zu "
-"erstellen. In der Pro Version erhalten Sie alle in der Free Version "
+"professionelle und Mobilphone freundliche Webseite in wenigen Minuten zu "
+"erstellen. In der Pro Version erhältst du alle in der Free Version "
 "enthaltenen Features, aber auch viele umwandlungsorientierte Features, um "
-"Ihre Besucher zu beeindrucken und um Besucher zu gewinnen."
+"deine Besucher zu beeindrucken und um Besucher zu gewinnen."
 
 #: core/czr-admin-ccat.php:633
 msgid "Discover Customizr Pro"
@@ -4336,8 +4330,8 @@ msgid ""
 "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
 "(Mac)."
 msgstr ""
-"Um die Systeminfo zu kopieren, klicken Sie unterhalb und drücken Sie dann "
-"Strg. + C (PC) oder Cmd + C (Mac)."
+"Um die Systeminfo zu kopieren, klicke unterhalb und drücke dann Strg. + C "
+"(PC) oder Cmd + C (Mac)."
 
 #: core/czr-admin-ccat.php:879
 msgid "We found {count} article that may help:"
@@ -4353,7 +4347,7 @@ msgstr "Keine Ergebnisse gefunden &hellip;"
 
 #: core/czr-admin-ccat.php:882
 msgid "Please enter a search term."
-msgstr "Geben Sie bitte einen Suchbegriff ein."
+msgstr "Gib bitte einen Suchbegriff ein."
 
 #: core/czr-admin-ccat.php:883
 msgid "Search must be at least {minLength} characters."
@@ -4365,7 +4359,7 @@ msgstr "Beim Abrufen der Suchergebnisse ist ein Fehler aufgetreten."
 
 #: core/czr-admin-ccat.php:890
 msgid "Read the full article"
-msgstr "Lesen Sie den ganzen Artikel"
+msgstr "Lies den ganzen Artikel"
 
 #: core/czr-admin-ccat.php:891
 msgid "read more"
@@ -4378,7 +4372,7 @@ msgstr "Durchsuche die Wissensbank"
 #: core/czr-admin-ccat.php:915
 msgid "In a few keywords, describe the information you are looking for."
 msgstr ""
-"Beschreiben Sie in einigen Stichwörtern die Informationen, nach Sie suchen."
+"Beschreibe in einigen Stichwörtern die Informationen, nach denen du suchst."
 
 #: core/czr-admin-ccat.php:918
 msgid "Ex. Logo upload"
@@ -4390,9 +4384,9 @@ msgid ""
 "search by prefixing it with \"customizr\" for example. If there are no "
 "results, try different keywords and / or spelling variations"
 msgstr ""
-"<u>Suchtipps</u>: Wenn Sie zu viele Ergebnisse erhalten, versuchen Sie, Ihre "
-"Suche einzuschränken, indem Sie beispielsweise \"customizr\" voranstellen. "
-"Wenn es keine Ergebnisse gibt, versuchen Sie es mit anderen Schlüsselwörtern "
+"<u>Suchtipps</u>: Wenn du zu viele Ergebnisse erhältst, versuche, deine "
+"Suche einzuschränken, indem du beispielsweise \"customizr\" voranstellst. "
+"Wenn es keine Ergebnisse gibt, versuche es mit anderen Schlüsselwörtern "
 "und / oder Schreibvarianten"
 
 #: core/czr-admin-ccat.php:1172
@@ -4485,8 +4479,8 @@ msgid ""
 "right sidebars. The default layouts can be defined in the WordPress "
 "customizer screen %2$s.<br />"
 msgstr ""
-"Sie können ein bestimmtes Layout für %1$s definieren, indem Sie die "
-"vordefinierte linke und rechte Seitenleiste verwenden. Die Standardlayouts "
+"Du kannst ein bestimmtes Layout für %1$s definieren, indem du die "
+"vordefinierte linke und rechte Seitenleiste verwendest. Die Standardlayouts "
 "können im WordPress-Customizer-Bildschirm %2$s definiert werden.<br />"
 
 #: core/czr-admin-ccat.php:1458 core/czr-admin-ccat.php:1463
@@ -4499,7 +4493,7 @@ msgstr "dieser Beitrag"
 
 #: core/czr-admin-ccat.php:1462
 msgid "Select a specific layout for %1$s"
-msgstr "Wählen Sie ein bestimmtes Layout für %1$s"
+msgstr "Wähle ein bestimmtes Layout für %1$s"
 
 #: core/czr-admin-ccat.php:1466
 msgid "Default layout %1s"
@@ -4522,8 +4516,8 @@ msgid ""
 "To create a new slider : open the media library, edit your images and add "
 "them to your new slider."
 msgstr ""
-"Neuen Slider erstellen: Öffnen Sie die Medienübersicht, bearbeiten Sie Ihre "
-"Bilder und fügen Sie diese Ihrem neuen Slider hinzu."
+"Neuen Slider erstellen: Öffne die Medienübersicht, bearbeite deine Bilder "
+"und füge diese deinem neuen Slider hinzu."
 
 #: core/czr-admin-ccat.php:1624
 msgid "Delay between each slides in milliseconds (default : 5000 ms)"
@@ -4533,7 +4527,7 @@ msgstr ""
 
 #: core/czr-admin-ccat.php:1631
 msgid "Slider Layout : set the slider in full width"
-msgstr "Slider-Layout: Stellen Sie den Slider auf volle Breite"
+msgstr "Slider-Layout: Stelle den Slider auf volle Breite"
 
 #: core/czr-admin-ccat.php:1669
 msgid "Display navigation dots at the bottom of your slider."
@@ -4560,8 +4554,8 @@ msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
 msgstr ""
-"Sie haben noch keinen Slider erstellt. Gehen Sie in die Medienbibliothek, "
-"bearbeiten Sie Ihre Bilder und fügen diese Ihrem Slider hinzu."
+"Du hast noch keinen Slider erstellt. Gehe in die Medienbibliothek, bearbeite "
+"deine Bilder und fügen diese deinem Slider hinzu."
 
 #: core/czr-admin-ccat.php:2053
 msgid "Add to a slider (create one if needed)"
@@ -4608,16 +4602,16 @@ msgid ""
 "You haven't create any slider yet. Write a slider name and click on the "
 "button to add you first slider."
 msgstr ""
-"Sie haben bisher keine Slider erstellt. Schreiben Sie einen Slider-Namen und "
-"klicken Sie auf den Button, um Ihren ersten Slider hinzuzufügen."
+"Du hast bisher keine Slider erstellt. Schreibe einen Slider-Namen und klicke "
+"auf den Button, um deinen ersten Slider hinzuzufügen."
 
 #: core/czr-admin-ccat.php:2433
 msgid ""
 "This slider has not slides to show. Go to the media library and start adding "
 "images to it."
 msgstr ""
-"Dieser Slider hat keine Slides zum Anzeigen. Gehen Sie zur Mediathek und "
-"beginnen Sie Bilder hinzufügen."
+"Dieser Slider hat keine Slides zum Anzeigen. Gehe zur Mediathek und beginne "
+"Bilder hinzufügen."
 
 #: core/czr-admin-ccat.php:2443
 msgid "Slide Image"
@@ -4658,15 +4652,15 @@ msgid ""
 "the edit screen of an image ( or add a new image ), and add it to your "
 "desired slider by using the dedicated option block at the bottom of the page."
 msgstr ""
-"Um eine neue Folie hinzuzufügen: gehen Sie in Ihre Mediathek (auf Medien "
-"klicken), öffnen Sie die Bearbeitungsansicht eines Bildes (oder fügen Sie "
-"ein neues Bild hinzu) und fügen es zu Ihrem gewünschten Slider hinzu, in dem "
-"Sie den entsprechenden Einstellungsabschnitt unten auf der Seite verwenden."
+"Um eine neue Folie hinzuzufügen: gehe in deine Mediathek (auf Medien "
+"klicken), öffne die Bearbeitungsansicht eines Bildes (oder füge ein neues "
+"Bild hinzu) und füge es zu deinem gewünschten Slider hinzu, in dem du den "
+"entsprechenden Einstellungsabschnitt unten auf der Seite verwendest."
 
 #: core/czr-admin-ccat.php:2530
 msgid "For more informations about sliders, check the documentation page :"
 msgstr ""
-"Weitere Informationen über die Slider finden Sie auf der Seite "
+"Weitere Informationen über die Slider findest du auf der Seite "
 "„Dokumentation“:"
 
 #: core/czr-admin-ccat.php:2532
@@ -4701,7 +4695,7 @@ msgstr "RSS"
 #: core/czr-customize-ccat.php:860 core/czr-modules/social-links/index.php:76
 #: core/czr-modules/social-links/social_links_module.php:78
 msgid "Select a social icon"
-msgstr "Wählen Sie ein Social Icon"
+msgstr "Wähle ein Social Icon"
 
 #: core/czr-customize-ccat.php:861 core/czr-modules/social-links/index.php:77
 #: core/czr-modules/social-links/social_links_module.php:79
@@ -4711,8 +4705,7 @@ msgstr "Folge uns auf"
 #: core/czr-customize-ccat.php:863 core/czr-modules/social-links/index.php:79
 #: core/czr-modules/social-links/social_links_module.php:81
 msgid "New Social Link created ! Scroll down to edit it."
-msgstr ""
-"Neuer Social Link erstellt ! Scrollen Sie herunter, um ihn zu bearbeiten."
+msgstr "Neuer Social Link erstellt ! Scrolle herunter um ihn zu bearbeiten."
 
 #: core/czr-customize-ccat.php:867
 msgid "Close Editor"
@@ -4720,7 +4713,7 @@ msgstr "Editor schließen"
 
 #: core/czr-customize-ccat.php:869
 msgid "New Slide created ! Scroll down to edit it."
-msgstr "Neue Folie erstellt ! Scrollen Sie herunter, um es zu bearbeiten."
+msgstr "Neue Folie erstellt ! Scrolle herunter um es zu bearbeiten."
 
 #: core/czr-customize-ccat.php:870
 msgid "Slide"
@@ -4731,7 +4724,7 @@ msgid ""
 "This option generates a home page slider based on your last posts, starting "
 "from the most recent or the featured (sticky) post(s) if any."
 msgstr ""
-"Diese Einstellung erzeugt einen Startseiten-Slider basierend auf Ihren "
+"Diese Einstellung erzeugt einen Startseiten-Slider basierend auf deinen "
 "letzten Beiträgen, angefangen beim aktuellsten oder einem hervorgehobenen "
 "(Stick) Beitrag/Beiträgen, sofern vorhanden."
 
@@ -4739,8 +4732,8 @@ msgstr ""
 msgid ""
 "The side on which the menu is revealed depends on the choosen header layout."
 msgstr ""
-"Die Seite, auf der das Menü angezeigt wird, hängt von dem gewählten "
-"Kopfzeilen-Layout ab."
+"Die Seite auf der das Menü angezeigt wird hängt von dem gewählten Kopfzeilen-"
+"Layout ab."
 
 #: core/czr-customize-ccat.php:874
 msgid "To change the global header layout, %s"
@@ -4752,7 +4745,7 @@ msgstr "Springe zum Design- und Layout-Bereich"
 
 #: core/czr-customize-ccat.php:878
 msgid "Change the header layout"
-msgstr "Ändern Sie das Layout des Headers"
+msgstr "Ändere das Layout des Headers"
 
 #: core/czr-customize-ccat.php:963
 msgid "Create a slider"
@@ -4764,7 +4757,7 @@ msgstr "Hilfe beim Erstellen eines Sliders nötig?"
 
 #: core/czr-customize-ccat.php:966
 msgid "Check the documentation"
-msgstr "Lesen Sie die Dokumentation"
+msgstr "Lies die Dokumentation"
 
 #: core/czr-customize-ccat.php:1478
 msgid "Upload"
@@ -4772,12 +4765,12 @@ msgstr "Hochladen"
 
 #: core/czr-customize-ccat.php:1552
 msgid "Press return or enter to open this panel"
-msgstr "Klicken Sie auf Rückgängig oder Enter, um diese Maske zu öffnen"
+msgstr "Klicke auf Rückgängig oder Enter, um diese Maske zu öffnen"
 
 #: core/czr-modules/social-links/index.php:90
 #: core/czr-modules/social-links/social_links_module.php:92
 msgid "Select an icon"
-msgstr "Wählen Sie ein Icon"
+msgstr "Wähle ein Icon"
 
 #: core/czr-modules/social-links/index.php:94
 #: core/czr-modules/social-links/social_links_module.php:96
@@ -4790,8 +4783,8 @@ msgstr "Social Link URL"
 #: core/czr-modules/social-links/social_links_module.php:118
 msgid "Enter the full url of your social profile (must be valid url)."
 msgstr ""
-"Tragen Sie die ganze URL deines Social Profiles ein (es muss ein gültiger "
-"Link sein)"
+"Trage die ganze URL deines Social Profiles ein (es muss ein gültiger Link "
+"sein)"
 
 #: core/czr-modules/social-links/index.php:96
 #: core/czr-modules/social-links/index.php:117
@@ -4833,7 +4826,7 @@ msgstr "Standard:"
 #: core/czr-modules/social-links/index.php:127
 #: core/czr-modules/social-links/social_links_module.php:129
 msgid "Set a unique color for your icon."
-msgstr "Setzen Sie eine spezifische Farbe für das Icon."
+msgstr "Setze eine spezifische Farbe für das Icon."
 
 #: core/czr-modules/social-links/index.php:132
 #: core/czr-modules/social-links/social_links_module.php:134
@@ -4843,8 +4836,7 @@ msgstr "Link-Zieladresse"
 #: core/czr-modules/social-links/index.php:133
 #: core/czr-modules/social-links/social_links_module.php:135
 msgid "Check this option to open the link in a another tab of the browser."
-msgstr ""
-"Wählen Sie diese Option um Links in einer neuen Tab im Browser zu öffnen."
+msgstr "Wähle diese Option um Links in einer neuen Tab im Browser zu öffnen."
 
 #: core/czr-modules/social-links/index.php:171
 #: core/czr-modules/social-links/social_links_module.php:173
@@ -4854,7 +4846,7 @@ msgstr "Ein Fehler ist aufgetreten: Ungültiger Social Link"
 #: core/czr-modules/social-links/index.php:215
 #: core/czr-modules/social-links/social_links_module.php:217
 msgid "Please fill the social link inputs with a valid URLs"
-msgstr "Füllen Sie bitte die Social Link Felder mit gültigen URLs aus"
+msgstr "Fülle bitte die Social Link Felder mit gültigen URLs aus"
 
 #: core/front/models/content/post-lists/headings/class-model-archive_heading.php:54
 msgid "Daily Archives:"
@@ -5044,7 +5036,7 @@ msgstr "F j, Y"
 #: core/front/models/modules/featured-pages/class-model-featured_pages.php:135
 #: core/front/models/modules/featured-pages/class-model-featured_pages.php:146
 msgid "Customize it now"
-msgstr "Jetzt anpassen"
+msgstr "Jetzt Anpassen"
 
 #: core/front/models/modules/featured-pages/class-model-featured_pages.php:163
 #: inc/czr-front-ccat.php:3521
@@ -5052,14 +5044,14 @@ msgid ""
 "Featured page description text : use the page excerpt or set your own custom "
 "text in the customizer screen."
 msgstr ""
-"Ausgewählter Text zur Seitenbeschreibung: Verwenden Sie den Seitenauszug "
-"oder setzen Sie Ihren eigenen benutzerdefinierten Text in den WordPress-"
-"Customizer-Bildschirm."
+"Ausgewählter Text zur Seitenbeschreibung: Verwende den Seitenauszug oder "
+"setze deinen eigenen benutzerdefinierten Text in den WordPress-Customizer-"
+"Bildschirm."
 
 #: core/front/models/modules/slider/class-model-slider.php:429
 #: inc/czr-front-ccat.php:8686
 msgid "Discover how to replace or remove this demo slider."
-msgstr "Herausfinden, wie man diesen Demo-Slider enfernt oder ersetzt."
+msgstr "Herausfinden wie man diesen Demo-Slider enfernt oder ersetzt."
 
 #: core/front/models/modules/slider/class-model-slider.php:431
 msgid "Check the front page slider doc &raquo;"
@@ -5111,7 +5103,7 @@ msgstr "Menü hinzufügen"
 
 #: core/front/template-tags/template-tags.php:227
 msgid "open the customizer menu section"
-msgstr "Öffnen Sie den Customizer-Menübereich"
+msgstr "Öffne den Customizer-Menübereich"
 
 #: core/init-base.php:121
 msgid "Left Sidebar"
@@ -5263,7 +5255,7 @@ msgstr "Menü"
 
 #: inc/czr-front-ccat.php:783
 msgid "Open the menu"
-msgstr "Öffnen Sie das Menü"
+msgstr "Öffne das Menü"
 
 #: inc/czr-front-ccat.php:1659 templates/parts/content/no-results/404.php:14
 msgid ""
@@ -5314,7 +5306,7 @@ msgstr "%1$s um %2$s"
 #: inc/czr-front-ccat.php:3063
 #: templates/parts/content/singular/comments/comment.php:37
 msgid "Your comment is awaiting moderation."
-msgstr "Ihr Kommentar wartet auf Moderation."
+msgstr "Dein Kommentar wartet auf Moderation."
 
 #: inc/czr-front-ccat.php:3098
 #: templates/parts/content/singular/comments/comment_list.php:66
@@ -5338,7 +5330,7 @@ msgstr "Kommentare sind geschlossen."
 
 #: inc/czr-front-ccat.php:3179 templates/comments-no-model.php:21
 msgid "Leave a comment"
-msgstr "Schreiben Sie einen Kommentar"
+msgstr "Schreibe einen Kommentar"
 
 #: inc/czr-front-ccat.php:3202
 msgid "Comment(s) on"
@@ -5386,8 +5378,8 @@ msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
 msgstr ""
-"Leider gibt es keine Ergebnisse für Ihre Suchkriterien. Bitte versuchen Sie "
-"es noch einmal mit anderen Suchbegriffen."
+"Leider gibt es keine Ergebnisse für deine Suchkriterien. Bitte versuche es "
+"noch einmal mit anderen Suchbegriffen."
 
 #: inc/czr-front-ccat.php:4400 inc/czr-front-ccat.php:4656
 #: inc/czr-front-ccat.php:5101
@@ -5724,7 +5716,7 @@ msgstr ""
 msgid ""
 "Improve your page speed by loading smaller slider images for mobile devices"
 msgstr ""
-"Verbessern Sie Ihre Seitengeschwindigkeit beim Laden von kleineren Slider-"
+"Verbessere deine Seitengeschwindigkeit beim Laden von kleineren Slider-"
 "Bildern auf Mobilgeräten"
 
 #: inc/czr-init-ccat.php:2517
@@ -5772,8 +5764,8 @@ msgid ""
 "WooCommerce: if checked, your WooCommerce cart icon will remain visible when "
 "scrolling."
 msgstr ""
-"WooCommerce: wenn ausgewählt, bleibt Ihr WooCommerce Einkaufswagen-Icon beim "
-"Scrollen sichtbar."
+"WooCommerce: wenn ausgewählt, bleibt dein WooCommerce Einkaufswagen-Icon "
+"beim Scrollen sichtbar."
 
 #: inc/czr-init-ccat.php:2596
 msgid "Sticky header : display the title / logo"
@@ -5891,7 +5883,7 @@ msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
 msgstr ""
-"Setzen Sie die maximale Zeit in Tagen, während denen der Änderungshinweis "
+"Setze die maximale Zeit in Tagen, während denen der Änderungshinweis "
 "angezeigt wird."
 
 #: inc/czr-init-ccat.php:2878
@@ -6035,8 +6027,8 @@ msgid ""
 "Activate this option to move the sidebars (if any) after the main content "
 "block, for smartphones or tablets viewport."
 msgstr ""
-"Aktivieren Sie diese Einstellung, um die Seitenleisten (sofern vorhanden) "
-"für die Anzeige auf Smartphones oder Tablets hinter den Hauptinhaltsblock zu "
+"Aktiviere diese Einstellung, um die Seitenleisten (sofern vorhanden) für die "
+"Anzeige auf Smartphones oder Tablets hinter den Hauptinhaltsblock zu "
 "verschieben."
 
 #: inc/czr-init-ccat.php:3293
@@ -6062,8 +6054,8 @@ msgid ""
 "Quick tip : you can choose between two styles for the Customizr theme. Give "
 "it a try %s"
 msgstr ""
-"Kurzer Tipp: Sie können zwischen zwei Stilen für das Customizr-Thema wählen. "
-"Probieren Sie es aus %s"
+"Kurzer Tipp: Du kannst zwischen zwei Stilen für das Customizr-Thema wählen. "
+"Probiere es aus %s"
 
 #: inc/czr-init-ccat.php:4685
 msgid "in the live customizer."
@@ -6151,7 +6143,7 @@ msgstr "https://wordpress.org/"
 
 #: templates/parts/modules/related-posts/related_posts.php:9
 msgid "You may also like"
-msgstr "Vielleicht gefällt Ihnen auch"
+msgstr "Vielleicht gefällt dir auch"
 
 #: templates/parts/modules/related-posts/related_posts.php:22
 msgid "Previous related articles"
@@ -6189,21 +6181,41 @@ msgctxt "yearly archives date format"
 msgid "Y"
 msgstr "Y"
 
-#: templates/parts/modules/search/searchform.php:10
+#: templates/parts/modules/search/searchform.php:11
 msgctxt "label"
 msgid "Search"
 msgstr "Suche"
 
-#: templates/parts/modules/search/searchform.php:11
+#: templates/parts/modules/search/searchform.php:12
 msgctxt "title"
 msgid "Search &hellip;"
 msgstr "Suche &hellip;"
 
-#~ msgid "Error"
-#~ msgstr "Fehler"
+#, fuzzy
+#~ msgid ""
+#~ "Nimble Page Builder is a free, easy to use yet powerful page builder used "
+#~ "by 40K+ WordPress websites."
+#~ msgstr ""
+#~ "Nimble Page Builder ist ein kostenloser, einfach zu bedienender, aber "
+#~ "leistungsstarker Page Builder, der von 30K+ WordPress-Websites verwendet "
+#~ "wird."
 
-#~ msgid "Hide editor"
-#~ msgstr "Editor ausblenden"
+#~ msgid ""
+#~ "It allows you to create mobile ready column layouts, and to drag-and-drop "
+#~ "modules like post grids, buttons, widget zones, maps, icons, or beautiful "
+#~ "pre-built sections with engaging %1$s, in any page of your site. Nimble "
+#~ "Builder uses the live customizer which is the native WordPress interface "
+#~ "for real-time design."
+#~ msgstr ""
+#~ "Es ermöglicht dir, mobile, fertige Spaltenlayouts zu erstellen und Module "
+#~ "per Drag and Drop wie Beitrags-Tabellen, Buttons, Widget-Zonen, Karten, "
+#~ "Icons oder schöne vorgefertigte Abschnitte mit einziehenden% von 1$s auf "
+#~ "jeder Seite deiner Website zu erstellen. Nimble Builder verwendet den "
+#~ "Live-Customizer, der die native WordPress-Schnittstelle für Echtzeit-"
+#~ "Design ist."
+
+#~ msgid "parallax backgrounds"
+#~ msgstr "Parallax-Hintergründe"
 
 #~ msgid "Install Required Plugins"
 #~ msgstr "Erforderliche Plugins installieren"
@@ -6255,7 +6267,7 @@ msgstr "Suche &hellip;"
 #~ "Please update the plugin."
 #~ msgstr ""
 #~ "Plugin nicht aktiviert. Eine höhere Version von %s wird für dieses Theme "
-#~ "benötigt. Bitte aktualisieren Sie das Plugin."
+#~ "benötigt. Bitte aktualisiere das Plugin."
 
 #~ msgid "All plugins installed and activated successfully. %1$s"
 #~ msgstr "Alle Plugins erfolgreich installiert und aktiviert. %1$s"
@@ -6264,7 +6276,7 @@ msgstr "Suche &hellip;"
 #~ msgstr "Diesen Hinweis ausblenden"
 
 #~ msgid "Remind me later"
-#~ msgstr "Erinnern Sie mich später"
+#~ msgstr "Erinnere mich später"
 
 #~ msgid ""
 #~ "There are one or more required or recommended plugins to install, update "
@@ -6275,12 +6287,12 @@ msgstr "Suche &hellip;"
 
 #~ msgid "Please contact the administrator of this site for help."
 #~ msgstr ""
-#~ "Nehmen Sie bitte Kontakt zum Administrator dieser Website auf, um Hilfe "
-#~ "zu erhalten."
+#~ "Nimm bitte Kontakt zum Administrator dieser Website auf, um Hilfe zu "
+#~ "erhalten."
 
 #~ msgid "This plugin needs to be updated to be compatible with your theme."
 #~ msgstr ""
-#~ "Dieses Plugin benötigt eine Aktualisierung, damit es mit Ihrem theme "
+#~ "Dieses Plugin benötigt eine Aktualisierung, damit es mit deinem theme "
 #~ "kompatibel ist."
 
 #~ msgid "Update Required"
@@ -6297,7 +6309,7 @@ msgstr "Suche &hellip;"
 #~ "Please contact the plugin provider and ask them to package their plugin "
 #~ "according to the WordPress guidelines."
 #~ msgstr ""
-#~ "Kontaktieren Sie bitte den Plugin-Ersteller und bitten ihn, das Plugin "
+#~ "Kontaktiere bitte den Plugin-Ersteller und bitte ihn, das Plugin "
 #~ "entsprechend den WordPress-Regularien zu erstellen."
 
 #~ msgid ""
@@ -6318,12 +6330,12 @@ msgstr "Suche &hellip;"
 #~ "even contact forms in any page.  You'll find a quick introduction of the "
 #~ "plugin %1$s."
 #~ msgstr ""
-#~ "Sie können vorgefertigte Abschnitte per Drag-and-drop verschieben oder "
+#~ "Du kannst vorgefertigte Abschnitte per Drag-and-drop verschieben oder "
 #~ "vorgefertigte Abschnitte in der Live-Vorschau aus dem WordPress "
-#~ "Customizer erstellen. Sie können ganz einfach Spaltenlayouts erstellen "
-#~ "und Inhalte wie Like-Buttons, Symbole, Google Map und sogar "
-#~ "Kontaktformulare auf jeder Seite hinzufügen. Sie finden eine kurze "
-#~ "Einführung in das Plugin %1$s."
+#~ "Customizer erstellen. Du kannst ganz einfach Spaltenlayouts erstellen und "
+#~ "Inhalte wie Like-Buttons, Symbole, Google Map und sogar Kontaktformulare "
+#~ "auf jeder Seite hinzufügen. Du findest eine kurze Einführung in das "
+#~ "Plugin %1$s."
 
 #~ msgid "TGMPA v%s"
 #~ msgstr "TGMPA v%s"
@@ -6411,7 +6423,7 @@ msgstr "Suche &hellip;"
 #~ msgstr "Aktualisiere %2$s"
 
 #~ msgid "Activate %2$s"
-#~ msgstr "Aktivieren Sie %2$s"
+#~ msgstr "Aktiviere %2$s"
 
 #~ msgid "Upgrade message from the plugin author:"
 #~ msgstr "Upgrade-Mitteilung vom Plugin-Autor:"
@@ -6468,7 +6480,7 @@ msgstr "Suche &hellip;"
 #~ "take a while on some hosts, so please be patient."
 #~ msgstr ""
 #~ "Der Installations- und Aktivierungsprozess beginnt. Dieser Vorgang kann "
-#~ "bei einigen Hosts eine Weile dauern, also haben Sie bitte Geduld."
+#~ "bei einigen Hosts eine Weile dauern, also habe bitte Geduld."
 
 #~ msgid "%1$s installed and activated successfully."
 #~ msgstr "%1$s erfolgreich installiert und aktiviert."
@@ -6490,7 +6502,7 @@ msgstr "Suche &hellip;"
 #~ "some hosts, so please be patient."
 #~ msgstr ""
 #~ "Der Installationsprozess beginnt. Dieser Vorgang kann bei einigen Hosts "
-#~ "eine Weile dauern, also haben Sie bitte Geduld."
+#~ "eine Weile dauern, also habe bitte Geduld."
 
 #~ msgid "%1$s installed successfully."
 #~ msgstr "%1$s erfolgreich installiert."
@@ -6503,9 +6515,6 @@ msgstr "Suche &hellip;"
 
 #~ msgid "Fonts"
 #~ msgstr "Schriftart"
-
-#~ msgid "Permalink to"
-#~ msgstr "Permalink zu"
 
 #~ msgid "The Customizr theme requires the following plugin: %1$s."
 #~ msgid_plural "This theme requires the following plugins : %1$s."
@@ -6530,9 +6539,9 @@ msgstr "Suche &hellip;"
 #~ "plugins. Contact the administrator of this site for help on getting the "
 #~ "plugins installed."
 #~ msgstr[0] ""
-#~ "Sorry, aber Sie haben nicht die richtigen Berechtigungen, um das %s "
-#~ "Plugin zu installieren. Wenden Sie sich an den Administrator dieser "
-#~ "Website, um Hilfe bei der Installation des Plugins zu erhalten."
+#~ "Sorry, aber du hast nicht die richtigen Berechtigungen, um das %s Plugin "
+#~ "zu installieren. Wende dich an den Administrator dieser Website, um Hilfe "
+#~ "bei der Installation des Plugins zu erhalten."
 #~ msgstr[1] ""
 #~ "Sorry, aber du hast nicht die richtigen Berechtigungen, um die %s Plugins "
 #~ "zu installieren. Wende dich an den Administrator dieser Website, um Hilfe "
@@ -6563,9 +6572,9 @@ msgstr "Suche &hellip;"
 #~ "plugins. Contact the administrator of this site for help on getting the "
 #~ "plugins activated."
 #~ msgstr[0] ""
-#~ "Sorry, aber Sie haben nicht die richtigen Berechtigungen, um das %s "
-#~ "Plugin zu aktivieren. Wenden Sie sich an den Administrator dieser "
-#~ "Website, um Hilfe bei der Aktivierung des Plugins zu erhalten."
+#~ "Sorry, aber du hast nicht die richtigen Berechtigungen, um das %s Plugin "
+#~ "zu aktivieren. Wende dich an den Administrator dieser Website, um Hilfe "
+#~ "bei der Aktivierung des Plugins zu erhalten."
 #~ msgstr[1] ""
 #~ "Sorry, aber du hast nicht die richtigen Berechtigungen, um die %s Plugins "
 #~ "zu aktivieren. Wende dich an den Administrator dieser Website, um Hilfe "
@@ -6595,9 +6604,9 @@ msgstr "Suche &hellip;"
 #~ "plugins. Contact the administrator of this site for help on getting the "
 #~ "plugins updated."
 #~ msgstr[0] ""
-#~ "Sorry, aber Sie haben nicht die richtigen Berechtigungen, um das %s-"
-#~ "Plugin zu aktualisieren. Wenden Sie sich an den Administrator dieser "
-#~ "Website, um Hilfe bei der Aktualisierung des Plugins zu erhalten."
+#~ "Sorry, aber du hast nicht die richtigen Berechtigungen, um das %s-Plugin "
+#~ "zu aktualisieren. Wende dich an den Administrator dieser Website, um "
+#~ "Hilfe bei der Aktualisierung des Plugins zu erhalten."
 #~ msgstr[1] ""
 #~ "Sorry, aber du hast nicht die richtigen Berechtigungen, um die %s-Plugins "
 #~ "zu aktualisieren. Wende dich an den Administrator dieser Website, um "
@@ -6605,15 +6614,6 @@ msgstr "Suche &hellip;"
 
 #~ msgid "All plugins installed and activated successfully. %s"
 #~ msgstr "Alle Plugins erfolgreich installiert und aktiviert. %s"
-
-#~ msgid "Permalink to %s"
-#~ msgstr "Permalink zu %s"
-
-#~ msgid "Go to"
-#~ msgstr "Gehe zu"
-
-#~ msgid "Permalink to "
-#~ msgstr "Permalink zu "
 
 #~ msgctxt "plugin A *and* plugin B"
 #~ msgid "and"
@@ -6632,6 +6632,24 @@ msgstr "Suche &hellip;"
 #~ msgctxt "as in: \"version nr unknown\""
 #~ msgid "unknown"
 #~ msgstr "unbekannt"
+
+#~ msgid "Permalink to"
+#~ msgstr "Permalink zu"
+
+#~ msgid "Permalink to %s"
+#~ msgstr "Permalink zu %s"
+
+#~ msgid "Go to"
+#~ msgstr "Gehe zu"
+
+#~ msgid "Permalink to "
+#~ msgstr "Permalink zu "
+
+#~ msgid "Error"
+#~ msgstr "Fehler"
+
+#~ msgid "Hide editor"
+#~ msgstr "Editor ausblenden"
 
 #~ msgid ""
 #~ "Customizr is a simple and fast WordPress theme designed to help you "
