@@ -1361,7 +1361,7 @@ function czr_fn_layout_option_map( $get_default = null ) {
           //Post sidebar layout
           'tc_sidebar_post_layout'  =>  array(
                           'control'     => 'CZR_controls' ,
-                          'default'       => 'l' ,//Default sidebar layout is on the left
+                          'default'     => czr_fn_user_started_before_version( '4.1.53', '2.0.42' ) ? 'l' : 'f',
                           'label'       => __( 'Choose the posts default layout' , 'customizr' ),
                           'section'     => 'post_layout_sec' ,
                           'type'        => 'select' ,
