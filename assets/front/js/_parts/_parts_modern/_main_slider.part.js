@@ -158,7 +158,7 @@ var czrapp = czrapp || {};
                               //Load the style
                               if ( $('head').find( '#czr-flickity' ).length < 1 ) {
                                     $('head').append( $('<link/>' , {
-                                          rel : 'preload',
+                                          rel : 'stylesheet',
                                           id : 'czr-flickity',
                                           type : 'text/css',
                                           href : czrapp.localized.assetsPath + 'css/flickity.min.css'

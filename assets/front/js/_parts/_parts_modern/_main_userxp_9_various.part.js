@@ -333,7 +333,7 @@ var czrapp = czrapp || {};
                   // Load the style
                   // Needs to be loaded before because : https://github.com/presscustomizr/customizr/issues/1285
                   $('head').append( $('<link/>' , {
-                              rel : 'preload',
+                              rel : 'stylesheet',
                               id : 'czr-custom-scroll-bar',
                               type : 'text/css',
                               href : czrapp.localized.assetsPath + 'css/jquery.mCustomScrollbar.min.css'
