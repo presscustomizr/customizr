@@ -3730,7 +3730,7 @@ var czrapp = czrapp || {};
                               czrapp.base.scriptLoadingStatus.czrMagnificPopup = czrapp.base.scriptLoadingStatus.czrMagnificPopup || $.Deferred();
                               if ( $('head').find( '#czr-magnific-popup' ).length < 1 ) {
                                     $('head').append( $('<link/>' , {
-                                          rel : 'stylesheet',
+                                          rel : 'preload',
                                           id : 'czr-magnific-popup',
                                           type : 'text/css',
                                           href : czrapp.localized.assetsPath + 'css/magnific-popup.min.css'
@@ -3928,7 +3928,7 @@ var czrapp = czrapp || {};
                               czrapp.base.scriptLoadingStatus.flickity = czrapp.base.scriptLoadingStatus.flickity || $.Deferred();
                               if ( $('head').find( '#czr-flickity' ).length < 1 ) {
                                     $('head').append( $('<link/>' , {
-                                          rel : 'stylesheet',
+                                          rel : 'preload',
                                           id : 'czr-flickity',
                                           type : 'text/css',
                                           href : czrapp.localized.assetsPath + 'css/flickity.min.css'
@@ -5246,7 +5246,7 @@ var czrapp = czrapp || {};
                   return dfd.resolve().promise();
             } else {
                   $('head').append( $('<link/>' , {
-                              rel : 'stylesheet',
+                              rel : 'preload',
                               id : 'czr-custom-scroll-bar',
                               type : 'text/css',
                               href : czrapp.localized.assetsPath + 'css/jquery.mCustomScrollbar.min.css'
@@ -5649,7 +5649,7 @@ var czrapp = czrapp || {};
                 czrapp.base.scriptLoadingStatus.mCustomScrollbar = czrapp.base.scriptLoadingStatus.mCustomScrollbar || $.Deferred();
                 if ( $('head').find( '#czr-custom-scroll-bar' ).length < 1 ) {
                       $('head').append( $('<link/>' , {
-                            rel : 'stylesheet',
+                            rel : 'preload',
                             id : 'czr-custom-scroll-bar',
                             type : 'text/css',
                             href : czrapp.localized.assetsPath + 'css/jquery.mCustomScrollbar.min.css'

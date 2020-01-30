@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.1.52\n"
+"Project-Id-Version: * Customizr v4.1.53\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2020-01-27 21:26:30+00:00\n"
+"POT-Creation-Date: 2020-01-30 17:31:49+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:08+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -953,47 +953,47 @@ msgstr ""
 msgid "Custom Page Example"
 msgstr "個性化定制 CSS"
 
-#: core/class-fire-resources_scripts.php:373
+#: core/class-fire-resources_scripts.php:378
 #: inc/_dev/class-fire-resources.php:341 inc/czr-init-ccat.php:4262
 msgid "Permanently dismiss"
 msgstr ""
 
-#: core/class-fire-resources_scripts.php:527
+#: core/class-fire-resources_scripts.php:564
 #, fuzzy
 msgid "Welcome in the Customizr theme"
 msgstr "Customizr 主題的高級設置"
 
-#: core/class-fire-resources_scripts.php:530
+#: core/class-fire-resources_scripts.php:567
 msgid "The theme offers a wide range"
 msgstr ""
 
-#: core/class-fire-resources_scripts.php:532
+#: core/class-fire-resources_scripts.php:569
 msgid "of customization options"
 msgstr ""
 
-#: core/class-fire-resources_scripts.php:533
+#: core/class-fire-resources_scripts.php:570
 msgid "to let you create the best possible websites."
 msgstr ""
 
-#: core/class-fire-resources_scripts.php:536
+#: core/class-fire-resources_scripts.php:573
 msgid "If you need inspiration, you can visit our online demos"
 msgstr ""
 
-#: core/class-fire-resources_scripts.php:538
+#: core/class-fire-resources_scripts.php:575
 #, fuzzy
 msgid "Customizr Demo 1"
 msgstr "Customizr 主題的高級設置"
 
-#: core/class-fire-resources_scripts.php:540
+#: core/class-fire-resources_scripts.php:577
 #, fuzzy
 msgid "Customizr Demo 2"
 msgstr "Customizr 主題的高級設置"
 
-#: core/class-fire-resources_scripts.php:543
+#: core/class-fire-resources_scripts.php:580
 msgid "To help you getting started with Customizr, we have published"
 msgstr ""
 
-#: core/class-fire-resources_scripts.php:545
+#: core/class-fire-resources_scripts.php:582
 msgid "a short guide here."
 msgstr ""
 
@@ -4665,6 +4665,7 @@ msgid "Search"
 msgstr "Rechercher dans les diapositives"
 
 #: templates/parts/modules/search/searchform.php:12
+#: templates/parts/modules/search/searchform.php:14
 #, fuzzy
 msgctxt "title"
 msgid "Search &hellip;"

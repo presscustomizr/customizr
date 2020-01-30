@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.3.2
-Stable tag: 4.1.52
+Stable tag: 4.1.53
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,17 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.52 =
-Text in search button can be truncated in sidebar.
+= 4.1.53 =
+Various performance improvements for javascript and CSS assets. Replaced  "Search" text by an icon on search buttons.
 
 == Changelog ==
+= 4.1.53 January 30th 2020 =
+* fixed : text on search button might not be visible on hover when footer is dark. fixes #1798
+* improved : use "rel=preload" for dynamically inserted CSS assets. fixes #1799
+* improved : replace "Search" text by an icon on search button. fixes #1800
+* improved : added support for HTML 5 "async". fixes #1802
+* improved : Post default layout should be full width for new users. fixes #1796
+
 = 4.1.52 January 27th 2020 =
 * fixed : text in search button can be truncated in sidebar. fixes #179
 
