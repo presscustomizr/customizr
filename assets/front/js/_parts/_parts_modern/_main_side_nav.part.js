@@ -88,7 +88,7 @@ var czrapp = czrapp || {};
                 // Load style
                 if ( $('head').find( '#czr-custom-scroll-bar' ).length < 1 ) {
                       $('head').append( $('<link/>' , {
-                            rel : 'stylesheet',
+                            rel : 'preload',
                             id : 'czr-custom-scroll-bar',
                             type : 'text/css',
                             href : czrapp.localized.assetsPath + 'css/jquery.mCustomScrollbar.min.css'

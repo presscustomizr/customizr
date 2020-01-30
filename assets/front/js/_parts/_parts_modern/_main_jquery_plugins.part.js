@@ -274,7 +274,7 @@ var czrapp = czrapp || {};
                               //Load the style
                               if ( $('head').find( '#czr-magnific-popup' ).length < 1 ) {
                                     $('head').append( $('<link/>' , {
-                                          rel : 'stylesheet',
+                                          rel : 'preload',
                                           id : 'czr-magnific-popup',
                                           type : 'text/css',
                                           href : czrapp.localized.assetsPath + 'css/magnific-popup.min.css'
