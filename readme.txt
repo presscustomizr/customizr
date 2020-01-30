@@ -14,12 +14,11 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 
 == Upgrade Notice ==
 = 4.1.53 =
-Various performance improvements for javascript and CSS assets. Replaced  "Search" text by an icon on search buttons.
+Various performance improvements for javascript front asset. Replaced  "Search" text by an icon on search buttons.
 
 == Changelog ==
 = 4.1.53 January 30th 2020 =
 * fixed : text on search button might not be visible on hover when footer is dark. fixes #1798
-* improved : use "rel=preload" for dynamically inserted CSS assets. fixes #1799
 * improved : replace "Search" text by an icon on search button. fixes #1800
 * improved : added support for HTML 5 "async". fixes #1802
 * improved : Post default layout should be full width for new users. fixes #1796
