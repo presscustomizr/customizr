@@ -32,7 +32,8 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
               // and for which we've added an attribute with wp_script_add_data( $_hand, 'async', true );
               // inspired from Twentytwenty WP theme
               // @see https://core.trac.wordpress.org/ticket/12009
-              add_filter( 'script_loader_tag', array( $this, 'czr_fn_filter_script_loader_tag' ), 10, 2 );
+              // commented after first implementation because of a suspition of regression with Customizr Pro masonry grid.
+              //add_filter( 'script_loader_tag', array( $this, 'czr_fn_filter_script_loader_tag' ), 10, 2 );
          }
 
 
