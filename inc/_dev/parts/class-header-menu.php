@@ -224,7 +224,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
         $tc_side_nav_class        = implode(' ', apply_filters( 'tc_side_nav_class', array( 'tc-sn', 'navbar' ) ) );
         $tc_side_nav_inner_class  = implode(' ', apply_filters( 'tc_side_nav_inner_class', array( 'tc-sn-inner', 'nav-collapse') ) );
         ?>
-          <nav id="tc-sn" class="<?php echo $tc_side_nav_class; ?>" role="navigation">
+          <nav id="tc-sn" class="<?php echo $tc_side_nav_class; ?>">
             <div class="<?php echo $tc_side_nav_inner_class; ?>">
               <?php do_action( '__sidenav' ); ?>
             </div><!--.tc-sn-inner -->

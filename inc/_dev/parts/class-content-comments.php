@@ -233,7 +233,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
         ob_start();
 
         ?>
-        <nav id="comment-nav-below" class="navigation" role="navigation">
+        <nav id="comment-nav-below" class="navigation">
           <h3 class="assistive-text section-heading"><?php _e( 'Comment navigation' , 'customizr' ); ?></h3>
           <ul class="pager">
 

@@ -78,7 +78,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
 
           <?php echo apply_filters( 'tc_singular_nav_separator' , '<hr class="featurette-divider '.current_filter().'">'); ?>
 
-        <nav id="<?php echo $html_id; ?>" class="<?php echo $post_nav_class; ?>" role="navigation">
+        <nav id="<?php echo $html_id; ?>" class="<?php echo $post_nav_class; ?>">
 
               <h3 class="assistive-text">
                 <?php echo apply_filters( 'tc_singular_nav_title', __( 'Post navigation' , 'customizr' ) ) ; ?>
@@ -133,7 +133,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
 
         <?php elseif ( $wp_query->max_num_pages > 1 && in_array($_context, array('archive', 'home') ) ) : ?>
 
-          <nav id="<?php echo $html_id; ?>" class="<?php echo $post_nav_class; ?>" role="navigation">
+          <nav id="<?php echo $html_id; ?>" class="<?php echo $post_nav_class; ?>">
 
             <h3 class="assistive-text">
               <?php echo apply_filters( 'tc_list_nav_title', __( 'Post navigation' , 'customizr' ) ) ; ?>

@@ -31,7 +31,7 @@ if ( null != $prev_link || null != $next_link ) :
 
 ?>
 <div class="post-navigation row <?php czr_fn_echo( 'element_class' ) ?>" <?php czr_fn_echo('element_attributes') ?>>
-  <nav id="nav-below" class="col-12" role="navigation">
+  <nav id="nav-below" class="col-12">
     <h2 class="sr-only"><?php _e('Post navigation', 'customizr') ?></h2>
     <ul class="czr_pager row flex-row flex-no-wrap">
       <li class="previous col-5 <?php echo $tprev_align_class ?>">

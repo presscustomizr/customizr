@@ -29,7 +29,7 @@ if ( ! class_exists( 'CZR_attachment' ) ) :
             ob_start();
             do_action( '__before_content' );
             ?>
-            <nav id="image-navigation" class="navigation" role="navigation">
+            <nav id="image-navigation" class="navigation">
                 <span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous' , 'customizr' ) ); ?></span>
                 <span class="next-image"><?php next_image_link( false, __( 'Next &rarr;' , 'customizr' ) ); ?></span>
             </nav><!-- //#image-navigation -->
