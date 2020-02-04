@@ -66,7 +66,7 @@ if ( apply_filters( 'czr_ms', false ) ) {
 
   		<?php do_action( '__before_header' ); ?>
 
-  	   	<header class="<?php echo implode( " ", apply_filters('tc_header_classes', array('tc-header' ,'clearfix', 'row-fluid') ) ) ?>" role="banner">
+  	   	<header class="<?php echo implode( " ", apply_filters('tc_header_classes', array('tc-header' ,'clearfix', 'row-fluid') ) ) ?>">
   			<?php
   				// The '__header' hook is used with the following callback functions (ordered by priorities) :
   				//CZR_header_main::$instance->tc_logo_title_display(), CZR_header_main::$instance->czr_fn_tagline_display(), CZR_header_main::$instance->czr_fn_navbar_display()

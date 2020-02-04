@@ -7,7 +7,7 @@
  */
 ?>
 <?php do_action( '__before_header' ) ?>
-<header class="tpnav-header__header tc-header <?php czr_fn_echo('element_class') ?>" role="banner" <?php czr_fn_echo('element_attributes') ?>>
+<header class="tpnav-header__header tc-header <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
     <?php
       //czr_fn_render_template always check if the model is registered or possible.
       czr_fn_render_template( 'header/topbar_wrapper',
