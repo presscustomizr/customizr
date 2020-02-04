@@ -234,31 +234,21 @@ function czr_fn_print_add_menu_button() {
 endif;
 
 if ( ! function_exists( 'czr_fn_link_pages' ) ) :
-/**
- * The template for displaying the edit button
- * Used everywhere from the slider to the posts to the comment
- *
- */
+//Displays page links for paginated posts (i.e. including the <!--nextpage--> Quicktag one or more times).
 function czr_fn_link_pages( $echo = true ) {
-
-      wp_link_pages( array(
-            'before'        => '<div class="post-pagination pagination row"><div class="col-md-12"><ul class="pag-list">',
-            'after'         => '</ul></div></div>',
-            'link_before'   => '<span>',
-            'link_after'    => '</span>',
-            'echo'          => $echo
-      ));
+    wp_link_pages( array(
+          'before'        => '<div class="post-pagination pagination row"><div class="col-md-12"><div class="pag-list">',
+          'after'         => '</div></div></div>',
+          'link_before'   => '<span>',
+          'link_after'    => '</span>',
+          'echo'          => $echo
+    ));
 }
 
 endif;
 
 /* Draft */
 if ( ! function_exists( 'czr_post_format_part' ) ) :
-/**
- * The template for displaying the edit button
- * Used everywhere from the slider to the posts to the comment
- *
- */
 function czr_post_format_part( $post_format = null ) {
 
       $post_format = is_null( $post_format ) ? get_post_format() : $post_format;
