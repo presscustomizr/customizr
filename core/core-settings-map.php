@@ -1091,7 +1091,7 @@ function czr_fn_front_page_option_map( $get_default = null ) {
                             'priority'      => 1,
           ),
           'tc_show_post_navigation_home'  =>  array(
-                            'default'       => 1,
+                            'default'       => 0,
                             'control'     => 'CZR_controls' ,
                             'label'         => __( 'Display navigation in your home page' , 'customizr' ),
                             'section'       => 'frontpage_sec',
