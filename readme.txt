@@ -14,7 +14,7 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 
 == Upgrade Notice ==
 = 4.1.54 =
-Various performance improvements for javascript front asset. Replaced  "Search" text by an icon on search buttons.
+Added a new option to display featured images in their original dimensions in single posts and pages. Various fixes in the HTML markup.
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
