@@ -761,6 +761,20 @@
                             visibility: function (to) {
                                   return 'mobile_menu' == to;
                             }
+                    },
+                    {
+                            dominus : 'tc_single_post_thumb_natural',
+                            servi   : ['tc_single_post_thumb_height', 'tc_single_post_thumb_smartphone_height'],
+                            visibility: function (to) {
+                                  return !_is_checked(to);
+                            }
+                    },
+                    {
+                            dominus : 'tc_single_page_thumb_natural',
+                            servi   : ['tc_single_page_thumb_height', 'tc_single_page_thumb_smartphone_height'],
+                            visibility: function (to) {
+                                  return !_is_checked(to);
+                            }
                     }
 
                 ]//dominiDeps {}

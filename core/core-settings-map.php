@@ -1698,6 +1698,15 @@ function czr_fn_single_post_option_map( $get_default = null ) {
                           )
                         )
       ),
+      // feb 2020 implemented for https://github.com/presscustomizr/customizr/issues/1803
+      'tc_single_post_thumb_natural' => array(
+                          'default'     => 0,
+                          'label'       => __( 'Display featured images in their original dimensions' , 'customizr' ),
+                          'control'     =>  'CZR_controls' ,
+                          'section'     => 'single_posts_sec' ,
+                          'type'        => 'nimblecheck' ,
+                          'priority'    => 20,
+      ),
       'tc_single_post_thumb_height' => array(
                         'default'       => 250,
                         'sanitize_callback' => 'czr_fn_sanitize_number',
@@ -1768,12 +1777,21 @@ function czr_fn_single_page_option_map( $get_default = null ) {
                           )
                         )
       ),
+      // feb 2020 implemented for https://github.com/presscustomizr/customizr/issues/1803
+      'tc_single_page_thumb_natural' => array(
+                          'default'     => 0,
+                          'label'       => __( 'Display featured images in their original dimensions' , 'customizr' ),
+                          'control'     =>  'CZR_controls' ,
+                          'section'     => 'single_pages_sec',
+                          'type'        => 'nimblecheck' ,
+                          'priority'    => 20,
+      ),
       'tc_single_page_thumb_height' => array(
                         'default'       => 250,
                         'sanitize_callback' => 'czr_fn_sanitize_number',
                         'control'   => 'CZR_controls' ,
                         'label'       => __( "Set the thumbnail's max height in pixels" , 'customizr' ),
-                        'section'     => 'single_pages_sec' ,
+                        'section'     => 'single_pages_sec',
                         'type'        => 'number' ,
                         'step'        => 1,
                         'min'         => 0,

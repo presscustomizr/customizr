@@ -109,6 +109,7 @@ class CZR_main_content_model_class extends CZR_Model {
                   return;
             }
 
+            // options : 'tc_single_post_thumb_location' and 'tc_single_page_thumb_location'
             //__before_main_wrapper, 200
             //__before_regular_{post|page}_heading_title
             //__after_regular_{post|page}_heading_title
@@ -137,19 +138,20 @@ class CZR_main_content_model_class extends CZR_Model {
 
             //let's prepare the thumb
             //register the model and the template for displaying the thumbnail at a specific hook
-            $singular_thumb_model_id = czr_fn_register( array( 'template' => 'content/common/media',
-                  'id'         => 'singular_thumbnail',
-                  'hook'       => $_hook,
-                  'args'       => array(
-                        'media_type'               => 'wp_thumb',
-                        'has_permalink'            => false,
-                        'has_lightbox'             => false,
-                        'element_class'            => array('tc-singular-thumbnail-wrapper', $_hook),
-                        //slider full when __before_main_wrapper otherwise take the original one
-                        'thumb_size'               => '__before_main_wrapper' == $_hook ? 'slider-full' : null
-                  ),
-                  'priority'   => 15,
-                  'controller' => 'singular_thumbnail'
+            $singular_thumb_model_id = czr_fn_register( array(
+                'template' => 'content/common/media',
+                'id'         => 'singular_thumbnail',
+                'hook'       => $_hook,
+                'args'       => array(
+                      'media_type'               => 'wp_thumb',
+                      'has_permalink'            => false,
+                      'has_lightbox'             => false,
+                      'element_class'            => array('tc-singular-thumbnail-wrapper', $_hook),
+                      //slider full when __before_main_wrapper otherwise take the original one
+                      'thumb_size'               => '__before_main_wrapper' == $_hook ? 'slider-full' : null
+                ),
+                'priority'   => 15,
+                'controller' => 'singular_thumbnail'
             ) );
 
             //control the visibility
@@ -191,6 +193,10 @@ class CZR_main_content_model_class extends CZR_Model {
 
       function czr_fn_write_thumbnail_inline_css( $_css ) {
             $context =  is_single() ? 'post' : 'page';
+
+            // feb 2020 implemented for https://github.com/presscustomizr/customizr/issues/1803
+            if ( czr_fn_is_checked( "tc_single_{$context}_thumb_natural" ) )
+              return $_css;
 
             $_thumb_smartphone_height   = apply_filters( "tc_single_{$context}_thumb_smartphone_height", esc_attr( czr_fn_opt( "tc_single_{$context}_thumb_smartphone_height" ) ) );
 
