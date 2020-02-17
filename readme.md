@@ -1,4 +1,4 @@
-# Customizr v4.1.53 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# Customizr v4.1.54 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 ![Customizr - Free Wordpress Theme](/screenshot.png)
 
 > Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
@@ -23,6 +23,26 @@ See headers of each files for further details.
 
 ## Changelog
 https://github.com/presscustomizr/customizr/releases
+= 4.1.53 January 30th 2020 =
+* fixed : text on search button might not be visible on hover when footer is dark. fixes #1798
+* improved : replace "Search" text by an icon on search button. fixes #1800
+* improved : added support for HTML 5 "async". fixes #1802
+* improved : Post default layout should be full width for new users. fixes #1796
+
+= 4.1.52 January 27th 2020 =
+* fixed : text in search button can be truncated in sidebar. fixes #179
+
+= 4.1.51 January 21st 2020 =
+* fixed : [Search form] current implementation can be misleading => added a search button next to the search input field. fixes #1795
+* added : "flipboard" social network to the list of icons
+
+= 4.1.50 December 23rd 2019 =
+* fixed : Improves security for links to cross-orign destinations (social profiles, footer credits) => Add rel="noopener" or rel="noreferrer" when relevant
+* fixed : display categories below the title when the post list layout is set to plain text full content. fixes #1792
+
+= 4.1.49 December 12th 2019 =
+* fixed : php error when inserting a WP gallery with Nimble WP editor module, which breaks customizer preview
+* fixed : missing vertical spacing for WP galleries inserted with Nimble Builder WP editor
 
 = 4.1.48 November 27th 2019 =
 * fixed : broken style for caption of images and galleries when embedded as Gutenberg blocks. fixes #1789

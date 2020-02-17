@@ -4788,7 +4788,7 @@ if ( ! function_exists( 'czr_fn_render_main_header' ) ) {
   function czr_fn_render_main_header() {
     CZR_header_main::$instance->czr_fn_set_header_options();
   ?>
-    <header class="<?php echo implode( " ", apply_filters('tc_header_classes', array('tc-header' ,'clearfix', 'row-fluid') ) ) ?>" role="banner">
+    <header class="<?php echo implode( " ", apply_filters('tc_header_classes', array('tc-header' ,'clearfix', 'row-fluid') ) ) ?>">
     <?php
       // The '__header' hook is used with the following callback functions (ordered by priorities) :
       //CZR_header_main::$instance->tc_logo_title_display(), CZR_header_main::$instance->czr_fn_tagline_display(), CZR_header_main::$instance->czr_fn_navbar_display()

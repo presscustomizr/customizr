@@ -871,7 +871,7 @@ if ( ! class_exists( 'CZR_menu' ) ) :
         $tc_side_nav_class        = implode(' ', apply_filters( 'tc_side_nav_class', array( 'tc-sn', 'navbar' ) ) );
         $tc_side_nav_inner_class  = implode(' ', apply_filters( 'tc_side_nav_inner_class', array( 'tc-sn-inner', 'nav-collapse') ) );
         ?>
-          <nav id="tc-sn" class="<?php echo $tc_side_nav_class; ?>" role="navigation">
+          <nav id="tc-sn" class="<?php echo $tc_side_nav_class; ?>">
             <div class="<?php echo $tc_side_nav_inner_class; ?>">
               <?php do_action( '__sidenav' ); ?>
             </div><!--.tc-sn-inner -->
@@ -1696,7 +1696,7 @@ if ( ! class_exists( 'CZR_attachment' ) ) :
             ob_start();
             do_action( '__before_content' );
             ?>
-            <nav id="image-navigation" class="navigation" role="navigation">
+            <nav id="image-navigation" class="navigation">
                 <span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous' , 'customizr' ) ); ?></span>
                 <span class="next-image"><?php next_image_link( false, __( 'Next &rarr;' , 'customizr' ) ); ?></span>
             </nav><!-- //#image-navigation -->
@@ -3094,7 +3094,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
         ob_start();
 
         ?>
-        <nav id="comment-nav-below" class="navigation" role="navigation">
+        <nav id="comment-nav-below" class="navigation">
           <h3 class="assistive-text section-heading"><?php _e( 'Comment navigation' , 'customizr' ); ?></h3>
           <ul class="pager">
 
@@ -7058,7 +7058,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
 
           <?php echo apply_filters( 'tc_singular_nav_separator' , '<hr class="featurette-divider '.current_filter().'">'); ?>
 
-        <nav id="<?php echo $html_id; ?>" class="<?php echo $post_nav_class; ?>" role="navigation">
+        <nav id="<?php echo $html_id; ?>" class="<?php echo $post_nav_class; ?>">
 
               <h3 class="assistive-text">
                 <?php echo apply_filters( 'tc_singular_nav_title', __( 'Post navigation' , 'customizr' ) ) ; ?>
@@ -7113,7 +7113,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
 
         <?php elseif ( $wp_query->max_num_pages > 1 && in_array($_context, array('archive', 'home') ) ) : ?>
 
-          <nav id="<?php echo $html_id; ?>" class="<?php echo $post_nav_class; ?>" role="navigation">
+          <nav id="<?php echo $html_id; ?>" class="<?php echo $post_nav_class; ?>">
 
             <h3 class="assistive-text">
               <?php echo apply_filters( 'tc_list_nav_title', __( 'Post navigation' , 'customizr' ) ) ; ?>

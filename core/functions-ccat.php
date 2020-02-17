@@ -1599,7 +1599,7 @@ if ( ! function_exists( 'czr_fn_rgb2rgba' ) ) {
 
       $rgb   = is_array( $rgb ) ? $rgb : explode( ',', $rgb );
       $rgb   = is_array( $rgb) ? $rgb : array( $rgb );
-      $rgb   = count( $rgb ) < 3 ? array_pad( $rgb, 3, 255 ) : $rgb;
+      $rgb   = $rgba = count( $rgb ) < 3 ? array_pad( $rgb, 3, 255 ) : $rgb;
 
       $rgba[] = $alpha;
 
@@ -1808,13 +1808,13 @@ function czr_fn_rgb_invert( $rgb )  {
       255 - $rgb[1],
       255 - $rgb[2]
    );
-   
+
    return $rgb_inverted;
 }
 
 /* Returns the complementary hsl color
 /* ------------------------------------ */
-function czr_fn_hex_invert( $hex, $make_prop_value = true )  {   
+function czr_fn_hex_invert( $hex, $make_prop_value = true )  {
    $rgb           = czr_fn_hex2rgb( $hex, $array = true );
    $rgb_inverted  = czr_fn_rgb_invert( $rgb );
 
