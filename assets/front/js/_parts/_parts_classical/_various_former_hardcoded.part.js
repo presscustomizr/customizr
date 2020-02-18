@@ -1,9 +1,9 @@
 /****************************************************************
 * FORMER HARD CODED SCRIPTS MADE ENQUEUABLE WITH LOCALIZED PARAMS
 *****************************************************************/
-(function($, czrapp, _ ) {
+(function($) {
     //czrapp.localized = TCParams
-    czrapp.ready.then( function() {
+    var _doWhenCzrappIsReady = function() {
           var pluginCompatParams = ( czrapp.localized && czrapp.localized.pluginCompats ) ? czrapp.localized.pluginCompats : {},
               frontHelpNoticeParams = ( czrapp.localized && czrapp.localized.frontHelpNoticeParams ) ? czrapp.localized.frontHelpNoticeParams : {};
 
@@ -24,5 +24,10 @@
                       } );
                 }
           }
+    };
+    // see wp-content/themes/customizr/assets/front/js/_front_js_fmk/_main_xfire_0.part.js
+    // feb 2020 => implemented for https://github.com/presscustomizr/pro-bundle/issues/162
+    $('body').on('czrapp-ready', function() {
+        _doWhenCzrappIsReady();
     });
-})(jQuery, czrapp, _ );
+})(jQuery);
