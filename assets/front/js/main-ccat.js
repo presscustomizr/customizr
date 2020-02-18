@@ -3513,6 +3513,7 @@ var czrapp = czrapp || {};
       czrapp.ready          = $.Deferred();
       czrapp.bind( 'czrapp-ready', function() {
             czrapp.ready.resolve();
+            $('body').trigger('czrapp-ready');
       });
       var _instantianteAndFireOnDomReady = function( newMap, previousMap, isInitial ) {
             if ( ! _.isObject( newMap ) )

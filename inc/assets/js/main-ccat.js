@@ -2111,6 +2111,7 @@ var czrapp = czrapp || {};
       czrapp.ready          = $.Deferred();
       czrapp.bind( 'czrapp-ready', function() {
             czrapp.ready.resolve();
+            $('body').trigger('czrapp-ready');
       });
       var _instantianteAndFireOnDomReady = function( newMap, previousMap, isInitial ) {
             if ( ! _.isObject( newMap ) )
@@ -2166,8 +2167,8 @@ var czrapp = czrapp || {};
 })( czrapp, jQuery, _ );/****************************************************************
 * FORMER HARD CODED SCRIPTS MADE ENQUEUABLE WITH LOCALIZED PARAMS
 *****************************************************************/
-(function($, czrapp, _ ) {
-    czrapp.ready.then( function() {
+(function($) {
+    var _doWhenCzrappIsReady = function() {
           var pluginCompatParams = ( czrapp.localized && czrapp.localized.pluginCompats ) ? czrapp.localized.pluginCompats : {},
               frontHelpNoticeParams = ( czrapp.localized && czrapp.localized.frontHelpNoticeParams ) ? czrapp.localized.frontHelpNoticeParams : {};
           $( function( $ ) {
@@ -2183,8 +2184,15 @@ var czrapp = czrapp || {};
                       } );
                 }
           }
-    });
-})(jQuery, czrapp, _ );var czrapp = czrapp || {};
+    };
+    if ( window.czrapp && czrapp.ready && 'resolved' == czrapp.ready.state() ) {
+        _doWhenCzrappIsReady();
+    } else {
+        $('html').on('czrapp-ready', function() {
+            _doWhenCzrappIsReady();
+        });
+    }
+})(jQuery);var czrapp = czrapp || {};
 ( function ( czrapp ) {
       czrapp.localized = TCParams || {};
       var appMap = {

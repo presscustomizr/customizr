@@ -74,7 +74,7 @@ if ( ! class_exists( 'CZR_placeholders' ) ) :
         //enqueue resources
         add_filter( 'czr_enqueue_placeholders_resources', '__return_true' );
 
-        //one noce for all
+        //one nonce for all
         $this->nonce_handle                  = wp_create_nonce( 'czr-helpblock-nonce' );
         $this->placeholder_template_callback = array( $this, 'czr_fn_help_block_template' );
 

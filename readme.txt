@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.3.2
-Stable tag: 4.1.54
+Stable tag: 4.1.55
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,11 +13,15 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.1.54 =
-Added a new option to display featured images in their original dimensions in single posts and pages. Various fixes in the HTML markup.
+= 4.1.54 and 4.1.55 =
+Added a new option to display featured images in their original dimensions in single posts and pages. Various fixes in the HTML markup. Fixed possible javascript errors when using cache plugins. Successfully tested with WordPress 5.4-beta.
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
+= 4.1.55 February 18th 2020 =
+* fixed : [javascript] potential breakage of front js when using a cache plugin along with masonry and/or infinite scrolling
+* improved : [performance] removed Vivus.js library and $.fn.animateSvg().Could also break front javascript when using cache plugins and that $.fn.animateSvg() was invoked too early
+
 = 4.1.54 February 17th 2020 =
 * fixed : removed support for async attribute on main script because of a potential regression with pro masonry grid
 * fixed : html markup errors when displaying post pagination
