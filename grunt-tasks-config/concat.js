@@ -228,7 +228,7 @@ module.exports = {
       '<%= paths.theme_js_assets %>libs/jquery-plugins/jqueryextLinks.js',
       '<%= paths.theme_js_assets %>libs/jquery-plugins/jqueryCenterImages.js',
       '<%= paths.theme_js_assets %>libs/jquery-plugins/jqueryParallax.js',
-      '<%= paths.theme_js_assets %>libs/jquery-plugins/jqueryAnimateSvg.js',
+      // '<%= paths.theme_js_assets %>libs/jquery-plugins/jqueryAnimateSvg.js', //<= FEB 2020 => NOT CONCATENATED ANYMORE for performance considerations
 
       '<%= paths.theme_js_assets %>libs/requestAnimationFramePolyfill.js',
       '<%= paths.theme_js_assets %>libs/matchMediaPolyfill.js',
@@ -238,7 +238,7 @@ module.exports = {
       '<%= paths.theme_js_assets %>libs/smoothscroll.js',
       '<%= paths.theme_js_assets %>libs/outline.js',
       '<%= paths.theme_js_assets %>libs/waypoints.js',
-      '<%= paths.theme_js_assets %>libs/vivus.min.js',
+      // '<%= paths.theme_js_assets %>libs/vivus.min.js',//<= FEB 2020 => NOT CONCATENATED ANYMORE for performance considerations
       //maybe move following two outside and enqueue only when needed
       //'<%= paths.theme_js_assets %>libs/flickity-pkgd.js',
       //'<%= paths.theme_js_assets %>libs/jquery-mCustomScrollbar.js',

@@ -140,12 +140,12 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                           'files' => array( 'jqueryParallax.js' ),
                           'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'underscore' )
                      ),
-
-                     'tc-animate-svg' => array(
-                          'path' => $_libs_path . 'jquery-plugins/',
-                          'files' => array( 'jqueryAnimateSvg.js' ),
-                          'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
-                     ),
+                     // FEB 2020 => NOT ENQUEUED ANYMORE for performance considerations
+                     // 'tc-animate-svg' => array(
+                     //      'path' => $_libs_path . 'jquery-plugins/',
+                     //      'files' => array( 'jqueryAnimateSvg.js' ),
+                     //      'dependencies' => array( 'tc-js-arraymap-proto', 'jquery' , 'tc-js-params', 'tc-bootstrap', 'underscore' )
+                     // ),
                      'tc-center-images' => array(
                           'path' => $_libs_path . 'jquery-plugins/',
                           'files' => array( 'jqueryCenterImages.js' ),
@@ -253,7 +253,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-ext-links',
                      'tc-center-images',
                      'tc-parallax',
-                     'tc-animate-svg',
+                     //'tc-animate-svg', // FEB 2020 => NOT ENQUEUED ANYMORE for performance considerations
                      'tc-fittext',
 
                      'tc-main-front',
@@ -415,7 +415,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
               //enqueue placeholders style
               if ( apply_filters(  'czr_enqueue_placeholders_resources', false ) ) {
                   //no need to minify this
-                  wp_enqueue_script( 'customizr-front-placholders', CZR_FRONT_ASSETS_URL . 'js/libs/customizr-placeholders.js', array(), $this-> _resouces_version, $in_footer = true );
+                  wp_enqueue_script( 'customizr-front-placeholders', CZR_FRONT_ASSETS_URL . 'js/libs/customizr-placeholders.js', array(), $this-> _resouces_version, $in_footer = true );
               }
          }
 
