@@ -113,7 +113,11 @@
 
       // see wp-content/themes/customizr/assets/front/js/_front_js_fmk/_main_xfire_0.part.js
       // feb 2020 => implemented for https://github.com/presscustomizr/pro-bundle/issues/162
-      $('body').on('czrapp-ready', function() {
+      if ( window.czrapp && czrapp.ready && 'resolved' == czrapp.ready.state() ) {
           initOnCzrAppReady();
-      });
+      } else {
+          $('html').on('czrapp-ready', function() {
+              initOnCzrAppReady();
+          });
+      }
 })(jQuery);
