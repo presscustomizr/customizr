@@ -2615,10 +2615,10 @@ blockquote > * {
   font-size: 0.833333em;
 }
 
-.demi-small, .nav__menu, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+.demi-small, .nav__menu, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar):not(.pika-table) th, #add_payment_method .cart-collaterals .cart_totals table th,
 .woocommerce-cart .cart-collaterals .cart_totals table th,
 .woocommerce-checkout .cart-collaterals .cart_totals table th,
-.woocommerce table.shop_table th, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
+.woocommerce table.shop_table th, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar):not(.pika-table) td, #add_payment_method .cart-collaterals .cart_totals table td,
 .woocommerce-cart .cart-collaterals .cart_totals table td,
 .woocommerce-checkout .cart-collaterals .cart_totals table td,
 .woocommerce table.shop_table td, .page-breadcrumbs, .post-navigation .page-numbers, .post-navigation a, .sidebar {
@@ -2670,7 +2670,7 @@ input[type=submit], .woocommerce button.button[type=submit],
 }
 
 .caps, .nav__menu, button[type="submit"],
-input[type=submit], .btn-more, .btn-large, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+input[type=submit], .btn-more, .btn-large, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar):not(.pika-table) th, #add_payment_method .cart-collaterals .cart_totals table th,
 .woocommerce-cart .cart-collaterals .cart_totals table th,
 .woocommerce-checkout .cart-collaterals .cart_totals table th,
 .woocommerce table.shop_table th, .tax__container a, form.czr-form label, .czr-overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .post-author__wrapper figure figcaption .action-link, .post-author__wrapper figure figcaption .comment-reply-link, .action-link, .comment-reply-link, #cancel-comment-reply-link, .sidebar .widget-title, .widget_categories li, .widget_calendar caption, .widget_calendar tfoot {
@@ -2689,7 +2689,7 @@ input[type=submit], .btn-more, .btn-large, table:not([id^=wp-calendar]):not(.ui-
   letter-spacing: 1px;
 }
 
-.letter-spacing-2, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+.letter-spacing-2, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar):not(.pika-table) th, #add_payment_method .cart-collaterals .cart_totals table th,
 .woocommerce-cart .cart-collaterals .cart_totals table th,
 .woocommerce-checkout .cart-collaterals .cart_totals table th,
 .woocommerce table.shop_table th, .tax__container a, label, .czr-overlay .overlay-content .nav__container nav, .post-section-title, .post-navigation .page-numbers, .post-navigation a, .action-link, .comment-reply-link, .pingback-list li.pingback sup, .sidebar .widget-title, .woocommerce .woocommerce-message,
@@ -5440,24 +5440,24 @@ table, #add_payment_method .cart-collaterals .cart_totals table,
   }
 }
 
-table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar), #add_payment_method .cart-collaterals .cart_totals table,
+table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar):not(.pika-table), #add_payment_method .cart-collaterals .cart_totals table,
 .woocommerce-cart .cart-collaterals .cart_totals table,
 .woocommerce-checkout .cart-collaterals .cart_totals table,
 .woocommerce table.shop_table {
   border: 2px solid #f7f8f9;
 }
 
-table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar):not(.pika-table) th, #add_payment_method .cart-collaterals .cart_totals table th,
 .woocommerce-cart .cart-collaterals .cart_totals table th,
 .woocommerce-checkout .cart-collaterals .cart_totals table th,
 .woocommerce table.shop_table th {
   font-family: sans-serif;
 }
 
-table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) th, #add_payment_method .cart-collaterals .cart_totals table th,
+table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar):not(.pika-table) th, #add_payment_method .cart-collaterals .cart_totals table th,
 .woocommerce-cart .cart-collaterals .cart_totals table th,
 .woocommerce-checkout .cart-collaterals .cart_totals table th,
-.woocommerce table.shop_table th, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
+.woocommerce table.shop_table th, table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar):not(.pika-table) td, #add_payment_method .cart-collaterals .cart_totals table td,
 .woocommerce-cart .cart-collaterals .cart_totals table td,
 .woocommerce-checkout .cart-collaterals .cart_totals table td,
 .woocommerce table.shop_table td {
@@ -5465,7 +5465,7 @@ table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calend
   border: 1px solid #f7f8f9;
 }
 
-table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar) td, #add_payment_method .cart-collaterals .cart_totals table td,
+table:not([id^=wp-calendar]):not(.ui-datepicker-calendar):not(.tribe-mini-calendar):not(.pika-table) td, #add_payment_method .cart-collaterals .cart_totals table td,
 .woocommerce-cart .cart-collaterals .cart_totals table td,
 .woocommerce-checkout .cart-collaterals .cart_totals table td,
 .woocommerce table.shop_table td {
