@@ -2639,6 +2639,23 @@ var czrapp = czrapp || {};
                   }
                   $_style.html( _selector + '{width:'+ newElementWidth +'px}' );
             }
+      },
+
+      mayBeLoadFontAwesome : function() {
+          jQuery( function() {
+                if ( ! CZRParams.deferFontAwesome )
+                  return;
+                var $candidates = $('[class*=fa-]');
+                if ( $candidates.length < 1 )
+                  return;
+                if ( $('head').find( '[href*="fontawesome-all.min.css"]' ).length < 1 ) {
+                    var link = document.createElement('link');
+                    link.setAttribute('href', CZRParams.fontAwesomeUrl );
+                    link.setAttribute('id', 'czr-font-awesome');
+                    link.setAttribute('rel', 'stylesheet' );
+                    document.getElementsByTagName('head')[0].appendChild(link);
+                }
+          });
       }
 
    };//_methods{}
@@ -3634,6 +3651,7 @@ var czrapp = czrapp || {};
                             'anchorSmoothScroll',
 
                             'mayBePrintFrontNote',
+                            'mayBeLoadFontAwesome'
                       ]
                 },
                 stickyFooter : {

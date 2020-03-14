@@ -2316,7 +2316,23 @@ function czr_fn_performance_option_map( $get_default = null ) {
                                 'section' => 'frontpage_sec',
                                 'priority' => '57'
                             )
-          )
+          ),
+          'tc_defer_front_script' => array(
+                            'default'       => 0,
+                            'control'   => 'CZR_controls' ,
+                            'label'       => __( "Defer loading javascript files to avoid render blocking issues", 'customizr' ),
+                            'section'     => 'performances_sec' ,
+                            'type'        => 'nimblecheck' ,
+                            'priority'    => 50,
+          ),
+          'tc_defer_font_awesome' => array(
+                          'default'       => 1,
+                          'control'   => 'CZR_controls' ,
+                          'label'       => __( "Defer loading Font Awesome icons", 'customizr' ),
+                          'section'     => 'performances_sec' ,
+                          'type'        => 'nimblecheck' ,
+                          'priority'    => 60,
+          ),
   );
 }
 

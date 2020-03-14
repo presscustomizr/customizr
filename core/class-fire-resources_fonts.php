@@ -37,7 +37,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
               if ( czr_fn_is_full_nimble_tmpl() )
                 return;
               //Enqueue FontAwesome CSS
-              if ( true == czr_fn_opt( 'tc_font_awesome_icons' ) ) {
+              if ( true == czr_fn_opt( 'tc_font_awesome_icons' ) && !czr_fn_is_checked( 'tc_defer_font_awesome' ) ) {
                     $_path = apply_filters( 'czr_fa_css_path' , CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/fonts/fa/css/' );
                     wp_enqueue_style( 'customizr-fa',
                           $_path . 'fontawesome-all.min.css',

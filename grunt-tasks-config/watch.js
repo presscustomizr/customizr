@@ -56,6 +56,16 @@ module.exports = {
 		//tasks: ['concat:front_js_classic', 'jshint:front_classic_and_modern', 'ftp_push:those'],
 	},
   //modern style
+  // March 2020 for https://github.com/presscustomizr/customizr/issues/1812
+  front_modern_js_init : {
+    files : [
+        '<%= paths.theme_js_assets %>tc-init.js',
+    ],
+    tasks : [
+        'uglify:front_modern_js_init',
+    ],
+    //tasks: ['concat:front_js', 'jshint:front_classic_and_modern', 'ftp_push:those'],
+  },
   front_js_modern : {
     files : [
         '<%= paths.theme_js_assets %>_front_js_fmk/*.js',
@@ -73,6 +83,8 @@ module.exports = {
     ],
     //tasks: ['concat:front_js', 'jshint:front_classic_and_modern', 'ftp_push:those'],
   },
+
+
 	//Other admin js assets are jshinted on change
 	admin_js : {
 		files : ['<%= paths.admin_js %>tc_ajax_slider.js'],
