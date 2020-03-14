@@ -26,6 +26,17 @@ module.exports = {
   //     ext: '.min.js'
   //   }]
   // },
+ // March 2020 for https://github.com/presscustomizr/customizr/issues/1812
+  front_modern_js_init: {
+    files: [{
+      expand: true,
+      cwd: '<%= paths.theme_js_assets %>',
+      src: ['tc-init.js'],
+      //src: ['**/*.js', '!*.min.js'],
+      dest: '<%= paths.theme_js_assets %>',
+      ext: '.min.js'
+    }]
+  },
   main_front_js_modern: {
     files: [{
       expand: true,

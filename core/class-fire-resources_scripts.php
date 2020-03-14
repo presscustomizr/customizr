@@ -33,7 +33,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
               // inspired from Twentytwenty WP theme
               // @see https://core.trac.wordpress.org/ticket/12009
               // commented after first implementation because of a suspition of regression with Customizr Pro masonry grid.
-              //add_filter( 'script_loader_tag', array( $this, 'czr_fn_filter_script_loader_tag' ), 10, 2 );
+              add_filter( 'script_loader_tag', array( $this, 'czr_fn_filter_script_loader_tag' ), 10, 2 );
          }
 
 
@@ -207,6 +207,17 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                wp_enqueue_script( 'jquery' );
                wp_enqueue_script( 'jquery-ui-core' );
 
+               if ( CUSTOMIZR_JS_WITH_AJAX ) {
+                   // March 2020 for https://github.com/presscustomizr/customizr/issues/1812
+                   wp_enqueue_script(
+                       'czr-init',
+                       sprintf( '%1$s%2$s', CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/', ( CZR_DEBUG_MODE || CZR_DEV_MODE ) ? 'tc-init.js' : 'tc-init.min.js' ),
+                       array(),
+                       $this->_resouces_version,
+                       false
+                   );
+                }
+
                wp_enqueue_script(
                    'modernizr',
                    CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/libs/modernizr.min.js',
@@ -215,52 +226,56 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                    false
                );
 
-               // load concatenated js script when not in CZR_DEBUG_MODE or CZR_DEV
-               if ( $this -> czr_fn_load_concatenated_front_scripts() ) {
-                     // if ( $this -> czr_fn_is_lightbox_required() ) {
-                     //       $this -> czr_fn_enqueue_script( 'tc-mfp' );
-                     // }
-                     //!!tc-scripts includes underscore, tc-js-arraymap-proto
-                     $this -> czr_fn_enqueue_script( 'tc-scripts' );
-               }
-               else {
+               if ( !CUSTOMIZR_JS_WITH_AJAX ) {
+                   // load concatenated js script when not in CZR_DEBUG_MODE or CZR_DEV
+                   if ( $this -> czr_fn_load_concatenated_front_scripts() ) {
+                         // if ( $this -> czr_fn_is_lightbox_required() ) {
+                         //       $this -> czr_fn_enqueue_script( 'tc-mfp' );
+                         // }
+                         //!!tc-scripts includes underscore, tc-js-arraymap-proto
+                         $this -> czr_fn_enqueue_script( 'tc-scripts' );
+                         if ( CUSTOMIZR_JS_WITH_DEFER ) {
+                              wp_script_add_data( 'tc-scripts', 'defer', true );
+                         }
+                   }
+                   else {
 
-                  wp_enqueue_script( 'underscore' );
+                      wp_enqueue_script( 'underscore' );
 
-                  //!!mind the dependencies
-                  $this -> czr_fn_enqueue_script( array(
-                     'tc-js-params',
-                     'tc-js-arraymap-proto',
-                     //libs
-                     'tc-bootstrap',
-                     'tc-smoothscroll',//fired if  $('body').hasClass( 'czr-infinite-scroll-on' ) || ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled && ! czrapp.base.matchMedia( 1024 )
-                     'tc-outline',
-                     'tc-waypoints',
-                     //'tc-mcs',//mCustomScrollBar will be loaded on demand
-                     //'tc-flickity',//flickity will be loaded when needed
-                     'tc-vivus',
-                     'tc-raf',
-                  ) );
+                      //!!mind the dependencies
+                      $this -> czr_fn_enqueue_script( array(
+                         'tc-js-params',
+                         'tc-js-arraymap-proto',
+                         //libs
+                         'tc-bootstrap',
+                         'tc-smoothscroll',//fired if  $('body').hasClass( 'czr-infinite-scroll-on' ) || ( CZRParams.SmoothScroll && CZRParams.SmoothScroll.Enabled && ! czrapp.base.matchMedia( 1024 )
+                         'tc-outline',
+                         'tc-waypoints',
+                         //'tc-mcs',//mCustomScrollBar will be loaded on demand
+                         //'tc-flickity',//flickity will be loaded when needed
+                         'tc-vivus',
+                         'tc-raf',
+                      ) );
 
-                  // if ( $this -> czr_fn_is_lightbox_required() )
-                  //       $this -> czr_fn_enqueue_script( 'tc-mfp' );
+                      // if ( $this -> czr_fn_is_lightbox_required() )
+                      //       $this -> czr_fn_enqueue_script( 'tc-mfp' );
 
-                  //plugins and main front
-                  $this -> czr_fn_enqueue_script( array(
-                     'tc-dropcap' ,
-                     'tc-img-smartload',
-                     'tc-img-original-sizes',
-                     'tc-ext-links',
-                     'tc-center-images',
-                     'tc-parallax',
-                     //'tc-animate-svg', // FEB 2020 => NOT ENQUEUED ANYMORE for performance considerations
-                     'tc-fittext',
+                      //plugins and main front
+                      $this -> czr_fn_enqueue_script( array(
+                         'tc-dropcap' ,
+                         'tc-img-smartload',
+                         'tc-img-original-sizes',
+                         'tc-ext-links',
+                         'tc-center-images',
+                         'tc-parallax',
+                         //'tc-animate-svg', // FEB 2020 => NOT ENQUEUED ANYMORE for performance considerations
+                         'tc-fittext',
 
-                     'tc-main-front',
-                  ) );
+                         'tc-main-front',
+                      ) );
 
-               }//end load concatenated
-
+                  }//end load concatenated
+              }
 
 
 
@@ -314,12 +329,18 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                   }
               }
 
+              $dependant_script_for_localize = $this -> czr_fn_load_concatenated_front_scripts() ? 'tc-scripts' : 'tc-js-params';
+              if ( true === CUSTOMIZR_JS_WITH_AJAX && !CUSTOMIZR_JS_WITH_DEFER ) {
+                  $dependant_script_for_localize = 'czr-init';
+              }
+
               wp_localize_script(
-                  $this -> czr_fn_load_concatenated_front_scripts() ? 'tc-scripts' : 'tc-js-params',
+                  $dependant_script_for_localize,
                   'CZRParams',
                   apply_filters( 'tc_customizr_script_params' , array(
 
                       'assetsPath'      => czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/' ),
+                      'mainScriptUrl' => sprintf( '%1$s%2$s', CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/', ( CZR_DEBUG_MODE || CZR_DEV_MODE ) ? 'tc-scripts.js' : 'tc-scripts.min.js' ),
 
                       '_disabled'          => apply_filters( 'czr_disabled_front_js_parts', array() ),
                       'centerSliderImg'   => esc_attr( czr_fn_opt( 'tc_center_slider_img') ),
@@ -389,6 +410,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                                 'dismissAction' => 'dismiss_welcome_note_front'
                             )
                       ),
+
                   ), czr_fn_get_id() )//end of filter
 
               );
@@ -451,7 +473,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                //Enqueue the scripts with normalizes args
                foreach ( $_scripts as $_hand => $_params ) {
                   call_user_func_array( 'wp_enqueue_script',  $this -> czr_fn_normalize_script_args( $_hand, $_params ) );
-                  wp_script_add_data( $_hand, 'async', true );
+                  //wp_script_add_data( $_hand, 'async', true );
                 }
 
          }//end of fn
@@ -471,8 +493,8 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
          */
           public function czr_fn_filter_script_loader_tag( $tag, $handle ) {
             // load concatenated js script when not in CZR_DEBUG_MODE or CZR_DEV
-            if ( ! $this -> czr_fn_load_concatenated_front_scripts() )
-              return $tag;
+            // if ( ! $this -> czr_fn_load_concatenated_front_scripts() )
+            //   return $tag;
 
             foreach ( [ 'async', 'defer' ] as $attr ) {
               if ( ! wp_scripts()->get_data( $handle, $attr ) ) {
@@ -539,6 +561,8 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
          * @since v3.3+
          */
          function czr_fn_load_concatenated_front_scripts() {
+              if ( defined( 'CZR_LOAD_CONCATENATED_SCRIPTS' ) && true === CZR_LOAD_CONCATENATED_SCRIPTS )
+                return true;
               if ( defined( 'CZR_DEBUG_MODE' ) && true === CZR_DEBUG_MODE )
                 return false;
               return apply_filters( 'tc_load_concatenated_front_scripts' , ! defined('CZR_DEV')  || ( defined('CZR_DEV') && false == CZR_DEV ) );
