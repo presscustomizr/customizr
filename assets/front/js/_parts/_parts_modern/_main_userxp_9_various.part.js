@@ -696,7 +696,6 @@ var czrapp = czrapp || {};
                     link.setAttribute('href', CZRParams.fontAwesomeUrl );
                     link.setAttribute('id', 'czr-font-awesome');
                     link.setAttribute('rel', 'stylesheet' );
-                    link.setAttribute('as', 'style');
                     document.getElementsByTagName('head')[0].appendChild(link);
                 }
           });
