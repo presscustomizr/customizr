@@ -76,6 +76,7 @@ var czrapp = czrapp || {};
                             'anchorSmoothScroll',
 
                             'mayBePrintFrontNote',
+                            'mayBeLoadFontAwesome'
                       ]
                 },
                 /*stickyHeader : {

@@ -207,7 +207,9 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                wp_enqueue_script( 'jquery' );
                wp_enqueue_script( 'jquery-ui-core' );
 
-               if ( CUSTOMIZR_JS_WITH_AJAX ) {
+               $main_script_injected_on_dom_ready = czr_fn_is_checked( 'tc_defer_front_script' );
+
+               if ( $main_script_injected_on_dom_ready ) {
                    // March 2020 for https://github.com/presscustomizr/customizr/issues/1812
                    wp_enqueue_script(
                        'czr-init',
@@ -226,7 +228,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                    false
                );
 
-               if ( !CUSTOMIZR_JS_WITH_AJAX ) {
+               if ( !$main_script_injected_on_dom_ready ) {
                    // load concatenated js script when not in CZR_DEBUG_MODE or CZR_DEV
                    if ( $this -> czr_fn_load_concatenated_front_scripts() ) {
                          // if ( $this -> czr_fn_is_lightbox_required() ) {
@@ -234,9 +236,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                          // }
                          //!!tc-scripts includes underscore, tc-js-arraymap-proto
                          $this -> czr_fn_enqueue_script( 'tc-scripts' );
-                         if ( CUSTOMIZR_JS_WITH_DEFER ) {
-                              wp_script_add_data( 'tc-scripts', 'defer', true );
-                         }
+                         wp_script_add_data( 'tc-scripts', 'defer', true );
                    }
                    else {
 
@@ -330,7 +330,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
               }
 
               $dependant_script_for_localize = $this -> czr_fn_load_concatenated_front_scripts() ? 'tc-scripts' : 'tc-js-params';
-              if ( true === CUSTOMIZR_JS_WITH_AJAX && !CUSTOMIZR_JS_WITH_DEFER ) {
+              if ( $main_script_injected_on_dom_ready ) {
                   $dependant_script_for_localize = 'czr-init';
               }
 
@@ -340,7 +340,9 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                   apply_filters( 'tc_customizr_script_params' , array(
 
                       'assetsPath'      => czr_fn_get_theme_file_url( CZR_ASSETS_PREFIX . 'front/' ),
-                      'mainScriptUrl' => sprintf( '%1$s%2$s', CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/', ( CZR_DEBUG_MODE || CZR_DEV_MODE ) ? 'tc-scripts.js' : 'tc-scripts.min.js' ),
+                      'mainScriptUrl' => sprintf( '%1$s%2$s%3$s', CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/', ( CZR_DEBUG_MODE || CZR_DEV_MODE ) ? 'tc-scripts.js?' : 'tc-scripts.min.js?', CUSTOMIZR_VER ),
+                      'deferFontAwesome' => czr_fn_is_checked( 'tc_defer_font_awesome' ),
+                      'fontAwesomeUrl' => CZR_BASE_URL . CZR_ASSETS_PREFIX . 'shared/fonts/fa/css/fontawesome-all.min.css?' . CUSTOMIZR_VER,
 
                       '_disabled'          => apply_filters( 'czr_disabled_front_js_parts', array() ),
                       'centerSliderImg'   => esc_attr( czr_fn_opt( 'tc_center_slider_img') ),
