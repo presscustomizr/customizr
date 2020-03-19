@@ -30,7 +30,7 @@
     if ( window.czrapp && czrapp.ready && 'resolved' == czrapp.ready.state() ) {
         _doWhenCzrappIsReady();
     } else {
-        $('html').on('czrapp-ready', function() {
+        document.addEventListener('czrapp-is-ready', function() {
             _doWhenCzrappIsReady();
         });
     }

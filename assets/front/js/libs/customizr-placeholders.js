@@ -116,7 +116,7 @@
       if ( window.czrapp && czrapp.ready && 'resolved' == czrapp.ready.state() ) {
           initOnCzrAppReady();
       } else {
-          $('html').on('czrapp-ready', function() {
+          document.addEventListener('czrapp-is-ready', function() {
               initOnCzrAppReady();
           });
       }
