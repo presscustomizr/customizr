@@ -39,7 +39,8 @@
                 image = images[i];
 
                 if (!!!image.getAttributeNode('data-no-retina')) {
-                    if (image.src) {
+                    // skip gif files, @see https://github.com/presscustomizr/customizr/issues/1819
+                    if (image.src && '.gif' !== image.src.slice(image.src.lastIndexOf('.'))) {
                         retinaImages.push(new RetinaImage(image));
                     }
                 }

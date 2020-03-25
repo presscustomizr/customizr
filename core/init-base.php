@@ -453,13 +453,20 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
        * @credits http://wp.tutsplus.com/author/chrisbavota/
        */
         function czr_fn_add_retina_support( $metadata, $attachment_id ) {
-          //checks if retina is enabled in options
-          if ( 0 == czr_fn_opt( 'tc_retina_support' ) )
+          //checks if retina is enabled in options.
+          if ( 0 == czr_fn_opt( 'tc_retina_support' ) ) {
             return $metadata;
+          }
 
-          if ( ! is_array($metadata) )
+          if ( ! is_array($metadata) ) {
             return $metadata;
+          }
 
+          // skip gif images, @see https://github.com/presscustomizr/customizr/issues/1819
+          $mime = get_post_mime_type( $attachment_id );
+          if ( 'image/gif' === $mime  ) {
+            return $metadata;
+          }
 
           //Create the retina image for the main file
           /*
@@ -506,7 +513,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
           )
           */
-          if ( apply_filters( 'czr_build_retina_files_for_pdf_thumbnails', 'application/pdf' == get_post_mime_type( $attachment_id ) ) ) {
+          if ( apply_filters( 'czr_build_retina_files_for_pdf_thumbnails', 'application/pdf' == $mime ) ) {
               if ( empty( $metadata[ 'sizes' ][ 'full' ][ 'file' ] ) ) {
                 return $metadata;
               }
