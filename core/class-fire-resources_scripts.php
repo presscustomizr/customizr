@@ -412,6 +412,9 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                                 'dismissAction' => 'dismiss_welcome_note_front'
                             )
                       ),
+                      // March 2020 : gfonts can be preloaded since https://github.com/presscustomizr/customizr/issues/1816
+                      'preloadGfonts' => czr_fn_is_checked( 'tc_preload_gfonts' ),
+                      'googleFonts' => CZR_resources_fonts::czr_fn_get_gfont_candidates()
 
                   ), czr_fn_get_id() )//end of filter
 

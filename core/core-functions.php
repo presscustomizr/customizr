@@ -945,6 +945,9 @@ function czr_fn_user_started_with_current_version() {
 }
 
 
+/* ------------------------------------------------------------------------- *
+ * FONTS
+/* ------------------------------------------------------------------------- */
 /**
 * @return an array of font name / code OR a string of the font css code
 * @parameter string name or google compliant suffix for href link
@@ -989,6 +992,14 @@ function czr_fn_get_font( $_what = 'list' , $_requested = null ) {
       }
     }
     return $_to_return;
+}
+
+// @return bool
+// Helper to check if the requested font code includes the Google font identifier : _g_
+// introduced for https://github.com/presscustomizr/customizr/issues/1816
+function czr_fn_is_gfont($_font , $_gfont_id = null ) {
+    $_gfont_id = $_gfont_id ? $_gfont_id : '_g_';
+    return false !== strpos( $_font , $_gfont_id );
 }
 
 
@@ -2069,3 +2080,4 @@ function czr_fn_parse_template_tags( $val ) {
     return is_string( $val ) ? preg_replace_callback( '!\{\{\s?(\w+)\s?\}\}!', 'czr_fn_find_pattern_match', $val) : $val;
 }
 add_filter( 'czr_parse_template_tags', 'czr_fn_parse_template_tags' );
+

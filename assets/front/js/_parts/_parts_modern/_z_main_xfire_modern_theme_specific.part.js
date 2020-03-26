@@ -76,7 +76,9 @@ var czrapp = czrapp || {};
                             'anchorSmoothScroll',
 
                             'mayBePrintFrontNote',
-                            'mayBeLoadFontAwesome'
+                            'mayBeLoadFontAwesome',
+
+                            'maybePreloadGoogleFonts'
                       ]
                 },
                 /*stickyHeader : {

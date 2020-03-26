@@ -2333,6 +2333,14 @@ function czr_fn_performance_option_map( $get_default = null ) {
                           'type'        => 'nimblecheck' ,
                           'priority'    => 60,
           ),
+          'tc_preload_gfonts' => array(
+                          'default'       => 0,
+                          'control'   => 'CZR_controls' ,
+                          'label'       => __( "Preload Google Fonts", 'customizr' ),
+                          'section'     => 'performances_sec' ,
+                          'type'        => 'nimblecheck' ,
+                          'priority'    => 70,
+          ),
   );
 }
 

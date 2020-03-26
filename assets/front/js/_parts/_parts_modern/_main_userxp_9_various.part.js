@@ -1,3 +1,4 @@
+// global CZRParams
 var czrapp = czrapp || {};
 
 (function($, czrapp) {
@@ -684,22 +685,56 @@ var czrapp = czrapp || {};
       },
 
       mayBeLoadFontAwesome : function() {
-          jQuery( function() {
-                if ( ! CZRParams.deferFontAwesome )
-                  return;
-                var $candidates = $('[class*=fa-]');
-                if ( $candidates.length < 1 )
-                  return;
-                // assets/shared/fonts/fa/css/fontawesome-all.min.css?
-                if ( $('head').find( '[href*="fontawesome-all.min.css"]' ).length < 1 ) {
-                    var link = document.createElement('link');
-                    link.setAttribute('href', CZRParams.fontAwesomeUrl );
-                    link.setAttribute('id', 'czr-font-awesome');
-                    link.setAttribute('rel', 'stylesheet' );
-                    document.getElementsByTagName('head')[0].appendChild(link);
-                }
-          });
-      }
+            jQuery( function() {
+                  if ( ! CZRParams.deferFontAwesome )
+                    return;
+                  var $candidates = $('[class*=fa-]');
+                  if ( $candidates.length < 1 )
+                    return;
+                  // assets/shared/fonts/fa/css/fontawesome-all.min.css?
+                  if ( $('head').find( '[href*="fontawesome-all.min.css"]' ).length < 1 ) {
+                      var link = document.createElement('link');
+                      link.setAttribute('href', CZRParams.fontAwesomeUrl );
+                      link.setAttribute('id', 'czr-font-awesome');
+                      link.setAttribute('rel', 'stylesheet' );
+                      document.getElementsByTagName('head')[0].appendChild(link);
+                  }
+            });
+      },
+      // March 2020 : gfonts can be preloaded since https://github.com/presscustomizr/customizr/issues/1816
+      maybePreloadGoogleFonts : function() {
+            if ( !window.CZRParams || !CZRParams.preloadGfonts || _.isEmpty(CZRParams.googleFonts) )
+              return;
+            var _hasPreloadSupport = function( browser ) {
+                  var link = document.createElement('link');
+                  var relList = link.relList;
+                  if (!relList || !relList.supports)
+                    return false;
+                  return relList.supports('preload');
+                },
+                headTag = document.getElementsByTagName('head')[0],
+                link = document.createElement('link'),
+                _injectFinalAsset = function() {
+                    var link = this;
+                    // this is the link element
+                    console.log('DO NOW !');
+                    link.setAttribute('rel', 'stylesheet');
+                };
+
+            link.setAttribute('href', '//fonts.googleapis.com/css?family=' + CZRParams.googleFonts + '&display=swap');
+            link.setAttribute('rel', _hasPreloadSupport() ? 'preload' : 'stylesheet' );
+            link.setAttribute('id', 'czr-gfonts-css-preloaded' );
+            link.setAttribute('as', 'style');
+            link.onload = function() {
+                this.onload=null;
+                _injectFinalAsset.call(link);
+            };
+            link.onerror = function(er) {
+                console.log('Customizr preloadAsset error', er );
+            };
+            headTag.appendChild(link);
+
+      }//maybePreloadGoogleFonts
 
    };//_methods{}
 
