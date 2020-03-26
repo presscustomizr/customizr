@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.3.2
-Stable tag: 4.2.0
+Stable tag: 4.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,11 +13,15 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
 == Upgrade Notice ==
-= 4.2.0 =
-Performance improvements with new options to defer loading of javascript and Font Awesome. Fixed a style conflict with the Ninja Forms date picker.
+= 4.2.1 =
+Fixed Gif images potentially not displayed when enabling retina display. Added new option to preload Google fonts for faster page load time.
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
+= 4.2.1 March 26th 2020 =
+* fixed : retina display issue with Gif images. fixes #1819
+* added : a new option to preload Google fonts. Disabled by default. fixes #1816
+
 = 4.2.0 March 14th 2020 =
 * fixed : style conflict with the Ninja Forms date picker. fixes #1810
 * added : [performance] new options to defer Font Awesome icons and javascript to avoid render blocking issues. fixes #1812
@@ -37,11 +41,6 @@ https://github.com/presscustomizr/customizr/releases
 * added : support for Viber link in social links
 * added :  featured image in singular => added a new option allowing users to display the image in its original dimensions. fixes #1803
 
-= 4.1.53 January 30th 2020 =
-* fixed : text on search button might not be visible on hover when footer is dark. fixes #1798
-* improved : replace "Search" text by an icon on search button. fixes #1800
-* improved : added support for HTML 5 "async". fixes #1802
-* improved : Post default layout should be full width for new users. fixes #1796
 
 == Resources ==
 * All images included in the theme are either created for the theme and inheriting its license, or licensed under CC0.

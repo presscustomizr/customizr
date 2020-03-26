@@ -4369,7 +4369,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
       function czr_fn_enqueue_gfonts() {
         $_font_pair         = esc_attr( czr_fn_opt( 'tc_fonts' ) );
         $_all_font_pairs    = CZR___::$instance -> font_pairs;
-        if ( ! $this -> czr_fn_is_gfont( $_font_pair , '_g_') )
+        if ( ! czr_fn_is_gfont( $_font_pair , '_g_') )
           return;
 
         wp_enqueue_style(
@@ -4419,7 +4419,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
           foreach ($_selector_fonts as $_key => $_raw_font) {
             //create the $_family and $_weight vars
-            extract( $this -> czr_fn_get_font_css_prop( $_raw_font , $this -> czr_fn_is_gfont( $_font_pair ) ) );
+            extract( $this -> czr_fn_get_font_css_prop( $_raw_font , czr_fn_is_gfont( $_font_pair ) ) );
 
             switch ($_key) {
               case 0 : //titles font
@@ -4452,19 +4452,6 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
         return $_css;
       }//end of fn
-
-
-      /**
-      * Helper to check if the requested font code includes the Google font identifier : _g_
-      * @return bool
-      *
-      * @package Customizr
-      * @since Customizr 3.3.2
-      */
-      private function czr_fn_is_gfont($_font , $_gfont_id = null ) {
-        $_gfont_id = $_gfont_id ? $_gfont_id : '_g_';
-        return false !== strpos( $_font , $_gfont_id );
-      }
 
 
       /**

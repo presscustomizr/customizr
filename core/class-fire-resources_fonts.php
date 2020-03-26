@@ -14,7 +14,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
         function __construct () {
 
               self::$instance =& $this;
-              add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_enqueue_gfonts' ), 0 );
+              add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_maybe_enqueue_gfonts' ), 0 );
 
               //Font awesome before other theme styles
               add_action( 'wp_enqueue_scripts'            , array( $this , 'czr_fn_maybe_enqueue_fa_icons'), 9 );
@@ -56,30 +56,41 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
     * @package Customizr
     * @since Customizr 3.2.9
     */
-    function czr_fn_enqueue_gfonts() {
-      $_font_pair         = esc_attr( czr_fn_opt( 'tc_fonts' ) );
-
-      if ( ! $this -> czr_fn_is_gfont( $_font_pair , '_g_') )
+    function czr_fn_maybe_enqueue_gfonts() {
+      // March 2020 : gfonts can be preloaded since https://github.com/presscustomizr/customizr/issues/1816
+      if ( czr_fn_is_checked( 'tc_preload_gfonts' ) )
         return;
-
-      $font               = explode( '|', czr_fn_get_font( 'single' , $_font_pair ) );
-
-      if ( ! $font )
+      $gfonts = self::czr_fn_get_gfont_candidates();
+      if ( !$gfonts || empty( $gfonts ) )
         return;
-
-      if ( is_array( $font ) )//case is a pair
-        $font             = implode( '%7C', array_unique( $font ) );
-
 
       wp_enqueue_style(
         'czr-gfonts',
-        sprintf( '//fonts.googleapis.com/css?family=%s', $font ),
+        sprintf( '//fonts.googleapis.com/css?family=%1$s&display=swap', $gfonts ),
         array(),
         null,
         'all'
       );
     }
 
+
+    static function czr_fn_get_gfont_candidates() {
+      $_font_pair = esc_attr( czr_fn_opt( 'tc_fonts' ) );
+
+      if ( !czr_fn_is_gfont( $_font_pair , '_g_') )
+        return;
+
+      $font = explode( '|', czr_fn_get_font( 'single' , $_font_pair ) );
+
+      if ( ! $font )
+        return;
+
+      if ( !is_array( $font ) )//case is a pair
+        return;
+
+      return implode( '%7C', array_unique( $font ) );
+
+    }
 
 
     /**
@@ -118,7 +129,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
 
         foreach ($_selector_fonts as $_key => $_raw_font) {
           //create the $_family and $_weight vars
-          extract( $this -> czr_fn_get_font_css_prop( $_raw_font , $this -> czr_fn_is_gfont( $_font_pair ) ) );
+          extract( $this -> czr_fn_get_font_css_prop( $_raw_font , czr_fn_is_gfont( $_font_pair ) ) );
 
           $selector = '';
 
@@ -193,18 +204,6 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
       return $_css;
     }//end of fn
 
-
-    /**
-    * Helper to check if the requested font code includes the Google font identifier : _g_
-    * @return bool
-    *
-    * @package Customizr
-    * @since Customizr 3.3.2
-    */
-    private function czr_fn_is_gfont($_font , $_gfont_id = null ) {
-      $_gfont_id = $_gfont_id ? $_gfont_id : '_g_';
-      return false !== strpos( $_font , $_gfont_id );
-    }
 
 
     /**

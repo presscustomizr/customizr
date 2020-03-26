@@ -4940,7 +4940,8 @@ var czrapp = czrapp || {};
   czrapp.methods.UserXP = czrapp.methods.UserXP || {};
   $.extend( czrapp.methods.UserXP , _methods );
 
-})(jQuery, czrapp);var czrapp = czrapp || {};
+})(jQuery, czrapp);// global CZRParams
+var czrapp = czrapp || {};
 
 (function($, czrapp) {
    var _methods =   {
@@ -5452,21 +5453,53 @@ var czrapp = czrapp || {};
       },
 
       mayBeLoadFontAwesome : function() {
-          jQuery( function() {
-                if ( ! CZRParams.deferFontAwesome )
-                  return;
-                var $candidates = $('[class*=fa-]');
-                if ( $candidates.length < 1 )
-                  return;
-                if ( $('head').find( '[href*="fontawesome-all.min.css"]' ).length < 1 ) {
-                    var link = document.createElement('link');
-                    link.setAttribute('href', CZRParams.fontAwesomeUrl );
-                    link.setAttribute('id', 'czr-font-awesome');
-                    link.setAttribute('rel', 'stylesheet' );
-                    document.getElementsByTagName('head')[0].appendChild(link);
-                }
-          });
-      }
+            jQuery( function() {
+                  if ( ! CZRParams.deferFontAwesome )
+                    return;
+                  var $candidates = $('[class*=fa-]');
+                  if ( $candidates.length < 1 )
+                    return;
+                  if ( $('head').find( '[href*="fontawesome-all.min.css"]' ).length < 1 ) {
+                      var link = document.createElement('link');
+                      link.setAttribute('href', CZRParams.fontAwesomeUrl );
+                      link.setAttribute('id', 'czr-font-awesome');
+                      link.setAttribute('rel', 'stylesheet' );
+                      document.getElementsByTagName('head')[0].appendChild(link);
+                  }
+            });
+      },
+      maybePreloadGoogleFonts : function() {
+            if ( !window.CZRParams || !CZRParams.preloadGfonts || _.isEmpty(CZRParams.googleFonts) )
+              return;
+            var _hasPreloadSupport = function( browser ) {
+                  var link = document.createElement('link');
+                  var relList = link.relList;
+                  if (!relList || !relList.supports)
+                    return false;
+                  return relList.supports('preload');
+                },
+                headTag = document.getElementsByTagName('head')[0],
+                link = document.createElement('link'),
+                _injectFinalAsset = function() {
+                    var link = this;
+                    console.log('DO NOW !');
+                    link.setAttribute('rel', 'stylesheet');
+                };
+
+            link.setAttribute('href', '//fonts.googleapis.com/css?family=' + CZRParams.googleFonts + '&display=swap');
+            link.setAttribute('rel', _hasPreloadSupport() ? 'preload' : 'stylesheet' );
+            link.setAttribute('id', 'czr-gfonts-css-preloaded' );
+            link.setAttribute('as', 'style');
+            link.onload = function() {
+                this.onload=null;
+                _injectFinalAsset.call(link);
+            };
+            link.onerror = function(er) {
+                console.log('Customizr preloadAsset error', er );
+            };
+            headTag.appendChild(link);
+
+      }//maybePreloadGoogleFonts
 
    };//_methods{}
 
@@ -6339,8 +6372,10 @@ var czrapp = czrapp || {};
       czrapp.Base           = czrapp.Root.extend( czrapp.methods.Base );
       czrapp.ready          = $.Deferred();
       czrapp.bind( 'czrapp-ready', function() {
+            var _evt = document.createEvent('Event');
+            _evt.initEvent('czrapp-is-ready', true, true); //can bubble, and is cancellable
+            document.dispatchEvent(_evt);
             czrapp.ready.resolve();
-            $('body').trigger('czrapp-ready');
       });
       var _instantianteAndFireOnDomReady = function( newMap, previousMap, isInitial ) {
             if ( ! _.isObject( newMap ) )
@@ -6389,10 +6424,9 @@ var czrapp = czrapp || {};
       };//_instantianteAndFireOnDomReady()
       czrapp.appMap = new czrapp.Value( {} );
       czrapp.appMap.bind( _instantianteAndFireOnDomReady );//<=THE MAP IS LISTENED TO HERE
+
       czrapp.customMap = new czrapp.Value( {} );
       czrapp.customMap.bind( _instantianteAndFireOnDomReady );//<=THE CUSTOM MAP IS LISTENED TO HERE
-
-
 })( czrapp, jQuery, _ );var czrapp = czrapp || {};
 ( function ( czrapp ) {
       czrapp.localized = CZRParams || {};
@@ -6461,7 +6495,9 @@ var czrapp = czrapp || {};
                             'anchorSmoothScroll',
 
                             'mayBePrintFrontNote',
-                            'mayBeLoadFontAwesome'
+                            'mayBeLoadFontAwesome',
+
+                            'maybePreloadGoogleFonts'
                       ]
                 },
                 stickyFooter : {

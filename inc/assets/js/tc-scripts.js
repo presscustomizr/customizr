@@ -6038,8 +6038,10 @@ var czrapp = czrapp || {};
       czrapp.Base           = czrapp.Root.extend( czrapp.methods.Base );
       czrapp.ready          = $.Deferred();
       czrapp.bind( 'czrapp-ready', function() {
+            var _evt = document.createEvent('Event');
+            _evt.initEvent('czrapp-is-ready', true, true); //can bubble, and is cancellable
+            document.dispatchEvent(_evt);
             czrapp.ready.resolve();
-            $('body').trigger('czrapp-ready');
       });
       var _instantianteAndFireOnDomReady = function( newMap, previousMap, isInitial ) {
             if ( ! _.isObject( newMap ) )
@@ -6088,10 +6090,9 @@ var czrapp = czrapp || {};
       };//_instantianteAndFireOnDomReady()
       czrapp.appMap = new czrapp.Value( {} );
       czrapp.appMap.bind( _instantianteAndFireOnDomReady );//<=THE MAP IS LISTENED TO HERE
+
       czrapp.customMap = new czrapp.Value( {} );
       czrapp.customMap.bind( _instantianteAndFireOnDomReady );//<=THE CUSTOM MAP IS LISTENED TO HERE
-
-
 })( czrapp, jQuery, _ );/****************************************************************
 * FORMER HARD CODED SCRIPTS MADE ENQUEUABLE WITH LOCALIZED PARAMS
 *****************************************************************/
@@ -6116,7 +6117,7 @@ var czrapp = czrapp || {};
     if ( window.czrapp && czrapp.ready && 'resolved' == czrapp.ready.state() ) {
         _doWhenCzrappIsReady();
     } else {
-        $('html').on('czrapp-ready', function() {
+        document.addEventListener('czrapp-is-ready', function() {
             _doWhenCzrappIsReady();
         });
     }
