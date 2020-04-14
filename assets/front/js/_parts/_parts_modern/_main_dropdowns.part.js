@@ -7,10 +7,11 @@ var czrapp = czrapp || {};
   var _methods =  {
 
     initOnCzrReady : function() {
-            if ( -1 !== window.location.href.indexOf('nimble-formatting-tests') ) {
-                czrapp.$test = $('<div/>', { id : "test_wrapper", style : "width: 100%;height: 200px;padding: 10px;background: yellow;position: fixed;bottom: 0;z-index: 1000;"});
-                $("body").append(czrapp.$test);
-            }
+            // PRINT A YELLOW TEST BLOCK FOR TEST PURPOSES
+            // if ( -1 !== window.location.href.indexOf('nimble-formatting-tests') ) {
+            //     czrapp.$test = $('<div/>', { id : "test_wrapper", style : "width: 100%;height: 200px;padding: 10px;background: yellow;position: fixed;bottom: 0;z-index: 1000;"});
+            //     $("body").append(czrapp.$test);
+            // }
 
             this.DATA_KEY  = 'czr.czrDropdown';
             this.EVENT_KEY = '.' + this.DATA_KEY;

@@ -717,7 +717,6 @@ var czrapp = czrapp || {};
                 _injectFinalAsset = function() {
                     var link = this;
                     // this is the link element
-                    console.log('DO NOW !');
                     link.setAttribute('rel', 'stylesheet');
                 };
 

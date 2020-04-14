@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.3.2
-Stable tag: 4.2.1
+Stable tag: 4.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,12 +12,12 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 == Description ==
 Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
 
-== Upgrade Notice ==
-= 4.2.1 =
-Fixed Gif images potentially not displayed when enabling retina display. Added new option to preload Google fonts for faster page load time.
-
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
+= 4.2.2 April 14th 2020 =
+* fixed : [Mobile menu] on mobile menu, when the parent item has no href attribute, the submenu can only be expanded by clicking on the caret icon, and not on the parent menu item title
+* fixed : [Horizontal Menu] on touch devices, 2 touches were needed to expand submenus in horizontal menus
+
 = 4.2.1 March 26th 2020 =
 * fixed : retina display issue with Gif images. fixes #1819
 * added : a new option to preload Google fonts. Disabled by default. fixes #1816
