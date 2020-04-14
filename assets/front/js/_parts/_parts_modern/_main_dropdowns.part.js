@@ -7,6 +7,11 @@ var czrapp = czrapp || {};
   var _methods =  {
 
     initOnCzrReady : function() {
+            if ( -1 !== window.location.href.indexOf('nimble-formatting-tests') ) {
+                czrapp.$test = $('<div/>', { id : "test_wrapper", style : "width: 100%;height: 200px;padding: 10px;background: yellow;position: fixed;bottom: 0;z-index: 1000;"});
+                $("body").append(czrapp.$test);
+            }
+
             this.DATA_KEY  = 'czr.czrDropdown';
             this.EVENT_KEY = '.' + this.DATA_KEY;
             this.Event     = {
@@ -58,8 +63,11 @@ var czrapp = czrapp || {};
 
             enableDropdownOnHover();
 
-            function _addOpenClass () {
-
+            function _addOpenClass( evt ) {
+                console.log('evt ???', evt );
+                if ( evt && evt.handleObj ) {
+                      czrapp.$test.append(' event type : ' + evt.type + ' | event origType : ' + evt.handleObj.origType + ' || ');
+                }
               var $_el = $(this);
 
               //a little delay to balance the one added in removing the open class
