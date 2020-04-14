@@ -64,32 +64,32 @@ var czrapp = czrapp || {};
             enableDropdownOnHover();
 
             function _addOpenClass( evt ) {
-                console.log('evt ???', evt );
-                if ( evt && evt.handleObj ) {
-                      czrapp.$test.append(' event type : ' + evt.type + ' | event origType : ' + evt.handleObj.origType + ' || ');
-                }
               var $_el = $(this);
 
               //a little delay to balance the one added in removing the open class
               var _debounced_addOpenClass = _.debounce( function() {
-
                 //do nothing if menu is mobile
                 if( 'static' == $_el.find( '.'+self.ClassName.DROPDOWN ).css( 'position' ) )
                   return false;
 
-                if ( ! $_el.hasClass(self.ClassName.SHOW) ) {
-                  czrapp.$_body.addClass( self.ClassName.ALLOW_POINTER_ON_SCROLL );
-                  $_el.trigger( self.Event.SHOW )
-                      .addClass(self.ClassName.SHOW)
-                      .trigger(self.Event.SHOWN);
+                if ( !$_el.hasClass(self.ClassName.SHOW) ) {
+                      czrapp.$_body.addClass( self.ClassName.ALLOW_POINTER_ON_SCROLL );
+                      // april 2020 => some actions should be only done when not on a "touch" device
+                      // otherwise we have a bug on submenu expansion
+                      // see : https://github.com/presscustomizr/customizr/issues/1824
+                      if ( !czrapp.$_body.hasClass('is-touch-device') ) {
+                            $_el.trigger( self.Event.SHOW )
+                                .addClass(self.ClassName.SHOW)
+                                .trigger(self.Event.SHOWN);
+                      }
+                      var $_data_toggle = $_el.children( self.Selector.DATA_TOGGLE );
 
-                  var $_data_toggle = $_el.children( self.Selector.DATA_TOGGLE );
-
-                  if ( $_data_toggle.length )
-                      $_data_toggle[0].setAttribute('aria-expanded', 'true');
+                      if ( $_data_toggle.length ) {
+                          $_data_toggle[0].setAttribute('aria-expanded', 'true');
+                      }
                 }
 
-              }, 30);
+              }, 30);// april 2020 => this delay is important because when on touch device, the "is-touch-device" class must be added before this function is fired
 
               _debounced_addOpenClass();
             }
@@ -101,38 +101,48 @@ var czrapp = czrapp || {};
               //a little delay before closing to avoid closing a parent before accessing the child
               var _debounced_removeOpenClass = _.debounce( function() {
                 if ( $_el.find("ul li:hover").length < 1 && ! $_el.closest('ul').find('li:hover').is( $_el ) ) {
-                  $_el.trigger( self.Event.HIDE )
-                      .removeClass(self.ClassName.SHOW)
-                      .trigger( self.Event.HIDDEN );
+                      // april 2020 => some actions should be only done when not on a "touch" device
+                      // otherwise we have a bug on submenu expansion
+                      // see : https://github.com/presscustomizr/customizr/issues/1824
+                      if ( !czrapp.$_body.hasClass('is-touch-device') ) {
+                            $_el.trigger( self.Event.HIDE )
+                                .removeClass(self.ClassName.SHOW)
+                                .trigger( self.Event.HIDDEN );
+                      }
 
-                  //make sure pointer events on scroll are still allowed if there's at least one submenu opened
-                  if ( $_el.closest( self.Selector.HOVER_MENU ).find( '.' + self.ClassName.SHOW ).length < 1 ) {
-                    czrapp.$_body.removeClass( self.ClassName.ALLOW_POINTER_ON_SCROLL );
-                  }
+                      //make sure pointer events on scroll are still allowed if there's at least one submenu opened
+                      if ( $_el.closest( self.Selector.HOVER_MENU ).find( '.' + self.ClassName.SHOW ).length < 1 ) {
+                        czrapp.$_body.removeClass( self.ClassName.ALLOW_POINTER_ON_SCROLL );
+                      }
 
-                  var $_data_toggle = $_el.children( self.Selector.DATA_TOGGLE );
+                      var $_data_toggle = $_el.children( self.Selector.DATA_TOGGLE );
 
-                  if ( $_data_toggle.length )
-                      $_data_toggle[0].setAttribute('aria-expanded', 'false');
+                      if ( $_data_toggle.length ) {
+                          $_data_toggle[0].setAttribute('aria-expanded', 'false');
+                      }
                 }
 
-              }, 30);
+              }, 30);// april 2020 => this delay is important because when on touch device, the "is-touch-device" class must be added before this function is fired
 
               _debounced_removeOpenClass();
             }
 
             function enableDropdownOnHover() {
-
-              czrapp.$_body.on( 'mouseenter', _dropdown_selector, _addOpenClass );
-              czrapp.$_body.on( 'mouseleave', _dropdown_selector , _removeOpenClass );
-
+                  // april 2020 : is-touch-device class is added on body on the first touch
+                  // This way, we can prevent the problem reported on https://github.com/presscustomizr/customizr/issues/1824
+                  // ( two touches needed to reveal submenus on touch devices )
+                  czrapp.$_body.on('touchstart', function() {
+                        if ( !$(this).hasClass('is-touch-device') ) {
+                              $(this).addClass('is-touch-device');
+                        }
+                  });
+                  czrapp.$_body.on( 'mouseenter', _dropdown_selector, _addOpenClass );
+                  czrapp.$_body.on( 'mouseleave', _dropdown_selector , _removeOpenClass );
             }
 
             // function disableDropdownOnHover() {
-
             //   czrapp.$_body.off( 'mouseenter', _dropdown_selector, _addOpenClass );
             //   czrapp.$_body.off( 'mouseleave', _dropdown_selector , _removeOpenClass );
-
             // }
 
     },//dropdownMenuOnHover
