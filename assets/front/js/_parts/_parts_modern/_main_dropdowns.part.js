@@ -354,13 +354,13 @@ var czrapp = czrapp || {};
         var self = this;
 
         czrapp.$_body
-              //when clicking on a menu item whose href is just a "#", let's emulate a click on the caret dropdown
-              .on( self.Event.CLICK, self.Selector.VERTICAL_NAV_ONCLICK +' a', function(evt) {
-                    evt.preventDefault();
-                    evt.stopPropagation();
+              //when clicking on a parent menu item whose href is just a "#" or that has no href attribute, let's emulate a click on the caret dropdown
+              .on( self.Event.CLICK, self.Selector.CLICK_PARENT +' a', function(evt) {
                     // April 2020 => handle the case when there's no href attribute
                     // see https://github.com/presscustomizr/customizr/issues/1824
                     if ( '#' === $(this).attr('href') || !$(this).attr('href') ) {
+                          evt.preventDefault();
+                          evt.stopPropagation();
                           $(this).closest( '.nav__link-wrapper' ).children(self.Selector.DATA_TOGGLE).trigger( self.Event.CLICK );
                     }
               })
