@@ -36,9 +36,9 @@ var czrapp = czrapp || {};
               DATA_TOGGLE              : '[data-toggle="czr-dropdown"]',
               DATA_SHOWN_TOGGLE_LINK   : '.' +this.ClassName.SHOW+ '> a[data-toggle="czr-dropdown"]',
               HOVER_MENU               : '.czr-open-on-hover',
-              CLICK_MENU               : '.czr-open-on-click',
+              CLICK_MENU               : '.czr-open-on-click',// selector used on vertical mobile menus
               HOVER_PARENT             : '.czr-open-on-hover .menu-item-has-children, .nav__woocart',
-              CLICK_PARENT             : '.czr-open-on-click .menu-item-has-children',
+              CLICK_PARENT             : '.czr-open-on-click .menu-item-has-children',// selector used on vertical mobile menus
               PARENTS                  : '.tc-header .menu-item-has-children',
               SNAKE_PARENTS            : '.regular-nav .menu-item-has-children',
               VERTICAL_NAV_ONCLICK     : '.czr-open-on-click .vertical-nav',

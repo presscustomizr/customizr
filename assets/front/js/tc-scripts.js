@@ -5846,9 +5846,9 @@ var czrapp = czrapp || {};
               DATA_TOGGLE              : '[data-toggle="czr-dropdown"]',
               DATA_SHOWN_TOGGLE_LINK   : '.' +this.ClassName.SHOW+ '> a[data-toggle="czr-dropdown"]',
               HOVER_MENU               : '.czr-open-on-hover',
-              CLICK_MENU               : '.czr-open-on-click',
+              CLICK_MENU               : '.czr-open-on-click',// selector used on vertical mobile menus
               HOVER_PARENT             : '.czr-open-on-hover .menu-item-has-children, .nav__woocart',
-              CLICK_PARENT             : '.czr-open-on-click .menu-item-has-children',
+              CLICK_PARENT             : '.czr-open-on-click .menu-item-has-children',// selector used on vertical mobile menus
               PARENTS                  : '.tc-header .menu-item-has-children',
               SNAKE_PARENTS            : '.regular-nav .menu-item-has-children',
               VERTICAL_NAV_ONCLICK     : '.czr-open-on-click .vertical-nav',
@@ -6057,10 +6057,10 @@ var czrapp = czrapp || {};
         var self = this;
 
         czrapp.$_body
-              .on( self.Event.CLICK, self.Selector.VERTICAL_NAV_ONCLICK +' a', function(evt) {
-                    evt.preventDefault();
-                    evt.stopPropagation();
+              .on( self.Event.CLICK, self.Selector.CLICK_PARENT +' a', function(evt) {
                     if ( '#' === $(this).attr('href') || !$(this).attr('href') ) {
+                          evt.preventDefault();
+                          evt.stopPropagation();
                           $(this).closest( '.nav__link-wrapper' ).children(self.Selector.DATA_TOGGLE).trigger( self.Event.CLICK );
                     }
               })
