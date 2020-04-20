@@ -124,6 +124,7 @@
     .nav__link {
       overflow: hidden;
       padding: 0 $base-line-height-fixed/3;
+      cursor: pointer;
       @include display-flex();
       @include flex-align-items-center();
       @include flex-justify-content-between();
