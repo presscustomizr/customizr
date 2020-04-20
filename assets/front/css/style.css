@@ -3795,6 +3795,7 @@ embed, iframe, object, video {
 .nav__menu .menu-item .nav__link {
   overflow: hidden;
   padding: 0 6.25px;
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

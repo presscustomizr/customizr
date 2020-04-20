@@ -2218,54 +2218,70 @@ var TCParams = TCParams || {};
                 delaySmartLoadEvent : 0,
 
           },
-          skipImgClass = 'tc-smart-load-skip';
+          skipImgClass = 'tc-smart-loaded';
 
 
       function Plugin( element, options ) {
             this.element = element;
-            this.options = $.extend( {}, defaults, options) ;
+            this.options = $.extend( {}, defaults, options);
             if ( _.isArray( this.options.excludeImg ) ) {
                   this.options.excludeImg.push( '.'+skipImgClass );
             } else {
                   this.options.excludeImg = [ '.'+skipImgClass ];
             }
+            this.options.excludeImg = _.uniq( this.options.excludeImg );
+            this.imgSelectors = 'img[' + this.options.attribute[0] + ']:not('+ this.options.excludeImg.join() +')';
 
             this._defaults = defaults;
             this._name = pluginName;
             this.init();
+
+            var self = this;
+            $(this.element).on('trigger-smartload', function() {
+                  self._maybe_trigger_load( 'trigger-smartload' );
+            });
       }
-      Plugin.prototype.init = function () {
-            var self        = this,
-                $_imgs   = $( 'img[' + this.options.attribute[0] + ']:not('+ this.options.excludeImg.join() +')' , this.element );
+
+      Plugin.prototype._getImgs = function() {
+            return $( this.imgSelectors, this.element );
+      };
+      Plugin.prototype.init = function() {
+            var self        = this;
 
             this.increment  = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
             this.timer      = 0;
-
-
-            $_imgs
-                  .addClass( skipImgClass )
-                  .bind( 'load_img', {}, function() {
-                        self._load_img(this);
-                  });
-            $(window).scroll( function( _evt ) { self._better_scroll_event_handler( $_imgs, _evt ); } );
-            $(window).resize( _.debounce( function( _evt ) { self._maybe_trigger_load( $_imgs, _evt ); }, 100 ) );
-            this._maybe_trigger_load( $_imgs );
+            $('body').on( 'load_img', self.imgSelectors , function() {
+                    if ( true === $(this).data('czr-smart-loaded' ) )
+                      return;
+                    self._load_img(this);
+            });
+            $(window).scroll( function( _evt ) { self._better_scroll_event_handler( _evt ); } );
+            $(window).resize( _.debounce( function( _evt ) { self._maybe_trigger_load( _evt ); }, 100 ) );
+            this._maybe_trigger_load( 'dom-ready');
+            $(this.element).data('smartLoadDone', true );
       };
-      Plugin.prototype._better_scroll_event_handler = function( $_imgs , _evt ) {
+      Plugin.prototype._better_scroll_event_handler = function( _evt ) {
             var self = this;
             if ( ! this.doingAnimation ) {
                   this.doingAnimation = true;
                   window.requestAnimationFrame(function() {
-                        self._maybe_trigger_load( $_imgs , _evt );
+                        self._maybe_trigger_load( _evt );
                         self.doingAnimation = false;
                   });
             }
       };
-      Plugin.prototype._maybe_trigger_load = function( $_imgs , _evt ) {
+      Plugin.prototype._maybe_trigger_load = function(_evt ) {
             var self = this,
-                _visible_list = $_imgs.filter( function( ind, _img ) { return self._is_visible( _img ,  _evt ); } );
+                $_imgs = self._getImgs(),
+                _visible_list;
+
+            if ( !_.isObject( $_imgs) || _.isEmpty( $_imgs ) )
+              return;
+            _visible_list = $_imgs.filter( function( ind, _img ) { return self._is_visible( _img ,  _evt ); } );
             _visible_list.map( function( ind, _img ) {
-                  $(_img).trigger( 'load_img' );
+                  if ( true !== $(_img).data( 'czr-smart-loaded' ) ) {
+                        $(_img).trigger('load_img');
+                  }
             });
       };
       Plugin.prototype._is_visible = function( _img, _evt ) {
@@ -2287,17 +2303,19 @@ var TCParams = TCParams || {};
                 _sizes   = $_img.attr( this.options.attribute[2] ),
                 self = this;
 
+            if ( $_img.parent().hasClass('smart-loading') )
+              return;
+
             $_img.parent().addClass('smart-loading');
 
             $_img.unbind('load_img')
-                  .hide()
                   .removeAttr( this.options.attribute.join(' ') )
                   .attr( 'sizes' , _sizes )
                   .attr( 'srcset' , _src_set )
                   .attr( 'src', _src )
                   .load( function () {
-                        if ( ! $_img.hasClass('czr-smart-loaded') ) {
-                              $_img.fadeIn(self.options.fadeIn_options).addClass('czr-smart-loaded');
+                        if ( !$_img.hasClass(skipImgClass) ) {
+                              $_img.fadeIn(self.options.fadeIn_options).addClass(skipImgClass);
                         }
                         if ( ( 'undefined' !== typeof $_img.attr('data-tcjp-recalc-dims')  ) && ( false !== $_img.attr('data-tcjp-recalc-dims') ) ) {
                               var _width  = $_img.originalWidth(),

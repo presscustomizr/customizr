@@ -1046,54 +1046,70 @@ Object.defineProperty(exports, '__esModule', { value: true });
                 delaySmartLoadEvent : 0,
 
           },
-          skipImgClass = 'tc-smart-load-skip';
+          skipImgClass = 'tc-smart-loaded';
 
 
       function Plugin( element, options ) {
             this.element = element;
-            this.options = $.extend( {}, defaults, options) ;
+            this.options = $.extend( {}, defaults, options);
             if ( _.isArray( this.options.excludeImg ) ) {
                   this.options.excludeImg.push( '.'+skipImgClass );
             } else {
                   this.options.excludeImg = [ '.'+skipImgClass ];
             }
+            this.options.excludeImg = _.uniq( this.options.excludeImg );
+            this.imgSelectors = 'img[' + this.options.attribute[0] + ']:not('+ this.options.excludeImg.join() +')';
 
             this._defaults = defaults;
             this._name = pluginName;
             this.init();
+
+            var self = this;
+            $(this.element).on('trigger-smartload', function() {
+                  self._maybe_trigger_load( 'trigger-smartload' );
+            });
       }
-      Plugin.prototype.init = function () {
-            var self        = this,
-                $_imgs   = $( 'img[' + this.options.attribute[0] + ']:not('+ this.options.excludeImg.join() +')' , this.element );
+
+      Plugin.prototype._getImgs = function() {
+            return $( this.imgSelectors, this.element );
+      };
+      Plugin.prototype.init = function() {
+            var self        = this;
 
             this.increment  = 1;//used to wait a little bit after the first user scroll actions to trigger the timer
             this.timer      = 0;
-
-
-            $_imgs
-                  .addClass( skipImgClass )
-                  .bind( 'load_img', {}, function() {
-                        self._load_img(this);
-                  });
-            $(window).scroll( function( _evt ) { self._better_scroll_event_handler( $_imgs, _evt ); } );
-            $(window).resize( _.debounce( function( _evt ) { self._maybe_trigger_load( $_imgs, _evt ); }, 100 ) );
-            this._maybe_trigger_load( $_imgs );
+            $('body').on( 'load_img', self.imgSelectors , function() {
+                    if ( true === $(this).data('czr-smart-loaded' ) )
+                      return;
+                    self._load_img(this);
+            });
+            $(window).scroll( function( _evt ) { self._better_scroll_event_handler( _evt ); } );
+            $(window).resize( _.debounce( function( _evt ) { self._maybe_trigger_load( _evt ); }, 100 ) );
+            this._maybe_trigger_load( 'dom-ready');
+            $(this.element).data('smartLoadDone', true );
       };
-      Plugin.prototype._better_scroll_event_handler = function( $_imgs , _evt ) {
+      Plugin.prototype._better_scroll_event_handler = function( _evt ) {
             var self = this;
             if ( ! this.doingAnimation ) {
                   this.doingAnimation = true;
                   window.requestAnimationFrame(function() {
-                        self._maybe_trigger_load( $_imgs , _evt );
+                        self._maybe_trigger_load( _evt );
                         self.doingAnimation = false;
                   });
             }
       };
-      Plugin.prototype._maybe_trigger_load = function( $_imgs , _evt ) {
+      Plugin.prototype._maybe_trigger_load = function(_evt ) {
             var self = this,
-                _visible_list = $_imgs.filter( function( ind, _img ) { return self._is_visible( _img ,  _evt ); } );
+                $_imgs = self._getImgs(),
+                _visible_list;
+
+            if ( !_.isObject( $_imgs) || _.isEmpty( $_imgs ) )
+              return;
+            _visible_list = $_imgs.filter( function( ind, _img ) { return self._is_visible( _img ,  _evt ); } );
             _visible_list.map( function( ind, _img ) {
-                  $(_img).trigger( 'load_img' );
+                  if ( true !== $(_img).data( 'czr-smart-loaded' ) ) {
+                        $(_img).trigger('load_img');
+                  }
             });
       };
       Plugin.prototype._is_visible = function( _img, _evt ) {
@@ -1115,17 +1131,19 @@ Object.defineProperty(exports, '__esModule', { value: true });
                 _sizes   = $_img.attr( this.options.attribute[2] ),
                 self = this;
 
+            if ( $_img.parent().hasClass('smart-loading') )
+              return;
+
             $_img.parent().addClass('smart-loading');
 
             $_img.unbind('load_img')
-                  .hide()
                   .removeAttr( this.options.attribute.join(' ') )
                   .attr( 'sizes' , _sizes )
                   .attr( 'srcset' , _src_set )
                   .attr( 'src', _src )
                   .load( function () {
-                        if ( ! $_img.hasClass('czr-smart-loaded') ) {
-                              $_img.fadeIn(self.options.fadeIn_options).addClass('czr-smart-loaded');
+                        if ( !$_img.hasClass(skipImgClass) ) {
+                              $_img.fadeIn(self.options.fadeIn_options).addClass(skipImgClass);
                         }
                         if ( ( 'undefined' !== typeof $_img.attr('data-tcjp-recalc-dims')  ) && ( false !== $_img.attr('data-tcjp-recalc-dims') ) ) {
                               var _width  = $_img.originalWidth(),
@@ -3478,6 +3496,24 @@ var czrapp = czrapp || {};
                   _timer_();
             },
             scriptLoadingStatus : {},
+            observeAddedNodesOnDom : function(containerSelector, elementSelector, callback) {
+                var onMutationsObserved = function(mutations) {
+                        mutations.forEach(function(mutation) {
+                            if (mutation.addedNodes.length) {
+                                var elements = $(mutation.addedNodes).find(elementSelector);
+                                for (var i = 0, len = elements.length; i < len; i++) {
+                                    callback(elements[i]);
+                                }
+                            }
+                        });
+                    },
+                    target = $(containerSelector)[0],
+                    config = { childList: true, subtree: true },
+                    MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
+                    observer = new MutationObserver(onMutationsObserved);
+
+                observer.observe(target, config);
+          }
       };//_methods{}
 
       czrapp.methods.Base = czrapp.methods.Base || {};
@@ -3546,12 +3582,24 @@ var czrapp = czrapp || {};
             },
             imgSmartLoad : function() {
                   var smartLoadEnabled = 1 == czrapp.localized.imgSmartLoadEnabled,
-                      _where           = czrapp.localized.imgSmartLoadOpts.parentSelectors.join();
-                  if (  smartLoadEnabled ) {
-                        $( _where ).imgSmartLoad(
-                            _.size( czrapp.localized.imgSmartLoadOpts.opts ) > 0 ? czrapp.localized.imgSmartLoadOpts.opts : {}
-                        );
-                  }
+                      _where = czrapp.localized.imgSmartLoadOpts.parentSelectors.join(),
+                      _params = _.size( czrapp.localized.imgSmartLoadOpts.opts ) > 0 ? czrapp.localized.imgSmartLoadOpts.opts : {};
+                  var _doLazyLoad = function() {
+                        if ( !smartLoadEnabled )
+                          return;
+
+                        $(_where).each( function() {
+                              if ( !$(this).data('smartLoadDone') ) {
+                                    $(this).imgSmartLoad(_params);
+                              } else {
+                                    $(this).trigger('trigger-smartload');
+                              }
+                        });
+                  };
+                  _doLazyLoad();
+                  this.observeAddedNodesOnDom('body', 'img', _.debounce( function(element) {
+                        _doLazyLoad();
+                  }, 50 ));
                   if ( 1 == czrapp.localized.centerAllImg ) {
                         var self                   = this,
                             $_to_center;
@@ -5849,6 +5897,7 @@ var czrapp = czrapp || {};
               CLICK_MENU               : '.czr-open-on-click',// selector used on vertical mobile menus
               HOVER_PARENT             : '.czr-open-on-hover .menu-item-has-children, .nav__woocart',
               CLICK_PARENT             : '.czr-open-on-click .menu-item-has-children',// selector used on vertical mobile menus
+              HAS_SUBMENU              : '.menu-item-has-children',
               PARENTS                  : '.tc-header .menu-item-has-children',
               SNAKE_PARENTS            : '.regular-nav .menu-item-has-children',
               VERTICAL_NAV_ONCLICK     : '.czr-open-on-click .vertical-nav',
@@ -5934,7 +5983,6 @@ var czrapp = czrapp || {};
     dropdownOpenGoToLinkOnClick : function() {
           var self = this;
           czrapp.$_body.on( this.Event.CLICK, this.Selector.DATA_SHOWN_TOGGLE_LINK, function(evt) {
-
                 var $_el = $(this);
                 if( 'static' == $_el.find( '.'+self.ClassName.DROPDOWN ).css( 'position' ) )
                   return false;
@@ -6055,9 +6103,8 @@ var czrapp = czrapp || {};
     },//dropdownPlacement
     dropdownOnClickVerticalNav : function() {
         var self = this;
-
         czrapp.$_body
-              .on( self.Event.CLICK, self.Selector.CLICK_PARENT +' a', function(evt) {
+              .on( self.Event.CLICK, [self.Selector.VERTICAL_NAV_ONCLICK, self.Selector.HAS_SUBMENU, 'a'].join(' '), function(evt) {
                     if ( '#' === $(this).attr('href') || !$(this).attr('href') ) {
                           evt.preventDefault();
                           evt.stopPropagation();
@@ -6347,7 +6394,6 @@ var czrapp = czrapp || {};
 
         return czrDropdown;
       }();
-
       $(document)
         .on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, czrDropdown._dataApiKeydownHandler)
         .on(Event.KEYDOWN_DATA_API, Selector.MENU, czrDropdown._dataApiKeydownHandler)
