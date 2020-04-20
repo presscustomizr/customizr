@@ -39,6 +39,7 @@ var czrapp = czrapp || {};
               CLICK_MENU               : '.czr-open-on-click',// selector used on vertical mobile menus
               HOVER_PARENT             : '.czr-open-on-hover .menu-item-has-children, .nav__woocart',
               CLICK_PARENT             : '.czr-open-on-click .menu-item-has-children',// selector used on vertical mobile menus
+              HAS_SUBMENU              : '.menu-item-has-children',
               PARENTS                  : '.tc-header .menu-item-has-children',
               SNAKE_PARENTS            : '.regular-nav .menu-item-has-children',
               VERTICAL_NAV_ONCLICK     : '.czr-open-on-click .vertical-nav',
@@ -162,7 +163,6 @@ var czrapp = czrapp || {};
           //go to the link if submenu is already opened
           //This happens before the closing occurs when dropdown on click and the dropdown on hover (see the debounce in this case)
           czrapp.$_body.on( this.Event.CLICK, this.Selector.DATA_SHOWN_TOGGLE_LINK, function(evt) {
-
                 var $_el = $(this);
 
                 //do nothing if menu is mobile
@@ -352,10 +352,10 @@ var czrapp = czrapp || {};
     //handle on click submenu expansion for vertical navs (sidenav and mobile menu)
     dropdownOnClickVerticalNav : function() {
         var self = this;
-
         czrapp.$_body
-              //when clicking on a parent menu item whose href is just a "#" or that has no href attribute, let's emulate a click on the caret dropdown
-              .on( self.Event.CLICK, self.Selector.CLICK_PARENT +' a', function(evt) {
+              // when clicking on a parent menu item whose href is just a "#" or that has no href attribute, let's emulate a click on the caret dropdown
+              // selector : .czr-open-on-click .vertical-nav .menu-item-has-children  a
+              .on( self.Event.CLICK, [self.Selector.VERTICAL_NAV_ONCLICK, self.Selector.HAS_SUBMENU, 'a'].join(' '), function(evt) {
                     // April 2020 => handle the case when there's no href attribute
                     // see https://github.com/presscustomizr/customizr/issues/1824
                     if ( '#' === $(this).attr('href') || !$(this).attr('href') ) {
@@ -732,11 +732,11 @@ var czrapp = czrapp || {};
        * Data Api implementation
        * ------------------------------------------------------------------------
        */
-
       $(document)
         .on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, czrDropdown._dataApiKeydownHandler)
         .on(Event.KEYDOWN_DATA_API, Selector.MENU, czrDropdown._dataApiKeydownHandler)
         .on(Event.CLICK_DATA_API + ' ' + Event.KEYUP_DATA_API + Event.FOCUSOUT_DATA_API , czrDropdown._clearMenus)
+        // click.czr.czrDropdown.data-api, [data-toggle="czr-dropdown"]
         .on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, czrDropdown.prototype.toggle) //click on [data-toggle="czr-dropdown"]
         .on(Event.FOCUSIN_DATA_API, Selector.NAVBAR_NAV + ' ' + Selector.DATA_TOGGLE, czrDropdown._dataApiFocusinHandler)
         .on(Event.CLICK_DATA_API, Selector.FORM_CHILD, function (e) {
