@@ -175,7 +175,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                      'tc-scripts' => array(
                           'path' => $_front_path,
                           'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
-                          'dependencies' => array( 'jquery' )
+                          'dependencies' => array('underscore', 'jquery' )
                      )
                );//end of scripts map
 
@@ -214,7 +214,7 @@ if ( ! class_exists( 'CZR_resources_scripts' ) ) :
                    wp_enqueue_script(
                        'czr-init',
                        sprintf( '%1$s%2$s', CZR_BASE_URL . CZR_ASSETS_PREFIX . 'front/js/', ( CZR_DEBUG_MODE || CZR_DEV_MODE ) ? 'tc-init.js' : 'tc-init.min.js' ),
-                       array(),
+                       array( 'underscore' ),
                        $this->_resouces_version,
                        false
                    );

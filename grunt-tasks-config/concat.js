@@ -161,7 +161,7 @@ module.exports = {
 
       '<%= paths.theme_js_assets %>libs/oldBrowserCompat.js',
       '<%= paths.theme_js_assets %>libs/bootstrap-classical.js',
-      '<%= paths.theme_js_assets %>libs/underscore-min.js',
+      // '<%= paths.theme_js_assets %>libs/underscore-min.js',
 
       '<%= paths.theme_js_assets %>libs/jquery-plugins/jqueryimgOriginalSizes.js',
       '<%= paths.theme_js_assets %>libs/jquery-plugins/jqueryaddDropCap.js',
@@ -220,7 +220,7 @@ module.exports = {
       '<%= paths.theme_js_assets %>libs/oldBrowserCompat.js',
 
       '<%= paths.theme_js_assets %>libs/custom-bootstrap-modern.js',
-      '<%= paths.theme_js_assets %>libs/underscore-min.js',
+      // '<%= paths.theme_js_assets %>libs/underscore-min.js',
 
       '<%= paths.theme_js_assets %>libs/jquery-plugins/jqueryimgOriginalSizes.js',
       '<%= paths.theme_js_assets %>libs/jquery-plugins/jqueryaddDropCap.js',
