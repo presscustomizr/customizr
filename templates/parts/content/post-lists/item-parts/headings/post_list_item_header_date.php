@@ -22,9 +22,11 @@
       endif; //post_metas
 
       if ( czr_fn_get_property( 'the_title' ) ): ?>
+      <?php do_action( '__before_post_list_heading_title' ); ?>
     <h2 class="entry-title ">
       <a class="czr-title" href="<?php the_permalink() ?>" rel="bookmark"><?php czr_fn_echo( 'the_title' ) ?></a>
     </h2>
+      <?php do_action( '__after_post_list_heading_title' ); ?>
     <?php
 
       endif;//the_title
