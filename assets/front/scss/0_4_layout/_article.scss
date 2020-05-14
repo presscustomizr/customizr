@@ -793,6 +793,15 @@ section.post-related-articles {
     }
   }
   .comment-author, time.comment-date { width: 100% }
+  .post-navigation {
+    .czr_pager > li {
+      display: block;
+      // fixed [Post navigation][mobile] navigation words are cut out #1832
+      -ms-flex: 0 0 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
 }
 
 /* end comments */
