@@ -27,6 +27,12 @@ select {
 
 }
 
+// adapt for search Gutenberg block
+// fixes [Search form] gutenberg search block style is broken #1838
+.wp-block-search__input {
+  margin: 0;
+}
+
 input:focus,
 textarea:focus,
 select:focus {
