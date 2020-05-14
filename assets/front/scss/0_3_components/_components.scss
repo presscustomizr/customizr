@@ -930,7 +930,8 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
     border: none;
     &:hover{
       opacity: 1;
-      width: 80px;
+      width: 60px;
+      background-color: rgba(59, 59, 59, 0.2)!important;
     }
     //should be smaller on mobiles < 576px
     @include media-breakpoint-down(xs) {
@@ -941,7 +942,7 @@ html.no-js [id*=czr-slider-loader-wrapper] { display: none; }
         width: 35px;
         &:hover{
           opacity: 1;
-          width: 60px;
+          width: 40px;
         }
       }
     }
