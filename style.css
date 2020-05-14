@@ -1,21 +1,23 @@
-/**
-* Theme Name: Customizr
-* Theme URI: https://presscustomizr.com/customizr
-* Description: Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
-* Version: 4.2.4
-* Author: nikeo
-* Author URI: https://presscustomizr.com/
-* Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
-* Text Domain: customizr
-* Domain Path: /inc/lang
-* Copyright: (c) 2013 - 2019 Nicolas GUILLAUME (nikeo), Nice, France
-* License: GNU General Public License v2.0 or later
-* License URI: http://www.gnu.org/licenses/gpl-2.0.html
+/*
+Theme Name: Customizr
+Theme URI: https://presscustomizr.com/customizr
+Description: Customizr is a simple and fast WordPress theme designed to help you attract and engage more visitors. Provides a perfect user experience on smartphones. Powers more than 100K active sites around the world. Hundreds of 5-stars reviews received on WordPress.org.
+Version: 4.2.4
+Author: nikeo
+Author URI: https://presscustomizr.com/
+Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
+Text Domain: customizr
+Domain Path: /inc/lang
+Copyright: (c) 2013 - 2020 Nicolas GUILLAUME (nikeo), Nice, France
+License: GNU General Public License v2.0 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Requires PHP: 5.3
+Tested up to: 5.4
 */
 
 
 /**
-* Note for developers : If you write your CSS code below, it will be deleted on theme update.
-* If you want to make quick style test / changes, consider using the Custom CSS section in appearance > customize > advanced options > Custom CSS, it will be persisted on theme update.
-* To make important CSS customizations, you'll want to use a child theme and add your css code in the style.css file of it.
+Note for developers : If you write your CSS code below, it will be deleted on theme update.
+If you want to make quick style test / changes, consider using the Custom CSS section in appearance > customize > advanced options > Custom CSS, it will be persisted on theme update.
+To make important CSS customizations, you'll want to use a child theme and add your css code in the style.css file of it.
 */
