@@ -657,6 +657,8 @@ var czrapp = czrapp || {};
 (function($, czrapp) {
   var _methods =  {
     addBrowserClassToBody : function() {
+          if ( !$.browser )
+            return;
           if ( $.browser.chrome )
               czrapp.$_body.addClass("chrome");
           else if ( $.browser.webkit )
@@ -765,10 +767,19 @@ var czrapp = czrapp || {};
             extLinks : function() {
               if ( ! TCParams.extLinksStyle && ! TCParams.extLinksTargetExt )
                 return;
-              $('a' , '.entry-content').extLinks({
-                addIcon : TCParams.extLinksStyle,
-                newTab : TCParams.extLinksTargetExt,
-                skipSelectors : _.isObject(TCParams.extLinksSkipSelectors) ? TCParams.extLinksSkipSelectors : {}
+              var _isValidURL = function( _url ){
+                    var _pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+                    return _pattern.test( _url );
+              };
+
+              $('a' , '.entry-content').each( function() {
+                    if ( $(this).attr('href') && _isValidURL( $(this).attr('href') ) ) {
+                          $(this).extLinks({
+                                addIcon : TCParams.extLinksStyle,
+                                newTab : TCParams.extLinksTargetExt,
+                                skipSelectors : _.isObject(TCParams.extLinksSkipSelectors) ? TCParams.extLinksSkipSelectors : {}
+                          });
+                    }
               });
             },
             fancyBox : function() {

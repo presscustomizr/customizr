@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.3.2
-Stable tag: 4.2.4
+Stable tag: 4.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,16 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
+= 4.2.5 May 14th 2020 =
+* fixed : [Javascript][plugin compatibility] including underscore in the main script can break other plugins. fixes #1830
+* fixed : [slider arrows][mobile] next/previous arrows are hiding a significant part of the image. fixes #1833
+* fixed : [Woocommerce][Gutenberg] products blocks don’t work. fixes #1829
+* fixed : fixed [Post navigation][mobile] navigation words are cut out. fixes #1832
+* fixed : [Search form] gutenberg search block style is broken. fixes #1838
+* fixed : [TRT] add new required fields in style.css. fixes #1840
+* improved : [javascript] make sure maybe deprecated $.browser exists before using it
+* added : [template][hooks] add new hooks before and after post heading title in post lists. fixes #1831
+
 = 4.2.4 April 20th 2020 =
 * fixed : [Horizontal Menus] submenu expansion on click is broken. fixes #1827
 * fixed : [Menus] make sure the cursor is a pointer for a menu item, even when it has no href attribute

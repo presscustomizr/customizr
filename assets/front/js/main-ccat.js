@@ -696,6 +696,8 @@ var czrapp = czrapp || {};
 (function($, czrapp) {
   var _methods =  {
     addBrowserClassToBody : function() {
+          if ( !$.browser )
+            return;
           if ( $.browser.chrome )
               czrapp.$_body.addClass("chrome");
           else if ( $.browser.webkit )
