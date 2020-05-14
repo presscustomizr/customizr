@@ -5,8 +5,8 @@ module.exports = {
 		],
 		overwrite: true,
 		replacements: [ {
-			from: /^.* Version:.*$/m,
-			to: '* Version: <%= pkg.version %>'
+			from: /^.*Version:.*$/m,
+			to: 'Version: <%= pkg.version %>'
 		} ]
 	},
 	other : {

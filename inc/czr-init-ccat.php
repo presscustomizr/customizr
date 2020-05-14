@@ -4082,7 +4082,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
               'tc-scripts' => array(
                 'path' => $_front_path,
                 'files' => array( 'tc-scripts.js' , 'tc-scripts.min.js' ),
-                'dependencies' =>  $this -> czr_fn_is_fancyboxjs_required() ? array( 'underscore', 'jquery', 'tc-fancybox' ) : array( 'jquery' )
+                'dependencies' =>  $this -> czr_fn_is_fancyboxjs_required() ? array( 'underscore', 'jquery', 'tc-fancybox' ) : array( 'underscore', 'jquery' )
               )
           );//end of scripts map
 
