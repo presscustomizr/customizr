@@ -16,7 +16,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
     }
 
     function czr_fn_display_view_search_full_page () {
-      return czr_fn_is_registered_or_possible( 'nav_search' );
+      return czr_fn_is_registered_or_possible( 'nav_search' ) && czr_fn_is_checked('tc_header_search_full_width');
     }
 
     function czr_fn_display_view_social_block() {

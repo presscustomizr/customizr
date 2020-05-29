@@ -732,7 +732,15 @@ function czr_fn_header_desktop_option_map() {
                           'notice'    => __( 'If you want to display the search icon in your topbar, make sure the topbar is displayed by checking "Display a topbar" above.' , 'customizr' )
 
         ),
+        'tc_header_search_full_width' => array(
+                          'default'       => 0,
+                          'label'     => __( 'Use a full screen search block' , 'customizr' ),
+                          'control'   => 'CZR_controls' ,
+                          'section'   => 'header_desktop_sec',
+                          'type'          => 'nimblecheck' ,
+                          'priority'  => 17
 
+        ),
         'tc_header_desktop_wc_cart' => array(
                           'default'   => 'topbar',
                           'label'     => sprintf( __('Desktop devices : %s', 'customizr' ) , sprintf('<span class="dashicons dashicons-cart"></span> %s', __( "Display the shopping cart in the header" , "customizr" ) ) ),

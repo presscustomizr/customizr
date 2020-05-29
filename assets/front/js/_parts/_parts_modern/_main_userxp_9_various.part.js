@@ -309,17 +309,29 @@ var czrapp = czrapp || {};
             //collapse on resize
             czrapp.userXP.windowWidth.bind( function() {
                   self.headerSearchExpanded( false );
+                  // May 2020 for https://github.com/presscustomizr/customizr/issues/1807
+                  _.delay( function() {
+                     czrapp.$_body.removeClass( _search_overlay_toggle_class );
+                  }, 250 );
             });
 
             //collapse on mobile menu show
             czrapp.$_body.on( _mobile_menu_opened_event, _mobile_menu_sel, function() {
                   self.headerSearchExpanded( false );
+                  // May 2020 for https://github.com/presscustomizr/customizr/issues/1807
+                  _.delay( function() {
+                     czrapp.$_body.removeClass( _search_overlay_toggle_class );
+                  }, 250 );
             });
 
             //collapse on menu animation
             if ( czrapp.userXP.stickyHeaderAnimating ) {
                   czrapp.userXP.stickyHeaderAnimating.bind( function() {
                         self.headerSearchExpanded( false );
+                        // May 2020 for https://github.com/presscustomizr/customizr/issues/1807
+                        _.delay( function() {
+                           czrapp.$_body.removeClass( _search_overlay_toggle_class );
+                        }, 250 );
                   });
             }
       },//toggleHeaderSearch

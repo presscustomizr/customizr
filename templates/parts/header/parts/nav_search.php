@@ -5,6 +5,11 @@
 ?>
 <li class="nav__search <?php czr_fn_echo('element_class') ?>" <?php czr_fn_echo('element_attributes') ?>>
   <a href="#" class="search-toggle_btn icn-search <?php czr_fn_echo('search_toggle_class'); ?>" <?php czr_fn_echo('search_toggle_attributes'); ?> aria-expanded="false"><span class="sr-only">Search</span></a>
+  <?php if ( !czr_fn_is_checked('tc_header_search_full_width') ) : ?>
+    <div class="czr-search-expand">
+      <div class="czr-search-expand-inner"><?php get_search_form(); ?></div>
+    </div>
+  <?php endif; ?>
   <?php if ( czr_fn_get_property( 'has_dropdown' ) ) : ?>
     <ul class="dropdown-menu czr-dropdown-menu">
       <?php
