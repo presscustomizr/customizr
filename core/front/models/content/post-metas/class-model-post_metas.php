@@ -130,6 +130,7 @@ class CZR_post_metas_model_class extends CZR_Model {
     if ( 'short' == $_format ) {
         $_format = 'j M, Y';
     }
+    $user_date_format = get_option('date_format');
 
     $_format = apply_filters( 'czr_meta_date_format' , $_format );
     $_use_post_mod_date = apply_filters( 'czr_use_the_post_modified_date' , 'publication' != $pub_or_update );
@@ -137,7 +138,7 @@ class CZR_post_metas_model_class extends CZR_Model {
     //time
     $date_meta = sprintf( '<time class="entry-date %1$s" datetime="%2$s">%3$s</time>',
         'publication' == $pub_or_update ? 'published updated' : 'updated',
-        $_use_post_mod_date ? esc_attr( get_the_modified_date('c') ) : esc_attr( get_the_date( 'c' ) ),
+        $_use_post_mod_date ? esc_attr( get_the_modified_date($user_date_format) ) : esc_attr( get_the_date( $user_date_format ) ),
         $_use_post_mod_date ? esc_html( get_the_modified_date( $_format ) ) : esc_html( get_the_date( $_format ) )
     );
 
