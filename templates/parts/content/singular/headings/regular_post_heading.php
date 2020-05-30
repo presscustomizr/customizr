@@ -68,5 +68,6 @@
         ?>
       </div>
     </div>
+    <?php do_action( '__after_regular_heading_metas' ); ?>
   </div>
 </header>
