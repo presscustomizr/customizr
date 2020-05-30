@@ -51,7 +51,7 @@ function czr_fn_comment_info( $args = array() ) {
       $link            = sprintf( "%s%s",
             is_singular() ? '' : esc_url( get_permalink() ),
             //Filter hook used by disqus plugin
-            apply_filters( 'czr_comment_info_anchor', '#czr-comments-title')
+            apply_filters( 'czr_comment_info_anchor', '#czr-comments')
       );
 
       //Filter hook used by disqus plugin
