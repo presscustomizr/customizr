@@ -5233,13 +5233,22 @@ var czrapp = czrapp || {};
             );
             czrapp.userXP.windowWidth.bind( function() {
                   self.headerSearchExpanded( false );
+                  _.delay( function() {
+                     czrapp.$_body.removeClass( _search_overlay_toggle_class );
+                  }, 250 );
             });
             czrapp.$_body.on( _mobile_menu_opened_event, _mobile_menu_sel, function() {
                   self.headerSearchExpanded( false );
+                  _.delay( function() {
+                     czrapp.$_body.removeClass( _search_overlay_toggle_class );
+                  }, 250 );
             });
             if ( czrapp.userXP.stickyHeaderAnimating ) {
                   czrapp.userXP.stickyHeaderAnimating.bind( function() {
                         self.headerSearchExpanded( false );
+                        _.delay( function() {
+                           czrapp.$_body.removeClass( _search_overlay_toggle_class );
+                        }, 250 );
                   });
             }
       },//toggleHeaderSearch

@@ -4184,6 +4184,54 @@ li#wp-admin-bar-tc-customizr-help a {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
+/* SEARCH FORM
+May 2020 for https://github.com/presscustomizr/customizr/issues/1807
+*/
+.czr-search-expand {
+  display: none;
+  background: #ffffff;
+  position: absolute;
+  z-index: 100;
+  top: 49px;
+  right: 0;
+  width: 340px;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.rtl .czr-search-expand {
+  left: 0;
+  right: unset;
+}
+
+.czr-search-expand .czr-search-expand-inner {
+  border: 1px solid #eeeeee;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: -webkit-transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
+  transition: transform 0.35s ease-in-out, height 0.25s ease-in-out, background-color 0.45s ease-in-out;
+  padding: 15px;
+}
+
+.czr-search-expand .czr-search-expand-inner .form-group {
+  margin: 0;
+}
+
+.czr-search-expand .czr-search-expand-inner .form-group .czr-search-field {
+  outline: none !important;
+  color: #313131 !important;
+  border-color: #313131 !important;
+}
+
+.full-search-opened .czr-search-expand {
+  display: block;
+}
+
+@media (max-width: 992px) {
+  .czr-search-expand {
+    display: none !important;
+  }
+}
+
 .vertical-nav .czr-dropdown-menu {
   display: block;
 }

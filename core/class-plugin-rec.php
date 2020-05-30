@@ -27,7 +27,7 @@ function czr_fn_maybe_render_rec_notice() {
       );
 
   $message = sprintf( '<span style="font-weight:normal;">%1$s<br/> %2$s<br/>%3$s<br/>%4$s</span>',
-    __( 'Developers of the Customizr theme have created Nimble Builder, a free, powerful yet easy-to-use page builder already active on 40K+ WordPress websites.',  'customizr'),
+    __( 'Developers of the Customizr theme have created Nimble Builder, a free, powerful yet easy-to-use page builder already active on 50K+ WordPress websites.',  'customizr'),
     __( 'It allows you to drag and drop mobile-ready sections on <i>really</i> any page of your site, including home, posts, pages, products, archives, 404, search pages, ...', 'customizr' ),
     sprintf(
         __( 'You can insert simple text zones, but also create %1$s, insert post grids, column structures, buttons, widget zones, maps, icons, and much more, or use pre-designed sections with professional %2$s.', 'customizr'),

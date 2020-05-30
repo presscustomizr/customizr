@@ -6527,10 +6527,11 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         private function czr_fn_build_attachment_post_metas_model() {
           global $post;
           $metadata       = wp_get_attachment_metadata();
+          $user_date_format = get_option('date_format');
           $_html = sprintf( '%1$s <span class="entry-date"><time class="entry-date updated" datetime="%2$s">%3$s</time></span> %4$s %5$s',
               '<span class="meta-prep meta-prep-entry-date">'.__('Published' , 'customizr').'</span>',
-              apply_filters('tc_use_the_post_modified_date' , false ) ? esc_attr( get_the_date( 'c' ) ) : esc_attr( get_the_modified_date('c') ),
-              esc_html( get_the_date() ),
+              apply_filters('tc_use_the_post_modified_date' , false ) ? esc_attr( get_the_date( $user_date_format ) ) : esc_attr( get_the_modified_date($user_date_format) ),
+              esc_html( get_the_date($user_date_format) ),
               ( isset($metadata['width']) && isset($metadata['height']) ) ? __('at dimensions' , 'customizr').'<a href="'.esc_url( wp_get_attachment_url() ).'" title="'.__('Link to full-size image' , 'customizr').'"> '.$metadata['width'].' &times; '.$metadata['height'].'</a>' : '',
               __('in' , 'customizr').'<a href="'.esc_url( get_permalink( $post->post_parent ) ).'" title="'.__('Return to ' , 'customizr').esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ).'" rel="gallery"> '.get_the_title( $post->post_parent ).'</a>.'
           );
@@ -6813,13 +6814,14 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
 
             $_format = apply_filters( 'tc_meta_date_format' , $_format );
             $_use_post_mod_date = apply_filters( 'tc_use_the_post_modified_date' , 'publication' != $pub_or_update );
+            $user_date_format = get_option('date_format');
             return apply_filters(
                 'tc_date_meta',
                 sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date updated" datetime="%3$s">%4$s</time></a>' ,
                     esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ),
                     esc_attr( get_the_time() ),
-                    $_use_post_mod_date ? esc_attr( get_the_modified_date('c') ) : esc_attr( get_the_date( 'c' ) ),
-                    $_use_post_mod_date ? esc_html( get_the_modified_date( $_format ) ) : esc_html( get_the_date( $_format ) )
+                    $_use_post_mod_date ? esc_attr( get_the_modified_date($_format) ) : esc_attr( get_the_date( $_format ) ),
+                    $_use_post_mod_date ? esc_html( get_the_modified_date( $user_date_format ) ) : esc_html( get_the_date( $user_date_format ) )
                 ),
                 $_use_post_mod_date,
                 $_format
