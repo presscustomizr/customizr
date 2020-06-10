@@ -1,9 +1,10 @@
 <?php
 //@return bool
-function czr_fn_rec_notice_is_dismissed() {
+function czr_fn_rec_notice_is_dismissed( $notice_id = '' ) {
+  $notice_id = ( empty( $notice_id ) || ! is_string( $notice_id ) ) ? REC_NOTICE_ID : $notice_id;
   $dismissed = get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true );
   $dismissed_array = array_filter( explode( ',', (string) $dismissed ) );
-  return ( defined('NIMBLE_RECOMMENDATION_OFF') && true === NIMBLE_RECOMMENDATION_OFF ) || in_array( REC_NOTICE_ID, $dismissed_array );
+  return ( defined('NIMBLE_RECOMMENDATION_OFF') && true === NIMBLE_RECOMMENDATION_OFF ) || in_array( $notice_id, $dismissed_array );
 }
 
 add_action( 'admin_notices', 'czr_fn_maybe_render_rec_notice' );
@@ -12,13 +13,36 @@ function czr_fn_maybe_render_rec_notice() {
   if ( isset( $screen->parent_file ) && 'plugins.php' === $screen->parent_file && 'update' === $screen->id ) {
     return;
   }
-  if ( czr_fn_rec_notice_is_dismissed() )
+  if ( czr_fn_rec_notice_is_dismissed( REC_NOTICE_ID ) )
     return;
 
   $plugin = 'nimble-builder/nimble-builder.php';
   $installed_plugins = get_plugins();
   $is_nimble_installed = isset( $installed_plugins[ $plugin ] );
 
+  if ( $is_nimble_installed ) {
+    if ( ! current_user_can( 'activate_plugins' ) ) {
+      return;
+    }
+    $button_text = __( 'Activate Nimble Builder Now', 'customizr' );
+    $button_link = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin );
+  } else {
+    if ( ! current_user_can( 'install_plugins' ) ) {
+      return;
+    }
+    $button_text = __( 'Install Nimble Builder Now', 'customizr' );
+    $button_link = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=nimble-builder' ), 'install-plugin_nimble-builder' );
+  }
+
+  if ( czr_fn_rec_notice_is_dismissed( PREV_REC_NOTICE_ID ) ) {
+      czr_fn_print_s_rec_notice( $button_text, $button_link );
+  } else {
+      czr_fn_print_l_rec_notice( $button_text, $button_link );
+  }
+}
+
+
+function czr_fn_print_l_rec_notice( $button_text, $button_link ) {
   $heading = sprintf( __('Customizr theme recommends %1$s.', 'customizr' ),
           sprintf('<a href="%1$s" class="thickbox" target="_blank">%2$s</a>',
               wp_nonce_url( 'plugin-install.php?tab=plugin-information&amp;plugin=nimble-builder&amp;TB_iframe=true&amp;width=640&amp;height=500'),
@@ -37,19 +61,6 @@ function czr_fn_maybe_render_rec_notice() {
     __( "The plugin is lightweight and has been designed to integrate seamlessly with Customizr and any WordPress theme.", 'customizr')
   );
 
-  if ( $is_nimble_installed ) {
-    if ( ! current_user_can( 'activate_plugins' ) ) {
-      return;
-    }
-    $button_text = __( 'Activate Nimble Builder Now', 'customizr' );
-    $button_link = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin );
-  } else {
-    if ( ! current_user_can( 'install_plugins' ) ) {
-      return;
-    }
-    $button_text = __( 'Install Nimble Builder Now', 'customizr' );
-    $button_link = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=nimble-builder' ), 'install-plugin_nimble-builder' );
-  }
   $notice_id = REC_NOTICE_ID;
   ?>
   <script>
@@ -70,6 +81,38 @@ function czr_fn_maybe_render_rec_notice() {
         <span class="czr-rec-button"><a class="button button-primary button-hero activate-now" href="<?php echo esc_attr( $button_link ); ?>" data-name="Nimble Builder" data-slug="nimble-builder"><?php echo $button_text; ?></a></span>
       </div>
       <div class="czr-tgmpa-img-block"><img src="https://f060d5e1352d17626dec-db6380d80b2761f95de6177fb4431643.ssl.cf5.rackcdn.com/img/nimble_customizr_145.gif" alt="Nimble Builder" title="Nimble Builder" class="czr-nimble-img"></div>
+    </div>
+  </div>
+  <?php
+}
+
+function czr_fn_print_s_rec_notice( $button_text, $button_link ) {
+  $heading = sprintf( __('Customizr theme recommends %1$s.', 'customizr' ),
+          sprintf('<a href="%1$s" class="thickbox" target="_blank">%2$s</a>',
+              wp_nonce_url( 'plugin-install.php?tab=plugin-information&amp;plugin=nimble-builder&amp;TB_iframe=true&amp;width=640&amp;height=500'),
+              __('Nimble Page Builder', 'customizr')
+          )
+      );
+  $notice_id = REC_NOTICE_ID;
+  ?>
+  <script>
+    jQuery( function( $ ) {
+    $( <?php echo wp_json_encode( "#$notice_id" ); ?> ).on( 'click', '.notice-dismiss', function() {
+      $.post( ajaxurl, {
+        pointer: <?php echo wp_json_encode( $notice_id ); ?>,
+        action: 'dismiss-wp-pointer'
+      } );
+    } );
+  } );
+  </script>
+  <div class="notice updated is-dismissible czr-nimble-rec-notice" id="<?php echo esc_attr( $notice_id ); ?>">
+    <div class="czr-nimble-rec-notice-inner">
+      <div class="">
+        <h3><span class="czr-nimble-rec-notice-icon"><img src="<?php echo get_template_directory_uri() . '/assets/back/img/nimble_icon.svg'; ?>" alt="Nimble Builder Logo" /></span><span class="czr-nimble-rec-notice-title"><?php echo $heading; ?></span>
+          <span class=""><a class="button button-primary activate-now" href="<?php echo esc_attr( $button_link ); ?>" data-name="Nimble Builder" data-slug="nimble-builder"><?php echo $button_text; ?></a></span>
+        </h3>
+
+      </div>
     </div>
   </div>
   <?php

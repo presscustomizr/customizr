@@ -163,7 +163,7 @@ if ( ! function_exists( 'czr_fn_setup_constants' ) ):
         if( ! defined( 'TC_BASE_URL' ) )        define( 'TC_BASE_URL' , CZR_BASE_URL );
         //TC_BASE_URL_CHILD http url of the loaded child theme
         if( ! defined( 'TC_BASE_URL_CHILD' ) )  define( 'TC_BASE_URL_CHILD' , CZR_BASE_URL_CHILD );
-
+        if( ! defined( 'PREV_REC_NOTICE_ID' ) )  define( 'PREV_REC_NOTICE_ID' , 'rec-notice-1119' );
         if( ! defined( 'REC_NOTICE_ID' ) )  define( 'REC_NOTICE_ID' , 'rec-notice-0620' );
 
         //fire an action hook after constants have been set up
