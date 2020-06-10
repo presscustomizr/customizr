@@ -2342,7 +2342,7 @@ function czr_fn_performance_option_map( $get_default = null ) {
                           'priority'    => 60,
           ),
           'tc_preload_gfonts' => array(
-                          'default'       => 0,
+                          'default'       => 1,
                           'control'   => 'CZR_controls' ,
                           'label'       => __( "Preload Google Fonts", 'customizr' ),
                           'section'     => 'performances_sec' ,
