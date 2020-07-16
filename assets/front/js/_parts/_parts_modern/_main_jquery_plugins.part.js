@@ -266,6 +266,10 @@ var czrapp = czrapp || {};
             // This is a wrapper for $.fn.magnificPopup
             // magnificPopup should be loaded only when a candidate becomes visible
             czrMagnificPopup : function( $lightBoxCandidate, params ) {
+                  // Is lightbox enabled ?
+                  if ( !CZRParams.isLightBoxEnabled )
+                    return;
+
                   if ( 1 > $lightBoxCandidate.length )
                     return;
 
@@ -342,37 +346,43 @@ var czrapp = czrapp || {};
                   * but also when clicking on an another a.expand-img the image speficified in the
                   * dynamically added a.expang-img href is added to the gallery
                   */
-                  this.czrMagnificPopup( $( '[class*="grid-container__"]' ), {
-                    delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
-                    type: 'image'
-                    // other options
-                  });
+                  if ( $('a.expand-img').length > 0 ) {
+                        this.czrMagnificPopup( $( '[class*="grid-container__"]' ), {
+                          delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
+                          type: 'image'
+                          // other options
+                        });
+                  }
 
 
                   /* galleries in singles Create grouped galleries */
-                  $( '.czr-gallery' ).each( function(){
-                        self.czrMagnificPopup( $(this), {
-                              delegate: '[data-lb-type="grouped-gallery"]', // child items selector, by clicking on it popup will open
-                              type: 'image',
-                              gallery: {
-                                    enabled: true,
-                                    arrowMarkup: _arrowMarkup
-                              }
-                              // other options
+                  if ( $('[data-lb-type="grouped-gallery"]').length > 0 ) {
+                        $( '.czr-gallery' ).each( function(){
+                              self.czrMagnificPopup( $(this), {
+                                    delegate: '[data-lb-type="grouped-gallery"]', // child items selector, by clicking on it popup will open
+                                    type: 'image',
+                                    gallery: {
+                                          enabled: true,
+                                          arrowMarkup: _arrowMarkup
+                                    }
+                                    // other options
+                              });
                         });
-                  });
+                  }
 
                   /*
                   * in singular, or in post list plain, when former tc_fancybox enabled
                   */
-                  this.czrMagnificPopup( $('#content'), {
-                        delegate: '[data-lb-type="grouped-post"]',
-                        type: 'image',
-                        gallery: {
-                             enabled: true,
-                             arrowMarkup: _arrowMarkup
-                        }
-                  });
+                  if ( $('[data-lb-type="grouped-post"]').length > 0 ) {
+                        this.czrMagnificPopup( $('#content'), {
+                              delegate: '[data-lb-type="grouped-post"]',
+                              type: 'image',
+                              gallery: {
+                                   enabled: true,
+                                   arrowMarkup: _arrowMarkup
+                              }
+                        });
+                  }
 
                   //in post lists galleries post formats
                   //only one button for each gallery
