@@ -3,7 +3,7 @@ if ( ! class_exists( 'CZR_controller_footer' ) ) :
   class CZR_controller_footer extends CZR_controllers {
     static $instance;
 
-    function czr_fn_display_view_footer_push () {
+    function czr_fn_display_view_footer_push() {
       return esc_attr( czr_fn_opt( 'tc_sticky_footer') ) || czr_fn_is_customizing();
     }
 

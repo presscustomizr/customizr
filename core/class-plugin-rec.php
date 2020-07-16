@@ -1,4 +1,4 @@
-<?php
+  <?php
 //@return bool
 function czr_fn_rec_notice_is_dismissed( $notice_id = '' ) {
   $notice_id = ( empty( $notice_id ) || ! is_string( $notice_id ) ) ? REC_NOTICE_ID : $notice_id;
@@ -76,23 +76,26 @@ function czr_fn_print_l_rec_notice( $button_text, $button_link ) {
   <div class="notice updated is-dismissible czr-nimble-rec-notice" id="<?php echo esc_attr( $notice_id ); ?>">
     <div class="czr-nimble-rec-notice-inner">
       <div class="czr-rec-text-block">
-        <h3><span class="czr-nimble-rec-notice-icon"><img src="<?php echo get_template_directory_uri() . '/assets/back/img/nimble_icon.svg'; ?>" alt="Nimble Builder Logo" /></span><span class="czr-nimble-rec-notice-title"><?php echo $heading; ?></span></h3>
+        <h3><span class="czr-nimble-rec-notice-icon"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/back/img/nimble_icon.svg'; ?>" alt="Nimble Builder Logo" /></span><span class="czr-nimble-rec-notice-title"><?php echo $heading; ?></span></h3>
         <p><?php echo $message; ?></p>
         <span class="czr-rec-button"><a class="button button-primary button-hero activate-now" href="<?php echo esc_attr( $button_link ); ?>" data-name="Nimble Builder" data-slug="nimble-builder"><?php echo $button_text; ?></a></span>
       </div>
-      <div class="czr-tgmpa-img-block"><img src="https://f060d5e1352d17626dec-db6380d80b2761f95de6177fb4431643.ssl.cf5.rackcdn.com/img/nimble_customizr_145.gif" alt="Nimble Builder" title="Nimble Builder" class="czr-nimble-img"></div>
+      <div class="czr-tgmpa-img-block"><img src="https://api.nimblebuilder.com/wp-content/uploads/2020/06/nimble_customizr_145.gif" alt="Nimble Builder" title="Nimble Builder" class="czr-nimble-img"></div>
     </div>
   </div>
   <?php
 }
 
 function czr_fn_print_s_rec_notice( $button_text, $button_link ) {
-  $heading = sprintf( __('Customizr theme recommends %1$s.', 'customizr' ),
-          sprintf('<a href="%1$s" class="thickbox" target="_blank">%2$s</a>',
-              wp_nonce_url( 'plugin-install.php?tab=plugin-information&amp;plugin=nimble-builder&amp;TB_iframe=true&amp;width=640&amp;height=500'),
-              __('Nimble Page Builder', 'customizr')
-          )
-      );
+  $heading = sprintf( __('Customizr theme recommends the simple and smart %1$s companion ( free 😍 ) to help you build pages %2$s.', 'customizr' ),
+      sprintf('<a href="%1$s" class="thickbox" target="_blank">%2$s</a>',
+          wp_nonce_url( 'plugin-install.php?tab=plugin-information&amp;plugin=nimble-builder&amp;TB_iframe=true&amp;width=640&amp;height=500'),
+          __('Nimble Builder', 'customizr')
+      ),
+      sprintf('<a href="https://nimblebuilder.com/landing-page-one/" target="_blank" rel="noreferrer noopener">%1$s</a>',
+          __('like this', 'customizr')
+      )
+  );
   $notice_id = REC_NOTICE_ID;
   ?>
   <script>
@@ -108,7 +111,7 @@ function czr_fn_print_s_rec_notice( $button_text, $button_link ) {
   <div class="notice updated is-dismissible czr-nimble-rec-notice" id="<?php echo esc_attr( $notice_id ); ?>">
     <div class="czr-nimble-rec-notice-inner">
       <div class="">
-        <h3><span class="czr-nimble-rec-notice-icon"><img src="<?php echo get_template_directory_uri() . '/assets/back/img/nimble_icon.svg'; ?>" alt="Nimble Builder Logo" /></span><span class="czr-nimble-rec-notice-title"><?php echo $heading; ?></span>
+        <h3><span class="czr-nimble-rec-notice-icon"><img src="<?php echo esc_url( get_template_directory_uri() ) . '/assets/back/img/nimble_icon.svg'; ?>" alt="Nimble Builder Logo" /></span><span class="czr-nimble-rec-notice-title"><?php echo $heading; ?></span>
           <span class=""><a class="button button-primary activate-now" href="<?php echo esc_attr( $button_link ); ?>" data-name="Nimble Builder" data-slug="nimble-builder"><?php echo $button_text; ?></a></span>
         </h3>
 

@@ -2376,7 +2376,7 @@ var TCParams = TCParams || {};
         return;
       }
       if ( this.options.addIcon && 0 === $_external_icon.length ) {
-        this.$_el.after('<span class="' + self.options.iconClassName + '">');
+        this.$_el.append('<span class="' + self.options.iconClassName + '">');
       }
       if ( this.options.newTab && '_blank' != this.$_el.attr('target') )
         this.$_el.attr('target' , '_blank');

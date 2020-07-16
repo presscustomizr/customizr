@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v2.0 or later.=!>
 msgid ""
 msgstr ""
-"Project-Id-Version: Customizr 4.2.7\n"
+"Project-Id-Version: Customizr 4.2.8\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2020-05-30 18:05:37+00:00\n"
+"POT-Creation-Date: 2020-07-16 13:26:59+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -335,64 +335,82 @@ msgstr ""
 msgid "a short guide here."
 msgstr ""
 
-#: build/free/customizr/core/class-plugin-rec.php:22
-#: core/class-plugin-rec.php:22
+#: build/free/customizr/core/class-plugin-rec.php:27
+#: core/class-plugin-rec.php:27
+msgid "Activate Nimble Builder Now"
+msgstr ""
+
+#: build/free/customizr/core/class-plugin-rec.php:33
+#: core/class-plugin-rec.php:33
+msgid "Install Nimble Builder Now"
+msgstr ""
+
+#: build/free/customizr/core/class-plugin-rec.php:46
+#: core/class-plugin-rec.php:46
 msgid "Customizr theme recommends %1$s."
 msgstr ""
 
-#: build/free/customizr/core/class-plugin-rec.php:25
-#: core/class-plugin-rec.php:25
+#: build/free/customizr/core/class-plugin-rec.php:49
+#: core/class-plugin-rec.php:49
 msgid "Nimble Page Builder"
 msgstr ""
 
-#: build/free/customizr/core/class-plugin-rec.php:30
+#: build/free/customizr/core/class-plugin-rec.php:54
+#: core/class-plugin-rec.php:54
 msgid ""
 "Developers of the Customizr theme have created Nimble Builder, a free, "
-"powerful yet easy-to-use page builder already active on 40K+ WordPress "
+"powerful yet easy-to-use page builder already active on 50K+ WordPress "
 "websites."
 msgstr ""
 
-#: build/free/customizr/core/class-plugin-rec.php:31
-#: core/class-plugin-rec.php:31
+#: build/free/customizr/core/class-plugin-rec.php:55
+#: core/class-plugin-rec.php:55
 msgid ""
 "It allows you to drag and drop mobile-ready sections on <i>really</i> any "
 "page of your site, including home, posts, pages, products, archives, 404, "
 "search pages, ..."
 msgstr ""
 
-#: build/free/customizr/core/class-plugin-rec.php:33
-#: core/class-plugin-rec.php:33
+#: build/free/customizr/core/class-plugin-rec.php:57
+#: core/class-plugin-rec.php:57
 msgid ""
 "You can insert simple text zones, but also create %1$s, insert post grids, "
 "column structures, buttons, widget zones, maps, icons, and much more, or "
 "use pre-designed sections with professional %2$s."
 msgstr ""
 
-#: build/free/customizr/core/class-plugin-rec.php:34
-#: core/class-plugin-rec.php:34
+#: build/free/customizr/core/class-plugin-rec.php:58
+#: core/class-plugin-rec.php:58
 msgid "video backgrounds"
 msgstr ""
 
-#: build/free/customizr/core/class-plugin-rec.php:35
-#: core/class-plugin-rec.php:35
+#: build/free/customizr/core/class-plugin-rec.php:59
+#: core/class-plugin-rec.php:59
 msgid "parallax effect"
 msgstr ""
 
-#: build/free/customizr/core/class-plugin-rec.php:37
-#: core/class-plugin-rec.php:37
+#: build/free/customizr/core/class-plugin-rec.php:61
+#: core/class-plugin-rec.php:61
 msgid ""
 "The plugin is lightweight and has been designed to integrate seamlessly "
 "with Customizr and any WordPress theme."
 msgstr ""
 
-#: build/free/customizr/core/class-plugin-rec.php:44
-#: core/class-plugin-rec.php:44
-msgid "Activate Nimble Builder Now"
+#: build/free/customizr/core/class-plugin-rec.php:90
+#: core/class-plugin-rec.php:90
+msgid ""
+"Customizr theme recommends the simple and smart %1$s companion ( free 😍 ) "
+"to help you build pages %2$s."
 msgstr ""
 
-#: build/free/customizr/core/class-plugin-rec.php:50
-#: core/class-plugin-rec.php:50
-msgid "Install Nimble Builder Now"
+#: build/free/customizr/core/class-plugin-rec.php:93
+#: core/class-plugin-rec.php:93
+msgid "Nimble Builder"
+msgstr ""
+
+#: build/free/customizr/core/class-plugin-rec.php:96
+#: core/class-plugin-rec.php:96
+msgid "like this"
 msgstr ""
 
 #: build/free/customizr/core/core-functions.php:1505
@@ -515,8 +533,8 @@ msgid ""
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:329
-#: build/free/customizr/core/init-base.php:1136 core/core-settings-map.php:329
-#: core/init-base.php:1136
+#: build/free/customizr/core/init-base.php:1113 core/core-settings-map.php:329
+#: core/init-base.php:1113
 msgid "Create and organize your social links"
 msgstr ""
 
@@ -1017,8 +1035,8 @@ msgid "Specific Mobile Menu"
 msgstr ""
 
 #: build/free/customizr/core/core-settings-map.php:820
-#: build/free/customizr/core/init-base.php:414 core/core-settings-map.php:820
-#: core/init-base.php:414
+#: build/free/customizr/core/init-base.php:412 core/core-settings-map.php:820
+#: core/init-base.php:412
 msgid "Main Menu"
 msgstr ""
 
@@ -4253,22 +4271,22 @@ msgid ""
 "screen : see your changes live !"
 msgstr ""
 
-#: build/free/customizr/core/init-base.php:415 core/init-base.php:415
+#: build/free/customizr/core/init-base.php:413 core/init-base.php:413
 msgid "Secondary (horizontal) Menu"
 msgstr ""
 
-#: build/free/customizr/core/init-base.php:417 core/init-base.php:417
+#: build/free/customizr/core/init-base.php:415 core/init-base.php:415
 msgid ""
 "Horizontal Top Bar Menu. (make sure that the topbar is displayed in the "
 "header settings )."
 msgstr ""
 
-#: build/free/customizr/core/init-base.php:418 core/init-base.php:418
+#: build/free/customizr/core/init-base.php:416 core/init-base.php:416
 msgid "Mobile Menu"
 msgstr ""
 
-#: build/free/customizr/core/init-base.php:1129
-#: build/free/customizr/inc/czr-init-ccat.php:3156 core/init-base.php:1129
+#: build/free/customizr/core/init-base.php:1106
+#: build/free/customizr/inc/czr-init-ccat.php:3156 core/init-base.php:1106
 #: inc/_dev/class-fire-utils_settings_map.php:1213 inc/czr-init-ccat.php:3156
 msgid "Social links"
 msgstr ""
@@ -5477,13 +5495,6 @@ msgstr ""
 #: build/free/customizr/templates/parts/modules/related-posts/related_posts.php:23
 #: templates/parts/modules/related-posts/related_posts.php:23
 msgid "Next related articles"
-msgstr ""
-
-#: core/class-plugin-rec.php:30
-msgid ""
-"Developers of the Customizr theme have created Nimble Builder, a free, "
-"powerful yet easy-to-use page builder already active on 50K+ WordPress "
-"websites."
 msgstr ""
 
 #. Theme Name of the plugin/theme

@@ -1204,7 +1204,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
         return;
       }
       if ( this.options.addIcon && 0 === $_external_icon.length ) {
-        this.$_el.after('<span class="' + self.options.iconClassName + '">');
+        this.$_el.append('<span class="' + self.options.iconClassName + '">');
       }
       if ( this.options.newTab && '_blank' != this.$_el.attr('target') )
         this.$_el.attr('target' , '_blank');
@@ -3713,6 +3713,9 @@ var czrapp = czrapp || {};
                   );
             },
             czrMagnificPopup : function( $lightBoxCandidate, params ) {
+                  if ( !CZRParams.isLightBoxEnabled )
+                    return;
+
                   if ( 1 > $lightBoxCandidate.length )
                     return;
 
@@ -3768,28 +3771,34 @@ var czrapp = czrapp || {};
             lightBox : function() {
                   var self = this,
                       _arrowMarkup = '<span class="czr-carousel-control btn btn-skin-dark-shaded inverted mfp-arrow-%dir% icn-%dir%-open-big"></span>';
-                  this.czrMagnificPopup( $( '[class*="grid-container__"]' ), {
-                    delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
-                    type: 'image'
-                  });
-                  $( '.czr-gallery' ).each( function(){
-                        self.czrMagnificPopup( $(this), {
-                              delegate: '[data-lb-type="grouped-gallery"]', // child items selector, by clicking on it popup will open
+                  if ( $('a.expand-img').length > 0 ) {
+                        this.czrMagnificPopup( $( '[class*="grid-container__"]' ), {
+                          delegate: 'a.expand-img', // child items selector, by clicking on it popup will open
+                          type: 'image'
+                        });
+                  }
+                  if ( $('[data-lb-type="grouped-gallery"]').length > 0 ) {
+                        $( '.czr-gallery' ).each( function(){
+                              self.czrMagnificPopup( $(this), {
+                                    delegate: '[data-lb-type="grouped-gallery"]', // child items selector, by clicking on it popup will open
+                                    type: 'image',
+                                    gallery: {
+                                          enabled: true,
+                                          arrowMarkup: _arrowMarkup
+                                    }
+                              });
+                        });
+                  }
+                  if ( $('[data-lb-type="grouped-post"]').length > 0 ) {
+                        this.czrMagnificPopup( $('#content'), {
+                              delegate: '[data-lb-type="grouped-post"]',
                               type: 'image',
                               gallery: {
-                                    enabled: true,
-                                    arrowMarkup: _arrowMarkup
+                                   enabled: true,
+                                   arrowMarkup: _arrowMarkup
                               }
                         });
-                  });
-                  this.czrMagnificPopup( $('#content'), {
-                        delegate: '[data-lb-type="grouped-post"]',
-                        type: 'image',
-                        gallery: {
-                             enabled: true,
-                             arrowMarkup: _arrowMarkup
-                        }
-                  });
+                  }
                   czrapp.$_body.on( 'click', '[class*="grid-container__"] .expand-img-gallery', function(e) {
                         e.preventDefault();
 

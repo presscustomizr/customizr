@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.3.2
-Stable tag: 4.2.7
+Stable tag: 4.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,11 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
+= 4.2.8 July 16th 2020 =
+* fixed : [Theme check] adapt to latest additions by theme review team. for #1848
+* fixed : [magnific popup] should not be loaded when ligthbox option is unchecked. fixes #1851
+* improved : [performances] preload Google Fonts by default
+
 = 4.2.7 May 30th 2020 =
 * added : [search form] on desktop new simple default mode for search form in header. Full screen search is optional in Customizing ▸ Header ▸ Design settings for desktops and laptops ▸ Search icon. fixes #1807
 * added : [post metas] add a way to hook before and after. fixes #1842
