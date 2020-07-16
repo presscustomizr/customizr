@@ -1265,7 +1265,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                <h4><?php _e( 'Description text (below the title, 250 char. max length)' , 'customizr' ); ?></h4>
            </div>
            <div class="meta-box-item-content">
-               <textarea name="<?php echo esc_attr( $text_id); ?>" id="<?php echo esc_attr( $text_id); ?>" style="width:50%"><?php echo esc_attr( $text_value); ?></textarea>
+               <textarea name="<?php echo esc_attr( $text_id); ?>" id="<?php echo esc_attr( $text_id); ?>" style="width:50%"><?php echo esc_html( $text_value); ?></textarea>
            </div>
 
             <div class="meta-box-item-title">

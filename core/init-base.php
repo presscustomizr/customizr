@@ -383,8 +383,6 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
             }
 
-            //add support for svg and svgz format in media upload
-            add_filter( 'upload_mimes'                        , array( $this , 'czr_fn_custom_mtypes' ) );
 
             // Add theme support for selective refresh for widgets.
             // Only add if the link manager is not enabled
@@ -418,27 +416,6 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
               register_nav_menu( 'mobile' , __( 'Mobile Menu' , 'customizr' ) );
             }
         }
-
-
-
-
-
-
-
-
-
-      /**
-      * Returns the $mimes array with svg and svgz entries added
-      *
-      */
-      function czr_fn_custom_mtypes( $mimes ) {
-        if (! apply_filters( 'tc_add_svg_mime_type' , true ) )
-          return $mimes;
-
-        $mimes['svg']   = 'image/svg+xml';
-        $mimes['svgz']  = 'image/svg+xml';
-        return $mimes;
-      }
 
 
 
