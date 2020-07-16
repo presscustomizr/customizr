@@ -1,4 +1,4 @@
-  <?php
+<?php
 //@return bool
 function czr_fn_rec_notice_is_dismissed( $notice_id = '' ) {
   $notice_id = ( empty( $notice_id ) || ! is_string( $notice_id ) ) ? REC_NOTICE_ID : $notice_id;
