@@ -198,6 +198,24 @@ if ( !class_exists( 'CZR_Fmk_Base_Load_Resources' ) ) :
             wp_enqueue_script( 'wp-color-picker' );
             wp_enqueue_style( 'wp-color-picker' );
 
+            // July 2020 : compatibility with WP5.5 => wpColorPickerL10n are not loaded by WP core anymore, but we need them for the custom czr-alpha-colorpicker.js
+            // see https://github.com/presscustomizr/nimble-builder/issues/729
+            global $wp_version;
+            if ( version_compare( $wp_version, '5.4.2' , '>=' ) ) {
+                wp_localize_script(
+                  'wp-color-picker',
+                  'wpColorPickerL10n',
+                  array(
+                    'clear'            => __( 'Clear', 'customizr' ),
+                    'clearAriaLabel'   => __( 'Clear color', 'customizr' ),
+                    'defaultString'    => __( 'Default', 'customizr' ),
+                    'defaultAriaLabel' => __( 'Select default color', 'customizr' ),
+                    'pick'             => __( 'Select Color', 'customizr' ),
+                    'defaultLabel'     => __( 'Color value', 'customizr' )
+                  )
+                );
+            }
+
             //'czr-customizer-fmk' will be enqueued as a dependency of 'font-customizer-control' only in plugin mode
             wp_enqueue_script(
                 'czr-customizer-fmk',
