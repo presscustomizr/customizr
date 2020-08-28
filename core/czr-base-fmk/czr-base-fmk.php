@@ -206,12 +206,12 @@ if ( !class_exists( 'CZR_Fmk_Base_Load_Resources' ) ) :
                   'wp-color-picker',
                   'wpColorPickerL10n',
                   array(
-                    'clear'            => __( 'Clear' ),
-                    'clearAriaLabel'   => __( 'Clear color' ),
-                    'defaultString'    => __( 'Default' ),
-                    'defaultAriaLabel' => __( 'Select default color' ),
-                    'pick'             => __( 'Select Color' ),
-                    'defaultLabel'     => __( 'Color value' )
+                    'clear'            => __( 'Clear', 'customizr' ),
+                    'clearAriaLabel'   => __( 'Clear color', 'customizr' ),
+                    'defaultString'    => __( 'Default', 'customizr' ),
+                    'defaultAriaLabel' => __( 'Select default color', 'customizr' ),
+                    'pick'             => __( 'Select Color', 'customizr' ),
+                    'defaultLabel'     => __( 'Color value', 'customizr' )
                   )
                 );
             }
@@ -257,25 +257,25 @@ if ( !class_exists( 'CZR_Fmk_Base_Load_Resources' ) ) :
                       'isDevMode' => ( defined('WP_DEBUG') && true === WP_DEBUG ) || ( defined('CZR_DEV') && true === CZR_DEV ),
                       'docURL'          => esc_url('docs.presscustomizr.com/'),
                       'i18n' => array(
-                            'edit' => __('Edit', 'text_doma'),
-                            'close' => __('Close', 'text_doma'),
-                            'notset' => __('Not set', 'text_doma'),
-                            'successMessage' => __('Done !', 'text_doma'),
+                            'edit' => __('Edit', 'customizr'),
+                            'close' => __('Close', 'customizr'),
+                            'notset' => __('Not set', 'customizr'),
+                            'successMessage' => __('Done !', 'customizr'),
 
-                            'readDocumentation' => __('Learn more about this in the documentation', 'text_doma'),
-                            'Settings' => __('Settings', 'text_doma'),
-                            'Options for' => __('Options for', 'text_doma'),
+                            'readDocumentation' => __('Learn more about this in the documentation', 'customizr'),
+                            'Settings' => __('Settings', 'customizr'),
+                            'Options for' => __('Options for', 'customizr'),
 
                             // img upload translation
-                            'select_image'        => __( 'Select Image', 'text_doma' ),
-                            'change_image'        => __( 'Change Image', 'text_doma' ),
-                            'remove_image'        => __( 'Remove', 'text_doma' ),
-                            'default_image'       => __( 'Default', 'text_doma'  ),
-                            'placeholder_image'   => __( 'No image selected', 'text_doma' ),
-                            'frame_title_image'   => __( 'Select Image', 'text_doma' ),
-                            'frame_button_image'  => __( 'Choose Image', 'text_doma' ),
+                            'select_image'        => __( 'Select Image', 'customizr' ),
+                            'change_image'        => __( 'Change Image', 'customizr' ),
+                            'remove_image'        => __( 'Remove', 'customizr' ),
+                            'default_image'       => __( 'Default', 'customizr'  ),
+                            'placeholder_image'   => __( 'No image selected', 'customizr' ),
+                            'frame_title_image'   => __( 'Select Image', 'customizr' ),
+                            'frame_button_image'  => __( 'Choose Image', 'customizr' ),
 
-                            'Customizing' => __('Customizing', 'text_doma'),
+                            'Customizing' => __('Customizing', 'customizr'),
                       ),
                       'paramsForDynamicRegistration' => apply_filters( 'czr_fmk_dynamic_setting_js_params', array() )
                   )
@@ -468,7 +468,7 @@ if ( !class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
             if ( !check_ajax_referer( $action, 'nonce', false ) ) {
                  wp_send_json_error( array(
                   'code' => 'invalid_nonce',
-                  'message' => __( 'ac_set_ajax_czr_tmpl => Security check failed.' ),
+                  'message' => __( 'ac_set_ajax_czr_tmpl => Security check failed.', 'customizr' ),
                 ) );
             }
 
@@ -540,12 +540,12 @@ if ( !class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
             switch ( $requested_tmpl ) {
                 case 'crud-module-part' :
                     ?>
-                      <button class="<?php echo $css_attr['open_pre_add_btn']; ?>"><?php _e('Add New', 'text_doma'); ?> <span class="fas fa-plus-square"></span></button>
+                      <button class="<?php echo $css_attr['open_pre_add_btn']; ?>"><?php _e('Add New', 'customizr'); ?> <span class="fas fa-plus-square"></span></button>
                       <div class="<?php echo $css_attr['pre_add_wrapper']; ?>">
                         <div class="<?php echo $css_attr['pre_add_success']; ?>"><p></p></div>
                         <div class="<?php echo $css_attr['pre_add_item_content']; ?>">
 
-                          <span class="<?php echo $css_attr['cancel_pre_add_btn']; ?> button"><?php _e('Cancel', 'text_doma'); ?></span> <span class="<?php echo $css_attr['add_new_btn']; ?> button"><?php _e('Add it', 'text_doma'); ?></span>
+                          <span class="<?php echo $css_attr['cancel_pre_add_btn']; ?> button"><?php _e('Cancel', 'customizr'); ?></span> <span class="<?php echo $css_attr['add_new_btn']; ?> button"><?php _e('Add it', 'customizr'); ?></span>
                         </div>
                       </div>
                     <?php
@@ -558,7 +558,7 @@ if ( !class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
                         <# } else { #>
                           <div class="<?php echo $css_attr['item_title']; ?>"><h4>{{ data.title }}</h4></div>
                         <# } #>
-                        <div class="<?php echo $css_attr['item_btns']; ?>"><a title="<?php _e('Edit', 'text_doma'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt <?php echo $css_attr['edit_view_btn']; ?>"></a>&nbsp;<a title="<?php _e('Remove', 'text_doma'); ?>" href="javascript:void(0);" class="fas fa-trash <?php echo $css_attr['display_alert_btn']; ?>"></a></div>
+                        <div class="<?php echo $css_attr['item_btns']; ?>"><a title="<?php _e('Edit', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-pencil-alt <?php echo $css_attr['edit_view_btn']; ?>"></a>&nbsp;<a title="<?php _e('Remove', 'customizr'); ?>" href="javascript:void(0);" class="fas fa-trash <?php echo $css_attr['display_alert_btn']; ?>"></a></div>
                         <div class="<?php echo $css_attr['remove_alert_wrapper']; ?>"></div>
                       </div>
                     <?php
@@ -566,8 +566,8 @@ if ( !class_exists( 'CZR_Fmk_Base_Ajax_Filter' ) ) :
 
                 case 'rud-item-alert-part' :
                     ?>
-                      <p class="czr-item-removal-title"><?php _e('Are you sure you want to remove : <strong>{{ data.title }} ?</strong>', 'text_doma'); ?></p>
-                      <span class="<?php echo $css_attr['remove_view_btn']; ?> button"><?php _e('Yes', 'text_doma'); ?></span> <span class="<?php echo $css_attr['cancel_alert_btn']; ?> button"><?php _e('No', 'text_doma'); ?></span>
+                      <p class="czr-item-removal-title"><?php _e('Are you sure you want to remove : <strong>{{ data.title }} ?</strong>', 'customizr'); ?></p>
+                      <span class="<?php echo $css_attr['remove_view_btn']; ?> button"><?php _e('Yes', 'customizr'); ?></span> <span class="<?php echo $css_attr['cancel_alert_btn']; ?> button"><?php _e('No', 'customizr'); ?></span>
                     <?php
                 break;
 
@@ -1682,7 +1682,7 @@ if ( !class_exists( 'CZR_Fmk_Base' ) ) :
               return array_merge(
                   array(
                       array(
-                         'title'      => sprintf( '<span style="font-weight:bold">%1$s</span>', __('Set a custom url', 'text_doma') ),
+                         'title'      => sprintf( '<span style="font-weight:bold">%1$s</span>', __('Set a custom url', 'customizr') ),
                          'type'       => '',
                          'type_label' => '',
                          'object'     => '',
@@ -1716,7 +1716,7 @@ if ( !class_exists( 'CZR_Fmk_Base' ) ) :
             if ( !check_ajax_referer( $action, 'nonce', false ) ) {
                  wp_send_json_error( array(
                   'code' => 'invalid_nonce',
-                  'message' => __( 'ajax_load_available_items => Security check failed.' ),
+                  'message' => __( 'ajax_load_available_items => Security check failed.', 'customizr' ),
                 ) );
             }
 
@@ -1837,7 +1837,7 @@ if ( !class_exists( 'CZR_Fmk_Base' ) ) :
                         $post_title = $post->post_title;
                         if ( '' === $post_title ) {
                           // translators: %d: ID of a post
-                          $post_title = sprintf( __( '#%d (no title)', 'text_doma' ), $post->ID );
+                          $post_title = sprintf( __( '#%d (no title)', 'customizr' ), $post->ID );
                         }
                         $items[] = array(
                             'title'      => html_entity_decode( $post_title, ENT_QUOTES, get_bloginfo( 'charset' ) ),
@@ -1916,7 +1916,7 @@ if ( !class_exists( 'CZR_Fmk_Base' ) ) :
             if ( !check_ajax_referer( $action, 'nonce', false ) ) {
                 wp_send_json_error( array(
                     'code' => 'invalid_nonce',
-                    'message' => __( 'ajax_load_available_items => Security check failed.' ),
+                    'message' => __( 'ajax_load_available_items => Security check failed.', 'customizr' ),
                 ) );
             }
 
@@ -1980,7 +1980,7 @@ if ( !class_exists( 'CZR_Fmk_Base' ) ) :
             remove_filter( 'pre_post_link', array( $this, 'dont_use_fancy_permalinks' ), 999 );
 
             if ( empty( $items ) ) {
-                wp_send_json_success( array( 'message' => __( 'No results found.', 'text_doma') ) );
+                wp_send_json_success( array( 'message' => __( 'No results found.', 'customizr') ) );
             } else {
                 wp_send_json_success( array(
                     'items' => apply_filters( 'content_picker_ajax_items', $items, $p, 'ajax_search_available_items' )
@@ -2046,7 +2046,7 @@ if ( !class_exists( 'CZR_Fmk_Base' ) ) :
                             $post_title = $post->post_title;
                             if ( '' === $post_title ) {
                               /* translators: %d: ID of a post */
-                              $post_title = sprintf( __( '#%d (no title)', 'text_doma' ), $post->ID );
+                              $post_title = sprintf( __( '#%d (no title)', 'customizr' ), $post->ID );
                             }
                             $items[] = array(
                                 'title'      => html_entity_decode( $post_title, ENT_QUOTES, get_bloginfo( 'charset' ) ),

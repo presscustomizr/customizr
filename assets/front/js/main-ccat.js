@@ -2363,6 +2363,13 @@ var czrapp = czrapp || {};
                 _mobile_menu_sel                = '.mobile-nav__nav';
             czrapp.$_body.on( _search_toggle_event, _search_overlay_toggler_sel, function(evt) {
                   evt.preventDefault();
+                  var search_icon = $(_search_overlay_toggler_sel),
+                      rect = search_icon[0].getBoundingClientRect(),
+                      winWidth = $(window).width(),
+                      isLeftSide = rect.left < winWidth/2;
+
+                  czrapp.$_body.removeClass( 'search-icon-left').removeClass('search-icon-right');
+                  czrapp.$_body.toggleClass( isLeftSide ? 'search-icon-left' : 'search-icon-right' );
                   czrapp.$_body.toggleClass( _search_overlay_toggle_class );
             });
             czrapp.$_body.on( transitionEnd, _transitioning_el_sel, function( evt ) {

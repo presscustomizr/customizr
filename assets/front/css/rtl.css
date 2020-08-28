@@ -4453,15 +4453,17 @@ May 2020 for https://github.com/presscustomizr/customizr/issues/1807
   position: absolute;
   z-index: 100;
   top: 49px;
-  right: 0;
   width: 340px;
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.rtl .czr-search-expand {
+.search-icon-left .czr-search-expand {
   left: 0;
-  right: unset;
+}
+
+.search-icon-right .czr-search-expand {
+  right: 0;
 }
 
 .czr-search-expand .czr-search-expand-inner {
