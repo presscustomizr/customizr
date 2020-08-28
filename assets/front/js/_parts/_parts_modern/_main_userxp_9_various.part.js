@@ -239,6 +239,17 @@ var czrapp = czrapp || {};
             /* header search overlay button */
             czrapp.$_body.on( _search_toggle_event, _search_overlay_toggler_sel, function(evt) {
                   evt.preventDefault();
+
+                  // determine the position of the search icon to add a body class
+                  // so that the search field is not partially hidden
+                  // @see issue : https://github.com/presscustomizr/customizr/issues/1854
+                  var search_icon = $(_search_overlay_toggler_sel),
+                      rect = search_icon[0].getBoundingClientRect(),
+                      winWidth = $(window).width(),
+                      isLeftSide = rect.left < winWidth/2;
+
+                  czrapp.$_body.removeClass( 'search-icon-left').removeClass('search-icon-right');
+                  czrapp.$_body.toggleClass( isLeftSide ? 'search-icon-left' : 'search-icon-right' );
                   czrapp.$_body.toggleClass( _search_overlay_toggle_class );
             });
 

@@ -596,11 +596,19 @@ May 2020 for https://github.com/presscustomizr/customizr/issues/1807
   position: absolute;
   z-index: 100;
   top: 49px;
-  right: 0;
-  @at-root .rtl .czr-search-expand {
+  // search-icon-left and search-icon-right are added dynamically with js
+  // so that the search field is not partially hidden
+  // @see issue : https://github.com/presscustomizr/customizr/issues/1854
+  @at-root .search-icon-left .czr-search-expand {
     left: 0;
-    right: unset;
   }
+  @at-root .search-icon-right .czr-search-expand {
+    right: 0;
+  }
+  // @at-root .rtl .czr-search-expand {
+  //   left: 0;
+  //   right: unset;
+  // }
   width: 340px;
   -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
   box-shadow: 0 1px 0 rgba(255,255,255,0.1);
