@@ -3,7 +3,7 @@
 * Init admin page actions : Welcome, help page
 *
 */
-if ( ! class_exists( 'CZR_admin_page' ) ) :
+if ( !class_exists( 'CZR_admin_page' ) ) :
   class CZR_admin_page {
     static $instance;
     public $support_url;
@@ -17,7 +17,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
       //changelog
       add_action( '__after_welcome_panel'  , array( $this , 'czr_fn_print_changelog' ), 20);
       //build the support url
-      $this -> support_url = CZR_IS_PRO ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
+      $this->support_url = CZR_IS_PRO ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
       //fix #wpfooter absolute positioning in the welcome and about pages
       add_action( 'admin_print_styles'     , array( $this, 'czr_fn_fix_wp_footer_link_style') );
       //knowledgebase
@@ -57,7 +57,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
 
         $is_help        = isset($_GET['help'])  ?  true : false;
         $_faq_url       = esc_url('http://docs.presscustomizr.com/category/90-faq-and-common-issues');
-        $_support_url   = $this -> support_url;
+        $_support_url   = $this->support_url;
         $_theme_name    = CZR_IS_PRO ? 'Customizr Pro' : 'Customizr';
 
         do_action('__before_welcome_panel');
@@ -73,7 +73,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
             echo convert_smilies( $title );
           ?>
 
-          <?php if ( $is_help && ! CZR_IS_PRO ) : ?>
+          <?php if ( $is_help && !CZR_IS_PRO ) : ?>
 
               <div class="">
 
@@ -117,7 +117,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
 
           <div class="changelog point-releases"></div>
 
-          <?php if ( ! CZR_IS_PRO ) : ?>
+          <?php if ( !CZR_IS_PRO ) : ?>
             <div class="changelog">
 
                 <div class="feature-section col two-col">
@@ -137,25 +137,6 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
                 </div><!-- .feature-section col three-col -->
 
             </div><!-- .changelog -->
-
-            <div id="extend" class="changelog">
-              <h3 style="text-align:left;font-size:1.3em;"><?php _e("Go Customizr Pro" ,'customizr') ?></h3>
-
-              <div class="feature-section two-col images-stagger-right">
-                <div class="col" style="float:right">
-                  <a class="" title="Go Pro" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro?ref=a&utm_source=usersite&utm_medium=link&utm_campaign=customizr-admin-page' ); ?>" target="_blank"><img style="border:none;width:auto;" alt="Customizr Pro" src="<?php echo CZR_BASE_URL . CZR_ASSETS_PREFIX.'back/img/customizr-pro.png?'.CUSTOMIZR_VER ?>" class=""></a>
-                </div>
-                <div class="col" style="float:left">
-                  <h4 style="text-align: left;"><?php _e('Easily take your web design one step further' ,'customizr') ?></h4></br>
-
-                  <p style="text-align: left;"><?php _e("The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and mobile friendly website in a few minutes. In the Pro version, you'll get all features included in the free version plus many conversion oriented ones, to help you attract and retain more visitors on your websites." , 'customizr') ?>
-                  </p>
-                  <p style="text-align:left;">
-                      <a class="button-primary review-customizr hu-go-pro-btn" title="<?php _e("Discover Customizr Pro",'customizr') ?>" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro?ref=a&utm_source=usersite&utm_medium=link&utm_campaign=customizr-admin-page' ); ?>" target="_blank"><?php _e("Discover Customizr Pro",'customizr') ?> &raquo;</a>
-                  </p>
-                </div>
-              </div>
-            </div>
           <?php endif; //end if ! is_pro ?>
 
         <?php do_action( '__after_welcome_panel' ); ?>
@@ -181,10 +162,10 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
     function czr_fn_print_changelog() {
       if ( isset($_GET['help']) )
         return;
-      if( ! file_exists( CZR_BASE . "readme.txt" ) ) {
+      if( !file_exists( CZR_BASE . "readme.txt" ) ) {
         return;
       }
-      if( ! is_readable( CZR_BASE . "readme.txt" ) ) {
+      if( !is_readable( CZR_BASE . "readme.txt" ) ) {
         echo '<p>The changelog in readme.txt is not readable.</p>';
         return;
       }
@@ -202,7 +183,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
             $read = true;
           }
 
-          if ( ! $read )
+          if ( !$read )
             continue;
 
           if ( $is_title ) {
@@ -231,7 +212,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
       $theme_data   = wp_get_theme();
       $theme        = $theme_data->Name . ' ' . $theme_data->Version;
       $parent_theme = $theme_data->Template;
-      if ( ! empty( $parent_theme ) ) {
+      if ( !empty( $parent_theme ) ) {
         $parent_theme_data = wp_get_theme( $parent_theme );
         $parent_theme      = $parent_theme_data->Name . ' ' . $parent_theme_data->Version;
       }
@@ -259,7 +240,7 @@ $active_plugins = get_option( 'active_plugins', array() );
 
 foreach ( $plugins as $plugin_path => $plugin ) {
   // If the plugin isn't active, don't show it.
-  if ( ! in_array( $plugin_path, $active_plugins ) )
+  if ( !in_array( $plugin_path, $active_plugins ) )
     continue;
 
   echo $plugin['Name'] . ': ' . $plugin['Version'] ."\n";
@@ -276,7 +257,7 @@ foreach ( $plugins as $plugin_path ) {
   $plugin_base = plugin_basename( $plugin_path );
 
   // If the plugin isn't active, don't show it.
-  if ( ! array_key_exists( $plugin_base, $active_plugins ) )
+  if ( !array_key_exists( $plugin_base, $active_plugins ) )
     continue;
 
   $plugin = get_plugin_data( $plugin_path );
@@ -286,14 +267,14 @@ foreach ( $plugins as $plugin_path ) {
 endif;
 //GET MYSQL VERSION
 global $wpdb;
-$mysql_ver =  ( ! empty( $wpdb->use_mysqli ) && $wpdb->use_mysqli ) ? @mysqli_get_server_info( $wpdb->dbh ) : '';
+$mysql_ver =  ( !empty( $wpdb->use_mysqli ) && $wpdb->use_mysqli ) ? @mysqli_get_server_info( $wpdb->dbh ) : '';
 ?>
 
 PHP Version:              <?php echo PHP_VERSION . "\n"; ?>
 MySQL Version:            <?php echo $mysql_ver . "\n"; ?>
 Web Server Info:          <?php echo $_SERVER['SERVER_SOFTWARE'] . "\n"; ?>
 
-WordPress Memory Limit:   <?php echo ( $this -> czr_fn_let_to_num( WP_MEMORY_LIMIT )/( 1024 ) )."MB"; ?><?php echo "\n"; ?>
+WordPress Memory Limit:   <?php echo ( $this->czr_fn_let_to_num( WP_MEMORY_LIMIT )/( 1024 ) )."MB"; ?><?php echo "\n"; ?>
 PHP Memory Limit:         <?php echo ini_get( 'memory_limit' ) . "\n"; ?>
 PHP Upload Max Size:      <?php echo ini_get( 'upload_max_filesize' ) . "\n"; ?>
 PHP Post Max Size:        <?php echo ini_get( 'post_max_size' ) . "\n"; ?>
@@ -350,7 +331,7 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
     */
     function czr_fn_fix_wp_footer_link_style() {
       $screen = get_current_screen();
-      if ( ! is_object($screen) )
+      if ( !is_object($screen) )
         return;
       if ( 'appearance_page_welcome' != $screen-> id )
         return;
