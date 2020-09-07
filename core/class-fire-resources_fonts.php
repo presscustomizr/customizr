@@ -5,10 +5,10 @@
 *
 * @package      Customizr
 */
-if ( ! class_exists( 'CZR_resources_fonts' ) ) :
+if ( !class_exists( 'CZR_resources_fonts' ) ) :
   class CZR_resources_fonts {
 
-        //Access any method or var of the class with classname::$instance -> var or method():
+        //Access any method or var of the class with classname::$instance->var or method():
         static $instance;
 
         function __construct () {
@@ -82,7 +82,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
 
       $font = explode( '|', czr_fn_get_font( 'single' , $_font_pair ) );
 
-      if ( ! $font )
+      if ( !$font )
         return;
 
       if ( !is_array( $font ) )//case is a pair
@@ -105,16 +105,16 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
       $_css               = isset($_css) ? $_css : '';
       $_font_pair         = esc_attr( czr_fn_opt( 'tc_fonts' ) );
       $_body_font_size    = esc_attr( czr_fn_opt( 'tc_body_font_size' ) );
-      $_font_selectors    = CZR_init::$instance -> font_selectors;
+      $_font_selectors    = CZR_init::$instance->font_selectors;
 
       //create the $body and $titles vars
       extract( $_font_selectors, EXTR_OVERWRITE );
 
-      if ( ! isset($body) || ! isset($titles) )
+      if ( !isset($body) || !isset($titles) )
         return;
 
       //adapt the selectors in edit context => add specificity for the mce-editor
-      if ( ! is_null( $_context ) ) {
+      if ( !is_null( $_context ) ) {
         $titles = ".{$_context} .h1, .{$_context} h2, .{$_context} h3";
         $body   = "body.{$_context}";
       }
@@ -124,12 +124,12 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
 
       if ( '_g_sourcesanspro' != $_font_pair ) {//check if not default
         $_selector_fonts  = explode( '|', czr_fn_get_font( 'single' , $_font_pair ) );
-        if ( ! is_array($_selector_fonts) )
+        if ( !is_array($_selector_fonts) )
           return $_css;
 
         foreach ($_selector_fonts as $_key => $_raw_font) {
           //create the $_family and $_weight vars
-          extract( $this -> czr_fn_get_font_css_prop( $_raw_font , czr_fn_is_gfont( $_font_pair ) ) );
+          extract( $this->czr_fn_get_font_css_prop( $_raw_font , czr_fn_is_gfont( $_font_pair ) ) );
 
           $selector = '';
 
@@ -167,7 +167,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
       if ( 15 != $_body_font_size && is_null( $_context ) ) {
 
           $_line_height = apply_filters('czr_body_line_height_ratio', 1.5 );
-          if ( ! czr_fn_is_checked( 'tc_ms_respond_css' ) ) {
+          if ( !czr_fn_is_checked( 'tc_ms_respond_css' ) ) {
             //turn into rem
             $remsize      = $_body_font_size / 16;
             $remsize      = number_format( (float)$remsize, 2, '.', '');
@@ -215,7 +215,7 @@ if ( ! class_exists( 'CZR_resources_fonts' ) ) :
     */
     function czr_fn_write_dropcap_inline_css( $_css = null , $_context = null ) {
       $_css               = isset($_css) ? $_css : '';
-      if ( ! esc_attr( czr_fn_opt( 'tc_enable_dropcap' ) ) )
+      if ( !esc_attr( czr_fn_opt( 'tc_enable_dropcap' ) ) )
         return $_css;
 
       $_main_color_pair = czr_fn_get_skin_color( 'pair' );

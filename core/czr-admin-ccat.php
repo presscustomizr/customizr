@@ -3,7 +3,7 @@
 * Init admin actions : loads the meta boxes,
 *
 */
-if ( ! class_exists( 'CZR_admin_init' ) ) :
+if ( !class_exists( 'CZR_admin_init' ) ) :
   class CZR_admin_init {
     static $instance;
     function __construct () {
@@ -12,24 +12,28 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       //enqueue additional styling for admin screens
       add_action( 'admin_init'            , array( $this, 'czr_fn_admin_style' ) );
 
+      //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
+      add_action ( 'save_post'            , array( $this, 'czr_fn_refresh_thumbnail') , 10, 2);
+
       //Load the editor-style specific (post formats and RTL), the user style.css, the active skin
       //add user defined fonts in the editor style (@see the query args add_editor_style below)
       //The hook used to be after_setup_theme, but, don't know from whic WP version, is_rtl() always returns false at that stage.
       add_action( 'init'                  , array( $this, 'czr_fn_add_editor_style') );
 
       add_filter( 'tiny_mce_before_init'  , array( $this, 'czr_fn_user_defined_tinymce_css') );
-      //refresh the post / CPT / page thumbnail on save. Since v3.3.2.
-      add_action ( 'save_post'            , array( $this, 'czr_fn_refresh_thumbnail') , 10, 2);
+
 
       //refresh the terms array (categories/tags pickers options) on term deletion
       add_action ( 'delete_term'          , array( $this, 'czr_fn_refresh_terms_pickers_options_cb'), 10, 3 );
+
+      add_action( 'admin_footer'                  , array( $this , 'czr_fn_write_ajax_dismis_script' ) );
 
       //UPDATE NOTICE
       add_action( 'admin_notices'         , array( $this, 'czr_fn_may_be_display_update_notice') );
       //always add the ajax action
       add_action( 'wp_ajax_dismiss_customizr_update_notice'    , array( $this , 'czr_fn_dismiss_update_notice_action' ) );
 
-      add_action( 'admin_footer'                  , array( $this , 'czr_fn_write_ajax_dismis_script' ) );
+
 
       /* beautify admin notice text using some defaults the_content filter callbacks */
       foreach ( array( 'wptexturize', 'convert_smilies', 'wpautop') as $callback ) {
@@ -37,97 +41,6 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       }
     }
 
-
-
-    /*
-    * @return void
-    * updates the tc-thumb-fld post meta with the relevant thumb id and type
-    * @package Customizr
-    * @since Customizr 3.3.2
-    */
-    function czr_fn_refresh_thumbnail( $post_id, $post ) {
-      // If this is just a revision, don't send the email.
-      if ( wp_is_post_revision( $post_id ) || ( ! empty($post) && 'auto-draft' == $post->post_status ) )
-        return;
-
-      //if czr4
-      if ( czr_fn_is_ms() ) {
-
-        if ( function_exists( 'czr_fn_set_thumb_info' ) )
-          czr_fn_set_thumb_info( $post_id );
-
-      }
-      else {
-
-        if ( ! class_exists( 'CZR_post_thumbnails' ) || ! is_object(CZR_post_thumbnails::$instance) ) {
-          CZR___::$instance -> czr_fn_req_once( 'inc/czr-front-ccat.php' );
-          new CZR_post_thumbnails();
-        }
-
-        CZR_post_thumbnails::$instance -> czr_fn_set_thumb_info( $post_id );
-
-      }
-
-    }
-
-
-
-    /*
-    * hook : 'delete_term'
-    * @return void
-    * updates the term pickers related options
-    * @package Customizr
-    * @since Customizr 3.4.10
-    */
-    function czr_fn_refresh_terms_pickers_options_cb( $term, $tt_id, $taxonomy ) {
-      switch ( $taxonomy ) {
-
-        //delete categories based options
-        case 'category':
-          $this -> czr_fn_refresh_term_picker_options( $term, $option_name = 'tc_blog_restrict_by_cat' );
-          break;
-      }
-    }
-
-
-    function czr_fn_refresh_term_picker_options( $term, $option_name, $option_group = null ) {
-       // czr_fn_get_opt and czr_fn_set_option in core/utils/ class-fire-utils_option
-       //home/blog posts category picker
-       $_option = czr_fn_opt( $option_name, $option_group, $use_default = false );
-       if ( is_array( $_option ) && ! empty( $_option ) && in_array( $term, $_option ) )
-         //update the option
-         czr_fn_set_option( $option_name, array_diff( $_option, (array)$term ) );
-
-       //alternative, cycle throughout the cats and keep just the existent ones
-       /*if ( is_array( $blog_cats ) && ! empty( $blog_cats ) ) {
-         //update the option
-         czr_fn_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, 'czr_fn_category_id_exists' ) );
-       }*/
-    }
-
-
-    /*
-    * hook : 'czr_add_custom_fonts_to_editor'
-    * @return css string
-    *
-    * @package Customizr
-    * @since Customizr 3.2.10
-    */
-    function czr_fn_maybe_add_gfonts_to_editor() {
-      $_font_pair         = esc_attr( czr_fn_opt('tc_fonts') );
-      $_all_font_pairs    = CZR___::$instance -> font_pairs;
-      if ( false === strpos($_font_pair,'_g_') )
-        return;
-      //Commas in a URL need to be encoded before the string can be passed to add_editor_style.
-      //czr_fn_get_font defined in core/utils/class-fire-utils
-      return array(
-        str_replace(
-          ',',
-          '%2C',
-          sprintf( '//fonts.googleapis.com/css?family=%s', czr_fn_get_font( 'single' , $_font_pair ) )
-        )
-      );
-    }
 
 
 
@@ -150,6 +63,98 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     }
 
 
+    /*
+    * @return void
+    * updates the tc-thumb-fld post meta with the relevant thumb id and type
+    * @package Customizr
+    * @since Customizr 3.3.2
+    */
+    function czr_fn_refresh_thumbnail( $post_id, $post ) {
+      // If this is just a revision, don't send the email.
+      if ( wp_is_post_revision( $post_id ) || ( !empty($post) && 'auto-draft' == $post->post_status ) )
+        return;
+
+      //if czr4
+      if ( czr_fn_is_ms() ) {
+
+        if ( function_exists( 'czr_fn_set_thumb_info' ) )
+          czr_fn_set_thumb_info( $post_id );
+
+      }
+      else {
+
+        if ( !class_exists( 'CZR_post_thumbnails' ) || !is_object(CZR_post_thumbnails::$instance) ) {
+          CZR___::$instance->czr_fn_req_once( 'inc/czr-front-ccat.php' );
+          new CZR_post_thumbnails();
+        }
+
+        CZR_post_thumbnails::$instance->czr_fn_set_thumb_info( $post_id );
+
+      }
+
+    }
+
+
+
+    /*
+    * hook : 'delete_term'
+    * @return void
+    * updates the term pickers related options
+    * @package Customizr
+    * @since Customizr 3.4.10
+    */
+    function czr_fn_refresh_terms_pickers_options_cb( $term, $tt_id, $taxonomy ) {
+      switch ( $taxonomy ) {
+
+        //delete categories based options
+        case 'category':
+          $this->czr_fn_refresh_term_picker_options( $term, $option_name = 'tc_blog_restrict_by_cat' );
+          break;
+      }
+    }
+
+
+    function czr_fn_refresh_term_picker_options( $term, $option_name, $option_group = null ) {
+       // czr_fn_get_opt and czr_fn_set_option in core/utils/ class-fire-utils_option
+       //home/blog posts category picker
+       $_option = czr_fn_opt( $option_name, $option_group, $use_default = false );
+       if ( is_array( $_option ) && !empty( $_option ) && in_array( $term, $_option ) )
+         //update the option
+         czr_fn_set_option( $option_name, array_diff( $_option, (array)$term ) );
+
+       //alternative, cycle throughout the cats and keep just the existent ones
+       /*if ( is_array( $blog_cats ) && !empty( $blog_cats ) ) {
+         //update the option
+         czr_fn_set_option( 'tc_blog_restrict_by_cat', array_filter( $blog_cats, 'czr_fn_category_id_exists' ) );
+       }*/
+    }
+
+
+    /*
+    * hook : 'czr_add_custom_fonts_to_editor'
+    * @return css string
+    *
+    * @package Customizr
+    * @since Customizr 3.2.10
+    */
+    function czr_fn_maybe_add_gfonts_to_editor() {
+      $_font_pair         = esc_attr( czr_fn_opt('tc_fonts') );
+      $_all_font_pairs    = CZR___::$instance->font_pairs;
+      if ( false === strpos($_font_pair,'_g_') )
+        return;
+      //Commas in a URL need to be encoded before the string can be passed to add_editor_style.
+      //czr_fn_get_font defined in core/utils/class-fire-utils
+      return array(
+        str_replace(
+          ',',
+          '%2C',
+          sprintf( '//fonts.googleapis.com/css?family=%s', czr_fn_get_font( 'single' , $_font_pair ) )
+        )
+      );
+    }
+
+
+
 
     /**
    * Extract changelog of latest version from readme.txt file
@@ -158,10 +163,10 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
    */
     function czr_fn_extract_changelog() {
 
-      if( ! file_exists(CZR_BASE."readme.txt") ) {
+      if( !file_exists(CZR_BASE."readme.txt") ) {
         return;
       }
-      if( ! is_readable(CZR_BASE."readme.txt") ) {
+      if( !is_readable(CZR_BASE."readme.txt") ) {
         echo '<p>The changelog in readme.txt is not readable.</p>';
         return;
       }
@@ -220,12 +225,12 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       $_stylesheets = czr_fn_is_ms() ? array( CZR_ASSETS_PREFIX . 'back/css/block-editor-style' . $_style_suffix ) : array( CZR_ASSETS_PREFIX . 'back/css/editor-style' . $_style_suffix, CZR_ASSETS_PREFIX . 'back/css/block-editor-style-cs' . $_style_suffix );
 
       $_stylesheets[] = 'style.css';
-      if ( ! czr_fn_is_ms() ) {
+      if ( !czr_fn_is_ms() ) {
         $_stylesheets[] = 'inc/assets/css/' . esc_attr( czr_fn_opt( 'tc_skin' ) );
       }
 
-      if ( apply_filters( 'czr_add_custom_fonts_to_editor' , false != $this -> czr_fn_maybe_add_gfonts_to_editor() ) )
-        $_stylesheets = array_merge( $_stylesheets , $this -> czr_fn_maybe_add_gfonts_to_editor() );
+      if ( apply_filters( 'czr_add_custom_fonts_to_editor' , false != $this->czr_fn_maybe_add_gfonts_to_editor() ) )
+        $_stylesheets = array_merge( $_stylesheets , $this->czr_fn_maybe_add_gfonts_to_editor() );
       add_editor_style( $_stylesheets );
 
     }
@@ -243,7 +248,7 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
     */
     function czr_fn_user_defined_tinymce_css( $init ) {
 
-      if ( ! apply_filters( 'czr_add_custom_fonts_to_editor' , true ) )
+      if ( !apply_filters( 'czr_add_custom_fonts_to_editor' , true ) )
         return $init;
 
       if ( 'tinymce' != wp_default_editor() )
@@ -257,24 +262,24 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       if ( czr_fn_is_ms() ) {
         //some plugins fire tiny mce editor in the customizer
         //in this case, the CZR_resources_fonts class has to be loaded
-        if ( ! class_exists('CZR_resources_fonts') || ! is_object(CZR_resources_fonts::$instance) )
-          CZR() -> czr_fn_load( array('fire' => array( array('core' , 'resources_fonts') ) ), true );
+        if ( !class_exists('CZR_resources_fonts') || !is_object(CZR_resources_fonts::$instance) )
+          CZR()->czr_fn_load( array('fire' => array( array('core' , 'resources_fonts') ) ), true );
 
         if ( class_exists('CZR_resources_fonts') && is_object(CZR_resources_fonts::$instance) ) {
           //fonts
-          $_css  .= CZR_resources_fonts::$instance -> czr_fn_write_fonts_inline_css( '', $_mce_body_context );
+          $_css  .= CZR_resources_fonts::$instance->czr_fn_write_fonts_inline_css( '', $_mce_body_context );
         }
 
         //skin
         //some plugins fire tiny mce editor in the customizer
         //in this case, the CZR_resources_styles class has to be loaded
-        if ( ! class_exists('CZR_resources_styles') || ! is_object(CZR_resources_styles::$instance) )
-          CZR() -> czr_fn_load( array('fire' => array( array('core' , 'resources_styles') ) ), true );
+        if ( !class_exists('CZR_resources_styles') || !is_object(CZR_resources_styles::$instance) )
+          CZR()->czr_fn_load( array('fire' => array( array('core' , 'resources_styles') ) ), true );
 
         if ( class_exists('CZR_resources_styles') && is_object(CZR_resources_styles::$instance) ) {
 
           //dynamic skin
-          $_css  .= CZR_resources_styles::$instance -> czr_fn_maybe_write_skin_inline_css( '' );
+          $_css  .= CZR_resources_styles::$instance->czr_fn_maybe_write_skin_inline_css( '' );
 
         }
 
@@ -284,14 +289,14 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
         //some plugins fire tiny mce editor in the customizer
         //in this case, the CZR_resource class has to be loaded
-        if ( ! class_exists('CZR_resources') || ! is_object(CZR_resources::$instance) ) {
-          CZR___::$instance -> czr_fn_req_once( 'inc/czr-init-ccat.php' );
+        if ( !class_exists('CZR_resources') || !is_object(CZR_resources::$instance) ) {
+          CZR___::$instance->czr_fn_req_once( 'inc/czr-init-ccat.php' );
           new CZR_resources();
         }
 
 
         //fonts
-        $_css = CZR_resources::$instance -> czr_fn_write_fonts_inline_css( '', $_mce_body_context );
+        $_css = CZR_resources::$instance->czr_fn_write_fonts_inline_css( '', $_mce_body_context );
 
       }
 
@@ -300,129 +305,6 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
 
       return $init;
 
-    }
-
-
-
-    /**********************************************************************************
-    * UPDATE NOTICE
-    * User gets notified when the version stores in the db option 'last_update_notice'
-    * is < current version of the theme (CUSTOMIZR_VER)
-    * User can dismiss the notice and the option get updated by ajax to the current version
-    * The notice will be displayed a maximum of 5 times and will be automatically dismissed until the next update.
-    * => users won't be notified again until the next update.
-    **********************************************************************************/
-    /**
-    * hook : admin_notices
-    */
-    function czr_fn_may_be_display_update_notice() {
-      //don't display update notification for a list of versions
-      //typically useful when several versions are released in a short time interval
-      //to avoid hammering the wp admin dashboard with a new admin notice each time
-      if ( ( defined('DISPLAY_UPDATE_NOTIFICATION') && ! DISPLAY_UPDATE_NOTIFICATION ) || ( defined('DISPLAY_PRO_UPDATE_NOTIFICATION') && ! DISPLAY_PRO_UPDATE_NOTIFICATION ) )
-        return;
-
-      $opt_name                   = CZR_IS_PRO ? 'last_update_notice_pro' : 'last_update_notice';
-      $last_update_notice_values  = czr_fn_opt($opt_name);
-      $show_new_notice = false;
-      $display_ct = 50;
-
-      if ( ! $last_update_notice_values || ! is_array($last_update_notice_values) ) {
-        //first time user of the theme, the option does not exist
-        // 1) initialize it => set it to the current Customizr version, displayed 0 times.
-        // 2) update in db
-        $last_update_notice_values = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-        czr_fn_set_option( $opt_name, $last_update_notice_values );
-        //already user of the theme ?
-        if ( czr_fn_user_started_before_version( CUSTOMIZR_VER, CUSTOMIZR_VER ) )
-          $show_new_notice = true;
-      }
-
-      $_db_version          = $last_update_notice_values["version"];
-      $_db_displayed_count  = $last_update_notice_values["display_count"];
-
-      // user who just upgraded the theme will be notified until he clicks on the dismiss link
-      // when clicking on the dismiss link OR when the notice has been displayed n times.
-      // - version will be set to CUSTOMIZR_VER
-      // - display_count reset to 0
-      if ( version_compare( CUSTOMIZR_VER, $_db_version , '>' ) ) {
-          //CASE 1 : displayed less than n times
-          if ( $_db_displayed_count < $display_ct ) {
-              $show_new_notice = true;
-              //increments the counter
-              (int) $_db_displayed_count++;
-              $last_update_notice_values["display_count"] = $_db_displayed_count;
-              //updates the option val with the new count
-              czr_fn_set_option( $opt_name, $last_update_notice_values );
-          }
-          //CASE 2 : displayed n times => automatic dismiss
-          else {
-              //reset option value with new version and counter to 0
-              $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-              czr_fn_set_option( $opt_name, $new_val );
-          }//end else
-      }//end if
-
-      if ( ! $show_new_notice )
-        return;
-
-      // prefixed CZR_Plugin_Activation because of the possible issue : https://github.com/presscustomizr/customizr/issues/1603
-      if ( ! czr_fn_is_plugin_active('nimble-builder/nimble-builder.php') && class_exists('CZR_Plugin_Activation') && ! CZR_Plugin_Activation::get_instance()->czr_fn_is_notice_dismissed() )
-        return;
-
-      ob_start();
-        ?>
-        <div class="updated czr-update-notice" style="position:relative">
-          <?php
-            echo apply_filters(
-              'czr_update_notice',
-              sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
-                __( "Good, you've recently upgraded to", "customizr"),
-                CZR_IS_PRO ? 'Customizr Pro' : 'Customizr',
-                __( "version", "customizr"),
-                CUSTOMIZR_VER
-              )
-            );
-          ?>
-          <?php
-            echo apply_filters(
-              'czr_update_notice',
-              sprintf( '<h4>%1$s <a class="" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a></h4>%4$s',
-                __( "We'd like to introduce the new features we've been working on.", "customizr"),
-                CZR_WEBSITE . "category/customizr-releases/",
-                __( "Read the latest release notes" , "customizr" ),
-                ! CZR_IS_PRO ? sprintf( '<p style="position: absolute;right: 7px;top: 4px;"><a class="button button-primary upgrade-to-pro" href="%1$s" title="%2$s" target="_blank">%2$s &raquo;</a></p>',
-                  esc_url('presscustomizr.com/customizr-pro?ref=a&utm_source=usersite&utm_medium=link&utm_campaign=customizr-update-notice'),
-                  __( "Upgrade to Customizr Pro", "customizr" )
-                ) : ''
-              )
-            );
-          ?>
-          <p style="text-align:right;position: absolute;font-size: 1.1em;<?php echo is_rtl()? 'left' : 'right';?>: 7px;bottom: -5px;">
-            <?php printf('<a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %1$s <strong>X</strong> ) </a>',
-                __('close' , 'customizr')
-              );
-            ?>
-          </p>
-        </div>
-        <?php
-      $_html = ob_get_contents();
-      if ($_html) ob_end_clean();
-      echo $_html;
-    }
-
-
-    /**
-    * hook : wp_ajax_dismiss_customizr_update_notice
-    * => sets the last_update_notice to the current Customizr version when user click on dismiss notice link
-    */
-    function czr_fn_dismiss_update_notice_action() {
-      check_ajax_referer( 'dismiss-update-notice-nonce', 'dismissUpdateNoticeNonce' );
-      $opt_name = CZR_IS_PRO ? 'last_update_notice_pro' : 'last_update_notice';
-      //reset option value with new version and counter to 0
-      $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
-      czr_fn_set_option( $opt_name, $new_val );
-      wp_die();
     }
 
 
@@ -474,6 +356,129 @@ if ( ! class_exists( 'CZR_admin_init' ) ) :
       <?php
     }
 
+
+    /**********************************************************************************
+    * UPDATE NOTICE
+    * User gets notified when the version stores in the db option 'last_update_notice'
+    * is < current version of the theme (CUSTOMIZR_VER)
+    * User can dismiss the notice and the option get updated by ajax to the current version
+    * The notice will be displayed a maximum of 5 times and will be automatically dismissed until the next update.
+    * => users won't be notified again until the next update.
+    **********************************************************************************/
+    /**
+    * hook : admin_notices
+    */
+    function czr_fn_may_be_display_update_notice() {
+      //don't display update notification for a list of versions
+      //typically useful when several versions are released in a short time interval
+      //to avoid hammering the wp admin dashboard with a new admin notice each time
+      if ( ( defined('DISPLAY_UPDATE_NOTIFICATION') && !DISPLAY_UPDATE_NOTIFICATION ) || ( defined('DISPLAY_PRO_UPDATE_NOTIFICATION') && !DISPLAY_PRO_UPDATE_NOTIFICATION ) )
+        return;
+
+      $opt_name                   = CZR_IS_PRO ? 'last_update_notice_pro' : 'last_update_notice';
+      $last_update_notice_values  = czr_fn_opt($opt_name);
+      $show_new_notice = false;
+      $display_ct = 50;
+
+      if ( !$last_update_notice_values || !is_array($last_update_notice_values) ) {
+        //first time user of the theme, the option does not exist
+        // 1) initialize it => set it to the current Customizr version, displayed 0 times.
+        // 2) update in db
+        $last_update_notice_values = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
+        czr_fn_set_option( $opt_name, $last_update_notice_values );
+        //already user of the theme ?
+        if ( czr_fn_user_started_before_version( CUSTOMIZR_VER, CUSTOMIZR_VER ) )
+          $show_new_notice = true;
+      }
+
+      $_db_version          = $last_update_notice_values["version"];
+      $_db_displayed_count  = $last_update_notice_values["display_count"];
+
+      // user who just upgraded the theme will be notified until he clicks on the dismiss link
+      // when clicking on the dismiss link OR when the notice has been displayed n times.
+      // - version will be set to CUSTOMIZR_VER
+      // - display_count reset to 0
+      if ( version_compare( CUSTOMIZR_VER, $_db_version , '>' ) ) {
+          //CASE 1 : displayed less than n times
+          if ( $_db_displayed_count < $display_ct ) {
+              $show_new_notice = true;
+              //increments the counter
+              (int) $_db_displayed_count++;
+              $last_update_notice_values["display_count"] = $_db_displayed_count;
+              //updates the option val with the new count
+              czr_fn_set_option( $opt_name, $last_update_notice_values );
+          }
+          //CASE 2 : displayed n times => automatic dismiss
+          else {
+              //reset option value with new version and counter to 0
+              $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
+              czr_fn_set_option( $opt_name, $new_val );
+          }//end else
+      }//end if
+
+      if ( !$show_new_notice )
+        return;
+
+      // prefixed CZR_Plugin_Activation because of the possible issue : https://github.com/presscustomizr/customizr/issues/1603
+      if ( !czr_fn_is_plugin_active('nimble-builder/nimble-builder.php') && class_exists('CZR_Plugin_Activation') && !CZR_Plugin_Activation::get_instance()->czr_fn_is_notice_dismissed() )
+        return;
+
+      ob_start();
+        ?>
+        <div class="updated czr-update-notice" style="position:relative">
+          <?php
+            echo apply_filters(
+              'czr_update_notice',
+              sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
+                __( "Good, you've recently upgraded to", "customizr"),
+                CZR_IS_PRO ? 'Customizr Pro' : 'Customizr',
+                __( "version", "customizr"),
+                CUSTOMIZR_VER
+              )
+            );
+          ?>
+          <?php
+            echo apply_filters(
+              'czr_update_notice',
+              sprintf( '<h4>%1$s <a class="" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a></h4>',
+                __( "We'd like to introduce the new features we've been working on.", "customizr"),
+                CZR_WEBSITE . "category/customizr-releases/",
+                __( "Read the latest release notes" , "customizr" )
+                // !CZR_IS_PRO ? sprintf( '<p style="position: absolute;right: 7px;top: 4px;"><a class="button button-primary upgrade-to-pro" href="%1$s" title="%2$s" target="_blank">%2$s &raquo;</a></p>',
+                //   esc_url('presscustomizr.com/customizr-pro?ref=a&utm_source=usersite&utm_medium=link&utm_campaign=customizr-update-notice'),
+                //   __( "Upgrade to Customizr Pro", "customizr" )
+                // ) : ''
+              )
+            );
+          ?>
+          <p style="text-align:right;position: absolute;font-size: 1.1em;<?php echo is_rtl()? 'left' : 'right';?>: 7px;bottom: -5px;">
+            <?php printf('<a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %1$s <strong>X</strong> ) </a>',
+                __('close' , 'customizr')
+              );
+            ?>
+          </p>
+        </div>
+        <?php
+      $_html = ob_get_contents();
+      if ($_html) ob_end_clean();
+      echo $_html;
+    }
+
+
+    /**
+    * hook : wp_ajax_dismiss_customizr_update_notice
+    * => sets the last_update_notice to the current Customizr version when user click on dismiss notice link
+    */
+    function czr_fn_dismiss_update_notice_action() {
+      check_ajax_referer( 'dismiss-update-notice-nonce', 'dismissUpdateNoticeNonce' );
+      $opt_name = CZR_IS_PRO ? 'last_update_notice_pro' : 'last_update_notice';
+      //reset option value with new version and counter to 0
+      $new_val  = array( "version" => CUSTOMIZR_VER, "display_count" => 0 );
+      czr_fn_set_option( $opt_name, $new_val );
+      wp_die();
+    }
+
+
   }//end of class
 endif;
 
@@ -482,7 +487,7 @@ endif;
 * Init admin page actions : Welcome, help page
 *
 */
-if ( ! class_exists( 'CZR_admin_page' ) ) :
+if ( !class_exists( 'CZR_admin_page' ) ) :
   class CZR_admin_page {
     static $instance;
     public $support_url;
@@ -496,7 +501,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
       //changelog
       add_action( '__after_welcome_panel'  , array( $this , 'czr_fn_print_changelog' ), 20);
       //build the support url
-      $this -> support_url = CZR_IS_PRO ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
+      $this->support_url = CZR_IS_PRO ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
       //fix #wpfooter absolute positioning in the welcome and about pages
       add_action( 'admin_print_styles'     , array( $this, 'czr_fn_fix_wp_footer_link_style') );
       //knowledgebase
@@ -536,7 +541,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
 
         $is_help        = isset($_GET['help'])  ?  true : false;
         $_faq_url       = esc_url('http://docs.presscustomizr.com/category/90-faq-and-common-issues');
-        $_support_url   = $this -> support_url;
+        $_support_url   = $this->support_url;
         $_theme_name    = CZR_IS_PRO ? 'Customizr Pro' : 'Customizr';
 
         do_action('__before_welcome_panel');
@@ -552,7 +557,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
             echo convert_smilies( $title );
           ?>
 
-          <?php if ( $is_help && ! CZR_IS_PRO ) : ?>
+          <?php if ( $is_help && !CZR_IS_PRO ) : ?>
 
               <div class="">
 
@@ -596,7 +601,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
 
           <div class="changelog point-releases"></div>
 
-          <?php if ( ! CZR_IS_PRO ) : ?>
+          <?php if ( !CZR_IS_PRO ) : ?>
             <div class="changelog">
 
                 <div class="feature-section col two-col">
@@ -616,25 +621,6 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
                 </div><!-- .feature-section col three-col -->
 
             </div><!-- .changelog -->
-
-            <div id="extend" class="changelog">
-              <h3 style="text-align:left;font-size:1.3em;"><?php _e("Go Customizr Pro" ,'customizr') ?></h3>
-
-              <div class="feature-section two-col images-stagger-right">
-                <div class="col" style="float:right">
-                  <a class="" title="Go Pro" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro?ref=a&utm_source=usersite&utm_medium=link&utm_campaign=customizr-admin-page' ); ?>" target="_blank"><img style="border:none;width:auto;" alt="Customizr Pro" src="<?php echo CZR_BASE_URL . CZR_ASSETS_PREFIX.'back/img/customizr-pro.png?'.CUSTOMIZR_VER ?>" class=""></a>
-                </div>
-                <div class="col" style="float:left">
-                  <h4 style="text-align: left;"><?php _e('Easily take your web design one step further' ,'customizr') ?></h4></br>
-
-                  <p style="text-align: left;"><?php _e("The Customizr Pro WordPress theme allows anyone to create a beautiful, professional and mobile friendly website in a few minutes. In the Pro version, you'll get all features included in the free version plus many conversion oriented ones, to help you attract and retain more visitors on your websites." , 'customizr') ?>
-                  </p>
-                  <p style="text-align:left;">
-                      <a class="button-primary review-customizr hu-go-pro-btn" title="<?php _e("Discover Customizr Pro",'customizr') ?>" href="<?php echo esc_url( CZR_WEBSITE . 'customizr-pro?ref=a&utm_source=usersite&utm_medium=link&utm_campaign=customizr-admin-page' ); ?>" target="_blank"><?php _e("Discover Customizr Pro",'customizr') ?> &raquo;</a>
-                  </p>
-                </div>
-              </div>
-            </div>
           <?php endif; //end if ! is_pro ?>
 
         <?php do_action( '__after_welcome_panel' ); ?>
@@ -660,10 +646,10 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
     function czr_fn_print_changelog() {
       if ( isset($_GET['help']) )
         return;
-      if( ! file_exists( CZR_BASE . "readme.txt" ) ) {
+      if( !file_exists( CZR_BASE . "readme.txt" ) ) {
         return;
       }
-      if( ! is_readable( CZR_BASE . "readme.txt" ) ) {
+      if( !is_readable( CZR_BASE . "readme.txt" ) ) {
         echo '<p>The changelog in readme.txt is not readable.</p>';
         return;
       }
@@ -681,7 +667,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
             $read = true;
           }
 
-          if ( ! $read )
+          if ( !$read )
             continue;
 
           if ( $is_title ) {
@@ -710,7 +696,7 @@ if ( ! class_exists( 'CZR_admin_page' ) ) :
       $theme_data   = wp_get_theme();
       $theme        = $theme_data->Name . ' ' . $theme_data->Version;
       $parent_theme = $theme_data->Template;
-      if ( ! empty( $parent_theme ) ) {
+      if ( !empty( $parent_theme ) ) {
         $parent_theme_data = wp_get_theme( $parent_theme );
         $parent_theme      = $parent_theme_data->Name . ' ' . $parent_theme_data->Version;
       }
@@ -738,7 +724,7 @@ $active_plugins = get_option( 'active_plugins', array() );
 
 foreach ( $plugins as $plugin_path => $plugin ) {
   // If the plugin isn't active, don't show it.
-  if ( ! in_array( $plugin_path, $active_plugins ) )
+  if ( !in_array( $plugin_path, $active_plugins ) )
     continue;
 
   echo $plugin['Name'] . ': ' . $plugin['Version'] ."\n";
@@ -755,7 +741,7 @@ foreach ( $plugins as $plugin_path ) {
   $plugin_base = plugin_basename( $plugin_path );
 
   // If the plugin isn't active, don't show it.
-  if ( ! array_key_exists( $plugin_base, $active_plugins ) )
+  if ( !array_key_exists( $plugin_base, $active_plugins ) )
     continue;
 
   $plugin = get_plugin_data( $plugin_path );
@@ -765,14 +751,14 @@ foreach ( $plugins as $plugin_path ) {
 endif;
 //GET MYSQL VERSION
 global $wpdb;
-$mysql_ver =  ( ! empty( $wpdb->use_mysqli ) && $wpdb->use_mysqli ) ? @mysqli_get_server_info( $wpdb->dbh ) : '';
+$mysql_ver =  ( !empty( $wpdb->use_mysqli ) && $wpdb->use_mysqli ) ? @mysqli_get_server_info( $wpdb->dbh ) : '';
 ?>
 
 PHP Version:              <?php echo PHP_VERSION . "\n"; ?>
 MySQL Version:            <?php echo $mysql_ver . "\n"; ?>
 Web Server Info:          <?php echo $_SERVER['SERVER_SOFTWARE'] . "\n"; ?>
 
-WordPress Memory Limit:   <?php echo ( $this -> czr_fn_let_to_num( WP_MEMORY_LIMIT )/( 1024 ) )."MB"; ?><?php echo "\n"; ?>
+WordPress Memory Limit:   <?php echo ( $this->czr_fn_let_to_num( WP_MEMORY_LIMIT )/( 1024 ) )."MB"; ?><?php echo "\n"; ?>
 PHP Memory Limit:         <?php echo ini_get( 'memory_limit' ) . "\n"; ?>
 PHP Upload Max Size:      <?php echo ini_get( 'upload_max_filesize' ) . "\n"; ?>
 PHP Post Max Size:        <?php echo ini_get( 'post_max_size' ) . "\n"; ?>
@@ -829,7 +815,7 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
     */
     function czr_fn_fix_wp_footer_link_style() {
       $screen = get_current_screen();
-      if ( ! is_object($screen) )
+      if ( !is_object($screen) )
         return;
       if ( 'appearance_page_welcome' != $screen-> id )
         return;
@@ -933,7 +919,7 @@ endif;
 * Posts, pages and attachment actions and filters
 *
 */
-if ( ! class_exists( 'CZR_meta_boxes' ) ) :
+if ( !class_exists( 'CZR_meta_boxes' ) ) :
    class CZR_meta_boxes {
       static $instance;
 
@@ -1051,7 +1037,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
        */
       function czr_add_metabox( $meta_box_key, $screen ) {
 
-         if ( ! method_exists( $this , "czr_fn_{$meta_box_key}_metabox" ) )
+         if ( !method_exists( $this , "czr_fn_{$meta_box_key}_metabox" ) )
             return;
 
          call_user_func_array( 'add_meta_box',
@@ -1118,7 +1104,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
       //hook : add_meta_boxes_post
       function czr_fn_post_formats_meta_boxes( $post ) {
          //if not czr4 return
-         if ( ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) )
+         if ( !( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) )
             return;
 
          $post_meta_boxes          = $this->czr_fn_get_post_meta_boxes_map();
@@ -1584,7 +1570,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
          if( $post_slider_check_value == true ):
              $selectable_sliders    = apply_filters( 'czr_post_selectable_sliders', $sliders );
-             if ( isset( $selectable_sliders ) && ! empty( $selectable_sliders ) ):
+             if ( isset( $selectable_sliders ) && !empty( $selectable_sliders ) ):
 
          ?>
              <div class="meta-box-item-title">
@@ -2018,7 +2004,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
        * @since Customizr 2.0
        */
       function czr_fn_attachment_meta_box( $id ) {//id, title, callback, post_type, context, priority, callback_args
-         if ( ! wp_attachment_is_image( $id ) )
+         if ( !wp_attachment_is_image( $id ) )
             return;
 
          add_meta_box(
@@ -2853,7 +2839,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
       $nonce = $_POST['SliderCheckNonce'];
       // check if the submitted nonce matches with the generated nonce we created earlier
-      if ( ! wp_verify_nonce( $nonce, 'tc-slider-check-nonce' ) ) {
+      if ( !wp_verify_nonce( $nonce, 'tc-slider-check-nonce' ) ) {
         die();
       }
 
@@ -3053,7 +3039,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                         compact( 'content', 'wrapper_tag', 'wrapper_class')
                     ) : $content;
 
-         if ( ! $echo )
+         if ( !$echo )
             return $html;
 
          echo $html;
@@ -3113,7 +3099,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          $args = wp_parse_args( $args, $defaults );
          extract($args);
 
-         if ( ! $choices ) return;
+         if ( !$choices ) return;
 
          $select_id = isset($select_id) ? $select_id : $select_name;
 
@@ -3138,13 +3124,13 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                         compact( 'content', 'wrapper_tag', 'wrapper_class')
                     ) : $content;
 
-        $html     = ! ( isset($title) && is_array( $title ) && ! empty( $title ) ) ? $html :
+        $html     = !( isset($title) && is_array( $title ) && !empty( $title ) ) ? $html :
                         sprintf( "%s%s",
                            CZR_meta_boxes::czr_fn_title_view( array_merge($title, array( 'echo' => 0 ) ) ),
                            $html
                         );
 
-        if ( ! $echo )
+        if ( !$echo )
          return $html;
 
         echo $html ;
@@ -3191,13 +3177,13 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          compact( 'content', 'wrapper_tag', 'wrapper_class')
         ) : $content;
 
-        $html = ! ( isset($title) && is_array( $title ) && ! empty( $title ) ) ? $html :
+        $html = !( isset($title) && is_array( $title ) && !empty( $title ) ) ? $html :
            sprintf( "%s%s",
              CZR_meta_boxes::czr_fn_title_view( array_merge($title, array( 'echo' => 0 ) ) ),
              $html
          );
 
-        if ( ! $echo )
+        if ( !$echo )
          return $html;
 
         echo $html ;
@@ -3246,13 +3232,13 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          compact( 'content', 'wrapper_tag', 'wrapper_class')
         ) : $content;
 
-        $html = ! ( isset($title) && is_array( $title ) && ! empty( $title ) ) ? $html :
+        $html = !( isset($title) && is_array( $title ) && !empty( $title ) ) ? $html :
            sprintf( "%s%s",
              CZR_meta_boxes::czr_fn_title_view( array_merge($title, array( 'echo' => 0 ) ) ),
              $html
          );
 
-        if ( ! $echo )
+        if ( !$echo )
          return $html;
 
         echo $html ;
@@ -3281,7 +3267,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          $content
         );
 
-        if ( ! $echo )
+        if ( !$echo )
          return $html;
         echo $html;
       }

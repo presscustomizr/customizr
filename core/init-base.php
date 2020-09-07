@@ -1,8 +1,8 @@
 <?php
-if ( ! class_exists( 'CZR_BASE' ) ) :
+if ( !class_exists( 'CZR_BASE' ) ) :
 
   class CZR_BASE {
-        //Access any method or var of the class with classname::$instance -> var or method():
+        //Access any method or var of the class with classname::$instance->var or method():
         public static $instance;
 
         static $default_options;
@@ -36,7 +36,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
 
             //Set image options set by user @since v3.2.0
-            //! must be available in admin for plugins like regenerate thumbnails
+            //!must be available in admin for plugins like regenerate thumbnails
             add_action( 'after_setup_theme'       , array( $this, 'czr_fn_set_user_defined_settings'));
 
 
@@ -50,7 +50,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
 
             //modify the query with pre_get_posts
-            //! wp_loaded is fired after WordPress is fully loaded but before the query is set
+            //!wp_loaded is fired after WordPress is fully loaded but before the query is set
             // => before modern style implementation, was previously set in inc/_dev/class-content-post_list.php and core/class-fire-init.php
             add_action( 'wp_loaded'               , array( $this, 'czr_fn_set_early_hooks') );
 
@@ -79,18 +79,18 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             add_action( 'customize_save_validation_before'       , array( $this, 'czr_fn_remove_callback_wp_targeted_link_rel' ) );
 
             //Default images sizes
-            $this -> tc_thumb_size      = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
-            $this -> slider_full_size   = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
+            $this->tc_thumb_size      = array( 'width' => 270 , 'height' => 250, 'crop' => true ); //size name : tc-thumb
+            $this->slider_full_size   = array( 'width' => 9999 , 'height' => 500, 'crop' => true ); //size name : slider-full
 
             //The actual bootstrap4 container width is 1110, while it was 1170 in bootstrap2
-            $this -> slider_size        = array( 'width' => CZR_IS_MODERN_STYLE ? 1110 : 1170 , 'height' => 500, 'crop' => true ); //size name : slider
+            $this->slider_size        = array( 'width' => CZR_IS_MODERN_STYLE ? 1110 : 1170 , 'height' => 500, 'crop' => true ); //size name : slider
 
-            $this -> tc_grid_size       = array( 'width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
+            $this->tc_grid_size       = array( 'width' => 570 , 'height' => 350, 'crop' => true ); //size name : tc-grid
             //Default images sizes
-            $this -> tc_grid_full_size  = array( 'width' => CZR_IS_MODERN_STYLE ? 1110 : 1170 , 'height' => CZR_IS_MODERN_STYLE ? 444 : 350, 'crop' => true ); //size name : tc-grid-full
+            $this->tc_grid_full_size  = array( 'width' => CZR_IS_MODERN_STYLE ? 1110 : 1170 , 'height' => CZR_IS_MODERN_STYLE ? 444 : 350, 'crop' => true ); //size name : tc-grid-full
 
             //Main skin color array : array( link color, link hover color )
-            $this -> skin_classic_color_map     = apply_filters( 'tc_skin_color_map' , array(
+            $this->skin_classic_color_map     = apply_filters( 'tc_skin_color_map' , array(
                   'blue.css'        =>  array( '#08c', '#005580' ),
                   'blue2.css'       =>  array( '#27CBCD', '#1b8b8d' ),
                   'blue3.css'       =>  array( '#27CDA5', '#1b8d71' ),
@@ -112,11 +112,11 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
 
             //Default featured pages ids
-            $this -> fp_ids             = array( 'one' , 'two' , 'three' );
+            $this->fp_ids             = array( 'one' , 'two' , 'three' );
 
 
             //Default sidebar widgets
-            $this -> sidebar_widgets    = array(
+            $this->sidebar_widgets    = array(
               'left'          => array(
                               'name'                 => __( 'Left Sidebar' , 'customizr' ),
                               'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
@@ -129,7 +129,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
 
             //Default social networks
-            $this -> old_socials            = array(
+            $this->old_socials            = array(
               'tc_rss'            => array(
                                       'link_title'    => __( 'Subscribe to my rss feed' , 'customizr' ),
                                       'default'       => get_bloginfo( 'rss_url' ) //kept as it's the only one used in the transition
@@ -188,7 +188,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             );//end of social array
 
             //Default fonts pairs
-            $this -> font_pairs             = array(
+            $this->font_pairs             = array(
               'gfont' => array(
                 'name'  => __('Google fonts pairs' , 'customizr'),
                 'list'  => apply_filters( 'tc_gfont_pairs' , array(
@@ -249,7 +249,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
 
             //Default slides content
-            $this -> default_slides     = array(
+            $this->default_slides     = array(
                 1 => array(
                   'title'         =>  '',
                   'text'          =>  '',
@@ -295,7 +295,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         function czr_fn_base_customizr_setup() {
             /* Set default content width for post images and media. */
             global $content_width;
-            if (! isset( $content_width ) ) {
+            if (!isset( $content_width ) ) {
                 $content_width = apply_filters( 'czr_content_width' , CZR_IS_MODERN_STYLE ? 1140 : 1170 );
             }
 
@@ -345,15 +345,15 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             add_theme_support( 'editor-styles' );
 
             //post thumbnails for featured pages and post lists (archive, search, ...)
-            $tc_thumb_size    = apply_filters( 'tc_thumb_size' , CZR___::$instance -> tc_thumb_size );
+            $tc_thumb_size    = apply_filters( 'tc_thumb_size' , CZR___::$instance->tc_thumb_size );
             add_image_size( 'tc-thumb' , $tc_thumb_size['width'] , $tc_thumb_size['height'], $tc_thumb_size['crop'] );
 
             //slider full width
-            $slider_full_size = apply_filters( 'tc_slider_full_size' , CZR___::$instance -> slider_full_size );
+            $slider_full_size = apply_filters( 'tc_slider_full_size' , CZR___::$instance->slider_full_size );
             add_image_size( 'slider-full' , $slider_full_size['width'] , $slider_full_size['height'], $slider_full_size['crop'] );
 
             //slider boxed
-            $slider_size      = apply_filters( 'tc_slider_size' , CZR___::$instance -> slider_size );
+            $slider_size      = apply_filters( 'tc_slider_size' , CZR___::$instance->slider_size );
             add_image_size( 'slider' , $slider_size['width'] , $slider_size['height'], $slider_size['crop'] );
 
 
@@ -365,20 +365,20 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
               */
               //square thumb used in post list alternate for standard posts and regular shape
               //also used in related posts
-              $tc_sq_thumb_size = apply_filters( 'tc_square_thumb_size' , CZR() -> tc_sq_thumb_size );
+              $tc_sq_thumb_size = apply_filters( 'tc_square_thumb_size' , CZR()->tc_sq_thumb_size );
               add_image_size( 'tc-sq-thumb' , $tc_sq_thumb_size['width'] , $tc_sq_thumb_size['height'], $tc_sq_thumb_size['crop'] );
 
               //wide screen thumb (16:9) used in post list alternate for image and galleries post formats
-              $tc_ws_thumb_size = apply_filters( 'tc_ws_thumb_size' , CZR() -> tc_ws_thumb_size );
+              $tc_ws_thumb_size = apply_filters( 'tc_ws_thumb_size' , CZR()->tc_ws_thumb_size );
               add_image_size( 'tc-ws-thumb' , $tc_ws_thumb_size['width'] , $tc_ws_thumb_size['height'], $tc_ws_thumb_size['crop'] );
 
               //wide screen small thumb (16:9)
               //used by wp as responsive image of tc-ws-thumb
-              $tc_ws_small_thumb_size = apply_filters( 'tc_ws_small_thumb_size' , CZR() -> tc_ws_small_thumb_size );
+              $tc_ws_small_thumb_size = apply_filters( 'tc_ws_small_thumb_size' , CZR()->tc_ws_small_thumb_size );
               add_image_size( 'tc-ws-small-thumb' , $tc_ws_small_thumb_size['width'] , $tc_ws_small_thumb_size['height'], $tc_ws_small_thumb_size['crop'] );
 
               //used by wp as responsive image of tc-slider tc-slider-full
-              $tc_slider_small_size = apply_filters( 'tc_slider_small_size' , CZR() -> tc_slider_small_size  );
+              $tc_slider_small_size = apply_filters( 'tc_slider_small_size' , CZR()->tc_slider_small_size  );
               add_image_size( 'tc-slider-small' , $tc_slider_small_size['width'] , $tc_slider_small_size['height'], $tc_slider_small_size['crop'] );
 
             }
@@ -387,7 +387,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             // Add theme support for selective refresh for widgets.
             // Only add if the link manager is not enabled
             // cf WP core ticket #39451
-            if ( ! get_option( 'link_manager_enabled' ) ) {
+            if ( !get_option( 'link_manager_enabled' ) ) {
               add_theme_support( 'customize-selective-refresh-widgets' );
             }
         }
@@ -435,7 +435,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             return $metadata;
           }
 
-          if ( ! is_array($metadata) ) {
+          if ( !is_array($metadata) ) {
             return $metadata;
           }
 
@@ -502,19 +502,19 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
           //Because of the structure of the metadata array for pdf files, this will be skipped
           if ( isset($metadata['width']) && isset($metadata['height']) )
-            $this -> czr_fn_create_retina_images( get_attached_file( $attachment_id ), $metadata['width'], $metadata['height'] , false, $_is_intermediate = false );
+            $this->czr_fn_create_retina_images( get_attached_file( $attachment_id ), $metadata['width'], $metadata['height'] , false, $_is_intermediate = false );
 
 
           //if the full_image_file var is defined (because we built it for pdf files), use it
           $full_image_file = isset( $full_image_file ) ? $full_image_file : get_attached_file( $attachment_id );
 
           //Create the retina images for each WP sizes
-          $sizes = ! empty( $metadata[ 'sizes' ] ) ? $metadata[ 'sizes' ] : null;
+          $sizes = !empty( $metadata[ 'sizes' ] ) ? $metadata[ 'sizes' ] : null;
 
           if ( is_array( $sizes ) ) {
               foreach ( $sizes as $_size_name => $_attr ) {
                   if ( is_array( $_attr ) && isset($_attr['width']) && isset($_attr['height']) ) {
-                      $this -> czr_fn_create_retina_images(
+                      $this->czr_fn_create_retina_images(
                         $full_image_file,
                         $_attr['width'],
                         $_attr['height'],
@@ -545,15 +545,15 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
             if ( $width || $height ) {
               $_suffix    = $_is_intermediate ? $width . 'x' . $height . '@2x' : '@2x';
-              $filename   = $resized_file -> generate_filename( $_suffix );
+              $filename   = $resized_file->generate_filename( $_suffix );
               // if is not intermediate (main file name) => removes the "-" added by the generate_filename method
-              $filename   = ! $_is_intermediate ? str_replace('-@2x', '@2x', $filename) : $filename;
+              $filename   = !$_is_intermediate ? str_replace('-@2x', '@2x', $filename) : $filename;
 
-              $resized_file -> resize( $width * 2, $height * 2, $crop );
-              $resized_file -> save( $filename );
+              $resized_file->resize( $width * 2, $height * 2, $crop );
+              $resized_file->save( $filename );
 
               /*
-              $info = $resized_file -> get_size();
+              $info = $resized_file->get_size();
 
               return array(
                   'file' => wp_basename( $filename ),
@@ -578,7 +578,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         function czr_fn_clean_retina_images( $attachment_id ) {
           $meta = wp_get_attachment_metadata( $attachment_id );
 
-          if ( ! isset( $meta['file'] ) ) {
+          if ( !isset( $meta['file'] ) ) {
             //pdf case
             if ( apply_filters( 'czr_build_retina_files_for_pdf_thumbnails', 'application/pdf' == get_post_mime_type( $attachment_id ) ) ) {
                 if ( empty( $meta[ 'sizes' ][ 'full' ][ 'file' ] ) ) {
@@ -722,14 +722,14 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         private function _czr_fn_filter_home_blog_posts_by_tax( $query, $reset_cat_category_name = false ) {
             // when we have to filter?
             // in home and blog page
-            if ( is_admin() || ! $query->is_main_query()
-              || ! ( ( is_home() && 'posts' == get_option('show_on_front') ) || $query->is_posts_page )
+            if ( is_admin() || !$query->is_main_query()
+              || !( ( is_home() && 'posts' == get_option('show_on_front') ) || $query->is_posts_page )
             ) {
                 return $query;
             }
 
             //temp: do not filter in classic style when classic grid enabled and infinite scroll enabled in home/blog
-            if ( ! CZR_IS_MODERN_STYLE &&
+            if ( !CZR_IS_MODERN_STYLE &&
               'grid'== esc_attr( czr_fn_opt( 'tc_post_list_grid' ) ) &&
                class_exists( 'PC_init_infinite' ) && esc_attr( czr_fn_opt( 'tc_infinite_scroll' ) ) && esc_attr( czr_fn_opt( 'tc_infinite_scroll_in_home' ) ) ) {
                 return $query;
@@ -741,7 +741,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             $cats = czr_fn_opt('tc_blog_restrict_by_cat');
             $cats = array_filter( $cats, 'czr_fn_category_id_exists' );
 
-            if ( is_array( $cats ) && ! empty( $cats ) ){
+            if ( is_array( $cats ) && !empty( $cats ) ){
               // Fix for https://github.com/presscustomizr/customizr-pro/issues/46
               // Basically when we filter the blog with more than one category
               // "infinite posts" are filtered by the category with the smaller ID defined in $cats.
@@ -773,12 +773,12 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         * @since Customizr 3.0.10
         */
         function czr_fn_include_attachments_in_search( $query ) {
-            if (! is_search() || ! apply_filters( 'tc_include_attachments_in_search_results' , false ) )
+            if (!is_search() || !apply_filters( 'tc_include_attachments_in_search_results' , false ) )
               return;
 
             // add post status 'inherit'
             $post_status = $query->get( 'post_status' );
-            if ( ! $post_status || 'publish' == $post_status )
+            if ( !$post_status || 'publish' == $post_status )
               $post_status = array( 'publish', 'inherit' );
             if ( is_array( $post_status ) )
               $post_status[] = 'inherit';
@@ -798,9 +798,9 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         function czr_fn_include_cpt_in_lists( $query ) {
           if (
               is_admin()
-              || ! $query->is_main_query()
-              || ! apply_filters('tc_include_cpt_in_archives' , false)
-              || ! ( $query->is_search || $query->is_archive )
+              || !$query->is_main_query()
+              || !apply_filters('tc_include_cpt_in_archives' , false)
+              || !( $query->is_search || $query->is_archive )
               )
               return;
 
@@ -810,7 +810,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
 
             //add standard posts
             $post_types['post'] = 'post';
-            if ( $query -> is_search ){
+            if ( $query->is_search ){
               // add standard pages in search results => new wp behavior
               $post_types['page'] = 'page';
               // allow attachments to be included in search results by tc_include_attachments_in_search method
@@ -857,15 +857,15 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
                 }
             }
 
-            $tc_grid_full_size     = $this -> tc_grid_full_size;
-            $tc_grid_size          = $this -> tc_grid_size;
+            $tc_grid_full_size     = $this->tc_grid_full_size;
+            $tc_grid_size          = $this->tc_grid_size;
 
             //ONLY FOR CLASSICAL STYLE
-            if ( ! CZR_IS_MODERN_STYLE ) {
+            if ( !CZR_IS_MODERN_STYLE ) {
                 //add "rectangular" image size
                 if ( isset ( $_options['tc_post_list_thumb_shape'] ) && false !== strpos(esc_attr( $_options['tc_post_list_thumb_shape'] ), 'rectangular') ) {
                   $_user_height     = isset ( $_options['tc_post_list_thumb_height'] ) ? esc_attr( $_options['tc_post_list_thumb_height'] ) : '250';
-                  $_user_height     = ! esc_attr( $_options['tc_post_list_thumb_shape'] ) ? '250' : $_user_height;
+                  $_user_height     = !esc_attr( $_options['tc_post_list_thumb_shape'] ) ? '250' : $_user_height;
                   $_rectangular_size    = apply_filters(
                     'tc_rectangular_size' ,
                     array( 'width' => '1170' , 'height' => $_user_height , 'crop' => true )
@@ -944,7 +944,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
             $_options                     = get_option('tc_theme_options');
 
             //original slider size
-            $_slider_size                 = CZR() -> slider_size;
+            $_slider_size                 = CZR()->slider_size;
             $_custom_height               = esc_attr( $_options['tc_slider_default_height'] );
 
 
@@ -1001,7 +1001,7 @@ if ( ! class_exists( 'CZR_BASE' ) ) :
         /* ------------------------------------------------------------------------- */
         //Fired in __construct()
         function czr_fn_cache_theme_setting_list() {
-          if ( is_array(self::$theme_setting_list) && ! empty( self::$theme_setting_list ) )
+          if ( is_array(self::$theme_setting_list) && !empty( self::$theme_setting_list ) )
             return;
 
           //fire an action hook before caching theme settomgs list
@@ -1068,7 +1068,7 @@ czr_fn_setup_started_using_theme_option_and_constants();
 add_action( 'after_setup_theme', 'czr_fn_load_czr_base_fmk', 15 );
 function czr_fn_load_czr_base_fmk() {
     // load the czr-base-fmk
-    if ( ! isset( $GLOBALS['czr_base_fmk_namespace'] ) ) {
+    if ( !isset( $GLOBALS['czr_base_fmk_namespace'] ) ) {
         require_once(  dirname( __FILE__ ) . '/czr-base-fmk/czr-base-fmk.php' );
         \czr_fn\CZR_Fmk_Base( array(
            'text_domain' => 'customizr',
@@ -1151,7 +1151,7 @@ function czr_fn_render_locations_when_using_nimble_templates() {
             $location = '__before_footer';
         break;
     }
-    if ( ! empty( $location ) ) {
+    if ( !empty( $location ) ) {
         \Nimble\Nimble_Manager()->render_nimble_locations( $location );
     }
 }
@@ -1159,7 +1159,7 @@ function czr_fn_render_locations_when_using_nimble_templates() {
 /* ------------------------------------------------------------------------- *
  *  Loads Required Plugin Class and Setup
 /* ------------------------------------------------------------------------- */
-if ( is_admin() && ! czr_fn_is_customizing() && ! czr_fn_is_plugin_active('nimble-builder/nimble-builder.php') ) {
+if ( is_admin() && !czr_fn_is_customizing() && !czr_fn_is_plugin_active('nimble-builder/nimble-builder.php') ) {
     load_template( get_template_directory() . '/core/class-plugin-rec.php' );
 }
 

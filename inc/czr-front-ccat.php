@@ -7219,8 +7219,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
   }//end of class
 endif;
 
-?>
-<?php
+?><?php
 /**
 * Posts thumbnails actions
 *

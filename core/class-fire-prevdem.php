@@ -1,5 +1,5 @@
 <?php
-if ( ! class_exists( 'CZR_prevdem' ) ) :
+if ( !class_exists( 'CZR_prevdem' ) ) :
   final class CZR_prevdem {
     function __construct() {
       //FEATURED PAGES DISABLED BY DEFAULT

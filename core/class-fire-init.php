@@ -6,7 +6,7 @@
 *
 */
 
-if ( ! class_exists( 'CZR_init' ) ) :
+if ( !class_exists( 'CZR_init' ) ) :
   class CZR_init {
       //declares the filtered default settings
       public $global_layout;
@@ -41,7 +41,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
           $right_sidebar_text_alignment = is_rtl() ? 'text-md-left' : 'text-md-right';
           //Default layout settings
-          $this -> global_layout      = array(
+          $this->global_layout      = array(
               'r' => array(
                   'content'       => 'col-12 col-md-9',
                   'l-sidebar'     => false,
@@ -75,14 +75,14 @@ if ( ! class_exists( 'CZR_init' ) ) :
 
 
           //CSS variable definition (as for bootstrap)
-          $this -> css_container_widths = apply_filters( 'czr_css_container_widths',             array(
+          $this->css_container_widths = apply_filters( 'czr_css_container_widths',             array(
                   'xl' => '1140',
                   'lg' => '960',
                   'md' => '720',
                   'sm' => '540'
           ));
 
-          $this -> css_mq_breakpoints = apply_filters( 'czr_css_mq_breakpoints', array(
+          $this->css_mq_breakpoints = apply_filters( 'czr_css_mq_breakpoints', array(
                   'xl' => '1200',
                   'lg' => '992',
                   'md' => '768',
@@ -90,14 +90,14 @@ if ( ! class_exists( 'CZR_init' ) ) :
           ));
 
 
-          $this -> font_selectors     = array(
+          $this->font_selectors     = array(
               'titles' => implode(',' , apply_filters( 'czr-titles-font-selectors' , array('.navbar-brand' , '.header-tagline', 'h1', 'h2', 'h3', '.tc-dropcap' ) ) ),
               'body'   => implode(',' , apply_filters( 'czr-body-font-selectors' , array('body') ) )
           );
 
 
           //Default footer widgets
-          $this -> footer_widgets     = array(
+          $this->footer_widgets     = array(
               'footer_one'    => array(
                               'name'                 => __( 'Footer Widget Area One' , 'customizr' ),
                               'description'          => __( 'Just use it as you want !' , 'customizr' ),
@@ -119,7 +119,7 @@ if ( ! class_exists( 'CZR_init' ) ) :
           );//end of array
 
           //Default horizontal footer widget area
-          $this -> footer_horizontal_widgets     = array(
+          $this->footer_horizontal_widgets     = array(
               'footer_horizontal'    => array(
                               'name'                 => __( 'Footer Horizontal Widget Area' , 'customizr' ),
                               'description'          => __( 'Appears before the site footer' , 'customizr' ),
@@ -267,19 +267,19 @@ if ( ! class_exists( 'CZR_init' ) ) :
       //hook : template_redirect
       function czr_fn_ajax_response() {
           //check
-          if ( ! czr_fn_is_ajax() )
+          if ( !czr_fn_is_ajax() )
               return false;
 
           //do nothing if not doing a specific huajax call
-          if ( ! ( isset( $_GET[ 'czrajax' ] ) && $_GET[ 'czrajax' ] ) )
+          if ( !( isset( $_GET[ 'czrajax' ] ) && $_GET[ 'czrajax' ] ) )
               return false;
 
           // Require an action parameter
-          if ( ! isset( $_REQUEST['action'] ) || empty( $_REQUEST['action'] ) )
+          if ( !isset( $_REQUEST['action'] ) || empty( $_REQUEST['action'] ) )
               die( '0' );
 
           // Will be used by hu_is_ajax();
-          if ( ! defined( 'DOING_AJAX' ) )
+          if ( !defined( 'DOING_AJAX' ) )
               define( 'DOING_AJAX', true );
 
           //Nonce is not needed as long as we don't write in the db

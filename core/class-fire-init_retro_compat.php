@@ -15,11 +15,11 @@ if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
     $theme_options            = czr_fn_get_unfiltered_theme_options();
     $_to_update               = false;
 
-    if ( ! empty( $theme_options ) ) {
+    if ( !empty( $theme_options ) ) {
 
         $_new_options_w_socials              = czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options );
 
-        if ( ! empty( $_new_options_w_socials ) ) {
+        if ( !empty( $_new_options_w_socials ) ) {
             $theme_options                     = $_new_options_w_socials;
             $_to_update                        = true;
         }
@@ -27,42 +27,42 @@ if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
 
         //Custom css
         $_new_options_w_custom_css           = czr_fn_maybe_move_old_css_to_wp_embed( $theme_options );
-        if ( ! empty( $_new_options_w_custom_css ) ) {
+        if ( !empty( $_new_options_w_custom_css ) ) {
             $theme_options                     = $_new_options_w_custom_css;
             $_to_update                        = true;
         }
 
         //classic style skin port
         $_new_options_w_modern_skin          = czr_fn_maybe_move_classic_skin_to_modern( $theme_options );
-        if ( ! empty( $_new_options_w_modern_skin ) ) {
+        if ( !empty( $_new_options_w_modern_skin ) ) {
             $theme_options                     = $_new_options_w_modern_skin;
             $_to_update                        = true;
         }
 
         //classic style sticky header port
         $_new_options_w_modern_sticky        = czr_fn_maybe_move_classic_sticky_header_to_modern( $theme_options );
-        if ( ! empty( $_new_options_w_modern_sticky ) ) {
+        if ( !empty( $_new_options_w_modern_sticky ) ) {
             $theme_options                     = $_new_options_w_modern_sticky;
             $_to_update                        = true;
         }
 
         //classic style header wccart port
         $_new_options_w_modern_header_wccart = czr_fn_maybe_move_classic_header_wccart_to_modern( $theme_options );
-        if ( ! empty( $_new_options_w_modern_header_wccart ) ) {
+        if ( !empty( $_new_options_w_modern_header_wccart ) ) {
             $theme_options                     = $_new_options_w_modern_header_wccart;
             $_to_update                        = true;
         }
 
         //classic style header tagline port
         $_new_options_w_modern_header_tagline = czr_fn_maybe_move_classic_header_tagline_to_modern( $theme_options );
-        if ( ! empty( $_new_options_w_modern_header_tagline ) ) {
+        if ( !empty( $_new_options_w_modern_header_tagline ) ) {
             $theme_options                     = $_new_options_w_modern_header_tagline;
             $_to_update                        = true;
         }
 
         //modern style header mobile search port
         $_new_options_w_modern_header_search_location = czr_fn_maybe_move_old_header_mobile_search_to_new( $theme_options );
-        if ( ! empty( $_new_options_w_modern_header_search_location ) ) {
+        if ( !empty( $_new_options_w_modern_header_search_location ) ) {
             $theme_options                     = $_new_options_w_modern_header_search_location;
             $_to_update                        = true;
         }
@@ -70,14 +70,14 @@ if ( is_user_logged_in() && current_user_can( 'edit_theme_options' ) ) {
 
         //modern style header topbar port
         $_new_options_w_modern_header_topbar_visibility = czr_fn_maybe_move_old_header_topbar_to_new( $theme_options );
-        if ( ! empty( $_new_options_w_modern_header_topbar_visibility ) ) {
+        if ( !empty( $_new_options_w_modern_header_topbar_visibility ) ) {
             $theme_options                     = $_new_options_w_modern_header_topbar_visibility;
             $_to_update                        = true;
         }
 
         //modern style header topbar port
         $_new_options_w_modern_header_socials_visibility = czr_fn_maybe_move_old_header_socials_to_new( $theme_options );
-        if ( ! empty( $_new_options_w_modern_header_socials_visibility ) ) {
+        if ( !empty( $_new_options_w_modern_header_socials_visibility ) ) {
             $theme_options                     = $_new_options_w_modern_header_socials_visibility;
             $_to_update                        = true;
         }
@@ -107,7 +107,7 @@ function czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options ) {
     return array();
   }
 
-  $_old_filtered_socials = apply_filters( 'tc_default_socials', CZR___::$instance -> old_socials );
+  $_old_filtered_socials = apply_filters( 'tc_default_socials', CZR___::$instance->old_socials );
 
   /*
   * old socials were in the form
@@ -137,7 +137,7 @@ function czr_fn_maybe_move_old_socials_to_customizer_fmk( $theme_options ) {
   * if it exists but is null it will be skipped
   */
   foreach ( $_old_filtered_socials as $_old_social_id => $attributes ) {
-    if ( ! empty( $_options[ $_old_social_id ] ) ) {
+    if ( !empty( $_options[ $_old_social_id ] ) ) {
 
       //build new attributes
       $_title       = isset( $attributes[ 'link_title' ] ) ? esc_attr( $attributes[ 'link_title' ] ) :  '';
@@ -239,7 +239,7 @@ function czr_fn_maybe_move_classic_skin_to_modern( $theme_options ) {
     $_classic_skin_is_set = isset( $theme_options[ 'tc_skin' ] ) && !empty( $theme_options[ 'tc_skin' ] );
     $_new_skin_is_set     = isset( $theme_options[ 'tc_skin_color' ] ) && !empty( $theme_options[ 'tc_skin_color' ] );
 
-    if ( ! $_classic_skin_is_set || $_new_skin_is_set ) {
+    if ( !$_classic_skin_is_set || $_new_skin_is_set ) {
 
           //save the state in the options
           $theme_options[ '__moved_opts' ]    = isset( $theme_options[ '__moved_opts' ] ) && is_array( $theme_options[ '__moved_opts' ] ) ? $theme_options[ '__moved_opts' ] : array();
@@ -250,7 +250,7 @@ function czr_fn_maybe_move_classic_skin_to_modern( $theme_options ) {
 
 
     //get skin color from classic skin value, which is in the form color_name.css
-    $_color_map    = CZR___::$instance -> skin_classic_color_map;
+    $_color_map    = CZR___::$instance->skin_classic_color_map;
 
     $_active_skin  = $theme_options[ 'tc_skin' ];
 

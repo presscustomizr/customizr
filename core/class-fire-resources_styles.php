@@ -6,9 +6,9 @@
 *
 * @package            Customizr
 */
-if ( ! class_exists( 'CZR_resources_styles' ) ) :
+if ( !class_exists( 'CZR_resources_styles' ) ) :
    class CZR_resources_styles {
-        //Access any method or var of the class with classname::$instance -> var or method():
+        //Access any method or var of the class with classname::$instance->var or method():
         static $instance;
 
         private $_is_css_minified;
@@ -108,7 +108,7 @@ if ( ! class_exists( 'CZR_resources_styles' ) ) :
                $tc_custom_css            = czr_fn_opt( 'tc_custom_css' );
                $esc_tc_custom_css        = esc_html( $tc_custom_css );
 
-               if ( ! isset( $esc_tc_custom_css ) || empty( $esc_tc_custom_css ) )
+               if ( !isset( $esc_tc_custom_css ) || empty( $esc_tc_custom_css ) )
                      return $_css;
 
                return apply_filters( 'czr_write_custom_css',

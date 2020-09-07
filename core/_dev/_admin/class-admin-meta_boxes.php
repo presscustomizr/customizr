@@ -3,7 +3,7 @@
 * Posts, pages and attachment actions and filters
 *
 */
-if ( ! class_exists( 'CZR_meta_boxes' ) ) :
+if ( !class_exists( 'CZR_meta_boxes' ) ) :
    class CZR_meta_boxes {
       static $instance;
 
@@ -121,7 +121,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
        */
       function czr_add_metabox( $meta_box_key, $screen ) {
 
-         if ( ! method_exists( $this , "czr_fn_{$meta_box_key}_metabox" ) )
+         if ( !method_exists( $this , "czr_fn_{$meta_box_key}_metabox" ) )
             return;
 
          call_user_func_array( 'add_meta_box',
@@ -188,7 +188,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
       //hook : add_meta_boxes_post
       function czr_fn_post_formats_meta_boxes( $post ) {
          //if not czr4 return
-         if ( ! ( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) )
+         if ( !( defined( 'CZR_IS_MODERN_STYLE' ) && CZR_IS_MODERN_STYLE ) )
             return;
 
          $post_meta_boxes          = $this->czr_fn_get_post_meta_boxes_map();
@@ -654,7 +654,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
          if( $post_slider_check_value == true ):
              $selectable_sliders    = apply_filters( 'czr_post_selectable_sliders', $sliders );
-             if ( isset( $selectable_sliders ) && ! empty( $selectable_sliders ) ):
+             if ( isset( $selectable_sliders ) && !empty( $selectable_sliders ) ):
 
          ?>
              <div class="meta-box-item-title">
@@ -1088,7 +1088,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
        * @since Customizr 2.0
        */
       function czr_fn_attachment_meta_box( $id ) {//id, title, callback, post_type, context, priority, callback_args
-         if ( ! wp_attachment_is_image( $id ) )
+         if ( !wp_attachment_is_image( $id ) )
             return;
 
          add_meta_box(
@@ -1923,7 +1923,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
 
       $nonce = $_POST['SliderCheckNonce'];
       // check if the submitted nonce matches with the generated nonce we created earlier
-      if ( ! wp_verify_nonce( $nonce, 'tc-slider-check-nonce' ) ) {
+      if ( !wp_verify_nonce( $nonce, 'tc-slider-check-nonce' ) ) {
         die();
       }
 
@@ -2123,7 +2123,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                         compact( 'content', 'wrapper_tag', 'wrapper_class')
                     ) : $content;
 
-         if ( ! $echo )
+         if ( !$echo )
             return $html;
 
          echo $html;
@@ -2183,7 +2183,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          $args = wp_parse_args( $args, $defaults );
          extract($args);
 
-         if ( ! $choices ) return;
+         if ( !$choices ) return;
 
          $select_id = isset($select_id) ? $select_id : $select_name;
 
@@ -2208,13 +2208,13 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
                         compact( 'content', 'wrapper_tag', 'wrapper_class')
                     ) : $content;
 
-        $html     = ! ( isset($title) && is_array( $title ) && ! empty( $title ) ) ? $html :
+        $html     = !( isset($title) && is_array( $title ) && !empty( $title ) ) ? $html :
                         sprintf( "%s%s",
                            CZR_meta_boxes::czr_fn_title_view( array_merge($title, array( 'echo' => 0 ) ) ),
                            $html
                         );
 
-        if ( ! $echo )
+        if ( !$echo )
          return $html;
 
         echo $html ;
@@ -2261,13 +2261,13 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          compact( 'content', 'wrapper_tag', 'wrapper_class')
         ) : $content;
 
-        $html = ! ( isset($title) && is_array( $title ) && ! empty( $title ) ) ? $html :
+        $html = !( isset($title) && is_array( $title ) && !empty( $title ) ) ? $html :
            sprintf( "%s%s",
              CZR_meta_boxes::czr_fn_title_view( array_merge($title, array( 'echo' => 0 ) ) ),
              $html
          );
 
-        if ( ! $echo )
+        if ( !$echo )
          return $html;
 
         echo $html ;
@@ -2316,13 +2316,13 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          compact( 'content', 'wrapper_tag', 'wrapper_class')
         ) : $content;
 
-        $html = ! ( isset($title) && is_array( $title ) && ! empty( $title ) ) ? $html :
+        $html = !( isset($title) && is_array( $title ) && !empty( $title ) ) ? $html :
            sprintf( "%s%s",
              CZR_meta_boxes::czr_fn_title_view( array_merge($title, array( 'echo' => 0 ) ) ),
              $html
          );
 
-        if ( ! $echo )
+        if ( !$echo )
          return $html;
 
         echo $html ;
@@ -2351,7 +2351,7 @@ if ( ! class_exists( 'CZR_meta_boxes' ) ) :
          $content
         );
 
-        if ( ! $echo )
+        if ( !$echo )
          return $html;
         echo $html;
       }

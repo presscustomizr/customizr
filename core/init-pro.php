@@ -6,14 +6,14 @@
 */
 if ( ! class_exists( 'CZR_init_pro' ) ) :
   class CZR_init_pro {
-    //Access any method or var of the class with classname::$instance -> var or method():
+    //Access any method or var of the class with classname::$instance->var or method():
     static $instance;
     public $_pro_classes;
     private $_hide_pro_update_notification_for_versions;
 
     function __construct () {
         self::$instance =& $this;
-        $this -> _pro_classes = array(
+        $this->_pro_classes = array(
           'TC_activation_key'          => array('/addons/activation-key/activation/class_activation_key.php', array(  CZR_THEMENAME, 'customizr_pro' , CUSTOMIZR_VER )),
           'TC_theme_updater'           => array('/addons/activation-key/updates/class_theme_updater.php'),
           'TC_theme_check_updates'     => array('/addons/activation-key/updates/class_theme_check_updates.php', array(  CZR_THEMENAME , 'customizr_pro' , CUSTOMIZR_VER )),
@@ -24,12 +24,12 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
         //set files to load according to the context : admin / front / customize
         add_filter( 'tc_get_files_to_load_pro' , array( $this , 'czr_fn_set_files_to_load_pro' ) );
         //load
-        $this -> czr_fn_pro_load();
+        $this->czr_fn_pro_load();
         //hide update notification for a list of version
         //typically useful when several versions are released in a short time interval, to avoid hammering the wp admin dashboard with a new admin notice each time
-        $this -> _hide_pro_update_notification_for_versions = array( '2.1.31' );
+        $this->_hide_pro_update_notification_for_versions = array( '2.1.31' );
         if( ! defined( 'DISPLAY_PRO_UPDATE_NOTIFICATION' ) ) {
-            define( 'DISPLAY_PRO_UPDATE_NOTIFICATION' , ! in_array( CUSTOMIZR_VER, $this -> _hide_pro_update_notification_for_versions ) );
+            define( 'DISPLAY_PRO_UPDATE_NOTIFICATION' , ! in_array( CUSTOMIZR_VER, $this->_hide_pro_update_notification_for_versions ) );
         }
     }//end of __construct()
 
@@ -40,7 +40,7 @@ if ( ! class_exists( 'CZR_init_pro' ) ) :
     *
     */
     private function czr_fn_pro_load() {
-      $_classes = apply_filters( 'tc_get_files_to_load_pro' , $this -> _pro_classes );
+      $_classes = apply_filters( 'tc_get_files_to_load_pro' , $this->_pro_classes );
 
       //loads and instantiates the activation / updates classes
       foreach ( $_classes as $name => $params ) {

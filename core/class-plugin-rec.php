@@ -1,7 +1,7 @@
 <?php
 //@return bool
 function czr_fn_rec_notice_is_dismissed( $notice_id = '' ) {
-  $notice_id = ( empty( $notice_id ) || ! is_string( $notice_id ) ) ? REC_NOTICE_ID : $notice_id;
+  $notice_id = ( empty( $notice_id ) || !is_string( $notice_id ) ) ? REC_NOTICE_ID : $notice_id;
   $dismissed = get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true );
   $dismissed_array = array_filter( explode( ',', (string) $dismissed ) );
   return ( defined('NIMBLE_RECOMMENDATION_OFF') && true === NIMBLE_RECOMMENDATION_OFF ) || in_array( $notice_id, $dismissed_array );
@@ -21,13 +21,13 @@ function czr_fn_maybe_render_rec_notice() {
   $is_nimble_installed = isset( $installed_plugins[ $plugin ] );
 
   if ( $is_nimble_installed ) {
-    if ( ! current_user_can( 'activate_plugins' ) ) {
+    if ( !current_user_can( 'activate_plugins' ) ) {
       return;
     }
     $button_text = __( 'Activate Nimble Builder Now', 'customizr' );
     $button_link = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin );
   } else {
-    if ( ! current_user_can( 'install_plugins' ) ) {
+    if ( !current_user_can( 'install_plugins' ) ) {
       return;
     }
     $button_text = __( 'Install Nimble Builder Now', 'customizr' );
