@@ -312,8 +312,6 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
 
 
       //Build metabox html
-
-
       function czr_fn_post_format_link_box( $post, $args ) {
 
          // Use nonce for verification
@@ -913,6 +911,11 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
          if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
            return $post_id;
 
+
+         //check field existence
+         if ( !( isset( $_POST[ 'czr_link_title' ] ) && isset( $_POST[ 'czr_link_url' ] ) ) )
+           return $post_id;
+
          // Check permissions
          if ( !isset($post_id) || !isset( $_POST['post_type'] ) || !isset( $_POST['format_link_noncename'] ) )
            return $post_id;
@@ -923,9 +926,6 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
          if ( !current_user_can( 'edit_post' , $post_id ) )
            return $post_id;
 
-         //check field existence
-         if ( !( isset( $_POST[ 'czr_link_title' ] ) && isset( $_POST[ 'czr_link_url' ] ) ) )
-           return $post_id;
 
          if ( 'post' != $_POST[ 'post_type' ] )
            return $post_id;
@@ -1112,7 +1112,8 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
        */
         function czr_fn_attachment_slider_box( $post ) {
            // Use nonce for verification
-           //wp_nonce_field( plugin_basename( __FILE__ ), 'slider_noncename' );
+           wp_nonce_field( plugin_basename( __FILE__ ), 'slider_noncename' );
+
            // The actual fields for data entry
            //title check field setup
            $slider_check_id       = 'slider_check_field';
@@ -2272,7 +2273,7 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
         if ( !$echo )
          return $html;
 
-        echo $html ;
+        echo $html;
       }
 
 
