@@ -1225,8 +1225,6 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
 
 
       //Build metabox html
-
-
       function czr_fn_post_format_link_box( $post, $args ) {
 
          // Use nonce for verification
@@ -1744,7 +1742,7 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
 
         ################# LAYOUT BOX #################
         // verify this came from our screen and with proper authorization,
-        if ( isset( $_POST['post_layout_noncename']) && !wp_verify_nonce( $_POST['post_layout_noncename'], plugin_basename( __FILE__ ) ) )
+        if ( !isset( $_POST['post_layout_noncename']) || !wp_verify_nonce( $_POST['post_layout_noncename'], plugin_basename( __FILE__ ) ) )
            return;
 
         // OK, we're authenticated: we need to find and save the data
@@ -1772,7 +1770,7 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
 
         ################# SLIDER BOX #################
         // verify this came from our screen and with proper authorization,
-        if ( isset( $_POST['post_slider_noncename']) && !wp_verify_nonce( $_POST['post_slider_noncename'], plugin_basename( __FILE__ ) ) )
+        if ( !isset( $_POST['post_slider_noncename']) || !wp_verify_nonce( $_POST['post_slider_noncename'], plugin_basename( __FILE__ ) ) )
            return;
 
 
@@ -1826,6 +1824,11 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
          if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
            return $post_id;
 
+
+         //check field existence
+         if ( !( isset( $_POST[ 'czr_link_title' ] ) && isset( $_POST[ 'czr_link_url' ] ) ) )
+           return $post_id;
+
          // Check permissions
          if ( !isset($post_id) || !isset( $_POST['post_type'] ) || !isset( $_POST['format_link_noncename'] ) )
            return $post_id;
@@ -1836,9 +1839,6 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
          if ( !current_user_can( 'edit_post' , $post_id ) )
            return $post_id;
 
-         //check field existence
-         if ( !( isset( $_POST[ 'czr_link_title' ] ) && isset( $_POST[ 'czr_link_url' ] ) ) )
-           return $post_id;
 
          if ( 'post' != $_POST[ 'post_type' ] )
            return $post_id;
@@ -1875,7 +1875,7 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
          if ( !isset($post_id) || !isset( $_POST['post_type'] ) || !isset( $_POST['format_quote_noncename'] ) )
            return $post_id;
 
-         if ( !wp_verify_nonce( $_POST['format_link_noncename'], plugin_basename( __FILE__ ) ) )
+         if ( !wp_verify_nonce( $_POST['format_quote_noncename'], plugin_basename( __FILE__ ) ) )
            return $post_id;
 
          if ( !current_user_can( 'edit_post' , $post_id ) )
@@ -2025,7 +2025,8 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
        */
         function czr_fn_attachment_slider_box( $post ) {
            // Use nonce for verification
-           //wp_nonce_field( plugin_basename( __FILE__ ), 'slider_noncename' );
+           wp_nonce_field( plugin_basename( __FILE__ ), 'slider_noncename' );
+
            // The actual fields for data entry
            //title check field setup
            $slider_check_id       = 'slider_check_field';
@@ -2325,7 +2326,7 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
          // verify this came from our screen and with proper authorization,
          // because save_post can be triggered at other times
 
-         if ( isset( $_POST['slider_noncename']) && !wp_verify_nonce( $_POST['slider_noncename'], plugin_basename( __FILE__ ) ) )
+         if ( !isset( $_POST['slider_noncename']) || !wp_verify_nonce( $_POST['slider_noncename'], plugin_basename( __FILE__ ) ) )
              return;
 
          // Check permissions
@@ -2539,7 +2540,7 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
       function czr_fn_slider_ajax_save( $post_id ) {
 
            //We check the ajax nonce (common for post and attachment)
-           if ( isset( $_POST['SliderCheckNonce']) && !wp_verify_nonce( $_POST['SliderCheckNonce'], 'tc-slider-check-nonce' ) )
+           if ( !isset( $_POST['SliderCheckNonce']) || !wp_verify_nonce( $_POST['SliderCheckNonce'], 'tc-slider-check-nonce' ) )
                return;
 
            // Check permissions
@@ -2833,7 +2834,9 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
    * @since Customizr 2.0
    */
      function czr_fn_slider_cb() {
-
+      if ( !isset( $_POST['SliderCheckNonce']) ) {
+        die();
+      }
       $nonce = $_POST['SliderCheckNonce'];
       // check if the submitted nonce matches with the generated nonce we created earlier
       if ( !wp_verify_nonce( $nonce, 'tc-slider-check-nonce' ) ) {
@@ -3183,7 +3186,7 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
         if ( !$echo )
          return $html;
 
-        echo $html ;
+        echo $html;
       }
 
 
