@@ -189,6 +189,12 @@ if ( !class_exists( 'CZR_init' ) ) :
 
           }
 
+          //THEME VER
+          $ver = str_replace('.', '-', CUSTOMIZR_VER );
+          $prefix = (defined('CZR_IS_PRO' ) && CZR_IS_PRO) ? 'customizr-pro-' : 'customizr-';
+          $theme_class = $prefix . $ver;
+          $_classes[] = get_template_directory() === get_stylesheet_directory() ? $theme_class : $theme_class.'-with-child-theme';
+
           return $_classes;
       }
 
