@@ -8,10 +8,18 @@ var czrapp = czrapp || {};
 
                 // Quick hack for https://github.com/presscustomizr/customizr/issues/1771
                 // August 2019
-                $('.menu-item').on('focusin', 'a', function( evt ) {
-                      $(this).closest( '.menu-item' ).addClass('czr-focusin');
-                });
+                // updated nov 2020 for https://github.com/presscustomizr/customizr/issues/1852
+                $('.menu-item')
+                    .on('keyup', 'a', function( evt ) {
+                          if( 9 != evt.which )
+                            return;
 
+                          var $menuItem = $(this).closest( '.menu-item' );
+                          $menuItem.addClass('czr-focusin');
+                          if ( $menuItem.hasClass('menu-item-has-children') ) {
+                              $menuItem.addClass('czr-parent-menu-navigated');
+                          }
+                    });
             },//init
 
             //Event Listener
