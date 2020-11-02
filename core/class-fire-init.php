@@ -195,6 +195,12 @@ if ( !class_exists( 'CZR_init' ) ) :
           $theme_class = $prefix . $ver;
           $_classes[] = get_template_directory() === get_stylesheet_directory() ? $theme_class : $theme_class.'-with-child-theme';
 
+          // Nov 2020 add back the "home" CSS class to body tag when user picked option "Don't show any posts or page"
+          // see https://github.com/presscustomizr/customizr/issues/1861
+          if ( czr_fn_is_home() && 'nothing' == get_option( 'show_on_front' ) ) {
+              $_classes[] = 'home';
+          }
+
           return $_classes;
       }
 
