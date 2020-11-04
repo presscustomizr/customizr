@@ -2482,7 +2482,7 @@ $.extend( CZRInputMths , {
       // }
       czrFormatContentSelected: function ( item ) {
               if ( item.loading ) return item.text;
-              var markup = "<div class='content-picker-item clearfix'>" +
+              var markup = "<div class='content-picker-item'>" +
                 "<div class='content-item-bar'>" +
                   "<span class='czr-picker-item-title'>" + item.title + "</span>";
 

@@ -1536,7 +1536,9 @@ if ( ! function_exists( 'czr_fn_lighten_hsl' ) ) {
 if ( ! function_exists( 'czr_fn_hex2rgb' ) ) {
    function czr_fn_hex2rgb( $hex, $array = false, $make_prop_value = false ) {
 
-      $hex = trim( $hex, '# ' );
+      //$hex = trim( $hex, '# ' );
+      // Nov 2020 => fixes https://github.com/presscustomizr/customizr/issues/1866
+      $hex = preg_replace("/[^A-Za-z0-9]/","",$hex);
 
       if ( 3 == strlen( $hex ) ) {
 
