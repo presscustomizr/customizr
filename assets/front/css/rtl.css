@@ -9340,6 +9340,10 @@ section.post-related-articles .entry-meta {
   color: #444;
 }
 
+.comment-content a {
+  text-decoration: underline;
+}
+
 .comment-author {
   display: inline-block;
 }
@@ -9583,6 +9587,10 @@ section.post-content {
 
 .widget-area a {
   color: #777;
+}
+
+.widget-area .widget_text a {
+  text-decoration: underline;
 }
 
 .widget-area .social-block {

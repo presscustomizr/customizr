@@ -571,7 +571,7 @@ var czrapp = czrapp || {};
             emitCustomEvents : function() {
 
                   var that = this;
-                  czrapp.$_window.resize( function() {
+                  czrapp.$_window.on('resize', function() {
                         var //$_windowWidth     = czrapp.$_window.width(),
                             _current          = czrapp.current_device,//<= stored on last resize event or on load
                             _to               = that.getDevice();
@@ -605,11 +605,11 @@ var czrapp = czrapp || {};
                     return;
 
                   $_imgs.map( function( _ind, _img ) {
-                    $(_img).load( function () {
+                    $(_img).on('load', function () {
                       $(_img).trigger('simple_load');
-                    });//end load
+                    });//end load event
                     if ( $(_img)[0] && $(_img)[0].complete )
-                      $(_img).load();
+                      $(_img).trigger('load');
                   } );//end map
             },//end of fn
 
@@ -620,7 +620,7 @@ var czrapp = czrapp || {};
             isSelectorAllowed : function( $_el, skip_selectors, requested_sel_type ) {
                   var sel_type = 'ids' == requested_sel_type ? 'id' : 'class',
                   _selsToSkip   = skip_selectors[requested_sel_type];
-                  if ( 'object' != typeof(skip_selectors) || ! skip_selectors[requested_sel_type] || ! $.isArray( skip_selectors[requested_sel_type] ) || 0 === skip_selectors[requested_sel_type].length )
+                  if ( 'object' != typeof(skip_selectors) || ! skip_selectors[requested_sel_type] || ! _.isArray( skip_selectors[requested_sel_type] ) || 0 === skip_selectors[requested_sel_type].length )
                     return true;
                   if ( $_el.parents( _selsToSkip.map( function( _sel ){ return 'id' == sel_type ? '#' + _sel : '.' + _sel; } ).join(',') ).length > 0 )
                     return false;
@@ -876,7 +876,7 @@ var czrapp = czrapp || {};
             initOnDomReady : function() {
                   var self = this;
                   this.$_sliders = $( 'div[id*="customizr-slider"]' );
-                  czrapp.$_window.resize( function(){
+                  czrapp.$_window.on('resize', function(){
                     self.centerSliderArrows();
                   });
             },
@@ -1006,13 +1006,11 @@ var czrapp = czrapp || {};
             },
 
             manageHoverClass : function() {
-              this.$_sliders.hover( function() {
+              this.$_sliders.on('mouseenter', function() {
                   $(this).addClass('tc-slid-hover');
-                },
-                function() {
+                }).on('mouseleave', function() {
                   $(this).removeClass('tc-slid-hover');
-                }
-              );
+                });
             },
             centerSliderArrows : function() {
               if ( 0 === this.$_sliders.length )
@@ -1069,7 +1067,7 @@ var czrapp = czrapp || {};
             eventListener : function() {
                   var self = this;
 
-                  czrapp.$_window.scroll( _.throttle( function() {
+                  czrapp.$_window.on('scroll', _.throttle( function() {
                         self.eventHandler( 'scroll' );
                   }, 50 ) );
             },//eventListener
@@ -1120,7 +1118,7 @@ var czrapp = czrapp || {};
                                 } ) ).length
                         );
                 });
-              $(_links).click( function () {
+              $(_links).on('click', function () {
                 var anchor_id = $(this).attr("href");
                 if ( ! $(anchor_id).length )
                   return;
@@ -1268,14 +1266,11 @@ var czrapp = czrapp || {};
             },
             menuButtonHover : function() {
               var $_menu_btns = $('.btn-toggle-nav');
-              $_menu_btns.hover(
-                function() {
+              $_menu_btns.on('mouseenter', function() {
                   $(this).addClass('hover');
-                },
-                function() {
+                }).on('mouseleave', function(){
                   $(this).removeClass('hover');
-                }
-              );
+                });
             },
             secondMenuRespActions : function() {
               if ( ! TCParams.isSecondMenuEnabled )
@@ -1560,7 +1555,7 @@ var czrapp = czrapp || {};
                             self.stickyHeaderEventHandler( 'resize' );
                       }
                 });
-                czrapp.$_window.scroll( _.throttle( function() {
+                czrapp.$_window.on('scroll', _.throttle( function() {
                       self.stickyHeaderEventHandler( 'scroll' );
                 }, ! ( czrapp.$_body.hasClass('tc-smoothscroll') && ! self.isHeaderSticky() ) ? self.scrollingDelay : 15 ) );
                 czrapp.$_body.on( czrapp.$_body.hasClass('tc-is-mobile') ? 'touchstart' : 'click' , '.sn-toggle', function() {
@@ -1821,7 +1816,7 @@ var czrapp = czrapp || {};
                 self.sideNavEventHandler( evt, 'resize');
               });
 
-              czrapp.$_window.scroll( function( evt ) {
+              czrapp.$_window.on('scroll', function( evt ) {
                 self.sideNavEventHandler( evt, 'scroll');
               });
             },

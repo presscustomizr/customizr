@@ -343,11 +343,11 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
 
           //on load
           $( function($) {
-            $('.tc-dismiss-update-notice').click( function( e ) {
+            $('.tc-dismiss-update-notice').on('click', function( e ) {
               e.preventDefault();
               _ajax_action( $(this) );
-            } );
-          } );
+            });
+          });
 
         } )( jQuery );
 

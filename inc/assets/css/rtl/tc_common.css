@@ -1,5 +1,5 @@
 /*!
- * Customizr v4.3.6
+ * Customizr v4.3.7-alpha
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4859,6 +4859,14 @@ h3#reply-title:before,
 }
 .widget_nav_menu h3:before {
   content: "\f0c9";
+}
+/*-- LINKS
+added in Nov 2020 for https://github.com/presscustomizr/customizr/issues/1869
+ */
+article .entry-content a,
+.comment-content a,
+.widget-area .widget_text a {
+  text-decoration: underline;
 }
 /*-- POST FORMATS AND ARCHIVE ICONS */
 .format-icon:before {

@@ -977,11 +977,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
     return 0 === _filtered.length;
   };
   Plugin.prototype._is_sel_type_allowed = function( $_el, sel_typ ) {
-    if ( ! this.options.skipSelectors[sel_typ] || ! $.isArray( this.options.skipSelectors[sel_typ] ) )
+    if ( !this.options.skipSelectors[sel_typ] || !Array.isArray( this.options.skipSelectors[sel_typ] ) )
       return true;
 
     var _attr = 'ids' == sel_typ ? 'id' : 'class';
-    if ( 'object' != typeof(this.options.skipSelectors) || ! this.options.skipSelectors[sel_typ] || ! $.isArray( this.options.skipSelectors[sel_typ] )  )
+    if ( 'object' != typeof(this.options.skipSelectors) || ! this.options.skipSelectors[sel_typ] || !Array.isArray( this.options.skipSelectors[sel_typ] ) )
       return true;
 
     var _elSels       = ! $_el.attr( _attr ) ? [] : $_el.attr( _attr ).split(' '),
@@ -1082,8 +1082,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
                       return;
                     self._load_img(this);
             });
-            $(window).scroll( function( _evt ) { self._better_scroll_event_handler( _evt ); } );
-            $(window).resize( _.debounce( function( _evt ) { self._maybe_trigger_load( _evt ); }, 100 ) );
+            $(window).on('scroll', function( _evt ) { self._better_scroll_event_handler( _evt ); } );
+            $(window).on('resize', _.debounce( function( _evt ) { self._maybe_trigger_load( _evt ); }, 100 ) );
             this._maybe_trigger_load( 'dom-ready');
             $(this.element).data('smartLoadDone', true );
       };
@@ -1140,7 +1140,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
                   .attr( 'sizes' , _sizes )
                   .attr( 'srcset' , _src_set )
                   .attr( 'src', _src )
-                  .load( function () {
+                  .on('load', function () {
                         if ( !$_img.hasClass(skipImgClass) ) {
                               $_img.fadeIn(self.options.fadeIn_options).addClass(skipImgClass);
                         }
@@ -1160,7 +1160,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
                         $_img.data('czr-smart-loaded', true );
                   });//<= create a load() fn
             if ( $_img[0].complete ) {
-                  $_img.load();
+                  $_img.trigger('load');
             }
             $_img.parent().removeClass('smart-loading');
       };
@@ -1234,7 +1234,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
       var sel_type = 'ids' == requested_sel_type ? 'id' : 'class',
           _selsToSkip   = this.options.skipSelectors[requested_sel_type];
-      if ( 'object' != typeof(this.options.skipSelectors) || ! this.options.skipSelectors[requested_sel_type] || ! $.isArray( this.options.skipSelectors[requested_sel_type] ) || 0 === this.options.skipSelectors[requested_sel_type].length )
+      if ( 'object' != typeof(this.options.skipSelectors) || ! this.options.skipSelectors[requested_sel_type] || ! Array.isArray( this.options.skipSelectors[requested_sel_type] ) || 0 === this.options.skipSelectors[requested_sel_type].length )
         return true;
       if ( this.$_el.parents( _selsToSkip.map( function( _sel ){ return 'id' == sel_type ? '#' + _sel : '.' + _sel; } ).join(',') ).length > 0 )
         return false;
@@ -1251,7 +1251,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
       var tagName     = this.$_el.children().first()[0].tagName,
           _tagToSkip  = this.options.skipChildTags;
-      if ( ! $.isArray( _tagToSkip ) )
+      if ( ! Array.isArray( _tagToSkip ) )
         return true;
       _tagToSkip = _tagToSkip.map( function( _tag ) { return _tag.toUpperCase(); });
       return -1 == $.inArray( tagName , _tagToSkip );
@@ -1311,7 +1311,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
             this.options    = $.extend( {}, defaults, options) ;
             this._defaults  = defaults;
             this._name      = pluginName;
-            this._customEvt = $.isArray(self.options.oncustom) ? self.options.oncustom : self.options.oncustom.split(' ');
+            this._customEvt = _.isArray(self.options.oncustom) ? self.options.oncustom : self.options.oncustom.split(' ');
             this.init();
       }
       Plugin.prototype.init = function () {
@@ -1334,7 +1334,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
             if ( self.options.onInit ) {
                   _do();
             }
-            if ( $.isArray( self._customEvt ) ) {
+            if ( _.isArray( self._customEvt ) ) {
                   self._customEvt.map( function( evt ) {
                         var $_containerToListen = ( self.options.$containerToListen instanceof $ && 1 < self.options.$containerToListen.length ) ? self.options.$containerToListen : $( self.container );
                         $_containerToListen.bind( evt, {} , function() {
@@ -1372,7 +1372,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
                   self._pre_img_cent( $_img, _event_ );
                   if ( self.options.onresize && ! $_img.data('resize-react-bound' ) ) {
                         $_img.data('resize-react-bound', true );
-                        $(window).resize( _.debounce( function() {
+                        $(window).on('resize', _.debounce( function() {
                               self._pre_img_cent( $_img, 'resize');
                         }, 100 ) );
                   }
@@ -1470,7 +1470,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
       Plugin.prototype._is_selector_allowed = function() {
             if ( ! $(this.container).attr( 'class' ) )
               return true;
-            if ( ! this.options.skipGoldenRatioClasses || ! $.isArray( this.options.skipGoldenRatioClasses )  )
+            if ( ! this.options.skipGoldenRatioClasses || ! _.isArray( this.options.skipGoldenRatioClasses )  )
               return true;
 
             var _elSels       = $(this.container).attr( 'class' ).split(' '),
@@ -3414,11 +3414,11 @@ var czrapp = czrapp || {};
                     return;
 
                   $_imgs.map( function( _ind, _img ) {
-                    $(_img).load( function () {
+                    $(_img).on('load', function () {
                       $(_img).trigger('simple_load');
                     });//end load
                     if ( $(_img)[0] && $(_img)[0].complete )
-                      $(_img).load();
+                      $(_img).trigger('load');
                   } );//end map
             },//end of fn
 
@@ -3429,7 +3429,7 @@ var czrapp = czrapp || {};
             isSelectorAllowed : function( $_el, skip_selectors, requested_sel_type ) {
                   var sel_type = 'ids' == requested_sel_type ? 'id' : 'class',
                   _selsToSkip   = skip_selectors[requested_sel_type];
-                  if ( 'object' != typeof(skip_selectors) || ! skip_selectors[requested_sel_type] || ! $.isArray( skip_selectors[requested_sel_type] ) || 0 === skip_selectors[requested_sel_type].length )
+                  if ( 'object' != typeof(skip_selectors) || ! skip_selectors[requested_sel_type] || ! _.isArray( skip_selectors[requested_sel_type] ) || 0 === skip_selectors[requested_sel_type].length )
                     return true;
                   if ( $_el.parents( _selsToSkip.map( function( _sel ){ return 'id' == sel_type ? '#' + _sel : '.' + _sel; } ).join(',') ).length > 0 )
                     return false;
@@ -3910,7 +3910,7 @@ var czrapp = czrapp || {};
                         });
                   });
                   self._css_loader = '<div class="czr-css-loader czr-mr-loader" style="display:none"><div></div><div></div><div></div></div>';
-                  czrapp.$_window.scroll( _.throttle( function() {
+                  czrapp.$_window.on('scroll', _.throttle( function() {
                         $( self.slidersSelectorMap.galleries ).each( function() {
                               if ( czrapp.base.isInWindow( $(this) ) ){
                                     $(this).trigger( 'czr-is-in-window', { el : $(this) } );
@@ -4426,8 +4426,8 @@ var czrapp = czrapp || {};
                     }
                     self.scrollDirection( to >= from ? 'down' : 'up' );
               });
-              czrapp.$_window.resize( _.throttle( function() { self.windowWidth( czrapp.$_window.width() ); }, 10 ) );
-              czrapp.$_window.scroll( _.throttle( function() {
+              czrapp.$_window.on('resize', _.throttle( function() { self.windowWidth( czrapp.$_window.width() ); }, 10 ) );
+              czrapp.$_window.on('scroll', _.throttle( function() {
                     self.isScrolling( true );
                     self.scrollPosition( czrapp.$_window.scrollTop() );
                     clearTimeout( $.data( this, 'scrollTimer') );
@@ -4502,7 +4502,7 @@ var czrapp = czrapp || {};
                                       if ( $_header_logo[0].complete ) {
                                             $_header_logo.trigger('header-logo-loaded');
                                       } else {
-                                        $_header_logo.load( function() {
+                                        $_header_logo.on('load', function() {
                                               $_header_logo.trigger('header-logo-loaded');
                                         } );
                                       }
@@ -5446,7 +5446,7 @@ var czrapp = czrapp || {};
                   });
             }
 
-            $(_links).click( function () {
+            $(_links).on('click', function () {
                   var anchor_id = $(this).attr("href");
                   if ( ! $(anchor_id).length )
                     return;
@@ -5706,7 +5706,7 @@ var czrapp = czrapp || {};
         self.sideNavEventHandler( evt, 'resize');
       });
 
-      czrapp.$_window.scroll( function( evt ) {
+      czrapp.$_window.on('scroll', function( evt ) {
         self.sideNavEventHandler( evt, 'scroll');
       });
 
