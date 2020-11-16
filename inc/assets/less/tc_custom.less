@@ -209,6 +209,14 @@ h3#reply-title:before,
   content: "\f0c9";
 }
 
+/*-- LINKS
+added in Nov 2020 for https://github.com/presscustomizr/customizr/issues/1869
+ */
+article .entry-content a, .comment-content a, .widget-area .widget_text a {
+  text-decoration:underline;
+}
+
+
 /*-- POST FORMATS AND ARCHIVE ICONS */
 .format-icon:before {
   & when (@is_rtl = true) {

@@ -18,6 +18,10 @@
     @at-root .widget-area a {
       color: $grey;
     }
+    @at-root .widget-area .widget_text a {
+      // nov 2020 for https://github.com/presscustomizr/customizr/issues/1869
+      text-decoration: underline;
+    }
   }
 
   .social-block {

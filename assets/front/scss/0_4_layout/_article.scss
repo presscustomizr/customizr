@@ -661,6 +661,10 @@ section.post-related-articles {
     font-size: 1.15em;
     color: $post-entry;
     //p { color: $grey-dark }
+    a {
+      // nov 2020 for https://github.com/presscustomizr/customizr/issues/1869
+      text-decoration: underline;
+    }
   }
   @at-root .comment-meta {
     @at-root .comment-author {
