@@ -75,7 +75,7 @@ var czrapp = czrapp || {};
 
                 //SCROLLING ACTIONS
                 //decrease the scrolling trigger delay when smoothscroll on to avoid not catching the scroll when scrolling fast and sticky header not already triggered
-                czrapp.$_window.scroll( _.throttle( function() {
+                czrapp.$_window.on('scroll', _.throttle( function() {
                       self.stickyHeaderEventHandler( 'scroll' );
                 }, ! ( czrapp.$_body.hasClass('tc-smoothscroll') && ! self.isHeaderSticky() ) ? self.scrollingDelay : 15 ) );
 

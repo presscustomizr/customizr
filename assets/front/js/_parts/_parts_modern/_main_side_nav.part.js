@@ -62,7 +62,7 @@ var czrapp = czrapp || {};
         self.sideNavEventHandler( evt, 'resize');
       });
 
-      czrapp.$_window.scroll( function( evt ) {
+      czrapp.$_window.on('scroll', function( evt ) {
         self.sideNavEventHandler( evt, 'scroll');
       });
 

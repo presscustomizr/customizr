@@ -617,7 +617,7 @@ var czrapp = czrapp || {};
                   });
             }
 
-            $(_links).click( function () {
+            $(_links).on('click', function () {
                   var anchor_id = $(this).attr("href");
 
                   //anchor el exists ?

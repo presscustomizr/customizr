@@ -117,7 +117,7 @@ var czrapp = czrapp || {};
 
 
                   // Emit an event when a gallery is in the window view port
-                  czrapp.$_window.scroll( _.throttle( function() {
+                  czrapp.$_window.on('scroll', _.throttle( function() {
                         $( self.slidersSelectorMap.galleries ).each( function() {
                               if ( czrapp.base.isInWindow( $(this) ) ){
                                     $(this).trigger( 'czr-is-in-window', { el : $(this) } );

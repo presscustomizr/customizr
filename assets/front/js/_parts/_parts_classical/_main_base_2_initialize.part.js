@@ -74,7 +74,7 @@ var czrapp = czrapp || {};
                   /*-----------------------------------------------------
                   -> CUSTOM RESIZE EVENT
                   ------------------------------------------------------*/
-                  czrapp.$_window.resize( function() {
+                  czrapp.$_window.on('resize', function() {
                         var //$_windowWidth     = czrapp.$_window.width(),
                             _current          = czrapp.current_device,//<= stored on last resize event or on load
                             //15 pixels adjustement to avoid replacement before real responsive width
@@ -115,11 +115,11 @@ var czrapp = czrapp || {};
                     return;
 
                   $_imgs.map( function( _ind, _img ) {
-                    $(_img).load( function () {
+                    $(_img).on('load', function () {
                       $(_img).trigger('simple_load');
-                    });//end load
+                    });//end load event
                     if ( $(_img)[0] && $(_img)[0].complete )
-                      $(_img).load();
+                      $(_img).trigger('load');
                   } );//end map
             },//end of fn
 
@@ -132,7 +132,7 @@ var czrapp = czrapp || {};
                   _selsToSkip   = skip_selectors[requested_sel_type];
 
                   //check if option is well formed
-                  if ( 'object' != typeof(skip_selectors) || ! skip_selectors[requested_sel_type] || ! $.isArray( skip_selectors[requested_sel_type] ) || 0 === skip_selectors[requested_sel_type].length )
+                  if ( 'object' != typeof(skip_selectors) || ! skip_selectors[requested_sel_type] || ! _.isArray( skip_selectors[requested_sel_type] ) || 0 === skip_selectors[requested_sel_type].length )
                     return true;
 
                   //has a forbidden parent?

@@ -88,7 +88,7 @@ var czrapp = czrapp || {};
                                       if ( $_header_logo[0].complete ) {
                                             $_header_logo.trigger('header-logo-loaded');
                                       } else {
-                                        $_header_logo.load( function() {
+                                        $_header_logo.on('load', function() {
                                               $_header_logo.trigger('header-logo-loaded');
                                         } );
                                       }

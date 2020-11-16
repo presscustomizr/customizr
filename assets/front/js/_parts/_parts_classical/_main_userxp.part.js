@@ -26,7 +26,7 @@ var czrapp = czrapp || {};
             eventListener : function() {
                   var self = this;
 
-                  czrapp.$_window.scroll( _.throttle( function() {
+                  czrapp.$_window.on('scroll', _.throttle( function() {
                         self.eventHandler( 'scroll' );
                   }, 50 ) );
             },//eventListener
@@ -96,7 +96,7 @@ var czrapp = czrapp || {};
                                 } ) ).length
                         );
                 });
-              $(_links).click( function () {
+              $(_links).on('click', function () {
                 var anchor_id = $(this).attr("href");
 
                 //anchor el exists ?
@@ -298,14 +298,11 @@ var czrapp = czrapp || {};
             menuButtonHover : function() {
               var $_menu_btns = $('.btn-toggle-nav');
               //BUTTON HOVER (with handler)
-              $_menu_btns.hover(
-                function() {
+              $_menu_btns.on('mouseenter', function() {
                   $(this).addClass('hover');
-                },
-                function() {
+                }).on('mouseleave', function(){
                   $(this).removeClass('hover');
-                }
-              );
+                });
             },
 
 

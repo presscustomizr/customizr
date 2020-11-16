@@ -91,7 +91,7 @@ var TCParams = TCParams || {};
     this.options = options
     this.$element = $(element)
       .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
-    this.options.remote && this.$element.find('.modal-body').load(this.options.remote)
+    this.options.remote && this.$element.find('.modal-body').on('load', this.options.remote )
   }
 
   Modal.prototype = {
@@ -223,11 +223,12 @@ var TCParams = TCParams || {};
           this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
             .appendTo(document.body)
 
-          this.$backdrop.click(
-            this.options.backdrop == 'static' ?
-              $.proxy(this.$element[0].focus, this.$element[0])
-            : $.proxy(this.hide, this)
-          )
+          var _me = this;
+          this.$backdrop.on('click', function() {
+            _me.options.backdrop == 'static' ?
+              $.proxy(_me.$element[0].focus, _me.$element[0])
+            : $.proxy(_me.hide, _me)
+          });
 
           if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
 
@@ -399,7 +400,7 @@ var TCParams = TCParams || {};
 
       if (!isActive || (isActive && e.keyCode == 27)) {
         if (e.which == 27) $parent.find(toggle).focus()
-        return $this.click()
+        return $this.trigger('click');
       }
 
       $items = $('[role=menu] li:not(.divider):visible a', $parent)

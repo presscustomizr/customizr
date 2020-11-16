@@ -15,7 +15,7 @@ var czrapp = czrapp || {};
 
                   //@todo EVENT
                   //Recenter the slider arrows on resize
-                  czrapp.$_window.resize( function(){
+                  czrapp.$_window.on('resize', function(){
                     self.centerSliderArrows();
                   });
             },
@@ -191,13 +191,11 @@ var czrapp = czrapp || {};
 
             manageHoverClass : function() {
               //add a class to the slider on hover => used to display the navigation arrow
-              this.$_sliders.hover( function() {
+              this.$_sliders.on('mouseenter', function() {
                   $(this).addClass('tc-slid-hover');
-                },
-                function() {
+                }).on('mouseleave', function() {
                   $(this).removeClass('tc-slid-hover');
-                }
-              );
+                });
             },
 
             //SLIDER ARROWS
