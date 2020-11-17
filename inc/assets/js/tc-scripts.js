@@ -2308,7 +2308,7 @@ var TCParams = TCParams || {};
 
             $_img.parent().addClass('smart-loading');
 
-            $_img.unbind('load_img')
+            $_img.off('load_img')
                   .removeAttr( this.options.attribute.join(' ') )
                   .attr( 'sizes' , _sizes )
                   .attr( 'srcset' , _src_set )

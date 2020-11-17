@@ -14,7 +14,7 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
-= 4.3.7 November 16th, 2020 =
+= 4.3.7 November 17th, 2020 =
 * fixed : [TRT requirement][accessibility] Links within content must be underlined. fixes #1869
 * fixed : [WP 5.6][jQuery] adapt to WP jQuery updated version. Prepare removal of jQuery Migrate in future WP 5.7 ( https://make.wordpress.org/core/2020/06/29/updating-jquery-version-shipped-with-wordpress/ )
 
