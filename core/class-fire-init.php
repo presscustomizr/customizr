@@ -201,6 +201,10 @@ if ( !class_exists( 'CZR_init' ) ) :
               $_classes[] = 'home';
           }
 
+          // Nov 2020 : opt-out for underline on links
+          if ( !(bool)esc_attr( czr_fn_opt( 'tc_link_underline') ) ){
+              $_classes = array_merge( $_classes , array( 'tc-link-not-underlined' ) );
+          }
           return $_classes;
       }
 

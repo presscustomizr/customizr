@@ -22,6 +22,7 @@
       // nov 2020 for https://github.com/presscustomizr/customizr/issues/1869
       text-decoration: underline;
     }
+    @at-root .tc-link-not-underlined .widget-area .widget_text a {text-decoration: none;}
   }
 
   .social-block {

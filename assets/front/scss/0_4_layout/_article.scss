@@ -71,6 +71,8 @@ article .entry-content {
   a {
     text-decoration: underline;
   }
+  // Nov 2020 => new option to opt-out underline on links within content
+  @at-root .tc-link-not-underlined article .entry-content a {text-decoration: none;}
   a.btn, a.button, a.remove {
     text-decoration: none;
   }
@@ -666,6 +668,10 @@ section.post-related-articles {
       text-decoration: underline;
     }
   }
+  @at-root .tc-link-not-underlined .comment-content {
+    a {text-decoration: none;}
+  }
+
   @at-root .comment-meta {
     @at-root .comment-author {
       display: inline-block;

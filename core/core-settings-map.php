@@ -358,6 +358,14 @@ function czr_fn_formatting_option_map( $get_default = null ) {
                             'section'       => 'formatting_sec' ,
                             'type'          => 'nimblecheck' ,
                             'transport'   => czr_fn_is_ms() ? 'refresh' : 'postMessage'
+          ),
+          'tc_link_underline'  =>  array(
+                            'default'       => 1,
+                            'control'     => 'CZR_controls' ,
+                            'label'         => __( 'Links underlined within content' , 'customizr' ),
+                            'section'       => 'formatting_sec' ,
+                            'type'          => 'nimblecheck' ,
+                            'transport'   => 'refresh'
           )
   );
 }
