@@ -1,5 +1,5 @@
 /*!
- * Customizr v4.3.8
+ * Customizr v4.3.9
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4860,11 +4860,17 @@ h3#reply-title:before,
 }
 /*-- LINKS
 added in Nov 2020 for https://github.com/presscustomizr/customizr/issues/1869
+with an option to opt-out for underline
  */
 article .entry-content a,
 .comment-content a,
 .widget-area .widget_text a {
   text-decoration: underline;
+}
+.tc-link-not-underlined article .entry-content a,
+.tc-link-not-underlined .comment-content a,
+.tc-link-not-underlined .widget-area .widget_text a {
+  text-decoration: none;
 }
 /*-- POST FORMATS AND ARCHIVE ICONS */
 .format-icon:before {

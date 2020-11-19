@@ -5961,6 +5961,10 @@ article .entry-content a {
   text-decoration: underline;
 }
 
+.tc-link-not-underlined article .entry-content a {
+  text-decoration: none;
+}
+
 article .entry-content a.btn, article .entry-content a.button, article .entry-content a.remove {
   text-decoration: none;
 }
@@ -6532,6 +6536,10 @@ section.post-related-articles .entry-meta {
   text-decoration: underline;
 }
 
+.tc-link-not-underlined .comment-content a {
+  text-decoration: none;
+}
+
 .comment-author {
   display: inline-block;
 }
@@ -6779,6 +6787,10 @@ section.post-content {
 
 .widget-area .widget_text a {
   text-decoration: underline;
+}
+
+.tc-link-not-underlined .widget-area .widget_text a {
+  text-decoration: none;
 }
 
 .widget-area .social-block {

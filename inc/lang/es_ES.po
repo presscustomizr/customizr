@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.3.8\n"
+"Project-Id-Version: * Customizr v4.3.9\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2020-11-17 15:04:20+00:00\n"
+"POT-Creation-Date: 2020-11-19 18:18:01+00:00\n"
 "PO-Revision-Date: 2016-08-31 16:05+0200\n"
 "Last-Translator: Nicolas <contact@themesandco.com>\n"
 "Language-Team: Angel Calzado <angelcalzado@sintaxisweb.es>\n"
@@ -18,19 +18,19 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: assets\n"
 
-#: core/core-settings-map.php:1619
+#: core/core-settings-map.php:1627
 msgid "1"
 msgstr "1"
 
-#: core/core-settings-map.php:1620
+#: core/core-settings-map.php:1628
 msgid "2"
 msgstr "2"
 
-#: core/core-settings-map.php:1621
+#: core/core-settings-map.php:1629
 msgid "3"
 msgstr "3"
 
-#: core/core-settings-map.php:1622
+#: core/core-settings-map.php:1630
 msgid "4"
 msgstr "4"
 
@@ -155,8 +155,8 @@ msgid "this post"
 msgstr "este art&iacute;culo"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:527
-#: core/core-settings-map.php:1051 core/core-settings-map.php:1056
-#: core/core-settings-map.php:2388 core/czr-admin-ccat.php:1440
+#: core/core-settings-map.php:1059 core/core-settings-map.php:1064
+#: core/core-settings-map.php:2396 core/czr-admin-ccat.php:1440
 msgid "here"
 msgstr "aqu&iacute;"
 
@@ -203,7 +203,7 @@ msgid "Slider Layout : set the slider in full width"
 msgstr "Dise&ntilde;o del Deslizador (Slider): Mostrar con Ancho total"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:718
-#: core/core-settings-map.php:1244 core/czr-admin-ccat.php:1631
+#: core/core-settings-map.php:1252 core/czr-admin-ccat.php:1631
 msgid "Apply a dark overlay on your slider's images"
 msgstr ""
 
@@ -849,12 +849,12 @@ msgstr ""
 msgid "Jump to the customizer now"
 msgstr ""
 
-#: core/class-fire-placeholders.php:188 core/core-settings-map.php:1704
+#: core/class-fire-placeholders.php:188 core/core-settings-map.php:1712
 msgid "Don't know how to set a featured image to a post? Learn how in the %s."
 msgstr ""
 
 #: core/class-fire-placeholders.php:189 core/class-fire-placeholders.php:208
-#: core/core-settings-map.php:1705 core/core-settings-map.php:1784
+#: core/core-settings-map.php:1713 core/core-settings-map.php:1792
 msgid "WordPress documentation"
 msgstr ""
 
@@ -862,7 +862,7 @@ msgstr ""
 msgid "You can display your page's featured image here if you have set one."
 msgstr ""
 
-#: core/class-fire-placeholders.php:207 core/core-settings-map.php:1783
+#: core/class-fire-placeholders.php:207 core/core-settings-map.php:1791
 msgid "Don't know how to set a featured image to a page? Learn how in the %s."
 msgstr ""
 
@@ -893,12 +893,12 @@ msgid "dismiss notice"
 msgstr "Descartar aviso"
 
 #: core/class-fire-plugins_compat.php:380
-#: inc/_dev/class-fire-plugins_compat.php:359 inc/czr-init-ccat.php:823
+#: inc/_dev/class-fire-plugins_compat.php:359 inc/czr-init-ccat.php:827
 msgid "Front page slider name"
 msgstr ""
 
 #: core/class-fire-plugins_compat.php:382
-#: inc/_dev/class-fire-plugins_compat.php:361 inc/czr-init-ccat.php:825
+#: inc/_dev/class-fire-plugins_compat.php:361 inc/czr-init-ccat.php:829
 msgid "Posts slider button text"
 msgstr ""
 
@@ -907,7 +907,7 @@ msgid "Custom Page Example"
 msgstr ""
 
 #: core/class-fire-resources_scripts.php:402
-#: inc/_dev/class-fire-resources.php:341 inc/czr-init-ccat.php:4268
+#: inc/_dev/class-fire-resources.php:341 inc/czr-init-ccat.php:4272
 msgid "Permanently dismiss"
 msgstr ""
 
@@ -1164,15 +1164,19 @@ msgid "Animated underline effect on link hover"
 msgstr "Efecto desvanecimiento para enlaces activos"
 
 #: core/core-settings-map.php:357
-#: inc/_dev/class-fire-utils_settings_map.php:305 inc/czr-init-ccat.php:2254
+#: inc/_dev/class-fire-utils_settings_map.php:305 inc/czr-init-ccat.php:2258
 msgid "Fade effect on link hover"
 msgstr "Efecto desvanecimiento para enlaces activos"
 
-#: core/core-settings-map.php:378
+#: core/core-settings-map.php:365
+msgid "Links underlined within content"
+msgstr ""
+
+#: core/core-settings-map.php:386
 msgid "Lightbox effect on images"
 msgstr "Efecto lightbox en las im&aacute;genes"
 
-#: core/core-settings-map.php:382
+#: core/core-settings-map.php:390
 msgid ""
 "If enabled, this option activates a popin window whith a zoom effect when an "
 "image is clicked. Note : to enable this effect on the images of your pages "
@@ -1183,18 +1187,18 @@ msgstr ""
 "genes de las p&aacute;ginas y art&iacute;culos, las imágenes deben estar "
 "enlazadas al archivo multimedia."
 
-#: core/core-settings-map.php:388
+#: core/core-settings-map.php:396
 msgid "High resolution (Retina) support"
 msgstr "Soporte alta resolución (Pantallas Retina)"
 
-#: core/core-settings-map.php:393
+#: core/core-settings-map.php:401
 msgid ""
 "If enabled, your website will include support for high resolution devices."
 msgstr ""
 "Activado, el sitio web incluir&aacute; soporte para dispositivos con "
 "pantallas de alta resoluci&oacute;n."
 
-#: core/core-settings-map.php:394
+#: core/core-settings-map.php:402
 msgid ""
 "It is strongly recommended to regenerate your media library images in high "
 "definition with this free plugin"
@@ -1202,27 +1206,27 @@ msgstr ""
 "Es muy recomendable, una vez activada esta opci&oacute;n, regenerar las "
 "im&aacute;genes de la biblioteca usando este plugin gratuito"
 
-#: core/core-settings-map.php:395
+#: core/core-settings-map.php:403
 msgid "regenerate thumbnails"
 msgstr "Regenerar Miniaturas (Regenerate Thumbnails)"
 
-#: core/core-settings-map.php:397
+#: core/core-settings-map.php:405
 msgid "Open the description page of the Regenerate thumbnails plugin"
 msgstr ""
 "Abrir la p&aacute;gina de descripci&oacute;n del plugin Regenerar Miniaturas "
 "(Regenerate Thumbnails)"
 
-#: core/core-settings-map.php:403
+#: core/core-settings-map.php:411
 msgid "Dynamic slider images centering on any devices"
 msgstr ""
 "Centrado din&aacute;mico del slider de im&aacute;genes en cualquier "
 "dispositivo"
 
-#: core/core-settings-map.php:412
+#: core/core-settings-map.php:420
 msgid "Dynamic thumbnails centering on any devices"
 msgstr "Centrado din&aacute;mico de las miniaturas en cualquier dispositivo"
 
-#: core/core-settings-map.php:416
+#: core/core-settings-map.php:424
 msgid ""
 "This option dynamically centers your images on any devices, vertically or "
 "horizontally according to their initial aspect ratio."
@@ -1231,31 +1235,31 @@ msgstr ""
 "cualquier dispositivo, tanto vertical como horizontalmente de acuerdo a su "
 "relaci&oacute;n de aspecto."
 
-#: core/core-settings-map.php:425
+#: core/core-settings-map.php:433
 msgid "Improve your page speed by loading smaller images for mobile devices"
 msgstr ""
 
-#: core/core-settings-map.php:429
+#: core/core-settings-map.php:437
 msgid ""
 "This feature has been introduced in WordPress v4.4+ (dec-2015), and might "
 "have minor side effects on some of your existing images. Check / uncheck "
 "this option to safely verify that your images are displayed nicely."
 msgstr ""
 
-#: core/core-settings-map.php:449
+#: core/core-settings-map.php:457
 msgid "Sliders : use parallax scrolling"
 msgstr ""
 
-#: core/core-settings-map.php:453
+#: core/core-settings-map.php:461
 msgid "If enabled, your slides scroll slower than the page (parallax effect)."
 msgstr ""
 
-#: core/core-settings-map.php:469
+#: core/core-settings-map.php:477
 msgid "Display an author box after each single post content"
 msgstr ""
 "Mostrar datos del autor despu&eacute;s del contenido de un art&iacute;culo"
 
-#: core/core-settings-map.php:473
+#: core/core-settings-map.php:481
 msgid ""
 "Check this option to display an author info block after each single post "
 "content. Note : the Biographical info field must be filled out in the user "
@@ -1266,632 +1270,632 @@ msgstr ""
 "informaci&oacute;n biogr&aacute;fica dentro del perfil de usuario del autor "
 "del art&iacute;culo."
 
-#: core/core-settings-map.php:490
+#: core/core-settings-map.php:498
 msgid "Enable Smooth Scroll"
 msgstr ""
 
-#: core/core-settings-map.php:494
+#: core/core-settings-map.php:502
 msgid "This option enables a smoother page scroll."
 msgstr ""
 
-#: core/core-settings-map.php:513
+#: core/core-settings-map.php:521
 #, fuzzy
 msgid "Header style"
 msgstr "Cabecera"
 
-#: core/core-settings-map.php:515 core/core-settings-map.php:2193
+#: core/core-settings-map.php:523 core/core-settings-map.php:2201
 msgid "Dark"
 msgstr ""
 
-#: core/core-settings-map.php:516 core/core-settings-map.php:2194
+#: core/core-settings-map.php:524 core/core-settings-map.php:2202
 #, fuzzy
 msgid "Light"
 msgstr "Derecha"
 
-#: core/core-settings-map.php:517
-#: inc/_dev/class-fire-utils_settings_map.php:1150 inc/czr-init-ccat.php:3099
+#: core/core-settings-map.php:525
+#: inc/_dev/class-fire-utils_settings_map.php:1150 inc/czr-init-ccat.php:3103
 msgid "Custom"
 msgstr "Personalizar"
 
-#: core/core-settings-map.php:526
+#: core/core-settings-map.php:534
 msgid "Header background color"
 msgstr ""
 
-#: core/core-settings-map.php:536
+#: core/core-settings-map.php:544
 msgid "Header foreground color"
 msgstr ""
 
-#: core/core-settings-map.php:546
+#: core/core-settings-map.php:554
 msgid " Highlight contextually active menu items"
 msgstr ""
 
-#: core/core-settings-map.php:554
+#: core/core-settings-map.php:562
 msgid "Apply a transparent background to your header on home."
 msgstr ""
 
-#: core/core-settings-map.php:558
+#: core/core-settings-map.php:566
 msgid ""
 "This option can be used to nicely display your header elements ( site title, "
 "menu ) on top of a slider for example."
 msgstr ""
 
-#: core/core-settings-map.php:563
+#: core/core-settings-map.php:571
 #, fuzzy
 msgid "Header style for home"
 msgstr "Cabecera"
 
-#: core/core-settings-map.php:565
+#: core/core-settings-map.php:573
 #, fuzzy
 msgid "Light text"
 msgstr "Gris claro"
 
-#: core/core-settings-map.php:566
+#: core/core-settings-map.php:574
 msgid "Dark text"
 msgstr ""
 
-#: core/core-settings-map.php:575
+#: core/core-settings-map.php:583
 msgid "Remove header borders"
 msgstr ""
 
-#: core/core-settings-map.php:583
+#: core/core-settings-map.php:591
 #, fuzzy
 msgid "Display a topbar"
 msgstr "Mostrar borde en la parte superior de la p&aacute;gina"
 
-#: core/core-settings-map.php:587 core/core-settings-map.php:606
-#: core/core-settings-map.php:707 core/core-settings-map.php:727
-#: core/core-settings-map.php:752 core/core-settings-map.php:889
+#: core/core-settings-map.php:595 core/core-settings-map.php:614
+#: core/core-settings-map.php:715 core/core-settings-map.php:735
+#: core/core-settings-map.php:760 core/core-settings-map.php:897
 #, fuzzy
 msgid "Do not display"
 msgstr "No mostrar "
 
-#: core/core-settings-map.php:588 core/core-settings-map.php:607
+#: core/core-settings-map.php:596 core/core-settings-map.php:615
 msgid "In desktop devices"
 msgstr ""
 
-#: core/core-settings-map.php:589 core/core-settings-map.php:608
+#: core/core-settings-map.php:597 core/core-settings-map.php:616
 msgid "In mobile devices"
 msgstr ""
 
-#: core/core-settings-map.php:590 core/core-settings-map.php:609
+#: core/core-settings-map.php:598 core/core-settings-map.php:617
 msgid "In desktop and mobile devices"
 msgstr ""
 
-#: core/core-settings-map.php:593
+#: core/core-settings-map.php:601
 msgid ""
 "You can display a content zone above the header, called topbar. The topbar "
 "can be populated with various blocks like a menu, your social links, or your "
 "contact information ( pro )."
 msgstr ""
 
-#: core/core-settings-map.php:601
+#: core/core-settings-map.php:609
 #, fuzzy
 msgid "Social links in the topbar"
 msgstr " Iconos de Redes Sociales en la cabecera"
 
-#: core/core-settings-map.php:617
+#: core/core-settings-map.php:625
 msgid ""
 "Make sure the topbar is displayed. You can control the visibility of the "
 "topbar in the %s."
 msgstr ""
 
-#: core/core-settings-map.php:620
+#: core/core-settings-map.php:628
 #, fuzzy
 msgid "jump to the topbar option"
 msgstr "Ir a las opciones de dise&ntilde;o del blog"
 
-#: core/core-settings-map.php:627
+#: core/core-settings-map.php:635
 msgid "Display top border"
 msgstr "Mostrar borde en la parte superior de la p&aacute;gina"
 
-#: core/core-settings-map.php:631
+#: core/core-settings-map.php:639
 msgid "Uncheck this option to remove the colored top border."
 msgstr ""
 "Desactive esta opci&oacute;n para quitar el borde coloreado de la parte "
 "superior de la p&aacute;gina"
 
-#: core/core-settings-map.php:636
+#: core/core-settings-map.php:644
 msgid "Underline the site title in the header"
 msgstr ""
 
-#: core/core-settings-map.php:649
+#: core/core-settings-map.php:657
 msgid "Sticky header : semi-transparent on scroll"
 msgstr "Cabecera pegajosa: Semitransparente la desplazarse (scroll)"
 
-#: core/core-settings-map.php:659
+#: core/core-settings-map.php:667
 msgid "Set the header z-index"
 msgstr "Establecer z-index de la Cabecera"
 
-#: core/core-settings-map.php:667
+#: core/core-settings-map.php:675
 msgid "What is"
 msgstr "&iquest;Qu&eacute; es"
 
-#: core/core-settings-map.php:669
+#: core/core-settings-map.php:677
 msgid "the z-index"
 msgstr "el z-index"
 
-#: core/core-settings-map.php:686
+#: core/core-settings-map.php:694
 msgid "Choose a layout for the header"
 msgstr ""
 
-#: core/core-settings-map.php:690
+#: core/core-settings-map.php:698
 msgid "Logo / title on the left"
 msgstr "Logotipo / T&iacute;tulo - Posici&oacute;n izquierda"
 
-#: core/core-settings-map.php:691
+#: core/core-settings-map.php:699
 msgid "Logo / title on the right"
 msgstr "Logotipo / T&iacute;tulo - Posici&oacute;n derecha"
 
-#: core/core-settings-map.php:692
+#: core/core-settings-map.php:700
 msgid "Logo / title centered"
 msgstr "Logotipo / T&iacute;tulo - Posici&oacute;n centrada"
 
-#: core/core-settings-map.php:696
+#: core/core-settings-map.php:704
 msgid "This setting might impact the side on which the menu is revealed."
 msgstr ""
 
-#: core/core-settings-map.php:700 core/core-settings-map.php:722
-#: core/core-settings-map.php:746 core/core-settings-map.php:764
-#: core/core-settings-map.php:778
+#: core/core-settings-map.php:708 core/core-settings-map.php:730
+#: core/core-settings-map.php:754 core/core-settings-map.php:772
+#: core/core-settings-map.php:786
 msgid "Desktop devices : %s"
 msgstr ""
 
-#: core/core-settings-map.php:700
+#: core/core-settings-map.php:708
 #, fuzzy
 msgid "set the tagline location"
 msgstr "Configurar opciones iconos de t&iacute;tulos"
 
-#: core/core-settings-map.php:708
+#: core/core-settings-map.php:716
 msgid "In the topbar"
 msgstr ""
 
-#: core/core-settings-map.php:709
+#: core/core-settings-map.php:717
 msgid "Below the logo"
 msgstr ""
 
-#: core/core-settings-map.php:710
+#: core/core-settings-map.php:718
 msgid "Next to the logo"
 msgstr ""
 
-#: core/core-settings-map.php:721
+#: core/core-settings-map.php:729
 msgid "Search Icon"
 msgstr ""
 
-#: core/core-settings-map.php:722
+#: core/core-settings-map.php:730
 #, fuzzy
 msgid "set the search icon location"
 msgstr "Configurar opciones iconos de t&iacute;tulos"
 
-#: core/core-settings-map.php:728 core/core-settings-map.php:753
+#: core/core-settings-map.php:736 core/core-settings-map.php:761
 #, fuzzy
 msgid "Display in the topbar"
 msgstr "Mostrar el autor"
 
-#: core/core-settings-map.php:729 core/core-settings-map.php:754
+#: core/core-settings-map.php:737 core/core-settings-map.php:762
 #, fuzzy
 msgid "Display in the main header section"
 msgstr "Mostrar lema /eslogan en la Cabecera"
 
-#: core/core-settings-map.php:732
+#: core/core-settings-map.php:740
 msgid ""
 "If you want to display the search icon in your topbar, make sure the topbar "
 "is displayed by checking \"Display a topbar\" above."
 msgstr ""
 
-#: core/core-settings-map.php:737
+#: core/core-settings-map.php:745
 msgid "Use a full screen search block"
 msgstr ""
 
-#: core/core-settings-map.php:746 core/core-settings-map.php:856
-#: inc/_dev/class-fire-utils_settings_map.php:601 inc/czr-init-ccat.php:2550
+#: core/core-settings-map.php:754 core/core-settings-map.php:864
+#: inc/_dev/class-fire-utils_settings_map.php:601 inc/czr-init-ccat.php:2554
 msgid "Display the shopping cart in the header"
 msgstr ""
 
-#: core/core-settings-map.php:749 core/core-settings-map.php:859
-#: inc/_dev/class-fire-utils_settings_map.php:604 inc/czr-init-ccat.php:2553
+#: core/core-settings-map.php:757 core/core-settings-map.php:867
+#: inc/_dev/class-fire-utils_settings_map.php:604 inc/czr-init-ccat.php:2557
 msgid ""
 "WooCommerce: check to display a cart icon showing the number of items in "
 "your cart next to your header's tagline."
 msgstr ""
 
-#: core/core-settings-map.php:763 core/core-settings-map.php:867
+#: core/core-settings-map.php:771 core/core-settings-map.php:875
 #, fuzzy
 msgid "Behaviour on scroll"
 msgstr "Activar Cabecera Pegajosa al desplazarse"
 
-#: core/core-settings-map.php:764
+#: core/core-settings-map.php:772
 msgid "set the header visibility on scroll"
 msgstr ""
 
-#: core/core-settings-map.php:768 core/core-settings-map.php:872
+#: core/core-settings-map.php:776 core/core-settings-map.php:880
 msgid "Not visible when scrolling the page"
 msgstr ""
 
-#: core/core-settings-map.php:769 core/core-settings-map.php:873
+#: core/core-settings-map.php:777 core/core-settings-map.php:881
 msgid "Reveal on scroll up"
 msgstr ""
 
-#: core/core-settings-map.php:770 core/core-settings-map.php:874
+#: core/core-settings-map.php:778 core/core-settings-map.php:882
 msgid "Always visible"
 msgstr ""
 
-#: core/core-settings-map.php:778
+#: core/core-settings-map.php:786
 msgid "select the header block to stick on scroll"
 msgstr ""
 
-#: core/core-settings-map.php:782
+#: core/core-settings-map.php:790
 msgid "Topbar"
 msgstr ""
 
-#: core/core-settings-map.php:783
+#: core/core-settings-map.php:791
 #, fuzzy
 msgid "Main header section"
 msgstr "Ajustes Cabecera Pegajosa"
 
-#: core/core-settings-map.php:791
+#: core/core-settings-map.php:799
 msgid "Sticky header : shrink title / logo"
 msgstr "Cabecera pegajosa: Reducir el tama&ntilde;o t&iacute;tulo/logotipo"
 
-#: core/core-settings-map.php:800
+#: core/core-settings-map.php:808
 msgid ""
 "When your header ( containing the site title or logo ) is gluing to the top "
 "of a page, this option will make the title or logo smaller."
 msgstr ""
 
-#: core/core-settings-map.php:814
+#: core/core-settings-map.php:822
 #, fuzzy
 msgid "Header settings for %s"
 msgstr "Ajustes Cabecera para el tema Customizr."
 
-#: core/core-settings-map.php:814 core/core-settings-map.php:815
-#: core/core-settings-map.php:845 core/core-settings-map.php:856
-#: core/core-settings-map.php:868 core/core-settings-map.php:884
+#: core/core-settings-map.php:822 core/core-settings-map.php:823
+#: core/core-settings-map.php:853 core/core-settings-map.php:864
+#: core/core-settings-map.php:876 core/core-settings-map.php:892
 msgid "Mobile devices"
 msgstr ""
 
-#: core/core-settings-map.php:815
+#: core/core-settings-map.php:823
 msgid "Select the menu(s) to use for mobile devices"
 msgstr ""
 
-#: core/core-settings-map.php:819
+#: core/core-settings-map.php:827
 msgid "Specific Mobile Menu"
 msgstr ""
 
-#: core/core-settings-map.php:820 core/init-base.php:412
+#: core/core-settings-map.php:828 core/init-base.php:412
 msgid "Main Menu"
 msgstr "Men&uacute; Principal"
 
-#: core/core-settings-map.php:821
+#: core/core-settings-map.php:829
 msgid "Secondary"
 msgstr ""
 
-#: core/core-settings-map.php:822
+#: core/core-settings-map.php:830
 #, fuzzy
 msgid "Topbar Menu"
 msgstr "Men&uacute; Principal"
 
-#: core/core-settings-map.php:825
+#: core/core-settings-map.php:833
 msgid ""
 "When your visitors are using a smartphone or a tablet, the header becomes a "
 "thin bar on top, where the menu is revealed when clicking on the hamburger "
 "button. This option let you choose which menu will be displayed."
 msgstr ""
 
-#: core/core-settings-map.php:826
+#: core/core-settings-map.php:834
 msgid ""
 "If the selected menu location has no menu assigned, the theme will try to "
 "assign another menu in this order : mobile, main, secondary, topbar."
 msgstr ""
 
-#: core/core-settings-map.php:837 core/core-settings-map.php:945
-#: core/core-settings-map.php:987
+#: core/core-settings-map.php:845 core/core-settings-map.php:953
+#: core/core-settings-map.php:995
 msgid "Expand submenus on click"
 msgstr "Extender submen&uacute;s al hacer clic"
 
-#: core/core-settings-map.php:845
-#: inc/_dev/class-fire-utils_settings_map.php:589 inc/czr-init-ccat.php:2538
+#: core/core-settings-map.php:853
+#: inc/_dev/class-fire-utils_settings_map.php:589 inc/czr-init-ccat.php:2542
 #, fuzzy
 msgid "Display the tagline in the header"
 msgstr "Mostrar lema /eslogan en la Cabecera"
 
-#: core/core-settings-map.php:868
+#: core/core-settings-map.php:876
 #, fuzzy
 msgid "header menu visibility on scroll"
 msgstr ""
 "Cargar im&aacute;genes conforme nos desplacemos hacia abajo (hacer scroll)"
 
-#: core/core-settings-map.php:884
+#: core/core-settings-map.php:892
 msgid "Display a search button in the header"
 msgstr ""
 
-#: core/core-settings-map.php:890
+#: core/core-settings-map.php:898
 #, fuzzy
 msgid "Display in the mobile navbar"
 msgstr "Mostrar el autor"
 
-#: core/core-settings-map.php:891
+#: core/core-settings-map.php:899
 #, fuzzy
 msgid "Display in the mobile menu"
 msgstr "Mostrar contenido completo"
 
-#: core/core-settings-map.php:914
+#: core/core-settings-map.php:922
 msgid "Display a secondary (horizontal) menu in the header."
 msgstr ""
 
-#: core/core-settings-map.php:918
+#: core/core-settings-map.php:926
 msgid ""
 "An horizontal menu can be displayed in the main header with this option. "
 "Make sure you have assigned a menu to this location in the menu panel."
 msgstr ""
 
-#: core/core-settings-map.php:925
+#: core/core-settings-map.php:933
 msgid "Main menu design"
 msgstr ""
 
-#: core/core-settings-map.php:926
+#: core/core-settings-map.php:934
 msgid "Select a design : side menu (vertical) or regular (horizontal)"
 msgstr ""
 
-#: core/core-settings-map.php:930
+#: core/core-settings-map.php:938
 msgid "Regular (horizontal)"
 msgstr ""
 
-#: core/core-settings-map.php:931
+#: core/core-settings-map.php:939
 msgid "Side Menu (vertical)"
 msgstr ""
 
-#: core/core-settings-map.php:934
+#: core/core-settings-map.php:942
 msgid ""
 "Make sure that you have assigned your menus to the relevant locations %s."
 msgstr ""
 
-#: core/core-settings-map.php:937 core/core-settings-map.php:2601
+#: core/core-settings-map.php:945 core/core-settings-map.php:2609
 msgid "in the menu panel"
 msgstr ""
 
-#: core/core-settings-map.php:938 core/core-settings-map.php:2594
-#: core/core-settings-map.php:2602
+#: core/core-settings-map.php:946 core/core-settings-map.php:2602
+#: core/core-settings-map.php:2610
 msgid "create/edit menus"
 msgstr ""
 
-#: core/core-settings-map.php:946
+#: core/core-settings-map.php:954
 msgid "Primary (vertical) menu design"
 msgstr ""
 
-#: core/core-settings-map.php:954
-#: inc/_dev/class-fire-utils_settings_map.php:764 inc/czr-init-ccat.php:2713
+#: core/core-settings-map.php:962
+#: inc/_dev/class-fire-utils_settings_map.php:764 inc/czr-init-ccat.php:2717
 msgid "Menu position (for \"main\" menu)"
 msgstr ""
 
-#: core/core-settings-map.php:958 core/core-settings-map.php:972
+#: core/core-settings-map.php:966 core/core-settings-map.php:980
 #: inc/_dev/class-fire-utils_settings_map.php:768
-#: inc/_dev/class-fire-utils_settings_map.php:789 inc/czr-init-ccat.php:2717
-#: inc/czr-init-ccat.php:2738
+#: inc/_dev/class-fire-utils_settings_map.php:789 inc/czr-init-ccat.php:2721
+#: inc/czr-init-ccat.php:2742
 msgid "Menu on the left"
 msgstr "Men&uacute; a la Izquierda"
 
-#: core/core-settings-map.php:959 core/core-settings-map.php:973
+#: core/core-settings-map.php:967 core/core-settings-map.php:981
 #: inc/_dev/class-fire-utils_settings_map.php:770
-#: inc/_dev/class-fire-utils_settings_map.php:791 inc/czr-init-ccat.php:2719
-#: inc/czr-init-ccat.php:2740
+#: inc/_dev/class-fire-utils_settings_map.php:791 inc/czr-init-ccat.php:2723
+#: inc/czr-init-ccat.php:2744
 msgid "Menu on the right"
 msgstr "Men&uacute; a la Derecha"
 
-#: core/core-settings-map.php:967
-#: inc/_dev/class-fire-utils_settings_map.php:784 inc/czr-init-ccat.php:2733
+#: core/core-settings-map.php:975
+#: inc/_dev/class-fire-utils_settings_map.php:784 inc/czr-init-ccat.php:2737
 msgid "Secondary (horizontal) menu design"
 msgstr ""
 
-#: core/core-settings-map.php:968
-#: inc/_dev/class-fire-utils_settings_map.php:785 inc/czr-init-ccat.php:2734
+#: core/core-settings-map.php:976
+#: inc/_dev/class-fire-utils_settings_map.php:785 inc/czr-init-ccat.php:2738
 msgid "Menu position (for the horizontal menu)"
 msgstr ""
 
-#: core/core-settings-map.php:983
+#: core/core-settings-map.php:991
 msgid "Select a submenu expansion option"
 msgstr "Seleccionar opci&oacute;n de extensi&oacute;n del submen&uacute;"
 
-#: core/core-settings-map.php:988
+#: core/core-settings-map.php:996
 msgid "Expand submenus on hover"
 msgstr "Extender submen&uacute;s al posicionarse sobre &eacute;l "
 
-#: core/core-settings-map.php:995
+#: core/core-settings-map.php:1003
 msgid "Reveal the sub-menus blocks with a fade effect"
 msgstr "Mostrar submen&uacute;s con un efecto de desvanecimiento"
 
-#: core/core-settings-map.php:1004
+#: core/core-settings-map.php:1012
 msgid "Hover move effect for the sub menu items"
 msgstr ""
 "Efecto movimiento en elementos secundarios del men&uacute; al pasar sobre "
 "ellos"
 
-#: core/core-settings-map.php:1013
+#: core/core-settings-map.php:1021
 msgid "Remove all the menus."
 msgstr ""
 
-#: core/core-settings-map.php:1014
+#: core/core-settings-map.php:1022
 msgid "Don't display any menus in the header of your website"
 msgstr ""
 
-#: core/core-settings-map.php:1018
+#: core/core-settings-map.php:1026
 msgid ""
 "Use with caution : provide an alternative way to navigate in your website "
 "for your users."
 msgstr ""
 
-#: core/core-settings-map.php:1040
+#: core/core-settings-map.php:1048
 msgid ""
 "Click inside the above field and pick post categories you want to display. "
 "No filter will be applied if empty."
 msgstr ""
 
-#: core/core-settings-map.php:1042
+#: core/core-settings-map.php:1050
 msgid "Learn more about post categories in WordPress"
 msgstr ""
 
-#: core/core-settings-map.php:1049
+#: core/core-settings-map.php:1057
 msgid "Set the number of posts to display"
 msgstr ""
 
-#: core/core-settings-map.php:1054
+#: core/core-settings-map.php:1062
 msgid "Jump to the blog design options"
 msgstr "Ir a las opciones de dise&ntilde;o del blog"
 
-#: core/core-settings-map.php:1067
+#: core/core-settings-map.php:1075
 msgid "Choose content and layout"
 msgstr "Seleccionar el contenido y el dise&ntilde;o"
 
-#: core/core-settings-map.php:1075
+#: core/core-settings-map.php:1083
 msgid "Front page displays"
 msgstr "La P&aacute;gina de Inicio muestra"
 
-#: core/core-settings-map.php:1080
+#: core/core-settings-map.php:1088
 msgid "Don't show any posts or page"
 msgstr "No mostrar ning&uacute;n art&iacute;culo o p&aacute;gina"
 
-#: core/core-settings-map.php:1081
+#: core/core-settings-map.php:1089
 msgid "Your latest posts"
 msgstr "Los &uacute;ltimos art&iacute;culos"
 
-#: core/core-settings-map.php:1082
+#: core/core-settings-map.php:1090
 msgid "A static page"
 msgstr "Una p&aacute;gina est&aacute;tica"
 
-#: core/core-settings-map.php:1088
+#: core/core-settings-map.php:1096
 msgid "Front page"
 msgstr "P&aacute;gina Principal"
 
-#: core/core-settings-map.php:1096
+#: core/core-settings-map.php:1104
 msgid "Posts page"
 msgstr "P&aacute;gina de art&iacute;culos"
 
-#: core/core-settings-map.php:1104
+#: core/core-settings-map.php:1112
 #, fuzzy
 msgid "Display navigation in your home page"
 msgstr "Mostrar fecha de publicaci&oacute;n"
 
-#: core/core-settings-map.php:1117
+#: core/core-settings-map.php:1125
 msgid "Apply a category filter to your home / blog posts"
 msgstr ""
 
-#: core/core-settings-map.php:1127
+#: core/core-settings-map.php:1135
 msgid "Set up the front page layout"
 msgstr "Seleccione el dise&ntilde;o de la P&aacute;gina de Inicio"
 
-#: core/core-settings-map.php:1143
+#: core/core-settings-map.php:1151
 msgid "Slider options"
 msgstr "Opciones del Deslizador de im&aacute;genes (Slider)"
 
-#: core/core-settings-map.php:1144
+#: core/core-settings-map.php:1152
 msgid "Select front page slider"
 msgstr "Seleccione un slider para la P&aacute;gina de Inicio"
 
-#: core/core-settings-map.php:1155
+#: core/core-settings-map.php:1163
 msgid "Number of posts to display"
 msgstr ""
 
-#: core/core-settings-map.php:1161
+#: core/core-settings-map.php:1169
 msgid ""
 "Only the posts with a featured image or at least an image inside their "
 "content will qualify for the slider. The number of post slides displayed "
 "won't exceed the number of available posts in your website."
 msgstr ""
 
-#: core/core-settings-map.php:1166
+#: core/core-settings-map.php:1174
 msgid "Include only sticky posts"
 msgstr ""
 
-#: core/core-settings-map.php:1171
+#: core/core-settings-map.php:1179
 msgid ""
 "You can choose to display only the sticky posts. If you're not sure how to "
 "set a sticky post, check"
 msgstr ""
 
-#: core/core-settings-map.php:1172
+#: core/core-settings-map.php:1180
 msgid "the WordPress documentation."
 msgstr ""
 
-#: core/core-settings-map.php:1179
+#: core/core-settings-map.php:1187
 msgid "Display the title"
 msgstr ""
 
-#: core/core-settings-map.php:1183
+#: core/core-settings-map.php:1191
 msgid "The title will be limited to 80 chars max"
 msgstr ""
 
-#: core/core-settings-map.php:1188
-#: inc/_dev/class-fire-utils_settings_map.php:1005 inc/czr-init-ccat.php:2954
+#: core/core-settings-map.php:1196
+#: inc/_dev/class-fire-utils_settings_map.php:1005 inc/czr-init-ccat.php:2958
 msgid "Display the excerpt"
 msgstr "Mostrar un fragmento"
 
-#: core/core-settings-map.php:1192
+#: core/core-settings-map.php:1200
 msgid "The excerpt will be limited to 80 chars max"
 msgstr ""
 
-#: core/core-settings-map.php:1197
+#: core/core-settings-map.php:1205
 msgid "Link post with"
 msgstr ""
 
-#: core/core-settings-map.php:1201
+#: core/core-settings-map.php:1209
 msgid "Call to action button"
 msgstr ""
 
-#: core/core-settings-map.php:1202
+#: core/core-settings-map.php:1210
 msgid "Entire slide"
 msgstr ""
 
-#: core/core-settings-map.php:1203
+#: core/core-settings-map.php:1211
 msgid "Entire slide and call to action button"
 msgstr ""
 
-#: core/core-settings-map.php:1209 core/core-settings-map.php:1327
+#: core/core-settings-map.php:1217 core/core-settings-map.php:1335
 #: core/front/template-tags/template-tags.php:121
 msgid "Read more &raquo;"
 msgstr "Leer m&aacute;s &raquo;"
 
-#: core/core-settings-map.php:1210 core/core-settings-map.php:1329
+#: core/core-settings-map.php:1218 core/core-settings-map.php:1337
 msgid "Button text"
 msgstr "Texto del bot&oacute;n"
 
-#: core/core-settings-map.php:1214
+#: core/core-settings-map.php:1222
 msgid ""
 "The button text will be limited to 80 chars max. Leave this field empty to "
 "hide the button"
 msgstr ""
 
-#: core/core-settings-map.php:1221
+#: core/core-settings-map.php:1229
 msgid "Full width slider"
 msgstr "Slider de ancho total"
 
-#: core/core-settings-map.php:1225
+#: core/core-settings-map.php:1233
 msgid "When checked, the front page slider occupies the full viewport's width"
 msgstr ""
 
-#: core/core-settings-map.php:1233
+#: core/core-settings-map.php:1241
 msgid "Delay between each slides"
 msgstr "Retraso entre cada imagen del slider"
 
-#: core/core-settings-map.php:1238
+#: core/core-settings-map.php:1246
 msgid "in ms : 1000ms = 1s"
 msgstr "en ms : 1000ms = 1s"
 
-#: core/core-settings-map.php:1248 core/core-settings-map.php:1260
+#: core/core-settings-map.php:1256 core/core-settings-map.php:1268
 #: core/czr-base-fmk/czr-base-fmk.php:570
 msgid "Yes"
 msgstr ""
 
-#: core/core-settings-map.php:1249 core/core-settings-map.php:1261
+#: core/core-settings-map.php:1257 core/core-settings-map.php:1269
 #: core/czr-base-fmk/czr-base-fmk.php:570
 #: inc/_dev/parts/class-content-headings.php:329 inc/czr-front-ccat.php:4084
 msgid "No"
 msgstr "Sin"
 
-#: core/core-settings-map.php:1256
+#: core/core-settings-map.php:1264
 #, fuzzy
 msgid "Display navigation dots"
 msgstr "Mostrar fecha de publicaci&oacute;n"
 
-#: core/core-settings-map.php:1264
+#: core/core-settings-map.php:1272
 #, fuzzy
 msgid ""
 "When this option is checked, navigation dots are displayed at the bottom of "
@@ -1901,23 +1905,23 @@ msgstr ""
 "de p&aacute;ginas, art&iacute;culos, archivos... un icono contextual, y "
 "widgets propios de WP."
 
-#: core/core-settings-map.php:1270
+#: core/core-settings-map.php:1278
 msgid "Set slider's height in pixels"
 msgstr ""
 "Seleccionar la altura del deslizador de im&aacute;genes (slider) expresada "
 "en p&iacute;xeles"
 
-#: core/core-settings-map.php:1280
+#: core/core-settings-map.php:1288
 msgid "Apply this height to all sliders"
 msgstr "Aplicar esta altura a todos los deslizadores (slider)"
 
-#: core/core-settings-map.php:1288
+#: core/core-settings-map.php:1296
 msgid "Replace the default image slider's height"
 msgstr ""
 "Rehacer la altura predeterminada de las im&aacute;genes del deslizador "
 "(slider)."
 
-#: core/core-settings-map.php:1294
+#: core/core-settings-map.php:1302
 msgid ""
 "If this option is checked, your images will be resized with your custom "
 "height on upload. This is better for your overall loading performance."
@@ -1926,33 +1930,33 @@ msgstr ""
 "autom&aacute;ticamente al realizar la subida. Esto ayuda a una mejora global "
 "de la carga."
 
-#: core/core-settings-map.php:1295
+#: core/core-settings-map.php:1303
 msgid "You might want to regenerate your thumbnails."
 msgstr "Si desea regenerar sus miniaturas."
 
-#: core/core-settings-map.php:1303
+#: core/core-settings-map.php:1311
 msgid "Featured pages options"
 msgstr "Opciones p&aacute;ginas destacadas"
 
-#: core/core-settings-map.php:1304
+#: core/core-settings-map.php:1312
 msgid "Display home featured pages area"
 msgstr ""
 "Mostrar p&aacute;ginas destacadas en &aacute;reas de la p&aacute;gina "
 "principal"
 
-#: core/core-settings-map.php:1308
+#: core/core-settings-map.php:1316
 msgid "Enable"
 msgstr "Activado"
 
-#: core/core-settings-map.php:1309 core/core-settings-map.php:1750
+#: core/core-settings-map.php:1317 core/core-settings-map.php:1758
 msgid "Disable"
 msgstr "Desactivado"
 
-#: core/core-settings-map.php:1318
+#: core/core-settings-map.php:1326
 msgid "Show images"
 msgstr "Mostrar im&aacute;genes"
 
-#: core/core-settings-map.php:1321
+#: core/core-settings-map.php:1329
 msgid ""
 "The images are set with the \"featured image\" of each pages (in the page "
 "edit screen). Uncheck the option above to disable the featured page images."
@@ -1963,21 +1967,21 @@ msgstr ""
 "anterior para desactivar las im&aacute;genes de las p&aacute;ginas "
 "destacadas."
 
-#: core/core-settings-map.php:1350
+#: core/core-settings-map.php:1358
 msgid "Choose the global default layout"
 msgstr "Seleccione el dise&ntilde;o por defecto para todo el sitio web"
 
-#: core/core-settings-map.php:1354
+#: core/core-settings-map.php:1362
 msgid "Note : the home page layout has to be set in the home page section"
 msgstr ""
 "Nota: el dise&ntilde;o de la portada (inicio) debe estar establecido en la "
 "secci&oacute;n p&aacute;gina de inicio."
 
-#: core/core-settings-map.php:1362
+#: core/core-settings-map.php:1370
 msgid "Force default layout everywhere"
 msgstr "Forzar  dise&ntilde;o por defecto para todo el sitio web"
 
-#: core/core-settings-map.php:1365
+#: core/core-settings-map.php:1373
 msgid ""
 "This option will override the specific layouts on all posts/pages, including "
 "the front page."
@@ -1985,70 +1989,70 @@ msgstr ""
 "Esta opci&oacute;n anula la configuraci&oacute;n de dise&ntilde;o de todas "
 "las p&aacute;ginas / art&iacute;culos,  incluida la p&aacute;gina de Inicio."
 
-#: core/core-settings-map.php:1373
+#: core/core-settings-map.php:1381
 msgid "Choose the posts default layout"
 msgstr "Seleccione el dise&ntilde;o por defecto de los art&iacute;culos"
 
-#: core/core-settings-map.php:1383
+#: core/core-settings-map.php:1391
 msgid "Choose the pages default layout"
 msgstr "Seleccione el dise&ntilde;o por defecto de las p&aacute;ginas"
 
-#: core/core-settings-map.php:1389
+#: core/core-settings-map.php:1397
 msgid ""
 "The above layout options will set your layout globally for your post and "
 "pages. But you can also define the layout for each post and page "
 "individually. Learn how in the %s."
 msgstr ""
 
-#: core/core-settings-map.php:1390
+#: core/core-settings-map.php:1398
 msgid "Customizr theme documentation"
 msgstr ""
 
-#: core/core-settings-map.php:1393
+#: core/core-settings-map.php:1401
 msgid ""
 "If you need to change the layout design of the front page, then open the "
 "'Front Page' section above this one."
 msgstr ""
 
-#: core/core-settings-map.php:1400
+#: core/core-settings-map.php:1408
 msgid "Pages & Posts default sections locations"
 msgstr ""
 
-#: core/core-settings-map.php:1401
+#: core/core-settings-map.php:1409
 msgid "Author Infos location"
 msgstr ""
 
-#: core/core-settings-map.php:1405 core/core-settings-map.php:1422
-#: core/core-settings-map.php:1439
+#: core/core-settings-map.php:1413 core/core-settings-map.php:1430
+#: core/core-settings-map.php:1447
 #, fuzzy
 msgid "Right after the post content"
 msgstr ""
 "Mostrar datos del autor despu&eacute;s del contenido de un art&iacute;culo"
 
-#: core/core-settings-map.php:1406 core/core-settings-map.php:1423
-#: core/core-settings-map.php:1440
+#: core/core-settings-map.php:1414 core/core-settings-map.php:1431
+#: core/core-settings-map.php:1448
 msgid "After the content and sidebars columns"
 msgstr ""
 
-#: core/core-settings-map.php:1418
+#: core/core-settings-map.php:1426
 #, fuzzy
 msgid "Related Posts location"
 msgstr "Lea la documentaci&oacute;n"
 
-#: core/core-settings-map.php:1435
+#: core/core-settings-map.php:1443
 #, fuzzy
 msgid "Comments location"
 msgstr "Navegador de comentarios"
 
-#: core/core-settings-map.php:1471
+#: core/core-settings-map.php:1479
 msgid "Global Post Lists Settings"
 msgstr "Ajustes Generales Lista de Art&iacute;culos"
 
-#: core/core-settings-map.php:1472
+#: core/core-settings-map.php:1480
 msgid "Maximum number of posts per page"
 msgstr "N&uacute;mero m&aacute;ximo de art&iacute;culos por p&aacute;gina"
 
-#: core/core-settings-map.php:1478
+#: core/core-settings-map.php:1486
 msgid ""
 "This option defines the maximum number of posts or search results displayed "
 "in any list of posts of your website : blog page, archive page, search page. "
@@ -2056,19 +2060,19 @@ msgid ""
 "will automatically add a pagination link block at the bottom of the page."
 msgstr ""
 
-#: core/core-settings-map.php:1488
+#: core/core-settings-map.php:1496
 msgid "Set the excerpt length (in number of words) "
 msgstr "Ajustar longitud del extracto (en n&uacute;mero de palabras)"
 
-#: core/core-settings-map.php:1502
+#: core/core-settings-map.php:1510
 msgid "Thumbnails options"
 msgstr "Opciones de Miniaturas (Im&aacute;genes Destacadas)"
 
-#: core/core-settings-map.php:1503
+#: core/core-settings-map.php:1511
 msgid "Display the post thumbnails"
 msgstr "Mostrar miniaturas de art&iacute;culos"
 
-#: core/core-settings-map.php:1507
+#: core/core-settings-map.php:1515
 msgid ""
 "When this option is checked, the post thumbnails are displayed in all post "
 "lists : blog, archives, author page, search pages, ..."
@@ -2077,13 +2081,13 @@ msgstr ""
 "de los art&iacute;culos, en todas las listas de art&iacute;culos: blog, "
 "archivos, p&aacute;ginas de autor, p&aacute;ginas de b&uacute;squeda..."
 
-#: core/core-settings-map.php:1507
+#: core/core-settings-map.php:1515
 msgid "Note : thumbnails are always displayed when the grid layout is choosen."
 msgstr ""
 "Nota: Las miniaturas se mostrar&aacute;n siempre cuando se elija el "
 "dise&ntilde;o de cuadr&iacute;cula (grid)."
 
-#: core/core-settings-map.php:1512
+#: core/core-settings-map.php:1520
 #, fuzzy
 msgid ""
 "If no featured image is set for a post, use the last image attached to this "
@@ -2092,100 +2096,100 @@ msgstr ""
 "Si no hay ninguna imagen destacada, usar la &uacute;ltima imagen adjunta del "
 "art&iacute;culo."
 
-#: core/core-settings-map.php:1522
+#: core/core-settings-map.php:1530
 msgid "Thumbnails options for the alternate thumbnails layout"
 msgstr ""
 "Opciones de miniaturas para el dise&ntilde;o alterno de art&iacute;culos"
 
-#: core/core-settings-map.php:1523
+#: core/core-settings-map.php:1531
 msgid "Thumbnails shape"
 msgstr "Forma de las miniaturas"
 
-#: core/core-settings-map.php:1527
+#: core/core-settings-map.php:1535
 msgid "Rounded, expand on hover"
 msgstr "Redondo, ampliado al pasar sobre ella"
 
-#: core/core-settings-map.php:1528
+#: core/core-settings-map.php:1536
 msgid "Rounded, no expansion"
 msgstr "Redondo, sin ampliaci&oacute;n"
 
-#: core/core-settings-map.php:1529
+#: core/core-settings-map.php:1537
 msgid "Regular"
 msgstr ""
 
-#: core/core-settings-map.php:1536
+#: core/core-settings-map.php:1544
 msgid "Thumbnails position"
 msgstr "Posici&oacute;n de las miniaturas"
 
-#: core/core-settings-map.php:1542 core/core-settings-map.php:2251
+#: core/core-settings-map.php:1550 core/core-settings-map.php:2259
 msgid "Right"
 msgstr "Derecha"
 
-#: core/core-settings-map.php:1543 core/core-settings-map.php:2250
+#: core/core-settings-map.php:1551 core/core-settings-map.php:2258
 msgid "Left"
 msgstr "Izquierda"
 
-#: core/core-settings-map.php:1550
+#: core/core-settings-map.php:1558
 msgid "Alternate thumbnail/content"
 msgstr "Alternar miniatura/contenido"
 
-#: core/core-settings-map.php:1559
+#: core/core-settings-map.php:1567
 msgid "Archive titles"
 msgstr "T&iacute;tulos seg&uacute;n tipos de p&aacute;ginas"
 
-#: core/core-settings-map.php:1560
+#: core/core-settings-map.php:1568
 msgid "Category pages titles"
 msgstr "T&iacute;tulo para las p&aacute;ginas de Categor&iacute;as"
 
-#: core/core-settings-map.php:1569
+#: core/core-settings-map.php:1577
 msgid "Tag pages titles"
 msgstr "Archivo de p&aacute;ginas"
 
-#: core/core-settings-map.php:1578
+#: core/core-settings-map.php:1586
 msgid "Author pages titles"
 msgstr "P&aacute;ginas seg&uacute;n autor"
 
-#: core/core-settings-map.php:1586
+#: core/core-settings-map.php:1594
 #: inc/_dev/parts/class-content-headings.php:330 inc/czr-front-ccat.php:4085
 msgid "Search Results for :"
 msgstr "Resultados de la b&uacute;squeda por:"
 
-#: core/core-settings-map.php:1587
+#: core/core-settings-map.php:1595
 msgid "Search results page titles"
 msgstr "B&uacute;squeda de resultados seg&uacute;n p&aacute;gina:"
 
-#: core/core-settings-map.php:1598
+#: core/core-settings-map.php:1606
 msgid "Post List Design"
 msgstr "Dise&ntilde;o lista de art&iacute;culos"
 
-#: core/core-settings-map.php:1599
+#: core/core-settings-map.php:1607
 msgid "Select a Layout"
 msgstr "Seleccionar un dise&ntilde;o"
 
-#: core/core-settings-map.php:1603
+#: core/core-settings-map.php:1611
 msgid "Alternate thumbnails layout"
 msgstr "Dise&ntilde;o de miniaturas alternadas"
 
-#: core/core-settings-map.php:1604
+#: core/core-settings-map.php:1612
 msgid "Grid layout"
 msgstr "Dise&ntilde;o en forma de rejilla"
 
-#: core/core-settings-map.php:1606
+#: core/core-settings-map.php:1614
 msgid "Plain full layout"
 msgstr ""
 
-#: core/core-settings-map.php:1610
+#: core/core-settings-map.php:1618
 msgid ""
 "When you select the grid Layout, the post content is limited to the excerpt."
 msgstr ""
 "Cuando se selecciona el dise&ntilde;o de rejilla, el contenido del "
 "art&iacute;culo dentro del listado se limita al extracto."
 
-#: core/core-settings-map.php:1615
+#: core/core-settings-map.php:1623
 msgid "Number of columns per row"
 msgstr "N&uacute;mero de columnas por fila"
 
-#: core/core-settings-map.php:1625
+#: core/core-settings-map.php:1633
 msgid ""
 "Note : columns are limited to 3 for single sidebar layouts and to 2 for "
 "double sidebar layouts."
@@ -2193,127 +2197,127 @@ msgstr ""
 "Nota: Las columnas est&aacute;n limitadas a 3 para el dise&ntilde;o con una "
 "barra lateral y a 2 en dise&ntilde;os con dos barras laterales."
 
-#: core/core-settings-map.php:1630
+#: core/core-settings-map.php:1638
 msgid "Expand the last sticky post (for home and blog page only)"
 msgstr ""
 "Expandir el &uacute;ltimo art&iacute;culo (s&oacute;lo en la p&aacute;gina "
 "de inicio y p&aacute;gina del blog)"
 
-#: core/core-settings-map.php:1639
+#: core/core-settings-map.php:1647
 msgid "Apply a shadow to each grid items"
 msgstr ""
 "Aplicar una sombra alrededor de cada uno de los elementos del dise&ntilde;o "
 "de rejilla."
 
-#: core/core-settings-map.php:1648
+#: core/core-settings-map.php:1656
 msgid "Apply a colored bottom border to each grid items"
 msgstr ""
 "Aplicar un borde inferior con el color del tema en cada uno de los elementos "
 "de la rejilla"
 
-#: core/core-settings-map.php:1659
+#: core/core-settings-map.php:1667
 msgid "Max. length for post titles (in words)"
 msgstr "Max. longitud del t&iacute;tulo de los art&iacute;culos (en palabras)"
 
-#: core/core-settings-map.php:1672
+#: core/core-settings-map.php:1680
 msgid "Display thumbnail placeholder if no images available"
 msgstr ""
 
-#: core/core-settings-map.php:1691 core/core-settings-map.php:1770
+#: core/core-settings-map.php:1699 core/core-settings-map.php:1778
 msgid "Post thumbnail position"
 msgstr "Posici&oacute;n de la imagen destacada en el art&iacute;culo"
 
-#: core/core-settings-map.php:1692 core/core-settings-map.php:1771
-#: core/core-settings-map.php:2458
+#: core/core-settings-map.php:1700 core/core-settings-map.php:1779
+#: core/core-settings-map.php:2466
 #, fuzzy
 msgid "Featured Image"
 msgstr "P&aacute;gina destacada"
 
-#: core/core-settings-map.php:1696 core/core-settings-map.php:1775
-#: core/core-settings-map.php:2205
+#: core/core-settings-map.php:1704 core/core-settings-map.php:1783
+#: core/core-settings-map.php:2213
 msgid "Don't display"
 msgstr "No mostrar "
 
-#: core/core-settings-map.php:1697 core/core-settings-map.php:1776
+#: core/core-settings-map.php:1705 core/core-settings-map.php:1784
 msgid "Before the title in full width"
 msgstr "Antes del t&iacute;tulo con ancho total"
 
-#: core/core-settings-map.php:1698 core/core-settings-map.php:1777
+#: core/core-settings-map.php:1706 core/core-settings-map.php:1785
 msgid "Before the title boxed"
 msgstr "Antes del t&iacute;tulo encajonado"
 
-#: core/core-settings-map.php:1699 core/core-settings-map.php:1778
+#: core/core-settings-map.php:1707 core/core-settings-map.php:1786
 msgid "After the title"
 msgstr "Despu&eacute;s del t&iacute;tulo"
 
-#: core/core-settings-map.php:1703
+#: core/core-settings-map.php:1711
 msgid ""
 "You can display the featured image (also called the post thumbnail) of your "
 "posts before their content, when they are displayed individually."
 msgstr ""
 
-#: core/core-settings-map.php:1712 core/core-settings-map.php:1791
+#: core/core-settings-map.php:1720 core/core-settings-map.php:1799
 msgid "Display featured images in their original dimensions"
 msgstr ""
 
-#: core/core-settings-map.php:1722 core/core-settings-map.php:1801
-#: inc/_dev/class-fire-utils_settings_map.php:1066 inc/czr-init-ccat.php:3015
+#: core/core-settings-map.php:1730 core/core-settings-map.php:1809
+#: inc/_dev/class-fire-utils_settings_map.php:1066 inc/czr-init-ccat.php:3019
 msgid "Set the thumbnail's max height in pixels"
 msgstr "Ajustar altura máxima de la miniatura en píxeles"
 
-#: core/core-settings-map.php:1734 core/core-settings-map.php:1813
+#: core/core-settings-map.php:1742 core/core-settings-map.php:1821
 #, fuzzy
 msgid "Set the thumbnail's max height in pixels for smartphones"
 msgstr "Ajustar altura máxima de la miniatura en píxeles"
 
-#: core/core-settings-map.php:1744
+#: core/core-settings-map.php:1752
 #, fuzzy
 msgid "Related posts"
 msgstr "Los &uacute;ltimos art&iacute;culos"
 
-#: core/core-settings-map.php:1745
+#: core/core-settings-map.php:1753
 #, fuzzy
 msgid "Single - Related Posts"
 msgstr "Art&iacute;culos individuales"
 
-#: core/core-settings-map.php:1751
+#: core/core-settings-map.php:1759
 msgid "Related by categories"
 msgstr ""
 
-#: core/core-settings-map.php:1752
+#: core/core-settings-map.php:1760
 msgid "Related by tags"
 msgstr ""
 
-#: core/core-settings-map.php:1754
+#: core/core-settings-map.php:1762
 msgid "Display randomized related articles below the post"
 msgstr ""
 
-#: core/core-settings-map.php:1782
+#: core/core-settings-map.php:1790
 msgid ""
 "You can display the featured image (also called the post thumbnail) of your "
 "pages before their content, when they are displayed individually."
 msgstr ""
 
-#: core/core-settings-map.php:1834
+#: core/core-settings-map.php:1842
 msgid "Display Breadcrumb"
 msgstr "Mostrar ruta navegaci&oacute;n (migas de pan)"
 
-#: core/core-settings-map.php:1843
+#: core/core-settings-map.php:1851
 msgid "Display the breadcrumb on home page"
 msgstr ""
 "Mostrar ruta navegaci&oacute;n (migas de pan) en la p&aacute;gina de inicio"
 
-#: core/core-settings-map.php:1851
+#: core/core-settings-map.php:1859
 msgid "Display the breadcrumb in pages"
 msgstr "Mostrar ruta de navegaci&oacute;n (migas de pan) en p&aacute;ginas"
 
-#: core/core-settings-map.php:1860
+#: core/core-settings-map.php:1868
 msgid "Display the breadcrumb in single posts"
 msgstr ""
 "Mostrar ruta navegaci&oacute;n (migas de pan) en art&iacute;culos "
 "individuales"
 
-#: core/core-settings-map.php:1869
+#: core/core-settings-map.php:1877
 msgid ""
 "Display the breadcrumb in posts lists : blog page, archives, search "
 "results..."
@@ -2321,29 +2325,29 @@ msgstr ""
 "Mostrar ruta de navegaci&oacute;n en listas de art&iacute;culos, p&aacute;"
 "gina de blog, archivos, resultados de b&uacute;squeda..."
 
-#: core/core-settings-map.php:1877
+#: core/core-settings-map.php:1885
 #, fuzzy
 msgid "Use Yoast SEO breadcrumbs"
 msgstr "Configurar opciones ruta de navegaci&oacute;n (migas de pan)"
 
-#: core/core-settings-map.php:1880
+#: core/core-settings-map.php:1888
 msgid "Jump to the Yoast SEO breadcrumbs %s"
 msgstr ""
 
-#: core/core-settings-map.php:1883
+#: core/core-settings-map.php:1891
 msgid "customization panel"
 msgstr ""
 
-#: core/core-settings-map.php:1884
+#: core/core-settings-map.php:1892
 #, fuzzy
 msgid "Yoast SEO breadcrumbs settings"
 msgstr "Configurar opciones ruta de navegaci&oacute;n (migas de pan)"
 
-#: core/core-settings-map.php:1903
+#: core/core-settings-map.php:1911
 msgid "Display posts metas"
 msgstr "Mostrar informaci&oacute;n de los art&iacute;culos"
 
-#: core/core-settings-map.php:1906
+#: core/core-settings-map.php:1914
 msgid ""
 "When this option is checked, the post metas (like taxonomies, date and "
 "author) are displayed below the post titles."
@@ -2352,98 +2356,98 @@ msgstr ""
 "art&iacute;culos  (como categor&iacute;as, fecha y autor) por debajo de los "
 "t&iacute;tulos de los art&iacute;culos."
 
-#: core/core-settings-map.php:1913 core/core-settings-map.php:2107
+#: core/core-settings-map.php:1921 core/core-settings-map.php:2115
 msgid "Select the contexts"
 msgstr "Seleccionar d&oacute;nde mostrar"
 
-#: core/core-settings-map.php:1914
+#: core/core-settings-map.php:1922
 msgid "Display posts metas on home"
 msgstr ""
 "Mostrar informaci&oacute;n adicional de los art&iacute;culos en la p&aacute;"
 "gina principal"
 
-#: core/core-settings-map.php:1923
+#: core/core-settings-map.php:1931
 msgid "Display posts metas for single posts"
 msgstr ""
 "Mostrar informaci&oacute;n adicional en los art&iacute;culos individuales"
 
-#: core/core-settings-map.php:1932
+#: core/core-settings-map.php:1940
 msgid "Display posts metas in post lists (archives, blog page)"
 msgstr ""
 "Mostrar informaci&oacute;n adicional en listas de art&iacute;culos (archivo, "
 "blog)"
 
-#: core/core-settings-map.php:1942
+#: core/core-settings-map.php:1950
 msgid "Select the metas to display"
 msgstr "Seleccionar informaci&oacute;n adicional a mostrar"
 
-#: core/core-settings-map.php:1943
+#: core/core-settings-map.php:1951
 msgid "Display hierarchical taxonomies (like categories)"
 msgstr ""
 "Mostrar taxonom&iacute;as jer&aacute;rquicas (como las categor&iacute;as)"
 
-#: core/core-settings-map.php:1952
+#: core/core-settings-map.php:1960
 msgid "Display non-hierarchical taxonomies (like tags)"
 msgstr "Mostrar taxonom&iacute;as no jerarquizadas (como las etiquetas)"
 
-#: core/core-settings-map.php:1961
+#: core/core-settings-map.php:1969
 msgid "Display the author"
 msgstr "Mostrar el autor"
 
-#: core/core-settings-map.php:1969
+#: core/core-settings-map.php:1977
 msgid "Display the publication date"
 msgstr "Mostrar fecha de publicaci&oacute;n"
 
-#: core/core-settings-map.php:1979
+#: core/core-settings-map.php:1987
 msgid "Display the update date"
 msgstr "Mostrar fecha de actualizaci&oacute;n"
 
-#: core/core-settings-map.php:1998
+#: core/core-settings-map.php:2006
 msgid "Enable Customizr galleries"
 msgstr ""
 
-#: core/core-settings-map.php:2000
+#: core/core-settings-map.php:2008
 msgid "Apply Customizr effects to galleries images"
 msgstr ""
 
-#: core/core-settings-map.php:2007
+#: core/core-settings-map.php:2015
 msgid "Enable Lightbox effect in galleries"
 msgstr ""
 
-#: core/core-settings-map.php:2009
+#: core/core-settings-map.php:2017
 msgid "Apply lightbox effects to galleries images"
 msgstr ""
 
-#: core/core-settings-map.php:2016
+#: core/core-settings-map.php:2024
 msgid "Enable Customizr effects on hover"
 msgstr ""
 
-#: core/core-settings-map.php:2018
+#: core/core-settings-map.php:2026
 msgid "Apply nice on hover expansion effect to the galleries images"
 msgstr ""
 
-#: core/core-settings-map.php:2038
+#: core/core-settings-map.php:2046
 #, fuzzy
 msgid "Display the number of comments below the post titles"
 msgstr ""
 "Mostrar el n&uacute;mero de comentarios en una burbuja junto al t&iacute;"
 "tulo del art&iacute;culo."
 
-#: core/core-settings-map.php:2038
+#: core/core-settings-map.php:2046
 msgid "Display the number of comments in a bubble next to the post title"
 msgstr ""
 "Mostrar el n&uacute;mero de comentarios en una burbuja junto al t&iacute;"
 "tulo del art&iacute;culo."
 
-#: core/core-settings-map.php:2046
+#: core/core-settings-map.php:2054
 msgid "Other comments settings"
 msgstr "Otros ajustes sobre los Comentarios"
 
-#: core/core-settings-map.php:2047
+#: core/core-settings-map.php:2055
 msgid "Enable comments on pages"
 msgstr "Permitir comentarios en las p&aacute;ginas"
 
-#: core/core-settings-map.php:2052
+#: core/core-settings-map.php:2060
 msgid ""
 "If checked, this option will enable comments on pages. You can disable "
 "comments for a single page in the quick edit mode of the page list screen."
@@ -2453,19 +2457,19 @@ msgstr ""
 "p&aacute;gina en el modo de edici&oacute;n r&aacute;pida de la pantalla "
 "lista de p&aacute;ginas."
 
-#: core/core-settings-map.php:2053
+#: core/core-settings-map.php:2061
 msgid "You can also change other comments settings in :"
 msgstr "Tambi&eacute;n puede cambiar otros ajustes de comentarios:"
 
-#: core/core-settings-map.php:2055
+#: core/core-settings-map.php:2063
 msgid "the discussion settings page."
 msgstr "Ajustes de Comentarios."
 
-#: core/core-settings-map.php:2061
+#: core/core-settings-map.php:2069
 msgid "Enable comments on posts"
 msgstr "Habilitar comentarios en los art&iacute;culos"
 
-#: core/core-settings-map.php:2066
+#: core/core-settings-map.php:2074
 msgid ""
 "If checked, this option enables comments on all types of single posts. You "
 "can disable comments for a single post in quick edit mode from the"
@@ -2475,23 +2479,23 @@ msgstr ""
 "individual en cada art&iacute;culo en el modo de edici&oacute;n r&aacute;"
 "pida de la pantalla lista de art&iacute;culos."
 
-#: core/core-settings-map.php:2068
+#: core/core-settings-map.php:2076
 msgid "post screen"
 msgstr "Pantalla de art&iacute;culos"
 
-#: core/core-settings-map.php:2069
+#: core/core-settings-map.php:2077
 msgid "You can also change other comments settings in the"
 msgstr "Tambi&eacute;n puede cambiar otros ajustes de comentarios en la"
 
-#: core/core-settings-map.php:2071
+#: core/core-settings-map.php:2079
 msgid "discussion settings page."
 msgstr "P&aacute;gina de ajustes de Comentarios."
 
-#: core/core-settings-map.php:2077
+#: core/core-settings-map.php:2085
 msgid "Display the comment list"
 msgstr "Mostrar lista de Comentarios"
 
-#: core/core-settings-map.php:2081
+#: core/core-settings-map.php:2089
 msgid ""
 "By default, WordPress displays the past comments, even if comments are "
 "disabled in posts or pages. Unchecking this option allows you to not display "
@@ -2502,88 +2506,88 @@ msgstr ""
 "ginas. Desmarcando esta opci&oacute;n no se mostrar&aacute; este hist&oacute;"
 "rico de comentarios."
 
-#: core/core-settings-map.php:2096
+#: core/core-settings-map.php:2104
 msgid "Display posts navigation"
 msgstr ""
 
-#: core/core-settings-map.php:2099
+#: core/core-settings-map.php:2107
 msgid ""
 "When this option is checked, the posts navigation is displayed below the "
 "posts"
 msgstr ""
 
-#: core/core-settings-map.php:2108
+#: core/core-settings-map.php:2116
 msgid "Display navigation in pages"
 msgstr ""
 
-#: core/core-settings-map.php:2117
+#: core/core-settings-map.php:2125
 msgid "Display posts navigation in single posts"
 msgstr ""
 
-#: core/core-settings-map.php:2126
+#: core/core-settings-map.php:2134
 msgid ""
 "Display posts navigation in post lists (archives, blog page, categories, "
 "search results ..)"
 msgstr ""
 
-#: core/core-settings-map.php:2149
+#: core/core-settings-map.php:2157
 msgid "Social links in left sidebar"
 msgstr " Iconos de Redes Sociales en barra lateral izquierda"
 
-#: core/core-settings-map.php:2162
+#: core/core-settings-map.php:2170
 msgid "Social links in right sidebar"
 msgstr "Iconos de Redes Sociales en barra lateral derecha"
 
-#: core/core-settings-map.php:2191
+#: core/core-settings-map.php:2199
 #, fuzzy
 msgid "Footer style"
 msgstr "Pie de P&aacute;gina"
 
-#: core/core-settings-map.php:2203
+#: core/core-settings-map.php:2211
 msgid "Horizontal widget area in your footer"
 msgstr ""
 
-#: core/core-settings-map.php:2206
+#: core/core-settings-map.php:2214
 #, fuzzy
 msgid "Display full-width"
 msgstr "Mostrar contenido completo"
 
-#: core/core-settings-map.php:2207
+#: core/core-settings-map.php:2215
 #, fuzzy
 msgid "Display boxed"
 msgstr "Mostrar borde en la parte superior de la p&aacute;gina"
 
-#: core/core-settings-map.php:2215
+#: core/core-settings-map.php:2223
 msgid "Social links in footer"
 msgstr "Iconos de Redes Sociales en el pie de p&aacute;gina"
 
-#: core/core-settings-map.php:2228
+#: core/core-settings-map.php:2236
 msgid "Stick the footer to the bottom of the page"
 msgstr ""
 
-#: core/core-settings-map.php:2233
+#: core/core-settings-map.php:2241
 msgid ""
 "Enabling this option will glue your footer to the bottom of the screen, when "
 "pages are shorter than the viewport's height."
 msgstr ""
 
-#: core/core-settings-map.php:2238
+#: core/core-settings-map.php:2246
 msgid "Display a back to top arrow on scroll"
 msgstr "Mostrar una flecha de desplazamiento para volver a la parte superior"
 
-#: core/core-settings-map.php:2246
+#: core/core-settings-map.php:2254
 #, fuzzy
 msgid "Back to top arrow position"
 msgstr "Mostrar una flecha de desplazamiento para volver a la parte superior"
 
-#: core/core-settings-map.php:2278
+#: core/core-settings-map.php:2286
 #, fuzzy
 msgid "Add your custom css here and design live!(for advanced users)"
 msgstr ""
 "&iexcl;A&ntilde;ada su CSS aqu&iacute; y dise&ntilde;e en vivo! (usuarios "
 "avanzados)"
 
-#: core/core-settings-map.php:2282
+#: core/core-settings-map.php:2290
 msgid ""
 "Use this field to test small chunks of CSS code. For important CSS "
 "customizations, you'll want to modify the style.css file of a"
@@ -2592,30 +2596,30 @@ msgstr ""
 "personalizaciones importantes del CSS, es preferible modificar el archivo "
 "style.css de un "
 
-#: core/core-settings-map.php:2283
+#: core/core-settings-map.php:2291
 msgid "child theme."
 msgstr "tema hijo."
 
-#: core/core-settings-map.php:2284
+#: core/core-settings-map.php:2292
 msgid "How to create and use a child theme ?"
 msgstr "&iquest;C&oacute;mo crear y usar un tema hijo?"
 
-#: core/core-settings-map.php:2301
+#: core/core-settings-map.php:2309
 msgid "Performance : use the minified CSS stylesheets"
 msgstr ""
 
-#: core/core-settings-map.php:2304
+#: core/core-settings-map.php:2312
 msgid ""
 "Using the minified version of the stylesheets will speed up your webpage "
 "load time."
 msgstr ""
 
-#: core/core-settings-map.php:2308
+#: core/core-settings-map.php:2316
 msgid "Load images on scroll"
 msgstr ""
 "Cargar im&aacute;genes conforme nos desplacemos hacia abajo (hacer scroll)"
 
-#: core/core-settings-map.php:2313
+#: core/core-settings-map.php:2321
 msgid ""
 "Check this option to delay the loading of non visible images. Images below "
 "the viewport will be loaded dynamically on scroll. This can boost "
@@ -2627,13 +2631,13 @@ msgstr ""
 "scroll). Esto aumenta el rendimiento mediante la reducci&oacute;n del peso "
 "de grandes p&aacute;ginas web con im&aacute;genes."
 
-#: core/core-settings-map.php:2317
+#: core/core-settings-map.php:2325
 #, fuzzy
 msgid "Lazy load the images in sliders"
 msgstr ""
 "Cargar im&aacute;genes conforme nos desplacemos hacia abajo (hacer scroll)"
 
-#: core/core-settings-map.php:2322
+#: core/core-settings-map.php:2330
 #, fuzzy
 msgid ""
 "Check this option to delay the loading of non visible images in sliders. "
@@ -2645,64 +2649,64 @@ msgstr ""
 "scroll). Esto aumenta el rendimiento mediante la reducci&oacute;n del peso "
 "de grandes p&aacute;ginas web con im&aacute;genes."
 
-#: core/core-settings-map.php:2331
+#: core/core-settings-map.php:2339
 msgid "Defer loading javascript files to avoid render blocking issues"
 msgstr ""
 
-#: core/core-settings-map.php:2339
+#: core/core-settings-map.php:2347
 msgid "Defer loading Font Awesome icons"
 msgstr ""
 
-#: core/core-settings-map.php:2347
+#: core/core-settings-map.php:2355
 msgid "Preload Google Fonts"
 msgstr ""
 
-#: core/core-settings-map.php:2363
+#: core/core-settings-map.php:2371
 msgid "Display help notices on front-end for logged in users."
 msgstr ""
 
-#: core/core-settings-map.php:2366
+#: core/core-settings-map.php:2374
 msgid ""
 "When this option is enabled, various help notices and some placeholder "
 "blocks are displayed on the front-end of your website. They are only visible "
 "by logged in users with administration capabilities."
 msgstr ""
 
-#: core/core-settings-map.php:2379
+#: core/core-settings-map.php:2387
 msgid "Load Font Awesome resources"
 msgstr ""
 
-#: core/core-settings-map.php:2383
+#: core/core-settings-map.php:2391
 msgid "Use with caution"
 msgstr ""
 
-#: core/core-settings-map.php:2384
+#: core/core-settings-map.php:2392
 msgid ""
 "When checked, the Font Awesome icons and CSS will be loaded on front end. "
 "You might want to load the Font Awesome icons with a custom code, or let a "
 "plugin do it for you."
 msgstr ""
 
-#: core/core-settings-map.php:2386
+#: core/core-settings-map.php:2394
 msgid "Check out some example of uses"
 msgstr ""
 
-#: core/core-settings-map.php:2407
+#: core/core-settings-map.php:2415
 msgid "Automatically adapt the font size to the width of the devices"
 msgstr ""
 
-#: core/core-settings-map.php:2410
+#: core/core-settings-map.php:2418
 msgid ""
 "When this option is enabled, your font size will automatically resize to be "
 "better displayed in mobile devices."
 msgstr ""
 
-#: core/core-settings-map.php:2410
+#: core/core-settings-map.php:2418
 msgid ""
 "This option can sometimes reduce too much the headings font-size on mobiles."
 msgstr ""
 
-#: core/core-settings-map.php:2422
+#: core/core-settings-map.php:2430
 msgid ""
 "The Modern style provides a \"material design\" look and feel. It relies on "
 "the flexbox css mode, offering a better support for the most recent mobile "
@@ -2711,95 +2715,95 @@ msgid ""
 "older devices and browsers."
 msgstr ""
 
-#: core/core-settings-map.php:2427
+#: core/core-settings-map.php:2435
 msgid "Set the Modern or Classical design style"
 msgstr ""
 
-#: core/core-settings-map.php:2427
+#: core/core-settings-map.php:2435
 #, fuzzy
 msgid "Select a design style for the theme"
 msgstr ""
 "Seleccionar un dise&ntilde;o para la informaci&oacute;n adicional en los "
 "art&iacute;culos"
 
-#: core/core-settings-map.php:2431
+#: core/core-settings-map.php:2439
 msgid "Modern"
 msgstr ""
 
-#: core/core-settings-map.php:2432
+#: core/core-settings-map.php:2440
 msgid "Classical"
 msgstr ""
 
-#: core/core-settings-map.php:2436
+#: core/core-settings-map.php:2444
 msgid ""
 "You are using a child theme. This option must be changed from the parent "
 "theme. Activate the parent from %s."
 msgstr ""
 
-#: core/core-settings-map.php:2437
+#: core/core-settings-map.php:2445
 #, fuzzy
 msgid "Appearance > themes"
 msgstr "apariencia > widgets"
 
-#: core/core-settings-map.php:2439
+#: core/core-settings-map.php:2447
 msgid ""
 "The two styles can use different template files, that's why it is "
 "recommended to change the style option from the parent and test your child "
 "theme in a staging site before production."
 msgstr ""
 
-#: core/core-settings-map.php:2457
+#: core/core-settings-map.php:2465
 #, fuzzy
 msgid "Display the product featured image"
 msgstr "Mostrar fecha de actualizaci&oacute;n"
 
-#: core/core-settings-map.php:2481
+#: core/core-settings-map.php:2489
 msgid "Global settings"
 msgstr "Ajustes Generales"
 
-#: core/core-settings-map.php:2482
+#: core/core-settings-map.php:2490
 msgid "Title, Logo, Fonts, Primary color, Social, ..."
 msgstr ""
 
-#: core/core-settings-map.php:2488
+#: core/core-settings-map.php:2496
 msgid "Header"
 msgstr "Cabecera"
 
-#: core/core-settings-map.php:2489
+#: core/core-settings-map.php:2497
 msgid "Style, Desktops and mobiles layout, Menus, Search, ..."
 msgstr ""
 
-#: core/core-settings-map.php:2495
+#: core/core-settings-map.php:2503
 #, fuzzy
 msgid "Main Content"
 msgstr "Men&uacute; Principal"
 
-#: core/core-settings-map.php:2496
+#: core/core-settings-map.php:2504
 msgid ""
 "Column layout, Post lists design, Thumbnails, Post Metas, Navigation, ..."
 msgstr ""
 
-#: core/core-settings-map.php:2502
+#: core/core-settings-map.php:2510
 msgid "Sidebars"
 msgstr ""
 
-#: core/core-settings-map.php:2508
+#: core/core-settings-map.php:2516
 msgid "Footer"
 msgstr "Pie de P&aacute;gina"
 
-#: core/core-settings-map.php:2509
+#: core/core-settings-map.php:2517
 msgid "Style, Back to top button, Sticky mode, ... "
 msgstr ""
 
-#: core/core-settings-map.php:2515
+#: core/core-settings-map.php:2523
 msgid "Advanced options"
 msgstr "Opciones avanzadas"
 
-#: core/core-settings-map.php:2516
+#: core/core-settings-map.php:2524
 msgid "Performances, Custom CSS ..."
 msgstr ""
 
-#: core/core-settings-map.php:2587
+#: core/core-settings-map.php:2595
 #, fuzzy
 msgid "Your theme supports %s menu. Select which menu you would like to use."
 msgid_plural ""
@@ -2809,205 +2813,205 @@ msgstr[0] ""
 msgstr[1] ""
 "Su tema es compatible con %s men&uacute;. Seleccione cual desea utilizar."
 
-#: core/core-settings-map.php:2590 core/core-settings-map.php:2598
+#: core/core-settings-map.php:2598 core/core-settings-map.php:2606
 msgid "You can create new menu and edit your menu's content %s."
 msgstr ""
 
-#: core/core-settings-map.php:2593
+#: core/core-settings-map.php:2601
 msgid "on the Menus screen in the Appearance section"
 msgstr ""
 
-#: core/core-settings-map.php:2608
+#: core/core-settings-map.php:2616
 msgid ""
 "If a menu location has no menu assigned to it, a default page menu will be "
 "used."
 msgstr ""
 
-#: core/core-settings-map.php:2618
+#: core/core-settings-map.php:2626
 msgid "Site Identity : Logo, Title, Tagline and Site Icon"
 msgstr ""
 
-#: core/core-settings-map.php:2628
+#: core/core-settings-map.php:2636
 #, fuzzy
 msgid "Site Layout"
 msgstr "Opciones de Dise&ntilde;o"
 
-#: core/core-settings-map.php:2633
+#: core/core-settings-map.php:2641
 msgid "Primary color of the theme"
 msgstr ""
 
-#: core/core-settings-map.php:2635
+#: core/core-settings-map.php:2643
 msgid "Pick a primary color for the theme"
 msgstr ""
 
-#: core/core-settings-map.php:2639
+#: core/core-settings-map.php:2647
 msgid "Font picker and font size"
 msgstr ""
 
-#: core/core-settings-map.php:2652
+#: core/core-settings-map.php:2660
 msgid "Formatting : links, paragraphs ..."
 msgstr ""
 
-#: core/core-settings-map.php:2658
+#: core/core-settings-map.php:2666
 msgid "Image settings"
 msgstr "Ajuste de las im&aacute;genes"
 
-#: core/core-settings-map.php:2669
+#: core/core-settings-map.php:2677
 #, fuzzy
 msgid "Sliders options"
 msgstr "Opciones del Deslizador de im&aacute;genes (Slider)"
 
-#: core/core-settings-map.php:2675
+#: core/core-settings-map.php:2683
 msgid "Authors"
 msgstr "Autores"
 
-#: core/core-settings-map.php:2681
+#: core/core-settings-map.php:2689
 msgid "Smooth Scroll"
 msgstr ""
 
-#: core/core-settings-map.php:2691
+#: core/core-settings-map.php:2699
 msgid "Header design and layout"
 msgstr "Diseño y Disposici&oacute;n de la Cabecera"
 
-#: core/core-settings-map.php:2691
+#: core/core-settings-map.php:2699
 #, fuzzy
 msgid "General design settings"
 msgstr "Ajustes Iconos de t&iacute;tulos"
 
-#: core/core-settings-map.php:2696
+#: core/core-settings-map.php:2704
 msgid "Design settings for desktops and laptops"
 msgstr ""
 
-#: core/core-settings-map.php:2701
+#: core/core-settings-map.php:2709
 msgid "Design settings for smartphones and tablets in portrait orientation"
 msgstr ""
 
-#: core/core-settings-map.php:2706
+#: core/core-settings-map.php:2714
 msgid "Navigation Menus"
 msgstr ""
 
-#: core/core-settings-map.php:2718
+#: core/core-settings-map.php:2726
 #, fuzzy
 msgid "Front Page Content"
 msgstr "P&aacute;gina Principal"
 
-#: core/core-settings-map.php:2731
+#: core/core-settings-map.php:2739
 msgid "Pages &amp; Posts Layout"
 msgstr "Dise&ntilde;o de P&aacute;ginas &amp; Art&iacute;culos"
 
-#: core/core-settings-map.php:2738
+#: core/core-settings-map.php:2746
 msgid "Post lists : blog, archives, ..."
 msgstr "Listas de art&iacute;culos: blog, archivos..."
 
-#: core/core-settings-map.php:2744
+#: core/core-settings-map.php:2752
 msgid "Single posts"
 msgstr "Art&iacute;culos individuales"
 
-#: core/core-settings-map.php:2750
+#: core/core-settings-map.php:2758
 #, fuzzy
 msgid "Single pages"
 msgstr "Art&iacute;culos individuales"
 
-#: core/core-settings-map.php:2756
+#: core/core-settings-map.php:2764
 msgid "Breadcrumb"
 msgstr "Ruta de Navegaci&oacute;n (migas de pan)"
 
-#: core/core-settings-map.php:2762
+#: core/core-settings-map.php:2770
 msgid "Post metas (category, tags, custom taxonomies)"
 msgstr ""
 "Informaci&oacute;n en los art&iacute;culos (categor&iacute;as, etiquetas, "
 "taxonom&iacute;as personalizadas)"
 
-#: core/core-settings-map.php:2768
+#: core/core-settings-map.php:2776
 msgid "Galleries"
 msgstr ""
 
-#: core/core-settings-map.php:2774
+#: core/core-settings-map.php:2782
 msgid "Comments"
 msgstr "Comentarios"
 
-#: core/core-settings-map.php:2785
+#: core/core-settings-map.php:2793
 msgid "Post/Page Navigation"
 msgstr ""
 
-#: core/core-settings-map.php:2796
+#: core/core-settings-map.php:2804
 msgid "Socials in Sidebars"
 msgstr ""
 
-#: core/core-settings-map.php:2805
+#: core/core-settings-map.php:2813
 msgid "Footer global settings"
 msgstr "Ajustes Generales Pie de P&aacute;gina"
 
-#: core/core-settings-map.php:2816
+#: core/core-settings-map.php:2824
 msgid "Custom CSS"
 msgstr "CSS personalizado"
 
-#: core/core-settings-map.php:2821
+#: core/core-settings-map.php:2829
 msgid "Website Performances"
 msgstr "Rendimiento del Sitio Web"
 
-#: core/core-settings-map.php:2827
+#: core/core-settings-map.php:2835
 msgid "Front-end placeholders and help blocks"
 msgstr ""
 
-#: core/core-settings-map.php:2832
+#: core/core-settings-map.php:2840
 msgid "Front-end Icons (Font Awesome)"
 msgstr ""
 
-#: core/core-settings-map.php:2837
+#: core/core-settings-map.php:2845
 msgid "Adaptative font size on mobile devices"
 msgstr ""
 
-#: core/core-settings-map.php:2842
+#: core/core-settings-map.php:2850
 msgid "Theme style"
 msgstr ""
 
-#: core/core-settings-map.php:2854
+#: core/core-settings-map.php:2862
 msgid "Upgrade to Customizr Pro"
 msgstr ""
 
-#: core/core-settings-map.php:2855
+#: core/core-settings-map.php:2863
 #, fuzzy
 msgid "Discover the features and benefits"
 msgstr "Explore las caracter&iacute;sticas"
 
-#: core/core-settings-map.php:2857
+#: core/core-settings-map.php:2865
 msgid "Go Pro"
 msgstr ""
 
-#: core/core-settings-map.php:2897
+#: core/core-settings-map.php:2905
 msgid "Home featured page one"
 msgstr "Primera p&aacute;gina destacada en la P&aacute;gina Principal"
 
-#: core/core-settings-map.php:2898
+#: core/core-settings-map.php:2906
 msgid "Home featured page two"
 msgstr "Segunda p&aacute;gina destacada en la P&aacute;gina Principal"
 
-#: core/core-settings-map.php:2899
+#: core/core-settings-map.php:2907
 msgid "Home featured page three"
 msgstr "Tercera p&aacute;gina destacada en la P&aacute;gina Principal"
 
-#: core/core-settings-map.php:2902
+#: core/core-settings-map.php:2910
 msgid "Featured text one (200 char. max)"
 msgstr ""
 
-#: core/core-settings-map.php:2903
+#: core/core-settings-map.php:2911
 msgid "Featured text two (200 char. max)"
 msgstr ""
 
-#: core/core-settings-map.php:2904
+#: core/core-settings-map.php:2912
 msgid "Featured text three (200 char. max)"
 msgstr ""
 
-#: core/core-settings-map.php:2921
+#: core/core-settings-map.php:2929
 msgid "Custom featured page %1$s"
 msgstr "Personalizar p&aacute;gina destacada %1$s"
 
-#: core/core-settings-map.php:2937
+#: core/core-settings-map.php:2945
 msgid "Featured text %1$s (200 char. max)"
 msgstr ""
 
-#: core/core-settings-map.php:2940
+#: core/core-settings-map.php:2948
 msgid ""
 "You need to select a page first. Leave this field empty if you want to use "
 "the page excerpt."
@@ -3624,7 +3628,7 @@ msgid "Mobile Menu"
 msgstr "Men&uacute; Principal"
 
 #: core/init-base.php:1106 inc/_dev/class-fire-utils_settings_map.php:1213
-#: inc/czr-init-ccat.php:3162
+#: inc/czr-init-ccat.php:3166
 msgid "Social links"
 msgstr "Redes Sociales"
 
@@ -3715,87 +3719,87 @@ msgstr "Verde azulado"
 msgid "Light blue "
 msgstr "Azul claro"
 
-#: inc/_dev/class-fire-plugins_compat.php:1054 inc/czr-init-ccat.php:1518
+#: inc/_dev/class-fire-plugins_compat.php:1054 inc/czr-init-ccat.php:1522
 #: templates/parts/header/parts/woocommerce_cart.php:7
 msgid "View your shopping cart"
 msgstr ""
 
-#: inc/_dev/class-fire-resources.php:748 inc/czr-init-ccat.php:4675
+#: inc/_dev/class-fire-resources.php:748 inc/czr-init-ccat.php:4679
 msgid ""
 "Quick tip : you can choose between two styles for the Customizr theme. Give "
 "it a try %s"
 msgstr ""
 
-#: inc/_dev/class-fire-resources.php:751 inc/czr-init-ccat.php:4678
+#: inc/_dev/class-fire-resources.php:751 inc/czr-init-ccat.php:4682
 msgid "in the live customizer."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:214 inc/czr-init-ccat.php:2163
+#: inc/_dev/class-fire-utils_settings_map.php:214 inc/czr-init-ccat.php:2167
 msgid "Sticky Logo Upload (supported formats : .jpg, .png, .gif, svg, svgz)"
 msgstr ""
 "Subir Logotipo Cabecera Pegajosa (formatos permitidos: .jpg, .png, .gif, "
 "svg, svgz)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:226 inc/czr-init-ccat.php:2175
+#: inc/_dev/class-fire-utils_settings_map.php:226 inc/czr-init-ccat.php:2179
 msgid ""
 "Use this upload control to specify a different logo on sticky header mode."
 msgstr ""
 "&Uacute;selo para elegir un logotipo diferente para la cabecera pegajosa."
 
-#: inc/_dev/class-fire-utils_settings_map.php:231 inc/czr-init-ccat.php:2180
+#: inc/_dev/class-fire-utils_settings_map.php:231 inc/czr-init-ccat.php:2184
 msgid "Favicon Upload (supported formats : .ico, .png, .gif)"
 msgstr "Subir Favicon (formatos permitidos: .ico, .png, .gif)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:232 inc/czr-init-ccat.php:2181
+#: inc/_dev/class-fire-utils_settings_map.php:232 inc/czr-init-ccat.php:2185
 msgid "FAVICON"
 msgstr "FAVICON"
 
-#: inc/_dev/class-fire-utils_settings_map.php:271 inc/czr-init-ccat.php:2220
+#: inc/_dev/class-fire-utils_settings_map.php:271 inc/czr-init-ccat.php:2224
 msgid "Choose a predefined skin"
 msgstr "Elegir aspecto predefinido"
 
-#: inc/_dev/class-fire-utils_settings_map.php:276 inc/czr-init-ccat.php:2225
+#: inc/_dev/class-fire-utils_settings_map.php:276 inc/czr-init-ccat.php:2229
 msgid "Disabled if the random option is on."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:281 inc/czr-init-ccat.php:2230
+#: inc/_dev/class-fire-utils_settings_map.php:281 inc/czr-init-ccat.php:2234
 msgid "Randomize the skin"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:284 inc/czr-init-ccat.php:2233
+#: inc/_dev/class-fire-utils_settings_map.php:284 inc/czr-init-ccat.php:2237
 msgid "Apply a random color skin on each page load."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:328 inc/czr-init-ccat.php:2277
+#: inc/_dev/class-fire-utils_settings_map.php:328 inc/czr-init-ccat.php:2281
 msgid "Display an icon next to external links"
 msgstr "Mostrar un icono junto al texto de los enlaces externos"
 
 #: inc/_dev/class-fire-utils_settings_map.php:331
-#: inc/_dev/class-fire-utils_settings_map.php:341 inc/czr-init-ccat.php:2280
-#: inc/czr-init-ccat.php:2290
+#: inc/_dev/class-fire-utils_settings_map.php:341 inc/czr-init-ccat.php:2284
+#: inc/czr-init-ccat.php:2294
 msgid ""
 "This will be applied to the links included in post or page content only."
 msgstr ""
 "S&oacute;lo se aplicar&aacute; a los enlaces incluidos en el contenido de "
 "los art&iacute;culos y p&aacute;ginas."
 
-#: inc/_dev/class-fire-utils_settings_map.php:338 inc/czr-init-ccat.php:2287
+#: inc/_dev/class-fire-utils_settings_map.php:338 inc/czr-init-ccat.php:2291
 msgid "Open external links in a new tab"
 msgstr "Abrir enlaces externos en una nueva pesta&ntilde;a"
 
-#: inc/_dev/class-fire-utils_settings_map.php:346 inc/czr-init-ccat.php:2295
+#: inc/_dev/class-fire-utils_settings_map.php:346 inc/czr-init-ccat.php:2299
 msgid "Drop caps"
 msgstr "Letras Capitulares"
 
-#: inc/_dev/class-fire-utils_settings_map.php:347 inc/czr-init-ccat.php:2296
+#: inc/_dev/class-fire-utils_settings_map.php:347 inc/czr-init-ccat.php:2300
 msgid "Enable drop caps"
 msgstr "Habilitar letras capitulares"
 
-#: inc/_dev/class-fire-utils_settings_map.php:349 inc/czr-init-ccat.php:2298
+#: inc/_dev/class-fire-utils_settings_map.php:349 inc/czr-init-ccat.php:2302
 msgid "Apply a drop cap to the first paragraph of your post / page content"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:357 inc/czr-init-ccat.php:2306
+#: inc/_dev/class-fire-utils_settings_map.php:357 inc/czr-init-ccat.php:2310
 msgid ""
 "Apply a drop cap when the paragraph includes at least the following number "
 "of words :"
@@ -3803,46 +3807,46 @@ msgstr ""
 "Usar letra capitular cuando el p&aacute;rrafo incluya al menos el siguiente "
 "n&uacute;mero de palabras :"
 
-#: inc/_dev/class-fire-utils_settings_map.php:358 inc/czr-init-ccat.php:2307
+#: inc/_dev/class-fire-utils_settings_map.php:358 inc/czr-init-ccat.php:2311
 msgid "(number of words)"
 msgstr "(n&uacute;mero de palabras)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:367 inc/czr-init-ccat.php:2316
+#: inc/_dev/class-fire-utils_settings_map.php:367 inc/czr-init-ccat.php:2320
 msgid "Drop cap style"
 msgstr "Estilo de Letra Capitular"
 
-#: inc/_dev/class-fire-utils_settings_map.php:371 inc/czr-init-ccat.php:2320
+#: inc/_dev/class-fire-utils_settings_map.php:371 inc/czr-init-ccat.php:2324
 #, fuzzy
 msgid "Primary theme color with a shadow"
 msgstr "Color del tema con sombra"
 
-#: inc/_dev/class-fire-utils_settings_map.php:372 inc/czr-init-ccat.php:2321
+#: inc/_dev/class-fire-utils_settings_map.php:372 inc/czr-init-ccat.php:2325
 msgid "Simple black"
 msgstr "Negro sin sombra"
 
-#: inc/_dev/class-fire-utils_settings_map.php:377 inc/czr-init-ccat.php:2326
+#: inc/_dev/class-fire-utils_settings_map.php:377 inc/czr-init-ccat.php:2330
 msgid "Enable drop caps in posts"
 msgstr "Habilitar letra capitular en art&iacute;culos"
 
-#: inc/_dev/class-fire-utils_settings_map.php:379 inc/czr-init-ccat.php:2328
+#: inc/_dev/class-fire-utils_settings_map.php:379 inc/czr-init-ccat.php:2332
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr ""
 "Habilitar letra capitular en el primer p&aacute;rrafo de los art&iacute;culos"
 
-#: inc/_dev/class-fire-utils_settings_map.php:385 inc/czr-init-ccat.php:2334
+#: inc/_dev/class-fire-utils_settings_map.php:385 inc/czr-init-ccat.php:2338
 msgid "Enable drop caps in pages"
 msgstr "Habilitar letra capitular en las p&aacute;ginas"
 
-#: inc/_dev/class-fire-utils_settings_map.php:387 inc/czr-init-ccat.php:2336
+#: inc/_dev/class-fire-utils_settings_map.php:387 inc/czr-init-ccat.php:2340
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr ""
 "Habilitar letra capitular en el primer p&aacute;rrafo de las p&aacute;ginas"
 
-#: inc/_dev/class-fire-utils_settings_map.php:406 inc/czr-init-ccat.php:2355
+#: inc/_dev/class-fire-utils_settings_map.php:406 inc/czr-init-ccat.php:2359
 msgid "Display icons next to titles"
 msgstr "Mostras iconos junto a t&iacute;tulos"
 
-#: inc/_dev/class-fire-utils_settings_map.php:410 inc/czr-init-ccat.php:2359
+#: inc/_dev/class-fire-utils_settings_map.php:410 inc/czr-init-ccat.php:2363
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
@@ -3851,23 +3855,23 @@ msgstr ""
 "de p&aacute;ginas, art&iacute;culos, archivos... un icono contextual, y "
 "widgets propios de WP."
 
-#: inc/_dev/class-fire-utils_settings_map.php:416 inc/czr-init-ccat.php:2365
+#: inc/_dev/class-fire-utils_settings_map.php:416 inc/czr-init-ccat.php:2369
 msgid "Display a page icon next to the page title"
 msgstr ""
 "Mostrar un icono del tipo de p&aacute;gina al lado del t&iacute;tulo de la "
 "p&aacute;gina."
 
-#: inc/_dev/class-fire-utils_settings_map.php:425 inc/czr-init-ccat.php:2374
+#: inc/_dev/class-fire-utils_settings_map.php:425 inc/czr-init-ccat.php:2378
 msgid "Display a post icon next to the single post title"
 msgstr ""
 "Mostrar un icono del tipo de art&iacute;culo al lado del t&iacute;tulo de un "
 "art&iacute;culo individual"
 
-#: inc/_dev/class-fire-utils_settings_map.php:434 inc/czr-init-ccat.php:2383
+#: inc/_dev/class-fire-utils_settings_map.php:434 inc/czr-init-ccat.php:2387
 msgid "Display an icon next to the archive title"
 msgstr "Mostrar un icono junto al t&iacute;tulo del archivo"
 
-#: inc/_dev/class-fire-utils_settings_map.php:437 inc/czr-init-ccat.php:2386
+#: inc/_dev/class-fire-utils_settings_map.php:437 inc/czr-init-ccat.php:2390
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
@@ -3879,13 +3883,13 @@ msgstr ""
 "archivo puede ser: categor&iacute;a, etiqueta, autor, fecha de archivo, "
 "clasificaci&oacute;n personalizada, resultados de b&uacute;squeda."
 
-#: inc/_dev/class-fire-utils_settings_map.php:444 inc/czr-init-ccat.php:2393
+#: inc/_dev/class-fire-utils_settings_map.php:444 inc/czr-init-ccat.php:2397
 msgid "Display an icon next to each post title in an archive page"
 msgstr ""
 "Mostrar un icono junto al t&iacute;tulo del art&iacute;culo en una p&aacute;"
 "gina de archivo"
 
-#: inc/_dev/class-fire-utils_settings_map.php:447 inc/czr-init-ccat.php:2396
+#: inc/_dev/class-fire-utils_settings_map.php:447 inc/czr-init-ccat.php:2400
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
 "each post titles in an archive page. An archive page can be : category, tag, "
@@ -3897,30 +3901,30 @@ msgstr ""
 "fecha de archivo, clasificaci&oacute;n personalizada, resultados de b&uacute;"
 "squeda."
 
-#: inc/_dev/class-fire-utils_settings_map.php:454 inc/czr-init-ccat.php:2403
+#: inc/_dev/class-fire-utils_settings_map.php:454 inc/czr-init-ccat.php:2407
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr "Widgets WP barra lateral: Mostrar iconos junto a t&iacute;tulos"
 
-#: inc/_dev/class-fire-utils_settings_map.php:463 inc/czr-init-ccat.php:2412
+#: inc/_dev/class-fire-utils_settings_map.php:463 inc/czr-init-ccat.php:2416
 msgid "WP footer widgets : display icons next to titles"
 msgstr "Widgets WP pie de p&aacute;gina : Mostrar iconos junto a títulos"
 
-#: inc/_dev/class-fire-utils_settings_map.php:492 inc/czr-init-ccat.php:2441
+#: inc/_dev/class-fire-utils_settings_map.php:492 inc/czr-init-ccat.php:2445
 msgid "Autoscale images on zoom"
 msgstr "Autoescalar im&aacute;genes en una ventana con zoom"
 
-#: inc/_dev/class-fire-utils_settings_map.php:496 inc/czr-init-ccat.php:2445
+#: inc/_dev/class-fire-utils_settings_map.php:496 inc/czr-init-ccat.php:2449
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr ""
 "Con esta opci&oacute;n activada, la imagen se ajustar&aacute; a la ventana "
 "de imagen ampliada de lightbox."
 
-#: inc/_dev/class-fire-utils_settings_map.php:502 inc/czr-init-ccat.php:2451
+#: inc/_dev/class-fire-utils_settings_map.php:502 inc/czr-init-ccat.php:2455
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr "Sliders: mostrar icono de carga antes de representar las diapositivas"
 
-#: inc/_dev/class-fire-utils_settings_map.php:506 inc/czr-init-ccat.php:2455
+#: inc/_dev/class-fire-utils_settings_map.php:506 inc/czr-init-ccat.php:2459
 msgid ""
 "When checked, this option displays a loading icon when the slides are being "
 "setup."
@@ -3928,20 +3932,20 @@ msgstr ""
 "Activado, esta opci&oacute;n muestra un icono de carga antes de la "
 "aparici&oacute;n de las diapositivas."
 
-#: inc/_dev/class-fire-utils_settings_map.php:516 inc/czr-init-ccat.php:2465
+#: inc/_dev/class-fire-utils_settings_map.php:516 inc/czr-init-ccat.php:2469
 msgid ""
 "Improve your page speed by loading smaller slider images for mobile devices"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:574 inc/czr-init-ccat.php:2523
+#: inc/_dev/class-fire-utils_settings_map.php:574 inc/czr-init-ccat.php:2527
 msgid "Social links in header"
 msgstr " Iconos de Redes Sociales en la cabecera"
 
-#: inc/_dev/class-fire-utils_settings_map.php:612 inc/czr-init-ccat.php:2561
+#: inc/_dev/class-fire-utils_settings_map.php:612 inc/czr-init-ccat.php:2565
 msgid "Display menu in a box"
 msgstr "Mostrar men&uacute; en un recuadro/caja"
 
-#: inc/_dev/class-fire-utils_settings_map.php:617 inc/czr-init-ccat.php:2566
+#: inc/_dev/class-fire-utils_settings_map.php:617 inc/czr-init-ccat.php:2570
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
@@ -3949,15 +3953,15 @@ msgstr ""
 "Seleccionando esta opci&oacute;n, el men&uacute; del encabezado, el lema y "
 "los iconos de redes sociales se muestran dentro de un recuadro gris claro."
 
-#: inc/_dev/class-fire-utils_settings_map.php:622 inc/czr-init-ccat.php:2571
+#: inc/_dev/class-fire-utils_settings_map.php:622 inc/czr-init-ccat.php:2575
 msgid "Sticky header settings"
 msgstr "Ajustes Cabecera Pegajosa"
 
-#: inc/_dev/class-fire-utils_settings_map.php:623 inc/czr-init-ccat.php:2572
+#: inc/_dev/class-fire-utils_settings_map.php:623 inc/czr-init-ccat.php:2576
 msgid "Sticky on scroll"
 msgstr "Activar Cabecera Pegajosa al desplazarse"
 
-#: inc/_dev/class-fire-utils_settings_map.php:628 inc/czr-init-ccat.php:2577
+#: inc/_dev/class-fire-utils_settings_map.php:628 inc/czr-init-ccat.php:2581
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
@@ -3966,128 +3970,128 @@ msgstr ""
 "a&uacute;n desplaz&aacute;ndose hacia abajo a trav&eacute;s de la p&aacute;"
 "gina."
 
-#: inc/_dev/class-fire-utils_settings_map.php:633 inc/czr-init-ccat.php:2582
+#: inc/_dev/class-fire-utils_settings_map.php:633 inc/czr-init-ccat.php:2586
 msgid "Sticky header : display the tagline"
 msgstr "Cabecera pegajosa: Mostrar lema"
 
-#: inc/_dev/class-fire-utils_settings_map.php:641 inc/czr-init-ccat.php:2590
+#: inc/_dev/class-fire-utils_settings_map.php:641 inc/czr-init-ccat.php:2594
 msgid "Sticky header: display the shopping cart"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:648 inc/czr-init-ccat.php:2597
+#: inc/_dev/class-fire-utils_settings_map.php:648 inc/czr-init-ccat.php:2601
 msgid ""
 "WooCommerce: if checked, your WooCommerce cart icon will remain visible when "
 "scrolling."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:653 inc/czr-init-ccat.php:2602
+#: inc/_dev/class-fire-utils_settings_map.php:653 inc/czr-init-ccat.php:2606
 msgid "Sticky header : display the title / logo"
 msgstr "Cabecera pegajosa: Mostrar t&iacute;tulo/logotipo"
 
-#: inc/_dev/class-fire-utils_settings_map.php:662 inc/czr-init-ccat.php:2611
+#: inc/_dev/class-fire-utils_settings_map.php:662 inc/czr-init-ccat.php:2615
 msgid "Sticky header : display the menu"
 msgstr "Cabecera pegajosa: Mostrar men&uacute;"
 
-#: inc/_dev/class-fire-utils_settings_map.php:667 inc/czr-init-ccat.php:2616
+#: inc/_dev/class-fire-utils_settings_map.php:667 inc/czr-init-ccat.php:2620
 msgid "Also applied to the secondary menu if any."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:745 inc/czr-init-ccat.php:2694
+#: inc/_dev/class-fire-utils_settings_map.php:745 inc/czr-init-ccat.php:2698
 msgid ""
 "For mobile devices (responsive), limit the height of the dropdown menu block "
 "to the visible viewport."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:754 inc/czr-init-ccat.php:2703
+#: inc/_dev/class-fire-utils_settings_map.php:754 inc/czr-init-ccat.php:2707
 msgid "Display a label next to the menu button."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:758 inc/czr-init-ccat.php:2707
+#: inc/_dev/class-fire-utils_settings_map.php:758 inc/czr-init-ccat.php:2711
 msgid "Note : the label is hidden on mobile devices."
 msgstr ""
 
 #: inc/_dev/class-fire-utils_settings_map.php:769
-#: inc/_dev/class-fire-utils_settings_map.php:790 inc/czr-init-ccat.php:2718
-#: inc/czr-init-ccat.php:2739
+#: inc/_dev/class-fire-utils_settings_map.php:790 inc/czr-init-ccat.php:2722
+#: inc/czr-init-ccat.php:2743
 #, fuzzy
 msgid "Menu centered"
 msgstr "Men&uacute; a la Izquierda"
 
 #: inc/_dev/class-fire-utils_settings_map.php:775
-#: inc/_dev/class-fire-utils_settings_map.php:796 inc/czr-init-ccat.php:2724
-#: inc/czr-init-ccat.php:2745
+#: inc/_dev/class-fire-utils_settings_map.php:796 inc/czr-init-ccat.php:2728
+#: inc/czr-init-ccat.php:2749
 msgid "Note : the menu centered position is available only when"
 msgstr ""
 
 #: inc/_dev/class-fire-utils_settings_map.php:777
-#: inc/_dev/class-fire-utils_settings_map.php:798 inc/czr-init-ccat.php:2726
-#: inc/czr-init-ccat.php:2747
+#: inc/_dev/class-fire-utils_settings_map.php:798 inc/czr-init-ccat.php:2730
+#: inc/czr-init-ccat.php:2751
 #, fuzzy
 msgid "the logo is centered"
 msgstr "Logotipo / T&iacute;tulo - Posici&oacute;n centrada"
 
-#: inc/_dev/class-fire-utils_settings_map.php:804 inc/czr-init-ccat.php:2753
+#: inc/_dev/class-fire-utils_settings_map.php:804 inc/czr-init-ccat.php:2757
 msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:808 inc/czr-init-ccat.php:2757
+#: inc/_dev/class-fire-utils_settings_map.php:808 inc/czr-init-ccat.php:2761
 msgid "Move before inside the side menu "
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:809 inc/czr-init-ccat.php:2758
+#: inc/_dev/class-fire-utils_settings_map.php:809 inc/czr-init-ccat.php:2762
 msgid "Move after inside the side menu "
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:810 inc/czr-init-ccat.php:2759
+#: inc/_dev/class-fire-utils_settings_map.php:810 inc/czr-init-ccat.php:2763
 msgid "Display in the header"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:811 inc/czr-init-ccat.php:2760
+#: inc/_dev/class-fire-utils_settings_map.php:811 inc/czr-init-ccat.php:2764
 msgid "Hide"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:889 inc/czr-init-ccat.php:2838
+#: inc/_dev/class-fire-utils_settings_map.php:889 inc/czr-init-ccat.php:2842
 msgid "Metas Design"
 msgstr "Dise&ntilde;o de la Informaci&oacute;n adicional"
 
-#: inc/_dev/class-fire-utils_settings_map.php:890 inc/czr-init-ccat.php:2839
+#: inc/_dev/class-fire-utils_settings_map.php:890 inc/czr-init-ccat.php:2843
 msgid "Select a design for the post metas"
 msgstr ""
 "Seleccionar un dise&ntilde;o para la informaci&oacute;n adicional en los "
 "art&iacute;culos"
 
-#: inc/_dev/class-fire-utils_settings_map.php:894 inc/czr-init-ccat.php:2843
+#: inc/_dev/class-fire-utils_settings_map.php:894 inc/czr-init-ccat.php:2847
 msgid "Buttons and text"
 msgstr "Botones y Texto"
 
-#: inc/_dev/class-fire-utils_settings_map.php:895 inc/czr-init-ccat.php:2844
+#: inc/_dev/class-fire-utils_settings_map.php:895 inc/czr-init-ccat.php:2848
 msgid "Text only"
 msgstr "Solo Texto"
 
-#: inc/_dev/class-fire-utils_settings_map.php:902 inc/czr-init-ccat.php:2851
+#: inc/_dev/class-fire-utils_settings_map.php:902 inc/czr-init-ccat.php:2855
 msgid "Select the last update format"
 msgstr "Seleccionar el &uacute;ltimo formato de actualizaci&oacute;n"
 
-#: inc/_dev/class-fire-utils_settings_map.php:906 inc/czr-init-ccat.php:2855
+#: inc/_dev/class-fire-utils_settings_map.php:906 inc/czr-init-ccat.php:2859
 #, fuzzy
 msgid "No. of days since last update"
 msgstr "N&deg; de d&iacute;as desde la &uacute;ltima actualizaci&oacute;n"
 
-#: inc/_dev/class-fire-utils_settings_map.php:907 inc/czr-init-ccat.php:2856
+#: inc/_dev/class-fire-utils_settings_map.php:907 inc/czr-init-ccat.php:2860
 msgid "Date of the last update"
 msgstr "Fecha de la &uacute;ltima actualizaci&oacute;n"
 
-#: inc/_dev/class-fire-utils_settings_map.php:915 inc/czr-init-ccat.php:2864
+#: inc/_dev/class-fire-utils_settings_map.php:915 inc/czr-init-ccat.php:2868
 msgid "Recent update notice after post titles"
 msgstr ""
 "Aviso de actualizaci&oacute;n despu&eacute;s del t&iacute;tulo del "
 "art&iacute;culo"
 
-#: inc/_dev/class-fire-utils_settings_map.php:916 inc/czr-init-ccat.php:2865
+#: inc/_dev/class-fire-utils_settings_map.php:916 inc/czr-init-ccat.php:2869
 msgid "Display a recent update notice"
 msgstr "Mostrar aviso de reciente actualizaci&oacute;n"
 
-#: inc/_dev/class-fire-utils_settings_map.php:920 inc/czr-init-ccat.php:2869
+#: inc/_dev/class-fire-utils_settings_map.php:920 inc/czr-init-ccat.php:2873
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
 "next to the post title."
@@ -4095,14 +4099,14 @@ msgstr ""
 "Activada esta opci&oacute;n, se muestra un aviso de actualizaci&oacute;n "
 "reciente personalizable junto al t&iacute;tulo del art&iacute;culo."
 
-#: inc/_dev/class-fire-utils_settings_map.php:926 inc/czr-init-ccat.php:2875
+#: inc/_dev/class-fire-utils_settings_map.php:926 inc/czr-init-ccat.php:2879
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
 "Mostrar aviso si la &uacute;ltima actualizaci&oacute;n es inferior (en "
 "sentido estricto) a n&deg de d&iacute;as"
 
-#: inc/_dev/class-fire-utils_settings_map.php:932 inc/czr-init-ccat.php:2881
+#: inc/_dev/class-fire-utils_settings_map.php:932 inc/czr-init-ccat.php:2885
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
@@ -4110,39 +4114,39 @@ msgstr ""
 "Establecer un intervalo m&aacute;ximo (en d&iacute;as) durante el cual se "
 "mostrar&aacute; el &uacute;ltimo aviso de actualizaci&oacute;n."
 
-#: inc/_dev/class-fire-utils_settings_map.php:935 inc/czr-init-ccat.php:2884
+#: inc/_dev/class-fire-utils_settings_map.php:935 inc/czr-init-ccat.php:2888
 msgid "Recently updated !"
 msgstr "&iexcl;Actualizado!"
 
-#: inc/_dev/class-fire-utils_settings_map.php:937 inc/czr-init-ccat.php:2886
+#: inc/_dev/class-fire-utils_settings_map.php:937 inc/czr-init-ccat.php:2890
 msgid "Update notice text"
 msgstr "Texto aviso de actualizaci&oacute;n"
 
-#: inc/_dev/class-fire-utils_settings_map.php:946 inc/czr-init-ccat.php:2895
+#: inc/_dev/class-fire-utils_settings_map.php:946 inc/czr-init-ccat.php:2899
 msgid "Update notice style"
 msgstr "Estilo aviso de actualizaci&oacute;n"
 
-#: inc/_dev/class-fire-utils_settings_map.php:950 inc/czr-init-ccat.php:2899
+#: inc/_dev/class-fire-utils_settings_map.php:950 inc/czr-init-ccat.php:2903
 msgid "Default (grey)"
 msgstr "Por Defecto (gris)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:951 inc/czr-init-ccat.php:2900
+#: inc/_dev/class-fire-utils_settings_map.php:951 inc/czr-init-ccat.php:2904
 msgid "Success (green)"
 msgstr "&Eacute;xito (verde)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:952 inc/czr-init-ccat.php:2901
+#: inc/_dev/class-fire-utils_settings_map.php:952 inc/czr-init-ccat.php:2905
 msgid "Alert (orange)"
 msgstr "Alerta (naranja)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:953 inc/czr-init-ccat.php:2902
+#: inc/_dev/class-fire-utils_settings_map.php:953 inc/czr-init-ccat.php:2906
 msgid "Important (red)"
 msgstr "Importante (rojo)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:954 inc/czr-init-ccat.php:2903
+#: inc/_dev/class-fire-utils_settings_map.php:954 inc/czr-init-ccat.php:2907
 msgid "Info (blue)"
 msgstr "Informativo (azul)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:965 inc/czr-init-ccat.php:2914
+#: inc/_dev/class-fire-utils_settings_map.php:965 inc/czr-init-ccat.php:2918
 msgid ""
 "If this option is checked, additional date informations about the the last "
 "post update can be displayed (nothing will show up if the post has never "
@@ -4152,122 +4156,122 @@ msgstr ""
 "&uacute;ltima fecha de actualizaci&oacute;n del art&iacute;culo (no se "
 "mostrar&aacute; nada si el art&iacute;culo nunca ha sido actualizado) "
 
-#: inc/_dev/class-fire-utils_settings_map.php:1001 inc/czr-init-ccat.php:2950
+#: inc/_dev/class-fire-utils_settings_map.php:1001 inc/czr-init-ccat.php:2954
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr ""
 "Seleccione la longitud de los art&iacute;culos en las listas (inicio, "
 "b&uacute;squeda, archivos,...)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1006 inc/czr-init-ccat.php:2955
+#: inc/_dev/class-fire-utils_settings_map.php:1006 inc/czr-init-ccat.php:2959
 msgid "Display the full content"
 msgstr "Mostrar contenido completo"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1014 inc/czr-init-ccat.php:2963
+#: inc/_dev/class-fire-utils_settings_map.php:1014 inc/czr-init-ccat.php:2967
 msgid "Apply the grid layout to Home/Blog"
 msgstr "Aplicar el dise&ntilde;o de rejilla en el Inicio/Blog"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1022 inc/czr-init-ccat.php:2971
+#: inc/_dev/class-fire-utils_settings_map.php:1022 inc/czr-init-ccat.php:2975
 msgid "Apply the grid layout to Archives (archives, categories, author posts)"
 msgstr ""
 "Aplicar el dise&ntilde;o de rejilla a los Archivos (archivos, categor&iacute;"
 "as, art&iacute;culos de autor)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1030 inc/czr-init-ccat.php:2979
+#: inc/_dev/class-fire-utils_settings_map.php:1030 inc/czr-init-ccat.php:2983
 msgid "Apply the grid layout to Search results"
 msgstr ""
 "Aplicar el dise&ntilde;o de rejilla a los Resultados de B&uacute;squeda"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1034 inc/czr-init-ccat.php:2983
+#: inc/_dev/class-fire-utils_settings_map.php:1034 inc/czr-init-ccat.php:2987
 msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
 msgstr ""
 "Las opciones no marcadas se mostrar&aacute;n con el dise&ntilde;o de "
 "miniaturas alternadas."
 
-#: inc/_dev/class-fire-utils_settings_map.php:1039 inc/czr-init-ccat.php:2988
+#: inc/_dev/class-fire-utils_settings_map.php:1039 inc/czr-init-ccat.php:2992
 #, fuzzy
 msgid "Display post format icons"
 msgstr ""
 "Mostrar el tipo de art&iacute;culo con un icono en el fondo de cada elemento"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1048 inc/czr-init-ccat.php:2997
+#: inc/_dev/class-fire-utils_settings_map.php:1048 inc/czr-init-ccat.php:3001
 msgid "Upload a default thumbnail"
 msgstr "Subir una miniatura por defecto"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1078 inc/czr-init-ccat.php:3027
+#: inc/_dev/class-fire-utils_settings_map.php:1078 inc/czr-init-ccat.php:3031
 msgid "Thumbnails max height for the grid layout"
 msgstr "Altura m&aacute;xima de las miniaturas en el dise&ntilde;o de rejilla"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1079 inc/czr-init-ccat.php:3028
+#: inc/_dev/class-fire-utils_settings_map.php:1079 inc/czr-init-ccat.php:3032
 msgid "Set the post grid thumbnail's max height in pixels"
 msgstr ""
 "Escoger la altura m&aacute;xima de las miniaturas para el dise&ntilde;o de "
 "rejilla en p&iacute;xeles"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1094 inc/czr-init-ccat.php:3043
+#: inc/_dev/class-fire-utils_settings_map.php:1094 inc/czr-init-ccat.php:3047
 msgid "Squared, expand on hover"
 msgstr "Cuadrado, ampliado al pasar sobre ella"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1095 inc/czr-init-ccat.php:3044
+#: inc/_dev/class-fire-utils_settings_map.php:1095 inc/czr-init-ccat.php:3048
 msgid "Squared, no expansion"
 msgstr "Cuadrado, sin ampliar"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1096 inc/czr-init-ccat.php:3045
+#: inc/_dev/class-fire-utils_settings_map.php:1096 inc/czr-init-ccat.php:3049
 msgid "Rectangular with no effect"
 msgstr "Rectangular sin efecto"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1097 inc/czr-init-ccat.php:3046
+#: inc/_dev/class-fire-utils_settings_map.php:1097 inc/czr-init-ccat.php:3050
 msgid "Rectangular with blur effect on hover"
 msgstr "Rectangular con efecto desenfocar al pasar sobre ella"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1098 inc/czr-init-ccat.php:3047
+#: inc/_dev/class-fire-utils_settings_map.php:1098 inc/czr-init-ccat.php:3051
 msgid "Rectangular with unblur effect on hover"
 msgstr "Rectangular efecto enfocar al pasar sobre ella"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1106 inc/czr-init-ccat.php:3055
+#: inc/_dev/class-fire-utils_settings_map.php:1106 inc/czr-init-ccat.php:3059
 msgid "Top"
 msgstr "Arriba"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1107 inc/czr-init-ccat.php:3056
+#: inc/_dev/class-fire-utils_settings_map.php:1107 inc/czr-init-ccat.php:3060
 msgid "Bottom"
 msgstr "Abajo"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1132 inc/czr-init-ccat.php:3081
+#: inc/_dev/class-fire-utils_settings_map.php:1132 inc/czr-init-ccat.php:3085
 msgid "Comments bubble shape"
 msgstr "Tamaño de las burbujas de los comentarios"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1136 inc/czr-init-ccat.php:3085
+#: inc/_dev/class-fire-utils_settings_map.php:1136 inc/czr-init-ccat.php:3089
 msgid "Small bubbles"
 msgstr "Burbuja peque&ntilde;a"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1137 inc/czr-init-ccat.php:3086
+#: inc/_dev/class-fire-utils_settings_map.php:1137 inc/czr-init-ccat.php:3090
 msgid "Large bubbles"
 msgstr "Burbuja grande"
 
 #: inc/_dev/class-fire-utils_settings_map.php:1145
-#: inc/_dev/class-fire-utils_settings_map.php:1158 inc/czr-init-ccat.php:3094
-#: inc/czr-init-ccat.php:3107
+#: inc/_dev/class-fire-utils_settings_map.php:1158 inc/czr-init-ccat.php:3098
+#: inc/czr-init-ccat.php:3111
 msgid "Comments bubble color"
 msgstr "Color de la burbuja de los comentarios"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1149 inc/czr-init-ccat.php:3098
+#: inc/_dev/class-fire-utils_settings_map.php:1149 inc/czr-init-ccat.php:3102
 msgid "Skin color"
 msgstr "Color del tema"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1214 inc/czr-init-ccat.php:3163
+#: inc/_dev/class-fire-utils_settings_map.php:1214 inc/czr-init-ccat.php:3167
 msgid "Social link title in sidebars"
 msgstr "T&iacute;tulo a mostrar Enlaces Redes Sociales en barras laterales"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1220 inc/czr-init-ccat.php:3169
+#: inc/_dev/class-fire-utils_settings_map.php:1220 inc/czr-init-ccat.php:3173
 msgid "Will be hidden if empty"
 msgstr "No se mostrar&aacute; si est&aacute; vac&iacute;o"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1250 inc/czr-init-ccat.php:3199
+#: inc/_dev/class-fire-utils_settings_map.php:1250 inc/czr-init-ccat.php:3203
 msgid "Dynamic sidebar reordering on small devices"
 msgstr ""
 "Reordenaci&oacute;n din&aacute;mica de las barras laterales en dispositivos "
 "pequeños"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1253 inc/czr-init-ccat.php:3202
+#: inc/_dev/class-fire-utils_settings_map.php:1253 inc/czr-init-ccat.php:3206
 msgid ""
 "Activate this option to move the sidebars (if any) after the main content "
 "block, for smartphones or tablets viewport."
@@ -4276,19 +4280,19 @@ msgstr ""
 "despu&eacute;s del bloque de contenido en las ventanas gr&aacute;ficas de "
 "smartphones y tabletas."
 
-#: inc/_dev/class-fire-utils_settings_map.php:1350 inc/czr-init-ccat.php:3299
+#: inc/_dev/class-fire-utils_settings_map.php:1350 inc/czr-init-ccat.php:3303
 msgid "Titles icons settings"
 msgstr "Ajustes Iconos de t&iacute;tulos"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1352 inc/czr-init-ccat.php:3301
+#: inc/_dev/class-fire-utils_settings_map.php:1352 inc/czr-init-ccat.php:3305
 msgid "Set up the titles icons options"
 msgstr "Configurar opciones iconos de t&iacute;tulos"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1360 inc/czr-init-ccat.php:3309
+#: inc/_dev/class-fire-utils_settings_map.php:1360 inc/czr-init-ccat.php:3313
 msgid "Responsive settings"
 msgstr "Ajustes Diseño Adaptativo"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1362 inc/czr-init-ccat.php:3311
+#: inc/_dev/class-fire-utils_settings_map.php:1362 inc/czr-init-ccat.php:3315
 msgid "Various settings for responsive display"
 msgstr "Ajustes de visualizaci&oacute;n adaptativa"
 
