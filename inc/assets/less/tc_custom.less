@@ -221,7 +221,14 @@ article .entry-content a, .comment-content a, .widget-area .widget_text a {
     text-decoration:none;
   }
 }
-
+.tc-link-not-underlined {
+  article .entry-content a:hover, .comment-content a:hover, .widget-area .widget_text a:hover {
+    text-decoration:underline;
+  }
+  article .entry-content a:active, .comment-content a:active, .widget-area .widget_text a:active {
+    text-decoration:underline;
+  }
+}
 
 /*-- POST FORMATS AND ARCHIVE ICONS */
 .format-icon:before {
