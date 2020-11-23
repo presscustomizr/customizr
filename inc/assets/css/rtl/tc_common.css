@@ -1,5 +1,5 @@
 /*!
- * Customizr v4.3.9
+ * Customizr v4.3.10
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4873,6 +4873,16 @@ article .entry-content a,
 .tc-link-not-underlined .comment-content a,
 .tc-link-not-underlined .widget-area .widget_text a {
   text-decoration: none;
+}
+.tc-link-not-underlined article .entry-content a:hover,
+.tc-link-not-underlined .comment-content a:hover,
+.tc-link-not-underlined .widget-area .widget_text a:hover {
+  text-decoration: underline;
+}
+.tc-link-not-underlined article .entry-content a:active,
+.tc-link-not-underlined .comment-content a:active,
+.tc-link-not-underlined .widget-area .widget_text a:active {
+  text-decoration: underline;
 }
 /*-- POST FORMATS AND ARCHIVE ICONS */
 .format-icon:before {
