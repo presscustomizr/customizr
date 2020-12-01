@@ -1097,9 +1097,9 @@ and dependencies (minified).
                   if(o.advanced.extraDraggableSelectors){sel.add($(o.advanced.extraDraggableSelectors));}
                   if(d.bindEvents){ /* check if events are bound */
                         /* unbind namespaced events from document/selectors */
-                        $(document).add($(!_canAccessIFrame() || top.document)).unbind("."+namespace);
+                        $(document).add($(!_canAccessIFrame() || top.document)).off("."+namespace);
                         sel.each(function(){
-                              $(this).unbind("."+namespace);
+                              $(this).off("."+namespace);
                         });
                         /* clear and delete timeouts/objects */
                         clearTimeout($this[0]._focusTimeout); _delete($this[0],"_focusTimeout");
@@ -1190,9 +1190,9 @@ and dependencies (minified).
                         draggable,dragY,dragX,
                         rds=o.advanced.releaseDraggableSelectors ? mCSB_dragger.add($(o.advanced.releaseDraggableSelectors)) : mCSB_dragger,
                         eds=o.advanced.extraDraggableSelectors ? $(!_canAccessIFrame() || top.document).add($(o.advanced.extraDraggableSelectors)) : $(!_canAccessIFrame() || top.document);
-                  mCSB_dragger.bind("contextmenu."+namespace,function(e){
+                  mCSB_dragger.on("contextmenu."+namespace,function(e){
                         e.preventDefault(); //prevent right click
-                  }).bind("mousedown."+namespace+" touchstart."+namespace+" pointerdown."+namespace+" MSPointerDown."+namespace,function(e){
+                  }).on("mousedown."+namespace+" touchstart."+namespace+" pointerdown."+namespace+" MSPointerDown."+namespace,function(e){
                         e.stopImmediatePropagation();
                         e.preventDefault();
                         if(!_mouseBtnLeft(e)){return;} /* left mouse button only */
@@ -1208,19 +1208,19 @@ and dependencies (minified).
                               dragX=x;
                         }
                         _onDragClasses(draggable,"active",o.autoExpandScrollbar);
-                  }).bind("touchmove."+namespace,function(e){
+                  }).on("touchmove."+namespace,function(e){
                         e.stopImmediatePropagation();
                         e.preventDefault();
                         var offset=draggable.offset(),y=_coordinates(e)[0]-offset.top,x=_coordinates(e)[1]-offset.left;
                         _drag(dragY,dragX,y,x);
                   });
-                  $(document).add(eds).bind("mousemove."+namespace+" pointermove."+namespace+" MSPointerMove."+namespace,function(e){
+                  $(document).add(eds).on("mousemove."+namespace+" pointermove."+namespace+" MSPointerMove."+namespace,function(e){
                         if(draggable){
                               var offset=draggable.offset(),y=_coordinates(e)[0]-offset.top,x=_coordinates(e)[1]-offset.left;
                               if(dragY===y && dragX===x){return;} /* has it really moved? */
                               _drag(dragY,dragX,y,x);
                         }
-                  }).add(rds).bind("mouseup."+namespace+" touchend."+namespace+" pointerup."+namespace+" MSPointerUp."+namespace,function(e){
+                  }).add(rds).on("mouseup."+namespace+" touchend."+namespace+" pointerup."+namespace+" MSPointerUp."+namespace,function(e){
                         if(draggable){
                               _onDragClasses(draggable,"active",o.autoExpandScrollbar);
                               draggable=null;
@@ -1262,27 +1262,27 @@ and dependencies (minified).
                               "touchend."+namespace+" pointerup."+namespace+" MSPointerUp."+namespace //end
                         ],
                         touchAction=document.body.style.touchAction!==undefined && document.body.style.touchAction!=="";
-                  mCSB_container.bind(events[0],function(e){
+                  mCSB_container.on(events[0],function(e){
                         _onTouchstart(e);
-                  }).bind(events[1],function(e){
+                  }).on(events[1],function(e){
                         _onTouchmove(e);
                   });
-                  mCustomScrollBox.bind(events[0],function(e){
+                  mCustomScrollBox.on(events[0],function(e){
                         _onTouchstart2(e);
-                  }).bind(events[2],function(e){
+                  }).on(events[2],function(e){
                         _onTouchend(e);
                   });
                   if(iframe.length){
                         iframe.each(function(){
-                              $(this).bind("load",function(){
+                              $(this).on("load",function(){
                                     /* bind events on accessible iframes */
                                     if(_canAccessIFrame(this)){
-                                          $(this.contentDocument || this.contentWindow.document).bind(events[0],function(e){
+                                          $(this.contentDocument || this.contentWindow.document).on(events[0],function(e){
                                                 _onTouchstart(e);
                                                 _onTouchstart2(e);
-                                          }).bind(events[1],function(e){
+                                          }).on(events[1],function(e){
                                                 _onTouchmove(e);
-                                          }).bind(events[2],function(e){
+                                          }).on(events[2],function(e){
                                                 _onTouchend(e);
                                           });
                                     }
@@ -1399,10 +1399,10 @@ and dependencies (minified).
                         mCSB_container=$("#mCSB_"+d.idx+"_container"),
                         wrapper=mCSB_container.parent(),
                         action;
-                  mCSB_container.bind("mousedown."+namespace,function(e){
+                  mCSB_container.on("mousedown."+namespace,function(e){
                         if(touchable){return;}
                         if(!action){action=1; touchActive=true;}
-                  }).add(document).bind("mousemove."+namespace,function(e){
+                  }).add(document).on("mousemove."+namespace,function(e){
                         if(!touchable && action && _sel()){
                               var offset=mCSB_container.offset(),
                                     y=_coordinates(e)[0]-offset.top+mCSB_container[0].offsetTop,x=_coordinates(e)[1]-offset.left+mCSB_container[0].offsetLeft;
@@ -1425,7 +1425,7 @@ and dependencies (minified).
                                     }
                               }
                         }
-                  }).bind("mouseup."+namespace+" dragend."+namespace,function(e){
+                  }).on("mouseup."+namespace+" dragend."+namespace,function(e){
                         if(touchable){return;}
                         if(action){action=0; _seq("off",null);}
                         touchActive=false;
@@ -1457,17 +1457,17 @@ and dependencies (minified).
                         iframe=$("#mCSB_"+d.idx+"_container").find("iframe");
                   if(iframe.length){
                         iframe.each(function(){
-                              $(this).bind("load",function(){
+                              $(this).on("load",function(){
                                     /* bind events on accessible iframes */
                                     if(_canAccessIFrame(this)){
-                                          $(this.contentDocument || this.contentWindow.document).bind("mousewheel."+namespace,function(e,delta){
+                                          $(this.contentDocument || this.contentWindow.document).on("mousewheel."+namespace,function(e,delta){
                                                 _onMousewheel(e,delta);
                                           });
                                     }
                               });
                         });
                   }
-                  mCustomScrollBox.bind("mousewheel."+namespace,function(e,delta){
+                  mCustomScrollBox.on("mousewheel."+namespace,function(e,delta){
                         _onMousewheel(e,delta);
                   });
                   function _onMousewheel(e,delta){
@@ -1572,12 +1572,12 @@ and dependencies (minified).
                         wrapper=mCSB_container.parent(),
                         mCSB_draggerContainer=$(".mCSB_"+d.idx+"_scrollbar ."+classes[12]),
                         clickable;
-                  mCSB_draggerContainer.bind("mousedown."+namespace+" touchstart."+namespace+" pointerdown."+namespace+" MSPointerDown."+namespace,function(e){
+                  mCSB_draggerContainer.on("mousedown."+namespace+" touchstart."+namespace+" pointerdown."+namespace+" MSPointerDown."+namespace,function(e){
                         touchActive=true;
                         if(!$(e.target).hasClass("mCSB_dragger")){clickable=1;}
-                  }).bind("touchend."+namespace+" pointerup."+namespace+" MSPointerUp."+namespace,function(e){
+                  }).on("touchend."+namespace+" pointerup."+namespace+" MSPointerUp."+namespace,function(e){
                         touchActive=false;
-                  }).bind("click."+namespace,function(e){
+                  }).on("click."+namespace,function(e){
                         if(!clickable){return;}
                         clickable=0;
                         if($(e.target).hasClass(classes[12]) || $(e.target).hasClass("mCSB_draggerRail")){
@@ -1610,7 +1610,7 @@ and dependencies (minified).
                         namespace=pluginPfx+"_"+d.idx,
                         mCSB_container=$("#mCSB_"+d.idx+"_container"),
                         wrapper=mCSB_container.parent();
-                  mCSB_container.bind("focusin."+namespace,function(e){
+                  mCSB_container.on("focusin."+namespace,function(e){
                         var el=$(document.activeElement),
                               nested=mCSB_container.find(".mCustomScrollBox").length,
                               dur=0;
@@ -1643,7 +1643,7 @@ and dependencies (minified).
                   var $this=$(this),d=$this.data(pluginPfx),
                         namespace=pluginPfx+"_"+d.idx,
                         wrapper=$("#mCSB_"+d.idx+"_container").parent();
-                  wrapper.bind("scroll."+namespace,function(e){
+                  wrapper.on("scroll."+namespace,function(e){
                         if(wrapper.scrollTop()!==0 || wrapper.scrollLeft()!==0){
                               $(".mCSB_"+d.idx+"_scrollbar").css("visibility","hidden"); /* hide scrollbar(s) */
                         }
@@ -1661,9 +1661,9 @@ and dependencies (minified).
                         namespace=pluginPfx+"_"+d.idx,
                         sel=".mCSB_"+d.idx+"_scrollbar",
                         btn=$(sel+">a");
-                  btn.bind("contextmenu."+namespace,function(e){
+                  btn.on("contextmenu."+namespace,function(e){
                         e.preventDefault(); //prevent right click
-                  }).bind("mousedown."+namespace+" touchstart."+namespace+" pointerdown."+namespace+" MSPointerDown."+namespace+" mouseup."+namespace+" touchend."+namespace+" pointerup."+namespace+" MSPointerUp."+namespace+" mouseout."+namespace+" pointerout."+namespace+" MSPointerOut."+namespace+" click."+namespace,function(e){
+                  }).on("mousedown."+namespace+" touchstart."+namespace+" pointerdown."+namespace+" MSPointerDown."+namespace+" mouseup."+namespace+" touchend."+namespace+" pointerup."+namespace+" MSPointerUp."+namespace+" mouseout."+namespace+" pointerout."+namespace+" MSPointerOut."+namespace+" click."+namespace,function(e){
                         e.preventDefault();
                         if(!_mouseBtnLeft(e)){return;} /* left mouse button only */
                         var btnClass=$(this).attr("class");
@@ -1711,17 +1711,17 @@ and dependencies (minified).
                         events=["blur."+namespace+" keydown."+namespace+" keyup."+namespace];
                   if(iframe.length){
                         iframe.each(function(){
-                              $(this).bind("load",function(){
+                              $(this).on("load",function(){
                                     /* bind events on accessible iframes */
                                     if(_canAccessIFrame(this)){
-                                          $(this.contentDocument || this.contentWindow.document).bind(events[0],function(e){
+                                          $(this.contentDocument || this.contentWindow.document).on(events[0],function(e){
                                                 _onKeyboard(e);
                                           });
                                     }
                               });
                         });
                   }
-                  mCustomScrollBox.attr("tabindex","0").bind(events[0],function(e){
+                  mCustomScrollBox.attr("tabindex","0").on(events[0],function(e){
                         _onKeyboard(e);
                   });
                   function _onKeyboard(e){
@@ -2418,7 +2418,7 @@ and dependencies (minified).
       */
       window[pluginNS]=true;
 
-      $(window).bind("load",function(){
+      $(window).on("load",function(){
 
             $(defaultSelector)[pluginNS](); /* add scrollbars automatically on default selector */
 
