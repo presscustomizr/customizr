@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.3.11\n"
+"Project-Id-Version: * Customizr v4.3.12\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
 "POT-Creation-Date: 2020-12-01 16:23:34+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:04+0200\n"

@@ -3433,8 +3433,7 @@ var czrapp = czrapp || {};
               if ('ontouchstart' in document.documentElement && !$(parent).closest(Selector.NAVBAR_NAV).length) {
                 $('body').children().on('mouseover', null, $.noop);
               }
-
-              this.trigger( "focus" );
+              $(this).trigger( "focus" );
               this.setAttribute('aria-expanded', 'true');
 
               $(parent).toggleClass(ClassName.SHOW);

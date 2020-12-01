@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.6
-Stable tag: 4.3.11
+Stable tag: 4.3.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,9 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
+= 4.3.12 December 1st, 2020 =
+* fixed : [menu] javascript error on click on menu item with an anchor link
+
 = 4.3.11 December 1st, 2020 =
 * fixed : [headings] H3 heading size not smaller enough than H2 makes it difficult to distinguish
 * fixed : [WP 5.7] remove jquery-migrate dependencies
