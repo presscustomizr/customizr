@@ -95,9 +95,13 @@ var czrapp = czrapp || {};
                       }) );
                 }
 
+                var _url = czrapp.localized.assetsPath + 'js/libs/jquery-mCustomScrollbar.min.js?v=' + czrapp.localized.version;
+                if ( czrapp.localized.isDevMode ) {
+                    _url = czrapp.localized.assetsPath + 'js/libs/jquery-mCustomScrollbar.js?v=' + czrapp.localized.version;
+                }
                 // Load js
                 $.ajax( {
-                      url : ( czrapp.localized.assetsPath + 'js/libs/jquery-mCustomScrollbar.min.js'),
+                      url : _url,
                       cache : true,// use the browser cached version when availabl
                       dataType: "script"
                 }).done(function() {
@@ -137,7 +141,7 @@ var czrapp = czrapp || {};
 
                       case 'sn-open'  :
                           self._end_visibility_toggle();
-                          $( self._toggler_selector, self._sidenav_selector ).focus();
+                          $( self._toggler_selector, self._sidenav_selector ).trigger( "focus" );
                       break;
 
                       case 'sn-close' :

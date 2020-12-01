@@ -277,7 +277,7 @@ var czrapp = czrapp || {};
                       _do = function() {
 
                         // I've been executed forget about me
-                        czrapp.$_window.unbind( 'scroll', _scrollHandle );
+                        czrapp.$_window.off( 'scroll', _scrollHandle );
 
                         if ( 'function' == typeof $.fn.magnificPopup ) {
                               // instantiate if not done yet

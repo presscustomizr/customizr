@@ -536,7 +536,7 @@ var czrapp = czrapp || {};
                 $('body').children().on('mouseover', null, $.noop);
               }
 
-              this.focus();
+              this.trigger( "focus" );
               this.setAttribute('aria-expanded', 'true');
 
               $(parent).toggleClass(ClassName.SHOW);
@@ -713,7 +713,7 @@ var czrapp = czrapp || {};
                 index = 0;
               }
 
-              items[index].focus();
+              items[index].trigger( "focus" );
         };
 
 

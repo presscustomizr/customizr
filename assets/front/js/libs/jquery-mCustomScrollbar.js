@@ -2418,8 +2418,7 @@ and dependencies (minified).
       */
       window[pluginNS]=true;
 
-      $(window).on("load",function(){
-
+      jQuery(function($){
             $(defaultSelector)[pluginNS](); /* add scrollbars automatically on default selector */
 
             /* extend jQuery expressions */

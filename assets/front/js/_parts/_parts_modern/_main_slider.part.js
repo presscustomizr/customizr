@@ -137,7 +137,7 @@ var czrapp = czrapp || {};
                   var _scrollHandle = function() {};//abstract that we can unbind
                   var _do = function() {
                         // I've been executed forget about me
-                        czrapp.$_window.unbind( 'scroll', _scrollHandle );
+                        czrapp.$_window.off( 'scroll', _scrollHandle );
 
                         if ( 'function' == typeof $.fn.flickity ) {
                               // instantiate if not done yet
