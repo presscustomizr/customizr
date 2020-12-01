@@ -1321,7 +1321,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
                     self._maybe_apply_golden_r();
                     var $_imgs = $( self.options.imgSel , self.container );
                     if ( self.options.enableGoldenRatio ) {
-                          $(window).bind(
+                          $(window).on(
                                 'resize',
                                 {},
                                 _.debounce( function( evt ) { self._maybe_apply_golden_r( evt ); }, 200 )
@@ -1337,7 +1337,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
             if ( _.isArray( self._customEvt ) ) {
                   self._customEvt.map( function( evt ) {
                         var $_containerToListen = ( self.options.$containerToListen instanceof $ && 1 < self.options.$containerToListen.length ) ? self.options.$containerToListen : $( self.container );
-                        $_containerToListen.bind( evt, {} , function() {
+                        $_containerToListen.on( evt, {} , function() {
                               _do( evt );
                         });
                   } );
@@ -1718,7 +1718,7 @@ window.matchMedia || (window.matchMedia = function() {
 
         _font_size = Math.max( _font_size * settings.fontRatio, parseFloat( settings.minFontSize ) );
 
-        $this.css('font-size', _font_size  );
+        $this.css('font-size', _font_size + 'px' );
         $this.css('line-height', ( _font_size  * 1.45 ) + 'px');
       };
       resizer();
@@ -3721,7 +3721,7 @@ var czrapp = czrapp || {};
 
                   var _scrollHandle = function() {},//abstract that we can unbind
                       _do = function() {
-                        czrapp.$_window.unbind( 'scroll', _scrollHandle );
+                        czrapp.$_window.off( 'scroll', _scrollHandle );
 
                         if ( 'function' == typeof $.fn.magnificPopup ) {
                                 $lightBoxCandidate.magnificPopup( params );
@@ -3924,7 +3924,7 @@ var czrapp = czrapp || {};
 
                   var _scrollHandle = function() {};//abstract that we can unbind
                   var _do = function() {
-                        czrapp.$_window.unbind( 'scroll', _scrollHandle );
+                        czrapp.$_window.off( 'scroll', _scrollHandle );
 
                         if ( 'function' == typeof $.fn.flickity ) {
                               if ( ! $_sliderCandidate.data( 'flickity' ) )
@@ -5731,8 +5731,13 @@ var czrapp = czrapp || {};
                             href : czrapp.localized.assetsPath + 'css/jquery.mCustomScrollbar.min.css'
                       }) );
                 }
+
+                var _url = czrapp.localized.assetsPath + 'js/libs/jquery-mCustomScrollbar.min.js?v=' + czrapp.localized.version;
+                if ( czrapp.localized.isDevMode ) {
+                    _url = czrapp.localized.assetsPath + 'js/libs/jquery-mCustomScrollbar.js?v=' + czrapp.localized.version;
+                }
                 $.ajax( {
-                      url : ( czrapp.localized.assetsPath + 'js/libs/jquery-mCustomScrollbar.min.js'),
+                      url : _url,
                       cache : true,// use the browser cached version when availabl
                       dataType: "script"
                 }).done(function() {
@@ -5763,7 +5768,7 @@ var czrapp = czrapp || {};
 
                       case 'sn-open'  :
                           self._end_visibility_toggle();
-                          $( self._toggler_selector, self._sidenav_selector ).focus();
+                          $( self._toggler_selector, self._sidenav_selector ).trigger( "focus" );
                       break;
 
                       case 'sn-close' :
@@ -6256,7 +6261,7 @@ var czrapp = czrapp || {};
                 $('body').children().on('mouseover', null, $.noop);
               }
 
-              this.focus();
+              this.trigger( "focus" );
               this.setAttribute('aria-expanded', 'true');
 
               $(parent).toggleClass(ClassName.SHOW);
@@ -6407,7 +6412,7 @@ var czrapp = czrapp || {};
                 index = 0;
               }
 
-              items[index].focus();
+              items[index].trigger( "focus" );
         };
 
 

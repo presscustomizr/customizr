@@ -2494,7 +2494,7 @@ var TCParams = TCParams || {};
                     self._maybe_apply_golden_r();
                     var $_imgs = $( self.options.imgSel , self.container );
                     if ( self.options.enableGoldenRatio ) {
-                          $(window).bind(
+                          $(window).on(
                                 'resize',
                                 {},
                                 _.debounce( function( evt ) { self._maybe_apply_golden_r( evt ); }, 200 )
@@ -2510,7 +2510,7 @@ var TCParams = TCParams || {};
             if ( _.isArray( self._customEvt ) ) {
                   self._customEvt.map( function( evt ) {
                         var $_containerToListen = ( self.options.$containerToListen instanceof $ && 1 < self.options.$containerToListen.length ) ? self.options.$containerToListen : $( self.container );
-                        $_containerToListen.bind( evt, {} , function() {
+                        $_containerToListen.on( evt, {} , function() {
                               _do( evt );
                         });
                   } );

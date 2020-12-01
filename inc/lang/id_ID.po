@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.3.10\n"
+"Project-Id-Version: * Customizr v4.3.11\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2020-11-19 18:18:01+00:00\n"
+"POT-Creation-Date: 2020-12-01 16:23:34+00:00\n"
 "PO-Revision-Date: 2016-08-30 14:42+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Customizr translation contributors <contact@presscustomizr."
@@ -348,8 +348,8 @@ msgstr "Link"
 #: core/_dev/_admin/class-admin-meta_boxes.php:1519
 #: core/_dev/_czr/class-czr-resources.php:221
 #: core/_dev/_czr/class-czr-resources.php:231 core/czr-admin-ccat.php:2432
-#: core/czr-base-fmk/czr-base-fmk.php:260
-#: core/czr-base-fmk/czr-base-fmk.php:561 core/czr-customize-ccat.php:856
+#: core/czr-base-fmk/czr-base-fmk.php:268
+#: core/czr-base-fmk/czr-base-fmk.php:570 core/czr-customize-ccat.php:856
 #: core/czr-customize-ccat.php:866
 #: core/front/models/modules/common/class-model-breadcrumb.php:624
 #: core/front/models/modules/common/class-model-breadcrumb.php:657
@@ -581,7 +581,7 @@ msgid "Upgrade Wordpress Now"
 msgstr "Upgrade Wordpress Sekarang"
 
 #: core/_dev/_czr/class-czr-resources.php:222
-#: core/czr-base-fmk/czr-base-fmk.php:261 core/czr-customize-ccat.php:857
+#: core/czr-base-fmk/czr-base-fmk.php:269 core/czr-customize-ccat.php:857
 #: inc/_dev/parts/class-header-menu.php:129
 #: inc/_dev/parts/class-header-menu.php:136 inc/czr-front-ccat.php:776
 #: inc/czr-front-ccat.php:783
@@ -589,7 +589,7 @@ msgid "Close"
 msgstr "Tutup"
 
 #: core/_dev/_czr/class-czr-resources.php:223
-#: core/czr-base-fmk/czr-base-fmk.php:262 core/czr-customize-ccat.php:858
+#: core/czr-base-fmk/czr-base-fmk.php:270 core/czr-customize-ccat.php:858
 msgid "Not set"
 msgstr ""
 
@@ -614,7 +614,7 @@ msgid "Follow us on"
 msgstr "Ikuti kami"
 
 #: core/_dev/_czr/class-czr-resources.php:227
-#: core/czr-base-fmk/czr-base-fmk.php:263 core/czr-customize-ccat.php:862
+#: core/czr-base-fmk/czr-base-fmk.php:271 core/czr-customize-ccat.php:862
 #: core/czr-modules/social-links/index.php:78
 #: core/czr-modules/social-links/social_links_module.php:80
 msgid "Done !"
@@ -628,7 +628,7 @@ msgstr ""
 
 #: core/_dev/_czr/class-czr-resources.php:229
 #: core/_dev/_czr/class-czr-resources.php:249
-#: core/czr-base-fmk/czr-base-fmk.php:265 core/czr-customize-ccat.php:864
+#: core/czr-base-fmk/czr-base-fmk.php:273 core/czr-customize-ccat.php:864
 #: core/czr-customize-ccat.php:884
 #, fuzzy
 msgid "Learn more about this in the documentation"
@@ -671,13 +671,13 @@ msgid "Change the header layout"
 msgstr "Ubah layout header"
 
 #: core/_dev/_czr/class-czr-resources.php:250
-#: core/czr-base-fmk/czr-base-fmk.php:266 core/czr-customize-ccat.php:885
+#: core/czr-base-fmk/czr-base-fmk.php:274 core/czr-customize-ccat.php:885
 #, fuzzy
 msgid "Settings"
 msgstr "Pengaturan gambar"
 
 #: core/_dev/_czr/class-czr-resources.php:251
-#: core/czr-base-fmk/czr-base-fmk.php:267 core/czr-customize-ccat.php:886
+#: core/czr-base-fmk/czr-base-fmk.php:275 core/czr-customize-ccat.php:886
 msgid "Options for"
 msgstr ""
 
@@ -714,8 +714,8 @@ msgid "Upload"
 msgstr "Unggah"
 
 #: core/_dev/_czr/controls/class-upload-control.php:68
-#: core/czr-base-fmk/czr-base-fmk.php:272
-#: core/czr-base-fmk/czr-base-fmk.php:561 core/czr-customize-ccat.php:1479
+#: core/czr-base-fmk/czr-base-fmk.php:280
+#: core/czr-base-fmk/czr-base-fmk.php:570 core/czr-customize-ccat.php:1479
 msgid "Remove"
 msgstr "Singkirkan"
 
@@ -912,43 +912,43 @@ msgstr ""
 msgid "Permanently dismiss"
 msgstr ""
 
-#: core/class-fire-resources_scripts.php:594
+#: core/class-fire-resources_scripts.php:595
 #, fuzzy
 msgid "Welcome in the Customizr theme"
 msgstr "Tinjauan untuk Customizr bahasa Indonesia oleh Rio Bermano"
 
-#: core/class-fire-resources_scripts.php:597
+#: core/class-fire-resources_scripts.php:598
 msgid "The theme offers a wide range"
 msgstr ""
 
-#: core/class-fire-resources_scripts.php:599
+#: core/class-fire-resources_scripts.php:600
 #, fuzzy
 msgid "of customization options"
 msgstr "Mengatur pilihan navigasi posting / halaman"
 
-#: core/class-fire-resources_scripts.php:600
+#: core/class-fire-resources_scripts.php:601
 msgid "to let you create the best possible websites."
 msgstr ""
 
-#: core/class-fire-resources_scripts.php:603
+#: core/class-fire-resources_scripts.php:604
 msgid "If you need inspiration, you can visit our online demos"
 msgstr ""
 
-#: core/class-fire-resources_scripts.php:605
+#: core/class-fire-resources_scripts.php:606
 #, fuzzy
 msgid "Customizr Demo 1"
 msgstr "Dapatkan Customizr Pro"
 
-#: core/class-fire-resources_scripts.php:607
+#: core/class-fire-resources_scripts.php:608
 #, fuzzy
 msgid "Customizr Demo 2"
 msgstr "Dapatkan Customizr Pro"
 
-#: core/class-fire-resources_scripts.php:610
+#: core/class-fire-resources_scripts.php:611
 msgid "To help you getting started with Customizr, we have published"
 msgstr ""
 
-#: core/class-fire-resources_scripts.php:612
+#: core/class-fire-resources_scripts.php:613
 msgid "a short guide here."
 msgstr ""
 
@@ -1867,12 +1867,12 @@ msgid "in ms : 1000ms = 1s"
 msgstr "pada ms : 1000ms = 1detik"
 
 #: core/core-settings-map.php:1256 core/core-settings-map.php:1268
-#: core/czr-base-fmk/czr-base-fmk.php:570
+#: core/czr-base-fmk/czr-base-fmk.php:579
 msgid "Yes"
 msgstr ""
 
 #: core/core-settings-map.php:1257 core/core-settings-map.php:1269
-#: core/czr-base-fmk/czr-base-fmk.php:570
+#: core/czr-base-fmk/czr-base-fmk.php:579
 #: inc/_dev/parts/class-content-headings.php:329 inc/czr-front-ccat.php:4084
 msgid "No"
 msgstr "Tidak"
@@ -2977,7 +2977,7 @@ msgid "Clear color"
 msgstr "Warna kulit"
 
 #: core/czr-base-fmk/czr-base-fmk.php:211
-#: core/czr-base-fmk/czr-base-fmk.php:273
+#: core/czr-base-fmk/czr-base-fmk.php:281
 #, fuzzy
 msgid "Default"
 msgstr "Default (abu-abu)"
@@ -2996,70 +2996,70 @@ msgstr "Atur link sosial Anda"
 msgid "Color value"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:270
-#: core/czr-base-fmk/czr-base-fmk.php:275
+#: core/czr-base-fmk/czr-base-fmk.php:278
+#: core/czr-base-fmk/czr-base-fmk.php:283
 #, fuzzy
 msgid "Select Image"
 msgstr "Gambar slide"
 
-#: core/czr-base-fmk/czr-base-fmk.php:271
+#: core/czr-base-fmk/czr-base-fmk.php:279
 #, fuzzy
 msgid "Change Image"
 msgstr "Gambar slide"
 
-#: core/czr-base-fmk/czr-base-fmk.php:274
+#: core/czr-base-fmk/czr-base-fmk.php:282
 #, fuzzy
 msgid "No image selected"
 msgstr "Tidak Ada Gambar Dipilih"
 
-#: core/czr-base-fmk/czr-base-fmk.php:276
+#: core/czr-base-fmk/czr-base-fmk.php:284
 #, fuzzy
 msgid "Choose Image"
 msgstr "Pilih slider"
 
-#: core/czr-base-fmk/czr-base-fmk.php:278
+#: core/czr-base-fmk/czr-base-fmk.php:286
 #, fuzzy
 msgid "Customizing"
 msgstr "Kustom"
 
-#: core/czr-base-fmk/czr-base-fmk.php:471
+#: core/czr-base-fmk/czr-base-fmk.php:480
 msgid "ac_set_ajax_czr_tmpl => Security check failed."
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:543
+#: core/czr-base-fmk/czr-base-fmk.php:552
 msgid "Add New"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:548
+#: core/czr-base-fmk/czr-base-fmk.php:557
 msgid "Cancel"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:548
+#: core/czr-base-fmk/czr-base-fmk.php:557
 #, fuzzy
 msgid "Add it"
 msgstr "Tambah Widgets"
 
-#: core/czr-base-fmk/czr-base-fmk.php:569
+#: core/czr-base-fmk/czr-base-fmk.php:578
 msgid "Are you sure you want to remove : <strong>{{ data.title }} ?</strong>"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1685
+#: core/czr-base-fmk/czr-base-fmk.php:1694
 #, fuzzy
 msgid "Set a custom url"
 msgstr "Dapatkan Customizr Pro"
 
-#: core/czr-base-fmk/czr-base-fmk.php:1719
-#: core/czr-base-fmk/czr-base-fmk.php:1919
+#: core/czr-base-fmk/czr-base-fmk.php:1728
+#: core/czr-base-fmk/czr-base-fmk.php:1928
 msgid "ajax_load_available_items => Security check failed."
 msgstr ""
 
 #. translators: %d: ID of a post
-#: core/czr-base-fmk/czr-base-fmk.php:1840
-#: core/czr-base-fmk/czr-base-fmk.php:2049
+#: core/czr-base-fmk/czr-base-fmk.php:1849
+#: core/czr-base-fmk/czr-base-fmk.php:2058
 msgid "#%d (no title)"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1983
+#: core/czr-base-fmk/czr-base-fmk.php:1992
 #, fuzzy
 msgid "No results found."
 msgstr "HAsil pencarian untuk :"
@@ -3666,13 +3666,13 @@ msgstr "Biru muda"
 msgid "View your shopping cart"
 msgstr ""
 
-#: inc/_dev/class-fire-resources.php:748 inc/czr-init-ccat.php:4679
+#: inc/_dev/class-fire-resources.php:749 inc/czr-init-ccat.php:4680
 msgid ""
 "Quick tip : you can choose between two styles for the Customizr theme. Give "
 "it a try %s"
 msgstr ""
 
-#: inc/_dev/class-fire-resources.php:751 inc/czr-init-ccat.php:4682
+#: inc/_dev/class-fire-resources.php:752 inc/czr-init-ccat.php:4683
 #, fuzzy
 msgid "in the live customizer."
 msgstr "Langsung ke Customizer sekarang"

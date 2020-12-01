@@ -894,7 +894,7 @@ var czrapp = czrapp || {};
 
                   var _scrollHandle = function() {},//abstract that we can unbind
                       _do = function() {
-                        czrapp.$_window.unbind( 'scroll', _scrollHandle );
+                        czrapp.$_window.off( 'scroll', _scrollHandle );
 
                         if ( 'function' == typeof $.fn.magnificPopup ) {
                                 $lightBoxCandidate.magnificPopup( params );
@@ -1097,7 +1097,7 @@ var czrapp = czrapp || {};
 
                   var _scrollHandle = function() {};//abstract that we can unbind
                   var _do = function() {
-                        czrapp.$_window.unbind( 'scroll', _scrollHandle );
+                        czrapp.$_window.off( 'scroll', _scrollHandle );
 
                         if ( 'function' == typeof $.fn.flickity ) {
                               if ( ! $_sliderCandidate.data( 'flickity' ) )
@@ -2904,8 +2904,13 @@ var czrapp = czrapp || {};
                             href : czrapp.localized.assetsPath + 'css/jquery.mCustomScrollbar.min.css'
                       }) );
                 }
+
+                var _url = czrapp.localized.assetsPath + 'js/libs/jquery-mCustomScrollbar.min.js?v=' + czrapp.localized.version;
+                if ( czrapp.localized.isDevMode ) {
+                    _url = czrapp.localized.assetsPath + 'js/libs/jquery-mCustomScrollbar.js?v=' + czrapp.localized.version;
+                }
                 $.ajax( {
-                      url : ( czrapp.localized.assetsPath + 'js/libs/jquery-mCustomScrollbar.min.js'),
+                      url : _url,
                       cache : true,// use the browser cached version when availabl
                       dataType: "script"
                 }).done(function() {
@@ -2936,7 +2941,7 @@ var czrapp = czrapp || {};
 
                       case 'sn-open'  :
                           self._end_visibility_toggle();
-                          $( self._toggler_selector, self._sidenav_selector ).focus();
+                          $( self._toggler_selector, self._sidenav_selector ).trigger( "focus" );
                       break;
 
                       case 'sn-close' :
@@ -3429,7 +3434,7 @@ var czrapp = czrapp || {};
                 $('body').children().on('mouseover', null, $.noop);
               }
 
-              this.focus();
+              this.trigger( "focus" );
               this.setAttribute('aria-expanded', 'true');
 
               $(parent).toggleClass(ClassName.SHOW);
@@ -3580,7 +3585,7 @@ var czrapp = czrapp || {};
                 index = 0;
               }
 
-              items[index].focus();
+              items[index].trigger( "focus" );
         };
 
 

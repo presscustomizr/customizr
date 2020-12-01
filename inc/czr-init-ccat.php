@@ -4272,6 +4272,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
                         'Permanently dismiss' => __('Permanently dismiss', 'customizr')
                     )
                 ),
+                'version' => CUSTOMIZR_VER,
 
                 //FRONT NOTIFICATIONS
                 //ordered by priority
