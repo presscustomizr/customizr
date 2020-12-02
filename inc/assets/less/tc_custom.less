@@ -102,6 +102,7 @@ section {
   -------------------------------------------------- */
 .tc-wc-menu .nav > li > a:before,
 a + span.tc-external:after,
+a > span.tc-external:after,
 h2.comments-title:before,
 h3#reply-title:before,
 .btt-arrow,
@@ -338,12 +339,13 @@ h2.comments-title:before {
 }
 
 /* External Links style */
-a + span.tc-external:after {
+a + span.tc-external:after, a > span.tc-external:after {
   content: "\f35d";
   line-height: 0;
   padding-left: 0;
   text-decoration: none!important;
   left: .2em;
+  padding-right: 0.1em;
   position: relative;
 }
 
