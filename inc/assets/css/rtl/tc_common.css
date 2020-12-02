@@ -1,5 +1,5 @@
 /*!
- * Customizr v4.3.12
+ * Customizr v4.3.13
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -4764,6 +4764,7 @@ section {
   -------------------------------------------------- */
 .tc-wc-menu .nav > li > a:before,
 a + span.tc-external:after,
+a > span.tc-external:after,
 h2.comments-title:before,
 h3#reply-title:before,
 .btt-arrow,
@@ -4971,12 +4972,14 @@ h2.comments-title:before {
   padding-left: 5px;
 }
 /* External Links style */
-a + span.tc-external:after {
+a + span.tc-external:after,
+a > span.tc-external:after {
   content: "\f35d";
   line-height: 0;
   padding-left: 0;
   text-decoration: none!important;
   left: .2em;
+  padding-right: 0.1em;
   position: relative;
 }
 .icon-bubble:before {

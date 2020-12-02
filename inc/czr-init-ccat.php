@@ -2282,7 +2282,6 @@ class CZR_utils_settings_map {
                                     'section'       => 'formatting_sec' ,
                                     'type'          => 'nimblecheck' ,
                                     'notice'    => __( 'This will be applied to the links included in post or page content only.' , 'customizr' ),
-                                    'transport'     => 'postMessage'
                   ),
 
                   'tc_ext_link_target'  =>  array(
@@ -2292,7 +2291,6 @@ class CZR_utils_settings_map {
                                     'section'       => 'formatting_sec' ,
                                     'type'          => 'nimblecheck' ,
                                     'notice'    => __( 'This will be applied to the links included in post or page content only.' , 'customizr' ),
-                                    'transport'     => 'postMessage'
                   ),
                   'tc_enable_dropcap'  =>  array(
                                     'default'       => 0,

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.3.12\n"
+"Project-Id-Version: * Customizr v4.3.13\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2020-12-01 16:23:34+00:00\n"
+"POT-Creation-Date: 2020-12-02 09:25:57+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:04+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -885,7 +885,7 @@ msgid "Custom Page Example"
 msgstr ""
 
 #: core/class-fire-resources_scripts.php:402
-#: inc/_dev/class-fire-resources.php:341 inc/czr-init-ccat.php:4272
+#: inc/_dev/class-fire-resources.php:341 inc/czr-init-ccat.php:4270
 msgid "Permanently dismiss"
 msgstr ""
 
@@ -1231,7 +1231,7 @@ msgid "Light"
 msgstr "오른쪽"
 
 #: core/core-settings-map.php:525
-#: inc/_dev/class-fire-utils_settings_map.php:1150 inc/czr-init-ccat.php:3103
+#: inc/_dev/class-fire-utils_settings_map.php:1148 inc/czr-init-ccat.php:3101
 #, fuzzy
 msgid "Custom"
 msgstr "사용자정의 CSS"
@@ -1425,13 +1425,13 @@ msgid "Use a full screen search block"
 msgstr ""
 
 #: core/core-settings-map.php:754 core/core-settings-map.php:864
-#: inc/_dev/class-fire-utils_settings_map.php:601 inc/czr-init-ccat.php:2554
+#: inc/_dev/class-fire-utils_settings_map.php:599 inc/czr-init-ccat.php:2552
 #, fuzzy
 msgid "Display the shopping cart in the header"
 msgstr "전체 컨탠츠 보이기"
 
 #: core/core-settings-map.php:757 core/core-settings-map.php:867
-#: inc/_dev/class-fire-utils_settings_map.php:604 inc/czr-init-ccat.php:2557
+#: inc/_dev/class-fire-utils_settings_map.php:602 inc/czr-init-ccat.php:2555
 msgid ""
 "WooCommerce: check to display a cart icon showing the number of items in "
 "your cart next to your header's tagline."
@@ -1532,7 +1532,7 @@ msgid "Expand submenus on click"
 msgstr "클릭시 하위메뉴 확장"
 
 #: core/core-settings-map.php:853
-#: inc/_dev/class-fire-utils_settings_map.php:589 inc/czr-init-ccat.php:2542
+#: inc/_dev/class-fire-utils_settings_map.php:587 inc/czr-init-ccat.php:2540
 #, fuzzy
 msgid "Display the tagline in the header"
 msgstr "태그라인 표시"
@@ -1600,31 +1600,31 @@ msgid "Primary (vertical) menu design"
 msgstr ""
 
 #: core/core-settings-map.php:962
-#: inc/_dev/class-fire-utils_settings_map.php:764 inc/czr-init-ccat.php:2717
+#: inc/_dev/class-fire-utils_settings_map.php:762 inc/czr-init-ccat.php:2715
 msgid "Menu position (for \"main\" menu)"
 msgstr ""
 
 #: core/core-settings-map.php:966 core/core-settings-map.php:980
-#: inc/_dev/class-fire-utils_settings_map.php:768
-#: inc/_dev/class-fire-utils_settings_map.php:789 inc/czr-init-ccat.php:2721
-#: inc/czr-init-ccat.php:2742
+#: inc/_dev/class-fire-utils_settings_map.php:766
+#: inc/_dev/class-fire-utils_settings_map.php:787 inc/czr-init-ccat.php:2719
+#: inc/czr-init-ccat.php:2740
 msgid "Menu on the left"
 msgstr "왼쪽에 위치"
 
 #: core/core-settings-map.php:967 core/core-settings-map.php:981
-#: inc/_dev/class-fire-utils_settings_map.php:770
-#: inc/_dev/class-fire-utils_settings_map.php:791 inc/czr-init-ccat.php:2723
-#: inc/czr-init-ccat.php:2744
+#: inc/_dev/class-fire-utils_settings_map.php:768
+#: inc/_dev/class-fire-utils_settings_map.php:789 inc/czr-init-ccat.php:2721
+#: inc/czr-init-ccat.php:2742
 msgid "Menu on the right"
 msgstr "오른쪽에 위치"
 
 #: core/core-settings-map.php:975
-#: inc/_dev/class-fire-utils_settings_map.php:784 inc/czr-init-ccat.php:2737
+#: inc/_dev/class-fire-utils_settings_map.php:782 inc/czr-init-ccat.php:2735
 msgid "Secondary (horizontal) menu design"
 msgstr ""
 
 #: core/core-settings-map.php:976
-#: inc/_dev/class-fire-utils_settings_map.php:785 inc/czr-init-ccat.php:2738
+#: inc/_dev/class-fire-utils_settings_map.php:783 inc/czr-init-ccat.php:2736
 msgid "Menu position (for the horizontal menu)"
 msgstr ""
 
@@ -1764,7 +1764,7 @@ msgid "The title will be limited to 80 chars max"
 msgstr ""
 
 #: core/core-settings-map.php:1196
-#: inc/_dev/class-fire-utils_settings_map.php:1005 inc/czr-init-ccat.php:2958
+#: inc/_dev/class-fire-utils_settings_map.php:1003 inc/czr-init-ccat.php:2956
 msgid "Display the excerpt"
 msgstr ""
 
@@ -2175,7 +2175,7 @@ msgid "Display featured images in their original dimensions"
 msgstr ""
 
 #: core/core-settings-map.php:1730 core/core-settings-map.php:1809
-#: inc/_dev/class-fire-utils_settings_map.php:1066 inc/czr-init-ccat.php:3019
+#: inc/_dev/class-fire-utils_settings_map.php:1064 inc/czr-init-ccat.php:3017
 msgid "Set the thumbnail's max height in pixels"
 msgstr ""
 
@@ -3485,8 +3485,8 @@ msgstr ""
 msgid "Mobile Menu"
 msgstr "메인메뉴"
 
-#: core/init-base.php:1106 inc/_dev/class-fire-utils_settings_map.php:1213
-#: inc/czr-init-ccat.php:3166
+#: core/init-base.php:1106 inc/_dev/class-fire-utils_settings_map.php:1211
+#: inc/czr-init-ccat.php:3164
 msgid "Social links"
 msgstr "누리소통망 링크"
 
@@ -3583,13 +3583,13 @@ msgstr "하늘색"
 msgid "View your shopping cart"
 msgstr ""
 
-#: inc/_dev/class-fire-resources.php:749 inc/czr-init-ccat.php:4680
+#: inc/_dev/class-fire-resources.php:749 inc/czr-init-ccat.php:4678
 msgid ""
 "Quick tip : you can choose between two styles for the Customizr theme. Give "
 "it a try %s"
 msgstr ""
 
-#: inc/_dev/class-fire-resources.php:752 inc/czr-init-ccat.php:4683
+#: inc/_dev/class-fire-resources.php:752 inc/czr-init-ccat.php:4681
 msgid "in the live customizer."
 msgstr ""
 
@@ -3632,90 +3632,90 @@ msgid "Display an icon next to external links"
 msgstr ""
 
 #: inc/_dev/class-fire-utils_settings_map.php:331
-#: inc/_dev/class-fire-utils_settings_map.php:341 inc/czr-init-ccat.php:2284
-#: inc/czr-init-ccat.php:2294
+#: inc/_dev/class-fire-utils_settings_map.php:340 inc/czr-init-ccat.php:2284
+#: inc/czr-init-ccat.php:2293
 msgid ""
 "This will be applied to the links included in post or page content only."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:338 inc/czr-init-ccat.php:2291
+#: inc/_dev/class-fire-utils_settings_map.php:337 inc/czr-init-ccat.php:2290
 msgid "Open external links in a new tab"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:346 inc/czr-init-ccat.php:2299
+#: inc/_dev/class-fire-utils_settings_map.php:344 inc/czr-init-ccat.php:2297
 msgid "Drop caps"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:347 inc/czr-init-ccat.php:2300
+#: inc/_dev/class-fire-utils_settings_map.php:345 inc/czr-init-ccat.php:2298
 msgid "Enable drop caps"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:349 inc/czr-init-ccat.php:2302
+#: inc/_dev/class-fire-utils_settings_map.php:347 inc/czr-init-ccat.php:2300
 msgid "Apply a drop cap to the first paragraph of your post / page content"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:357 inc/czr-init-ccat.php:2310
+#: inc/_dev/class-fire-utils_settings_map.php:355 inc/czr-init-ccat.php:2308
 msgid ""
 "Apply a drop cap when the paragraph includes at least the following number "
 "of words :"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:358 inc/czr-init-ccat.php:2311
+#: inc/_dev/class-fire-utils_settings_map.php:356 inc/czr-init-ccat.php:2309
 msgid "(number of words)"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:367 inc/czr-init-ccat.php:2320
+#: inc/_dev/class-fire-utils_settings_map.php:365 inc/czr-init-ccat.php:2318
 msgid "Drop cap style"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:371 inc/czr-init-ccat.php:2324
+#: inc/_dev/class-fire-utils_settings_map.php:369 inc/czr-init-ccat.php:2322
 msgid "Primary theme color with a shadow"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:372 inc/czr-init-ccat.php:2325
+#: inc/_dev/class-fire-utils_settings_map.php:370 inc/czr-init-ccat.php:2323
 msgid "Simple black"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:377 inc/czr-init-ccat.php:2330
+#: inc/_dev/class-fire-utils_settings_map.php:375 inc/czr-init-ccat.php:2328
 msgid "Enable drop caps in posts"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:379 inc/czr-init-ccat.php:2332
+#: inc/_dev/class-fire-utils_settings_map.php:377 inc/czr-init-ccat.php:2330
 msgid "Apply a drop cap to the first paragraph of your single posts content"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:385 inc/czr-init-ccat.php:2338
+#: inc/_dev/class-fire-utils_settings_map.php:383 inc/czr-init-ccat.php:2336
 #, fuzzy
 msgid "Enable drop caps in pages"
 msgstr "페이지에 댓글 활성화"
 
-#: inc/_dev/class-fire-utils_settings_map.php:387 inc/czr-init-ccat.php:2340
+#: inc/_dev/class-fire-utils_settings_map.php:385 inc/czr-init-ccat.php:2338
 msgid "Apply a drop cap to the first paragraph of your pages"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:406 inc/czr-init-ccat.php:2359
+#: inc/_dev/class-fire-utils_settings_map.php:404 inc/czr-init-ccat.php:2357
 msgid "Display icons next to titles"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:410 inc/czr-init-ccat.php:2363
+#: inc/_dev/class-fire-utils_settings_map.php:408 inc/czr-init-ccat.php:2361
 msgid ""
 "When this option is checked, a contextual icon is displayed next to the "
 "titles of pages, posts, archives, and WP built-in widgets."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:416 inc/czr-init-ccat.php:2369
+#: inc/_dev/class-fire-utils_settings_map.php:414 inc/czr-init-ccat.php:2367
 msgid "Display a page icon next to the page title"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:425 inc/czr-init-ccat.php:2378
+#: inc/_dev/class-fire-utils_settings_map.php:423 inc/czr-init-ccat.php:2376
 msgid "Display a post icon next to the single post title"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:434 inc/czr-init-ccat.php:2387
+#: inc/_dev/class-fire-utils_settings_map.php:432 inc/czr-init-ccat.php:2385
 msgid "Display an icon next to the archive title"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:437 inc/czr-init-ccat.php:2390
+#: inc/_dev/class-fire-utils_settings_map.php:435 inc/czr-init-ccat.php:2388
 msgid ""
 "When this option is checked, an archive type icon is displayed in the "
 "heading of every types of archives, on the left of the title. An archive "
@@ -3723,378 +3723,378 @@ msgid ""
 "results."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:444 inc/czr-init-ccat.php:2397
+#: inc/_dev/class-fire-utils_settings_map.php:442 inc/czr-init-ccat.php:2395
 msgid "Display an icon next to each post title in an archive page"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:447 inc/czr-init-ccat.php:2400
+#: inc/_dev/class-fire-utils_settings_map.php:445 inc/czr-init-ccat.php:2398
 msgid ""
 "When this option is checked, a post type icon is displayed on the left of "
 "each post titles in an archive page. An archive page can be : category, tag, "
 "author, date archive, custom taxonomies, search results."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:454 inc/czr-init-ccat.php:2407
+#: inc/_dev/class-fire-utils_settings_map.php:452 inc/czr-init-ccat.php:2405
 msgid "WP sidebar widgets : display icons next to titles"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:463 inc/czr-init-ccat.php:2416
+#: inc/_dev/class-fire-utils_settings_map.php:461 inc/czr-init-ccat.php:2414
 msgid "WP footer widgets : display icons next to titles"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:492 inc/czr-init-ccat.php:2445
+#: inc/_dev/class-fire-utils_settings_map.php:490 inc/czr-init-ccat.php:2443
 msgid "Autoscale images on zoom"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:496 inc/czr-init-ccat.php:2449
+#: inc/_dev/class-fire-utils_settings_map.php:494 inc/czr-init-ccat.php:2447
 msgid ""
 "If enabled, this option will force images to fit the screen on lightbox zoom."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:502 inc/czr-init-ccat.php:2455
+#: inc/_dev/class-fire-utils_settings_map.php:500 inc/czr-init-ccat.php:2453
 msgid "Sliders : display on loading icon before rendering the slides"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:506 inc/czr-init-ccat.php:2459
+#: inc/_dev/class-fire-utils_settings_map.php:504 inc/czr-init-ccat.php:2457
 msgid ""
 "When checked, this option displays a loading icon when the slides are being "
 "setup."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:516 inc/czr-init-ccat.php:2469
+#: inc/_dev/class-fire-utils_settings_map.php:514 inc/czr-init-ccat.php:2467
 msgid ""
 "Improve your page speed by loading smaller slider images for mobile devices"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:574 inc/czr-init-ccat.php:2527
+#: inc/_dev/class-fire-utils_settings_map.php:572 inc/czr-init-ccat.php:2525
 msgid "Social links in header"
 msgstr "헤더에 누리소통망링크 넣기"
 
-#: inc/_dev/class-fire-utils_settings_map.php:612 inc/czr-init-ccat.php:2565
+#: inc/_dev/class-fire-utils_settings_map.php:610 inc/czr-init-ccat.php:2563
 msgid "Display menu in a box"
 msgstr "메뉴를 박스안에 표시"
 
-#: inc/_dev/class-fire-utils_settings_map.php:617 inc/czr-init-ccat.php:2570
+#: inc/_dev/class-fire-utils_settings_map.php:615 inc/czr-init-ccat.php:2568
 msgid ""
 "If checked, this option wraps the header menu/tagline/social in a light grey "
 "box."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:622 inc/czr-init-ccat.php:2575
+#: inc/_dev/class-fire-utils_settings_map.php:620 inc/czr-init-ccat.php:2573
 #, fuzzy
 msgid "Sticky header settings"
 msgstr "고정 헤더 : 태그라인 보이기"
 
-#: inc/_dev/class-fire-utils_settings_map.php:623 inc/czr-init-ccat.php:2576
+#: inc/_dev/class-fire-utils_settings_map.php:621 inc/czr-init-ccat.php:2574
 msgid "Sticky on scroll"
 msgstr "스크롤 고정"
 
-#: inc/_dev/class-fire-utils_settings_map.php:628 inc/czr-init-ccat.php:2581
+#: inc/_dev/class-fire-utils_settings_map.php:626 inc/czr-init-ccat.php:2579
 msgid ""
 "If checked, this option makes the header stick to the top of the page on "
 "scroll down."
 msgstr ""
 "체크할 경우, 여러분들이 위에서 아래로 스크롤을 내리면 로고가 같이 따라옵니다"
 
-#: inc/_dev/class-fire-utils_settings_map.php:633 inc/czr-init-ccat.php:2586
+#: inc/_dev/class-fire-utils_settings_map.php:631 inc/czr-init-ccat.php:2584
 msgid "Sticky header : display the tagline"
 msgstr "고정 헤더 : 태그라인 보이기"
 
-#: inc/_dev/class-fire-utils_settings_map.php:641 inc/czr-init-ccat.php:2594
+#: inc/_dev/class-fire-utils_settings_map.php:639 inc/czr-init-ccat.php:2592
 #, fuzzy
 msgid "Sticky header: display the shopping cart"
 msgstr "고정 헤더 : 메뉴 보이기"
 
-#: inc/_dev/class-fire-utils_settings_map.php:648 inc/czr-init-ccat.php:2601
+#: inc/_dev/class-fire-utils_settings_map.php:646 inc/czr-init-ccat.php:2599
 msgid ""
 "WooCommerce: if checked, your WooCommerce cart icon will remain visible when "
 "scrolling."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:653 inc/czr-init-ccat.php:2606
+#: inc/_dev/class-fire-utils_settings_map.php:651 inc/czr-init-ccat.php:2604
 msgid "Sticky header : display the title / logo"
 msgstr "고정 헤더 : 타이틀/로고 보이기"
 
-#: inc/_dev/class-fire-utils_settings_map.php:662 inc/czr-init-ccat.php:2615
+#: inc/_dev/class-fire-utils_settings_map.php:660 inc/czr-init-ccat.php:2613
 msgid "Sticky header : display the menu"
 msgstr "고정 헤더 : 메뉴 보이기"
 
-#: inc/_dev/class-fire-utils_settings_map.php:667 inc/czr-init-ccat.php:2620
+#: inc/_dev/class-fire-utils_settings_map.php:665 inc/czr-init-ccat.php:2618
 msgid "Also applied to the secondary menu if any."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:745 inc/czr-init-ccat.php:2698
+#: inc/_dev/class-fire-utils_settings_map.php:743 inc/czr-init-ccat.php:2696
 msgid ""
 "For mobile devices (responsive), limit the height of the dropdown menu block "
 "to the visible viewport."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:754 inc/czr-init-ccat.php:2707
+#: inc/_dev/class-fire-utils_settings_map.php:752 inc/czr-init-ccat.php:2705
 msgid "Display a label next to the menu button."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:758 inc/czr-init-ccat.php:2711
+#: inc/_dev/class-fire-utils_settings_map.php:756 inc/czr-init-ccat.php:2709
 msgid "Note : the label is hidden on mobile devices."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:769
-#: inc/_dev/class-fire-utils_settings_map.php:790 inc/czr-init-ccat.php:2722
-#: inc/czr-init-ccat.php:2743
+#: inc/_dev/class-fire-utils_settings_map.php:767
+#: inc/_dev/class-fire-utils_settings_map.php:788 inc/czr-init-ccat.php:2720
+#: inc/czr-init-ccat.php:2741
 #, fuzzy
 msgid "Menu centered"
 msgstr "왼쪽에 위치"
 
-#: inc/_dev/class-fire-utils_settings_map.php:775
-#: inc/_dev/class-fire-utils_settings_map.php:796 inc/czr-init-ccat.php:2728
-#: inc/czr-init-ccat.php:2749
+#: inc/_dev/class-fire-utils_settings_map.php:773
+#: inc/_dev/class-fire-utils_settings_map.php:794 inc/czr-init-ccat.php:2726
+#: inc/czr-init-ccat.php:2747
 msgid "Note : the menu centered position is available only when"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:777
-#: inc/_dev/class-fire-utils_settings_map.php:798 inc/czr-init-ccat.php:2730
-#: inc/czr-init-ccat.php:2751
+#: inc/_dev/class-fire-utils_settings_map.php:775
+#: inc/_dev/class-fire-utils_settings_map.php:796 inc/czr-init-ccat.php:2728
+#: inc/czr-init-ccat.php:2749
 #, fuzzy
 msgid "the logo is centered"
 msgstr "로고 / 타이틀 가운데에 표시"
 
-#: inc/_dev/class-fire-utils_settings_map.php:804 inc/czr-init-ccat.php:2757
+#: inc/_dev/class-fire-utils_settings_map.php:802 inc/czr-init-ccat.php:2755
 msgid "Choose a mobile devices (responsive) behaviour for the secondary menu."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:808 inc/czr-init-ccat.php:2761
+#: inc/_dev/class-fire-utils_settings_map.php:806 inc/czr-init-ccat.php:2759
 msgid "Move before inside the side menu "
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:809 inc/czr-init-ccat.php:2762
+#: inc/_dev/class-fire-utils_settings_map.php:807 inc/czr-init-ccat.php:2760
 msgid "Move after inside the side menu "
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:810 inc/czr-init-ccat.php:2763
+#: inc/_dev/class-fire-utils_settings_map.php:808 inc/czr-init-ccat.php:2761
 msgid "Display in the header"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:811 inc/czr-init-ccat.php:2764
+#: inc/_dev/class-fire-utils_settings_map.php:809 inc/czr-init-ccat.php:2762
 msgid "Hide"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:889 inc/czr-init-ccat.php:2842
+#: inc/_dev/class-fire-utils_settings_map.php:887 inc/czr-init-ccat.php:2840
 msgid "Metas Design"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:890 inc/czr-init-ccat.php:2843
+#: inc/_dev/class-fire-utils_settings_map.php:888 inc/czr-init-ccat.php:2841
 #, fuzzy
 msgid "Select a design for the post metas"
 msgstr "Customizr의 스킨을 선택해주세요!"
 
-#: inc/_dev/class-fire-utils_settings_map.php:894 inc/czr-init-ccat.php:2847
+#: inc/_dev/class-fire-utils_settings_map.php:892 inc/czr-init-ccat.php:2845
 #, fuzzy
 msgid "Buttons and text"
 msgstr "버튼 텍스트"
 
-#: inc/_dev/class-fire-utils_settings_map.php:895 inc/czr-init-ccat.php:2848
+#: inc/_dev/class-fire-utils_settings_map.php:893 inc/czr-init-ccat.php:2846
 msgid "Text only"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:902 inc/czr-init-ccat.php:2855
+#: inc/_dev/class-fire-utils_settings_map.php:900 inc/czr-init-ccat.php:2853
 msgid "Select the last update format"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:906 inc/czr-init-ccat.php:2859
+#: inc/_dev/class-fire-utils_settings_map.php:904 inc/czr-init-ccat.php:2857
 msgid "No. of days since last update"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:907 inc/czr-init-ccat.php:2860
+#: inc/_dev/class-fire-utils_settings_map.php:905 inc/czr-init-ccat.php:2858
 msgid "Date of the last update"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:915 inc/czr-init-ccat.php:2868
+#: inc/_dev/class-fire-utils_settings_map.php:913 inc/czr-init-ccat.php:2866
 msgid "Recent update notice after post titles"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:916 inc/czr-init-ccat.php:2869
+#: inc/_dev/class-fire-utils_settings_map.php:914 inc/czr-init-ccat.php:2867
 msgid "Display a recent update notice"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:920 inc/czr-init-ccat.php:2873
+#: inc/_dev/class-fire-utils_settings_map.php:918 inc/czr-init-ccat.php:2871
 msgid ""
 "If this option is checked, a customizable recent update notice is displayed "
 "next to the post title."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:926 inc/czr-init-ccat.php:2879
+#: inc/_dev/class-fire-utils_settings_map.php:924 inc/czr-init-ccat.php:2877
 msgid ""
 "Display the notice if the last update is less (strictly) than n days old"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:932 inc/czr-init-ccat.php:2885
+#: inc/_dev/class-fire-utils_settings_map.php:930 inc/czr-init-ccat.php:2883
 msgid ""
 "Set a maximum interval (in days) during which the last update notice will be "
 "displayed."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:935 inc/czr-init-ccat.php:2888
+#: inc/_dev/class-fire-utils_settings_map.php:933 inc/czr-init-ccat.php:2886
 msgid "Recently updated !"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:937 inc/czr-init-ccat.php:2890
+#: inc/_dev/class-fire-utils_settings_map.php:935 inc/czr-init-ccat.php:2888
 msgid "Update notice text"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:946 inc/czr-init-ccat.php:2899
+#: inc/_dev/class-fire-utils_settings_map.php:944 inc/czr-init-ccat.php:2897
 msgid "Update notice style"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:950 inc/czr-init-ccat.php:2903
+#: inc/_dev/class-fire-utils_settings_map.php:948 inc/czr-init-ccat.php:2901
 msgid "Default (grey)"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:951 inc/czr-init-ccat.php:2904
+#: inc/_dev/class-fire-utils_settings_map.php:949 inc/czr-init-ccat.php:2902
 msgid "Success (green)"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:952 inc/czr-init-ccat.php:2905
+#: inc/_dev/class-fire-utils_settings_map.php:950 inc/czr-init-ccat.php:2903
 msgid "Alert (orange)"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:953 inc/czr-init-ccat.php:2906
+#: inc/_dev/class-fire-utils_settings_map.php:951 inc/czr-init-ccat.php:2904
 msgid "Important (red)"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:954 inc/czr-init-ccat.php:2907
+#: inc/_dev/class-fire-utils_settings_map.php:952 inc/czr-init-ccat.php:2905
 msgid "Info (blue)"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:965 inc/czr-init-ccat.php:2918
+#: inc/_dev/class-fire-utils_settings_map.php:963 inc/czr-init-ccat.php:2916
 msgid ""
 "If this option is checked, additional date informations about the the last "
 "post update can be displayed (nothing will show up if the post has never "
 "been updated)."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1001 inc/czr-init-ccat.php:2954
+#: inc/_dev/class-fire-utils_settings_map.php:999 inc/czr-init-ccat.php:2952
 msgid "Select the length of posts in lists (home, search, archives, ...)"
 msgstr "게시글 리스트 옵션 설정"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1006 inc/czr-init-ccat.php:2959
+#: inc/_dev/class-fire-utils_settings_map.php:1004 inc/czr-init-ccat.php:2957
 msgid "Display the full content"
 msgstr "전체 컨탠츠 보이기"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1014 inc/czr-init-ccat.php:2967
+#: inc/_dev/class-fire-utils_settings_map.php:1012 inc/czr-init-ccat.php:2965
 msgid "Apply the grid layout to Home/Blog"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1022 inc/czr-init-ccat.php:2975
+#: inc/_dev/class-fire-utils_settings_map.php:1020 inc/czr-init-ccat.php:2973
 msgid "Apply the grid layout to Archives (archives, categories, author posts)"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1030 inc/czr-init-ccat.php:2983
+#: inc/_dev/class-fire-utils_settings_map.php:1028 inc/czr-init-ccat.php:2981
 msgid "Apply the grid layout to Search results"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1034 inc/czr-init-ccat.php:2987
+#: inc/_dev/class-fire-utils_settings_map.php:1032 inc/czr-init-ccat.php:2985
 msgid "Unchecked contexts are displayed with the alternate thumbnails layout."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1039 inc/czr-init-ccat.php:2992
+#: inc/_dev/class-fire-utils_settings_map.php:1037 inc/czr-init-ccat.php:2990
 #, fuzzy
 msgid "Display post format icons"
 msgstr "게시글 섬네일 표시"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1048 inc/czr-init-ccat.php:3001
+#: inc/_dev/class-fire-utils_settings_map.php:1046 inc/czr-init-ccat.php:2999
 #, fuzzy
 msgid "Upload a default thumbnail"
 msgstr "게시글 섬네일 표시"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1078 inc/czr-init-ccat.php:3031
+#: inc/_dev/class-fire-utils_settings_map.php:1076 inc/czr-init-ccat.php:3029
 msgid "Thumbnails max height for the grid layout"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1079 inc/czr-init-ccat.php:3032
+#: inc/_dev/class-fire-utils_settings_map.php:1077 inc/czr-init-ccat.php:3030
 #, fuzzy
 msgid "Set the post grid thumbnail's max height in pixels"
 msgstr "슬라이더 높이(단위 : 픽셀)"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1094 inc/czr-init-ccat.php:3047
+#: inc/_dev/class-fire-utils_settings_map.php:1092 inc/czr-init-ccat.php:3045
 msgid "Squared, expand on hover"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1095 inc/czr-init-ccat.php:3048
+#: inc/_dev/class-fire-utils_settings_map.php:1093 inc/czr-init-ccat.php:3046
 msgid "Squared, no expansion"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1096 inc/czr-init-ccat.php:3049
+#: inc/_dev/class-fire-utils_settings_map.php:1094 inc/czr-init-ccat.php:3047
 msgid "Rectangular with no effect"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1097 inc/czr-init-ccat.php:3050
+#: inc/_dev/class-fire-utils_settings_map.php:1095 inc/czr-init-ccat.php:3048
 msgid "Rectangular with blur effect on hover"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1098 inc/czr-init-ccat.php:3051
+#: inc/_dev/class-fire-utils_settings_map.php:1096 inc/czr-init-ccat.php:3049
 msgid "Rectangular with unblur effect on hover"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1106 inc/czr-init-ccat.php:3059
+#: inc/_dev/class-fire-utils_settings_map.php:1104 inc/czr-init-ccat.php:3057
 msgid "Top"
 msgstr "위"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1107 inc/czr-init-ccat.php:3060
+#: inc/_dev/class-fire-utils_settings_map.php:1105 inc/czr-init-ccat.php:3058
 msgid "Bottom"
 msgstr "아래"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1132 inc/czr-init-ccat.php:3085
+#: inc/_dev/class-fire-utils_settings_map.php:1130 inc/czr-init-ccat.php:3083
 msgid "Comments bubble shape"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1136 inc/czr-init-ccat.php:3089
+#: inc/_dev/class-fire-utils_settings_map.php:1134 inc/czr-init-ccat.php:3087
 msgid "Small bubbles"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1137 inc/czr-init-ccat.php:3090
+#: inc/_dev/class-fire-utils_settings_map.php:1135 inc/czr-init-ccat.php:3088
 msgid "Large bubbles"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1145
-#: inc/_dev/class-fire-utils_settings_map.php:1158 inc/czr-init-ccat.php:3098
-#: inc/czr-init-ccat.php:3111
+#: inc/_dev/class-fire-utils_settings_map.php:1143
+#: inc/_dev/class-fire-utils_settings_map.php:1156 inc/czr-init-ccat.php:3096
+#: inc/czr-init-ccat.php:3109
 msgid "Comments bubble color"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1149 inc/czr-init-ccat.php:3102
+#: inc/_dev/class-fire-utils_settings_map.php:1147 inc/czr-init-ccat.php:3100
 msgid "Skin color"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1214 inc/czr-init-ccat.php:3167
+#: inc/_dev/class-fire-utils_settings_map.php:1212 inc/czr-init-ccat.php:3165
 msgid "Social link title in sidebars"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1220 inc/czr-init-ccat.php:3173
+#: inc/_dev/class-fire-utils_settings_map.php:1218 inc/czr-init-ccat.php:3171
 msgid "Will be hidden if empty"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1250 inc/czr-init-ccat.php:3203
+#: inc/_dev/class-fire-utils_settings_map.php:1248 inc/czr-init-ccat.php:3201
 msgid "Dynamic sidebar reordering on small devices"
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1253 inc/czr-init-ccat.php:3206
+#: inc/_dev/class-fire-utils_settings_map.php:1251 inc/czr-init-ccat.php:3204
 msgid ""
 "Activate this option to move the sidebars (if any) after the main content "
 "block, for smartphones or tablets viewport."
 msgstr ""
 
-#: inc/_dev/class-fire-utils_settings_map.php:1350 inc/czr-init-ccat.php:3303
+#: inc/_dev/class-fire-utils_settings_map.php:1348 inc/czr-init-ccat.php:3301
 msgid "Titles icons settings"
 msgstr "타이틀 아이콘 설정"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1352 inc/czr-init-ccat.php:3305
+#: inc/_dev/class-fire-utils_settings_map.php:1350 inc/czr-init-ccat.php:3303
 msgid "Set up the titles icons options"
 msgstr "타이틀 아이콘 옵션 설정"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1360 inc/czr-init-ccat.php:3313
+#: inc/_dev/class-fire-utils_settings_map.php:1358 inc/czr-init-ccat.php:3311
 msgid "Responsive settings"
 msgstr "응답설정"
 
-#: inc/_dev/class-fire-utils_settings_map.php:1362 inc/czr-init-ccat.php:3315
+#: inc/_dev/class-fire-utils_settings_map.php:1360 inc/czr-init-ccat.php:3313
 msgid "Various settings for responsive display"
 msgstr "출력되는 다양한 응답 설정"
 
