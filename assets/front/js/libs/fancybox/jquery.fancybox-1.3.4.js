@@ -479,7 +479,7 @@
         return;
       }
 
-      titleStr = $.isFunction(currentOpts.titleFormat) ? currentOpts.titleFormat(titleStr, currentArray, currentIndex, currentOpts) : _format_title(titleStr);
+      titleStr = 'function' == typeof(currentOpts.titleFormat) ? currentOpts.titleFormat(titleStr, currentArray, currentIndex, currentOpts) : _format_title(titleStr);
 
       if (!titleStr || titleStr === '' ) {
         title.hide();
@@ -569,8 +569,11 @@
 
     _finish = function () {
       if (!$.support.opacity) {
-        content.get(0).style.removeAttribute( 'filter' );
-        wrap.get(0).style.removeAttribute( 'filter' );
+        // dec 2020 : https://github.com/presscustomizr/customizr/issues/1874
+        if ( content.get(0) && content.get(0).style && content.get(0).style.removeProperty ) {
+          content.get(0).style.removeProperty( 'filter' );
+          wrap.get(0).style.removeProperty( 'filter' );
+        }
       }
 
       if (selectedOpts.autoDimensions) {
@@ -793,7 +796,7 @@
 
         busy = true;
 
-        $(this).blur();
+        $(this).trigger( "blur" );
 
         selectedArray = [];
         selectedIndex = 0;
