@@ -6587,7 +6587,7 @@ form.czr-form .czr-focus.in-focus > label i.icn-close {
   padding: 0;
 }
 
-.wp-block-gallery .blocks-gallery-item {
+.wp-block-gallery .blocks-gallery-grid, .wp-block-gallery .blocks-gallery-item {
   padding: 0;
 }
 

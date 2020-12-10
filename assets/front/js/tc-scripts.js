@@ -1190,7 +1190,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
     function Plugin( element, options ) {
         this.$_el     = $(element);
         this.options  = $.extend( {}, defaults, options) ;
-        this._href    = $.trim( this.$_el.attr( 'href' ) );
+        this._href    = ( 'string' == typeof( this.$_el.attr( 'href' ) ) ) ? this.$_el.attr( 'href' ).trim() : '';
         this.init();
     }
 
@@ -1260,7 +1260,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
       var _main_domain = (location.host).split('.').slice(-2).join('.'),
           _reg = new RegExp( _main_domain );
 
-      _href = $.trim( _href );
+      if ( 'string' != typeof( _href ) )
+        return;
+
+      _href = _href.trim();
 
       if ( _href !== '' && _href != '#' && this._isValidURL( _href ) )
         return ! _reg.test( _href );

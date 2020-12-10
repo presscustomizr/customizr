@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.6
-Stable tag: 4.3.13
+Stable tag: 4.3.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,11 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
+= 4.3.14 December 10th, 2020 =
+* fixed : [WP 5.6][WP 5.7] replaced deprecated shorthands
+* fixed : [WP 5.6][fancybox] Close (x) link not working on pop-up image in galleries. Fixes #1874
+* fixed : [WP Gallery Block] padding style conflict created by the theme. fixes #1873
+
 = 4.3.13 December 2nd, 2020 =
 * fixed : [links] external links icons not displayed. fixes #1871
 
