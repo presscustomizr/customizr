@@ -10,7 +10,7 @@
 }
 // Related to https://github.com/presscustomizr/customizr/issues/1789
 .wp-block-gallery {
-    .blocks-gallery-item {
+    .blocks-gallery-grid, .blocks-gallery-item {
       padding: 0;
     }
     .blocks-gallery-image figcaption, .blocks-gallery-item figcaption {
