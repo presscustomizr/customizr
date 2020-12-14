@@ -126,7 +126,7 @@ class CZR_post_metas_model_class extends CZR_Model {
   * @package Customizr
   * @since Customizr 3.2.6
   */
-  protected function czr_fn_get_meta_date( $pub_or_update = 'publication', $_format = '', $permalink = false, $only_text ) {
+  protected function czr_fn_get_meta_date( $pub_or_update = 'publication', $_format = '', $permalink = false, $only_text = false ) {
     if ( 'short' == $_format ) {
         $_format = 'j M, Y';
     }

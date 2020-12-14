@@ -92,7 +92,7 @@ if ( ! class_exists( 'CZR_nav_walker' ) ) :
     }
 
 
-    function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args, &$output) {
+    function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output) {
       //we add a property here
       //will be used in override start_el() and class filter
       $element->is_dropdown = ! empty( $children_elements[$element->ID]);
