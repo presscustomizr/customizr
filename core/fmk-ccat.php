@@ -778,7 +778,7 @@ if ( ! class_exists( 'CZR_Collection' ) ) :
     //=> when a single model property has been changed in CZR_Model::czr_fn_set_property()
     //@param id string
     //@param $model instance object
-    public function czr_fn_update_collection( $id = false, $model ) {
+    public function czr_fn_update_collection( $id, $model ) {
       if ( ! $id || ! is_object($model) )
         return;
 
