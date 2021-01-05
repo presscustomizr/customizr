@@ -2706,13 +2706,24 @@ var czrapp = czrapp || {};
                   var $candidates = $('[class*=fa-]');
                   if ( $candidates.length < 1 )
                     return;
-                  if ( $('head').find( '[href*="fontawesome-all.min.css"]' ).length < 1 ) {
+                  var _inject_in_progress = false;
+                  var _inject = function(type) {
+                      _inject_in_progress = true;
+                      if ( $('head').find( '[href*="fontawesome-all.min.css"]' ).length > 0 )
+                        return;
                       var link = document.createElement('link');
-                      link.setAttribute('href', CZRParams.fontAwesomeUrl );
+                      link.setAttribute('href', CZRParams.fontAwesomeUrl ); // assets/shared/fonts/fa/css/fontawesome-all.min.css?
                       link.setAttribute('id', 'czr-font-awesome');
                       link.setAttribute('rel', 'stylesheet' );
                       document.getElementsByTagName('head')[0].appendChild(link);
-                  }
+                  };
+                  setTimeout( function() {
+                        if ( !_inject_in_progress ) {_inject('timeout'); }
+                  }, 3000 );
+
+                  czrapp.$_window.one('scroll', function() {
+                      if ( !_inject_in_progress ) {_inject('scroll'); }
+                  });
             });
       },
       maybePreloadGoogleFonts : function() {

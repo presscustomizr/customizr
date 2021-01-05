@@ -14,9 +14,10 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
-= 4.4.1 January 4th, 2021 =
+= 4.4.1 January 5th, 2021 =
 * fixed : [performance] preload customizr.woff2 font. fixes #1835, fixes #1879
 * fixed : [performance][php] removed duplicated queries for 'template' option and thumbnail models. fixes #1872
+* fixed : [performance] improve loading performance of Font awesome icons to comply with Google lighthouse metrics ( preload warning removed )
 * improved : [footer][performance] replaced font awesome WP icon by 'WP'
 
 = 4.4.0 December 14th, 2020 =
