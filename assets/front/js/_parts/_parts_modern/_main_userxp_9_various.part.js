@@ -716,7 +716,7 @@ var czrapp = czrapp || {};
                     return;
 
                   // January 2021
-                  // inject with a delay by default, force injection without delay on first user scroll
+                  // inject with a delay by default, force injection without delay on first user scroll or mousemove
                   // => Offers better performance results with Google lighthouse
                   var _inject_in_progress = false;
                   var _inject = function(type) {
@@ -733,9 +733,14 @@ var czrapp = czrapp || {};
                         if ( !_inject_in_progress ) {_inject('timeout'); }
                   }, 3000 );
 
-                  czrapp.$_window.one('scroll', function() {
-                      if ( !_inject_in_progress ) {_inject('scroll'); }
-                  });
+                  czrapp.$_window
+                      .one('scroll', function() {
+                          if ( !_inject_in_progress ) {_inject('scroll'); }
+                      })
+                      .one('mousemove', function() {
+                          if ( !_inject_in_progress ) {_inject('mousemove'); }
+                      });
+
             });
       },
       // March 2020 : gfonts can be preloaded since https://github.com/presscustomizr/customizr/issues/1816
