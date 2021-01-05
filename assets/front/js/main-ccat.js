@@ -2721,9 +2721,14 @@ var czrapp = czrapp || {};
                         if ( !_inject_in_progress ) {_inject('timeout'); }
                   }, 3000 );
 
-                  czrapp.$_window.one('scroll', function() {
-                      if ( !_inject_in_progress ) {_inject('scroll'); }
-                  });
+                  czrapp.$_window
+                      .one('scroll', function() {
+                          if ( !_inject_in_progress ) {_inject('scroll'); }
+                      })
+                      .one('mousemove', function() {
+                          if ( !_inject_in_progress ) {_inject('mousemove'); }
+                      });
+
             });
       },
       maybePreloadGoogleFonts : function() {
