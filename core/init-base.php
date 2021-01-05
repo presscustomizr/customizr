@@ -31,6 +31,10 @@ if ( !class_exists( 'CZR_BASE' ) ) :
         //print comments template once : plugins compatibility
         public static $comments_rendered = false;
 
+        // Jan 2021 for #1872
+        public static $cached_queries = array();
+        public static $cached_thumbnail_models = array();
+
         function __construct( $_args = array()) {
             //init properties
             add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
