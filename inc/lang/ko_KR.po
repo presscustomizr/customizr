@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.4.0\n"
+"Project-Id-Version: * Customizr v4.4.1\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2020-12-02 09:25:57+00:00\n"
+"POT-Creation-Date: 2021-01-05 17:35:47+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:04+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -994,23 +994,23 @@ msgstr ""
 msgid "like this"
 msgstr ""
 
-#: core/core-functions.php:1505
+#: core/core-functions.php:1509
 msgid "Page %s"
 msgstr "%s 페이지"
 
-#: core/core-functions.php:1594
+#: core/core-functions.php:1598
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; 슬라이더가 없습니다 &mdash;"
 
-#: core/core-functions.php:1595
+#: core/core-functions.php:1599
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; 데모 슬라이더 &mdash;"
 
-#: core/core-functions.php:1596
+#: core/core-functions.php:1600
 msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
 msgstr ""
 
-#: core/core-functions.php:1673
+#: core/core-functions.php:1677
 msgid "Please fill the email input with a valid email address"
 msgstr ""
 
@@ -1092,7 +1092,7 @@ msgid ""
 "website, when no font size is already applied."
 msgstr ""
 
-#: core/core-settings-map.php:329 core/init-base.php:1113
+#: core/core-settings-map.php:329 core/init-base.php:1117
 #, fuzzy
 msgid "Create and organize your social links"
 msgstr "누리소통망 링크 설정"
@@ -1500,7 +1500,7 @@ msgstr ""
 msgid "Specific Mobile Menu"
 msgstr ""
 
-#: core/core-settings-map.php:828 core/init-base.php:412
+#: core/core-settings-map.php:828 core/init-base.php:416
 msgid "Main Menu"
 msgstr "메인메뉴"
 
@@ -3359,110 +3359,110 @@ msgstr "메뉴 "
 msgid "open the customizer menu section"
 msgstr ""
 
-#: core/init-base.php:121
+#: core/init-base.php:125
 msgid "Left Sidebar"
 msgstr "왼쪽 사이드바"
 
-#: core/init-base.php:122 core/init-base.php:126
+#: core/init-base.php:126 core/init-base.php:130
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr "게시글,정적 페이지,아카이브 그리고 검색페이지를 표시합니다."
 
-#: core/init-base.php:125
+#: core/init-base.php:129
 msgid "Right Sidebar"
 msgstr "오른쪽 사이드바"
 
-#: core/init-base.php:134
+#: core/init-base.php:138
 msgid "Subscribe to my rss feed"
 msgstr "제 RSS피드에 가입해주세요!"
 
-#: core/init-base.php:138
+#: core/init-base.php:142
 msgid "E-mail"
 msgstr ""
 
-#: core/init-base.php:141
+#: core/init-base.php:145
 msgid "Follow me on Twitter"
 msgstr "제 트위터를 팔로우 해주세요!"
 
-#: core/init-base.php:144
+#: core/init-base.php:148
 msgid "Follow me on Facebook"
 msgstr "제 페이스북을 팔로우 해주세요!"
 
-#: core/init-base.php:147
+#: core/init-base.php:151
 msgid "Follow me on Google+"
 msgstr "제 Google+ 팔로우 해주세요!"
 
-#: core/init-base.php:150
+#: core/init-base.php:154
 msgid "Follow me on Instagram"
 msgstr "제 인스타그램을 팔로우 해주세요!"
 
-#: core/init-base.php:153
+#: core/init-base.php:157
 msgid "Follow me on Tumblr"
 msgstr "제 텀블러를 팔로우 해주세요!"
 
-#: core/init-base.php:156
+#: core/init-base.php:160
 msgid "Follow me on Flickr"
 msgstr "제 Flickr를 팔로우 해주세요!"
 
-#: core/init-base.php:159
+#: core/init-base.php:163
 msgid "Follow me on WordPress"
 msgstr "제 워드프레스를 팔로우 해주세요!"
 
-#: core/init-base.php:162
+#: core/init-base.php:166
 msgid "Follow me on Youtube"
 msgstr "제 유투브를 구독 해주세요!"
 
-#: core/init-base.php:165
+#: core/init-base.php:169
 msgid "Pin me on Pinterest"
 msgstr ""
 
-#: core/init-base.php:168
+#: core/init-base.php:172
 msgid "Follow me on Github"
 msgstr "제 깃허브를 팔로우 해주세요!"
 
-#: core/init-base.php:171
+#: core/init-base.php:175
 msgid "Follow me on Dribbble"
 msgstr ""
 
-#: core/init-base.php:174
+#: core/init-base.php:178
 msgid "Follow me on LinkedIn"
 msgstr ""
 
-#: core/init-base.php:177
+#: core/init-base.php:181
 #, fuzzy
 msgid "Follow me on VKontakte"
 msgstr "제 트위터를 팔로우 해주세요!"
 
-#: core/init-base.php:180
+#: core/init-base.php:184
 #, fuzzy
 msgid "Follow me on Yelp"
 msgstr "제 유투브를 구독 해주세요!"
 
-#: core/init-base.php:183
+#: core/init-base.php:187
 #, fuzzy
 msgid "Follow me on Xing"
 msgstr "제 Flickr를 팔로우 해주세요!"
 
-#: core/init-base.php:186
+#: core/init-base.php:190
 msgid "Contact me on Snapchat"
 msgstr ""
 
-#: core/init-base.php:193
+#: core/init-base.php:197
 msgid "Google fonts pairs"
 msgstr ""
 
-#: core/init-base.php:214
+#: core/init-base.php:218
 msgid "Web safe fonts pairs"
 msgstr ""
 
-#: core/init-base.php:223
+#: core/init-base.php:227
 msgid "Single fonts"
 msgstr ""
 
-#: core/init-base.php:263
+#: core/init-base.php:267
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr는 심플한 반응형 테마입니다."
 
-#: core/init-base.php:277
+#: core/init-base.php:281
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
@@ -3470,22 +3470,22 @@ msgstr ""
 "대부분의 레이아웃과 디자인 옵션은 워드프레스 사용자정의를 통해서 수정하실 수 "
 "있습니다!"
 
-#: core/init-base.php:413
+#: core/init-base.php:417
 msgid "Secondary (horizontal) Menu"
 msgstr ""
 
-#: core/init-base.php:415
+#: core/init-base.php:419
 msgid ""
 "Horizontal Top Bar Menu. (make sure that the topbar is displayed in the "
 "header settings )."
 msgstr ""
 
-#: core/init-base.php:416
+#: core/init-base.php:420
 #, fuzzy
 msgid "Mobile Menu"
 msgstr "메인메뉴"
 
-#: core/init-base.php:1106 inc/_dev/class-fire-utils_settings_map.php:1211
+#: core/init-base.php:1110 inc/_dev/class-fire-utils_settings_map.php:1211
 #: inc/czr-init-ccat.php:3164
 msgid "Social links"
 msgstr "누리소통망 링크"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.4.0\n"
+"Project-Id-Version: * Customizr v4.4.1\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2020-12-02 09:25:57+00:00\n"
+"POT-Creation-Date: 2021-01-05 17:35:47+00:00\n"
 "PO-Revision-Date: 2016-08-30 15:26+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Rubenas <webmaster@rubenas.com>\n"
@@ -1012,23 +1012,23 @@ msgstr ""
 msgid "like this"
 msgstr ""
 
-#: core/core-functions.php:1505
+#: core/core-functions.php:1509
 msgid "Page %s"
 msgstr "P&aacute;xina %s"
 
-#: core/core-functions.php:1594
+#: core/core-functions.php:1598
 msgid "&mdash; No slider &mdash;"
 msgstr "&mdash; Ning&uacute;n slider &mdash;"
 
-#: core/core-functions.php:1595
+#: core/core-functions.php:1599
 msgid "&mdash; Demo Slider &mdash;"
 msgstr "&mdash; Demo Slider &mdash;"
 
-#: core/core-functions.php:1596
+#: core/core-functions.php:1600
 msgid "&mdash; Auto-generated slider from your blog posts &mdash;"
 msgstr ""
 
-#: core/core-functions.php:1673
+#: core/core-functions.php:1677
 msgid "Please fill the email input with a valid email address"
 msgstr ""
 
@@ -1119,7 +1119,7 @@ msgstr ""
 "elemento de texto no teu sitio wee cando non hai ningún outro tamaño de "
 "texto que sexa aplicable."
 
-#: core/core-settings-map.php:329 core/init-base.php:1113
+#: core/core-settings-map.php:329 core/init-base.php:1117
 #, fuzzy
 msgid "Create and organize your social links"
 msgstr "Configuraci&oacute;n de enlaces ás redes sociáis"
@@ -1541,7 +1541,7 @@ msgstr ""
 msgid "Specific Mobile Menu"
 msgstr ""
 
-#: core/core-settings-map.php:828 core/init-base.php:412
+#: core/core-settings-map.php:828 core/init-base.php:416
 msgid "Main Menu"
 msgstr "Men&uacute; Principal"
 
@@ -3428,109 +3428,109 @@ msgstr "Engadir un menú"
 msgid "open the customizer menu section"
 msgstr ""
 
-#: core/init-base.php:121
+#: core/init-base.php:125
 msgid "Left Sidebar"
 msgstr "Barra lateral esquerda"
 
-#: core/init-base.php:122 core/init-base.php:126
+#: core/init-base.php:126 core/init-base.php:130
 msgid "Appears on posts, static pages, archives and search pages"
 msgstr ""
 "Aparece en artigos, p&aacute;xinas, arquivos e resultados de b&uacute;"
 "squeda  "
 
-#: core/init-base.php:125
+#: core/init-base.php:129
 msgid "Right Sidebar"
 msgstr "Barra lateral dereita"
 
-#: core/init-base.php:134
+#: core/init-base.php:138
 msgid "Subscribe to my rss feed"
 msgstr "Suscríbete á miña canle"
 
-#: core/init-base.php:138
+#: core/init-base.php:142
 msgid "E-mail"
 msgstr ""
 
-#: core/init-base.php:141
+#: core/init-base.php:145
 msgid "Follow me on Twitter"
 msgstr "Ségueme en Twitter"
 
-#: core/init-base.php:144
+#: core/init-base.php:148
 msgid "Follow me on Facebook"
 msgstr "S&eacute;gueme en Facebook"
 
-#: core/init-base.php:147
+#: core/init-base.php:151
 msgid "Follow me on Google+"
 msgstr "S&2acute;gueme en Google +"
 
-#: core/init-base.php:150
+#: core/init-base.php:154
 msgid "Follow me on Instagram"
 msgstr "S&eacute;gueme en Instagram"
 
-#: core/init-base.php:153
+#: core/init-base.php:157
 msgid "Follow me on Tumblr"
 msgstr "S&eacute;gueme en Tumblr"
 
-#: core/init-base.php:156
+#: core/init-base.php:160
 msgid "Follow me on Flickr"
 msgstr "S&eacute;gueme en Flickr"
 
-#: core/init-base.php:159
+#: core/init-base.php:163
 msgid "Follow me on WordPress"
 msgstr "S&eacute;gueme en WordPress"
 
-#: core/init-base.php:162
+#: core/init-base.php:166
 msgid "Follow me on Youtube"
 msgstr "S&eacute;gueme en Youtube"
 
-#: core/init-base.php:165
+#: core/init-base.php:169
 msgid "Pin me on Pinterest"
 msgstr "Pinear en Pinterest"
 
-#: core/init-base.php:168
+#: core/init-base.php:172
 msgid "Follow me on Github"
 msgstr "S&eacute;gueme en Github"
 
-#: core/init-base.php:171
+#: core/init-base.php:175
 msgid "Follow me on Dribbble"
 msgstr "S&eacute;gueme en Dribbble"
 
-#: core/init-base.php:174
+#: core/init-base.php:178
 msgid "Follow me on LinkedIn"
 msgstr "S&eacute;gueme en LinkedIn"
 
-#: core/init-base.php:177
+#: core/init-base.php:181
 msgid "Follow me on VKontakte"
 msgstr ""
 
-#: core/init-base.php:180
+#: core/init-base.php:184
 msgid "Follow me on Yelp"
 msgstr ""
 
-#: core/init-base.php:183
+#: core/init-base.php:187
 msgid "Follow me on Xing"
 msgstr ""
 
-#: core/init-base.php:186
+#: core/init-base.php:190
 msgid "Contact me on Snapchat"
 msgstr ""
 
-#: core/init-base.php:193
+#: core/init-base.php:197
 msgid "Google fonts pairs"
 msgstr "Grupos de fontes de Google"
 
-#: core/init-base.php:214
+#: core/init-base.php:218
 msgid "Web safe fonts pairs"
 msgstr "Grupos de fontes de máxima compatibilidade"
 
-#: core/init-base.php:223
+#: core/init-base.php:227
 msgid "Single fonts"
 msgstr "Fontes simples"
 
-#: core/init-base.php:263
+#: core/init-base.php:267
 msgid "Customizr is a clean responsive theme"
 msgstr "Customizr é un tema adaptable elegante e sinxelo"
 
-#: core/init-base.php:277
+#: core/init-base.php:281
 msgid ""
 "Many layout and design options are available from the WordPress customizer "
 "screen : see your changes live !"
@@ -3539,22 +3539,22 @@ msgstr ""
 "dispoñibles na pantalla de personalizaci&oacute;n de Wordpress, a "
 "demostraci&oacute;n dos cambios aparecerá en vivo "
 
-#: core/init-base.php:413
+#: core/init-base.php:417
 msgid "Secondary (horizontal) Menu"
 msgstr ""
 
-#: core/init-base.php:415
+#: core/init-base.php:419
 msgid ""
 "Horizontal Top Bar Menu. (make sure that the topbar is displayed in the "
 "header settings )."
 msgstr ""
 
-#: core/init-base.php:416
+#: core/init-base.php:420
 #, fuzzy
 msgid "Mobile Menu"
 msgstr "Men&uacute; Principal"
 
-#: core/init-base.php:1106 inc/_dev/class-fire-utils_settings_map.php:1211
+#: core/init-base.php:1110 inc/_dev/class-fire-utils_settings_map.php:1211
 #: inc/czr-init-ccat.php:3164
 msgid "Social links"
 msgstr "Redes Sociáis"

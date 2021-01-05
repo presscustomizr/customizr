@@ -1076,7 +1076,6 @@ function czr_fn_is_loop_end() {
 * @since Customizr 1.0
 */
 function czr_fn_get_thumbnail_model( $args = array() ) {
-
     $defaults = array(
       'requested_size'            => null,
       'post_id'                   => null,
@@ -1089,17 +1088,27 @@ function czr_fn_get_thumbnail_model( $args = array() ) {
     $args = wp_parse_args( $args, $defaults);
     extract( $args );
 
+    $post_id = is_null($post_id) ? get_the_ID() : $post_id;
+
+    $cached_index = empty( $post_id ) ? 'post_id__no_post_id' : 'post_id_'.$post_id;
+    if ( array_key_exists($cached_index, CZR_BASE::$cached_thumbnail_models) ) {
+        return CZR_BASE::$cached_thumbnail_models[$cached_index];
+    }
+
+    CZR_BASE::$cached_thumbnail_models[$cached_index] = array();
+
     //czr_fn_has_thumb() checks if there is a thumbnail or an attachment img ( typically img embedded in single post ) that we can use
     //=> the check on the attachement is done if true == czr_fn_opt( 'tc_post_list_use_attachment_as_thumb' )
-    if ( ! czr_fn_has_thumb( $post_id, $custom_thumb_id ) ) {
-      if ( ! $placeholder )
+    if ( !czr_fn_has_thumb( $post_id, $custom_thumb_id ) ) {
+      if ( !$placeholder ) {
         return array();
-      else
-        return array( 'tc_thumb' => czr_fn_get_placeholder_thumb(), 'is_placeholder' => true );
+      } else {
+        CZR_BASE::$cached_thumbnail_models[$cached_index] = array( 'tc_thumb' => czr_fn_get_placeholder_thumb(), 'is_placeholder' => true );
+        return CZR_BASE::$cached_thumbnail_models[$cached_index];
+      }
     }
 
     $tc_thumb_size              = is_null($requested_size) ? apply_filters( 'czr_thumb_size_name' , 'tc-thumb' ) : $requested_size;
-    $post_id                    = is_null($post_id) ? get_the_ID() : $post_id;
 
     $filtered_thumb_size_name   = ! is_null( $filtered_thumb_size_name ) ? $filtered_thumb_size_name : 'tc_thumb_size';
     $_filtered_thumb_size       = apply_filters( $filtered_thumb_size_name, $filtered_thumb_size_name ? CZR___::$instance -> $filtered_thumb_size_name : null );
@@ -1173,9 +1182,10 @@ function czr_fn_get_thumbnail_model( $args = array() ) {
     }
     //used for smart load when enabled
     $tc_thumb = apply_filters( 'czr_thumb_html', $tc_thumb, $requested_size, $post_id, $custom_thumb_id, $_img_attr, $tc_thumb_size );
+    CZR_BASE::$cached_thumbnail_models[$cached_index] = ( isset($tc_thumb) && ! empty($tc_thumb) && false != $tc_thumb ) ? compact( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width", "_thumb_id" ) : array();
 
     return apply_filters( 'czr_get_thumbnail_model',
-      isset($tc_thumb) && ! empty($tc_thumb) && false != $tc_thumb ? compact( "tc_thumb" , "tc_thumb_height" , "tc_thumb_width", "_thumb_id" ) : array(),
+      CZR_BASE::$cached_thumbnail_models[$cached_index],
       $post_id,
       $_thumb_id,
       $enable_wp_responsive_imgs
