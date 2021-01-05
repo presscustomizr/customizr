@@ -29,7 +29,7 @@ if ( !class_exists( 'CZR_resources_fonts' ) ) :
               // fixes https://github.com/presscustomizr/customizr/issues/1835
               // fonts always used must be preloaded. The "crossorigin" param has to be added
               // => this removes Google Speed tests message "preload key requests"
-              // important => the url of the font must be exactly the same as in font awesome stylesheet, including the query param at the end customizr.woff2?128396981
+              // important => the url of the font must be exactly the same as in the stylesheet, including the query param at the end customizr.woff2?128396981
               // note that we could preload all other types available ( eot, woff, ttf, svg )
               // but we focus on preloading woff2 which is the type used by most recent browsers
               // see https://css-tricks.com/snippets/css/using-font-face/
