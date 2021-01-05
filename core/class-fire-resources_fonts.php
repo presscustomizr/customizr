@@ -24,7 +24,24 @@ if ( !class_exists( 'CZR_resources_fonts' ) ) :
               //not ready yet
               //add_filter( 'czr_user_options_style'        , array( $this , 'czr_fn_write_dropcap_inline_css') );
 
+              // January 2021 Better preload implementation
+              // see here https://stackoverflow.com/questions/49268352/preload-font-awesome
+              // fixes https://github.com/presscustomizr/customizr/issues/1835
+              // fonts always used must be preloaded. The "crossorigin" param has to be added
+              // => this removes Google Speed tests message "preload key requests"
+              // important => the url of the font must be exactly the same as in font awesome stylesheet, including the query param at the end customizr.woff2?128396981
+              // note that we could preload all other types available ( eot, woff, ttf, svg )
+              // but we focus on preloading woff2 which is the type used by most recent browsers
+              // see https://css-tricks.com/snippets/css/using-font-face/
+              add_action( 'wp_head'   , array( $this , 'czr_fn_preload_customizr_font') );
+        }
 
+
+        // Hook wp_head
+        function czr_fn_preload_customizr_font() {
+            ?>
+              <link rel="preload" as="font" type="font/woff2" href="<?php echo CZR_BASE_URL .'assets/shared/fonts/customizr/customizr.woff2?128396981'; ?>" crossorigin="anonymous"/>
+            <?php
         }
 
         /**
