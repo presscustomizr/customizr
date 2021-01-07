@@ -13,6 +13,7 @@ global $post;
   czr_fn_render_template( 'content/singular/headings/regular_attachment_image_heading' );
   /* navigation */
   czr_fn_render_template( 'content/singular/navigation/single_attachment_image_navigation' );
+  $caption = czr_fn_get_property( 'attachment_caption' );
   ?>
   <div class="post-entry tc-content-inner">
     <section class="entry-attachment attachment-content" >
@@ -22,7 +23,7 @@ global $post;
             <a href="<?php czr_fn_echo( 'attachment_link_url' ) ?>" class="<?php czr_fn_echo( 'attachment_class' ) ?> bg-link" title="<?php the_title_attribute(); ?>" <?php czr_fn_echo( 'attachment_link_attributes' ) ?>></a>
             <?php echo wp_get_attachment_image( get_the_ID(), czr_fn_get_property( 'attachment_size' ) ) ?>
           </div>
-          <?php if ( $caption = czr_fn_get_property( 'attachment_caption' )  ) :?>
+          <?php if ( !empty($caption) ) :?>
             <figcaption class="wp-caption-text entry-caption">
               <?php echo $caption ?>
             </figcaption>

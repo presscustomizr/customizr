@@ -11,8 +11,9 @@
     <?php // This hook is used to render the following elements(ordered by priorities) :
     // singular thumbnail
     do_action( '__before_regular_heading_title' );
+    $cat = czr_fn_get_property( 'cat_list', 'post_metas' );
     ?>
-    <?php if ( czr_fn_is_registered_or_possible('post_metas') && $cat = czr_fn_get_property( 'cat_list', 'post_metas' ) ) : ?>
+    <?php if ( czr_fn_is_registered_or_possible('post_metas') && !empty($cat) ) : ?>
         <div class="tax__container post-info entry-meta">
           <?php echo $cat ?>
         </div>
@@ -44,15 +45,20 @@
         ?>
           <span class="entry-meta">
         <?php
-            if ( $author = czr_fn_get_property( 'author', 'post_metas' ) )
+            $author = czr_fn_get_property( 'author', 'post_metas' );
+            $date = czr_fn_get_property( 'publication_date', 'post_metas');
+            $up_date = czr_fn_get_property( 'update_date', 'post_metas');
+            if ( !empty($author) ) {
               echo $author;
+            }
 
-            if ( $date = czr_fn_get_property( 'publication_date', 'post_metas') )
-              if ( $author ) : ?><span class="v-separator">|</span><?php endif; echo $date;
+            if ( !empty($date) ) {
+              if ( !empty($author) ) : ?><span class="v-separator">|</span><?php endif; echo $date;
+            }
 
-            if ( $up_date = czr_fn_get_property( 'update_date', 'post_metas') )  {
-              if ( $date ) : ?><span class="v-separator">-</span><?php
-              elseif( $author ) : ?><span class="v-separator">|</span><?php
+            if ( !empty($up_date) )  {
+              if ( !empty($date) ) : ?><span class="v-separator">-</span><?php
+              elseif( !empty($author) ) : ?><span class="v-separator">|</span><?php
               endif;
 
               echo $up_date;
@@ -60,8 +66,9 @@
 
             }
 
-            if ( ( $author || $date || $up_date ) && $comment_info )
+            if ( ( !empty($author) || !empty($date) || !empty($up_date) ) && !empty($comment_info) ) {
               echo '<span class="v-separator">|</span>';
+            }
         ?></span><?php
         endif;
         echo $comment_info;

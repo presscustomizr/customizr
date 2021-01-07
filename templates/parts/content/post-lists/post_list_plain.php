@@ -40,9 +40,10 @@
                 )
               )
             );
+            $cat_list = czr_fn_get_property( 'cat_list' );
           ?>
           <div class="entry-content__wrapper row">
-            <?php if ( $cat_list = czr_fn_get_property( 'cat_list' ) ) : ?>
+            <?php if ( !empty($cat_list) ) : ?>
               <div class="<?php czr_fn_echo( 'cat_list_class' ) ?>">
                 <div class="tax__container entry-meta caps post-info">
                   <?php echo $cat_list ?>
@@ -61,10 +62,11 @@
                     'content_type' => 'full',
                   )
                 )
-              )
+              );
+              $tag_list = czr_fn_get_property( 'tag_list', 'post_metas' );
               ?>
               <div class="row entry-meta justify-content-between align-items-center">
-                <?php  if ( czr_fn_is_registered_or_possible('post_metas') && (bool) $tag_list = czr_fn_get_property( 'tag_list', 'post_metas' ) ) : ?>
+                <?php  if ( czr_fn_is_registered_or_possible('post_metas') && !empty($tag_list) ) : ?>
                     <div class="post-tags col-xs-12 col-sm-auto col-sm">
                       <ul class="tags">
                         <?php echo $tag_list ?>

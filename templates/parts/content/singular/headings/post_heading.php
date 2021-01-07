@@ -17,10 +17,11 @@
                 )
               )
   );
+  $cat = czr_fn_get_property( 'cat_list', 'post_metas', array( 'limit' => '10' ) );
 ?>
   <div class="container header-content">
     <div class="header-content-inner">
-    <?php if ( czr_fn_is_registered_or_possible('post_metas') && $cat = czr_fn_get_property( 'cat_list', 'post_metas', array( 'limit' => '10' ) ) ) : ?>
+    <?php if ( czr_fn_is_registered_or_possible('post_metas') && !empty($cat) ) : ?>
         <div class="entry-meta">
           <div class="tax__container">
             <?php echo $cat ?>
@@ -41,7 +42,7 @@
       <div class="header-content-bottom">
         <div class="post-info">
           <?php
-            if ( $pub_date ) :
+            if ( !empty($pub_date) ) :
           ?>
             <div class="date-info">
               <?php echo $pub_date; ?>
@@ -52,7 +53,7 @@
 
             czr_fn_comment_info( $before = '<div class="comment-info">', $after = '</div>' );
 
-            if ( $author ) : ?>
+            if ( !empty($author) ) : ?>
 
               <div class="author-info">
                 <?php echo $author ?>

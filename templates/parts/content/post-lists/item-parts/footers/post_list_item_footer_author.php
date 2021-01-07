@@ -13,10 +13,10 @@
     $date    = czr_fn_get_property( 'publication_date', 'post_metas', array( 'permalink' => true ) );
     $up_date = czr_fn_get_property( 'update_date', 'post_metas', array( 'permalink' => !$date ) );
 
-    if ( $author || $date || $up_date ) :
+    if ( !empty($date) || !empty($up_date) || !empty($author) ) :
   ?>
     <div class="entry-meta row flex-row align-items-center">
-      <?php if ( $author ) : ?>
+      <?php if ( !empty($author) ) : ?>
         <div class="col-12 col-md-auto">
           <?php czr_fn_render_template( 'content/post-lists/item-parts/authors/author_info_small' ) ?>
         </div>
@@ -24,14 +24,14 @@
 
 
       ?>
-      <?php if ( $date || $up_date ) : ?>
+      <?php if ( !empty($date) || !empty($up_date) ) : ?>
         <div class="col-12 col-md-auto">
           <div class="row">
           <?php
-            if ( $date )
+            if ( !empty($date) )
               echo '<div class="col col-auto">' . $date . '</div>';
 
-            if ( $up_date )
+            if ( !empty($up_date) )
               echo '<div class="col col-auto">' . $up_date . '</div>';
 
           ?>

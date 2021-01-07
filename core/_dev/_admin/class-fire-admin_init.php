@@ -300,7 +300,7 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
 
       }
 
-      if ( $_css )
+      if ( !empty($_css) )
         $init['content_style'] = trim(preg_replace('/\s+/', ' ', $_css ) );
 
       return $init;
