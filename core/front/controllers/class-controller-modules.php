@@ -117,7 +117,7 @@ if ( ! class_exists( 'CZR_controller_modules' ) ) :
 
 
     function czr_fn_display_view_recently_updated() {
-      return 0 != esc_attr( czr_fn_opt( 'tc_post_metas_update_notice_in_title' ) );
+      return czr_fn_is_checked( 'tc_post_metas_update_notice_in_title' );
     }
 
 

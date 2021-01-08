@@ -851,7 +851,7 @@ if ( !class_exists( 'CZR_BASE' ) ) :
         function czr_fn_set_user_defined_settings() {
             $_options = get_option('tc_theme_options');
 
-            if ( isset ( $_options['tc_slider_change_default_img_size'] ) && 0 != esc_attr( $_options['tc_slider_change_default_img_size'] ) && isset ( $_options['tc_slider_default_height'] ) && 500 != esc_attr( $_options['tc_slider_default_height'] ) ) {
+            if ( isset ( $_options['tc_slider_change_default_img_size'] ) && czr_fn_booleanize_checkbox_val( $_options['tc_slider_change_default_img_size'] ) && isset( $_options['tc_slider_default_height'] ) && 500 != esc_attr( $_options['tc_slider_default_height'] ) ) {
                 add_filter( 'tc_slider_full_size'          , array($this,  'czr_fn_set_slider_img_height') );
                 add_filter( 'tc_slider_size'               , array($this,  'czr_fn_set_slider_img_height') );
 
