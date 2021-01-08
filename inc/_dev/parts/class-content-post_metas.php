@@ -41,7 +41,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
             }
           }
           if ( is_singular() && ! is_page() && ! czr_fn__f('__is_home') ) {
-              if ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_single_post' ) ) ) {
+              if ( czr_fn_is_checked( 'tc_show_post_metas_single_post' ) ) {
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
@@ -55,7 +55,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
               return;
           }
           if ( ! is_singular() && ! czr_fn__f('__is_home') && ! is_page() ) {
-              if ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_post_lists' ) ) ) {
+              if ( czr_fn_is_checked( 'tc_show_post_metas_post_lists' ) ) {
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
@@ -69,7 +69,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
               return;
           }
           if ( czr_fn__f('__is_home') ) {
-              if ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_home' ) ) ) {
+              if ( czr_fn_is_checked( 'tc_show_post_metas_home' ) ) {
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
@@ -249,13 +249,13 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @since Customizr 3.2.6
         */
         function czr_fn_set_post_metas_elements( $_default , $_args = array() ) {
-            $_show_cats         = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_categories' ) ) && false != $this -> czr_fn_meta_generate_tax_list( true );
-            $_show_tags         = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_tags' ) ) && false != $this -> czr_fn_meta_generate_tax_list( false );
-            $_show_pub_date     = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_publication_date' ) );
-            $_show_upd_date     = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_update_date' ) ) && false !== czr_fn_post_has_update();
+            $_show_cats         = czr_fn_is_checked( 'tc_show_post_metas_categories' ) && false != $this -> czr_fn_meta_generate_tax_list( true );
+            $_show_tags         = czr_fn_is_checked( 'tc_show_post_metas_tags' ) && false != $this -> czr_fn_meta_generate_tax_list( false );
+            $_show_pub_date     = czr_fn_is_checked( 'tc_show_post_metas_publication_date' );
+            $_show_upd_date     = czr_fn_is_checked( 'tc_show_post_metas_update_date' ) && false !== czr_fn_post_has_update();
             $_show_upd_in_days  = 'days' == esc_attr( czr_fn_opt( 'tc_post_metas_update_date_format' ) );
             $_show_date         = $_show_pub_date || $_show_upd_date;
-            $_show_author       = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_author' ) );
+            $_show_author       = czr_fn_is_checked( 'tc_show_post_metas_author' );
 
             //extract cat_list, tag_list, pub_date, auth, upd_date from $args if not empty
             if ( empty($_args) )

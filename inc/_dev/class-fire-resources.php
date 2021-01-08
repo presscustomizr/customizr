@@ -364,7 +364,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
   	    //holder.js is loaded when featured pages are enabled AND FP are set to show images and at least one holder should be displayed.
         $tc_show_featured_pages 	         = class_exists('CZR_featured_pages') && CZR_featured_pages::$instance -> czr_fn_show_featured_pages();
-      	if ( 0 != $tc_show_featured_pages && $this -> czr_fn_maybe_is_holder_js_required() ) {
+      	if ( (bool)$tc_show_featured_pages && $this -> czr_fn_maybe_is_holder_js_required() ) {
   	    	wp_enqueue_script(
   	    		'holder',
   	    		sprintf( '%1$sassets/front/js/libs/holder.min.js' , TC_BASE_URL ),

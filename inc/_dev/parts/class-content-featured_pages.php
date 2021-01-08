@@ -281,9 +281,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
 
     function czr_fn_show_featured_pages() {
       //gets display fp option
-      $tc_show_featured_pages         = esc_attr( czr_fn_opt( 'tc_show_featured_pages' ) );
-
-      return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && czr_fn__f('__is_home') );
+      return apply_filters( 'tc_show_fp', czr_fn_is_checked( 'tc_show_featured_pages' ) && czr_fn__f('__is_home') );
     }
 
 

@@ -1142,7 +1142,7 @@ class CZR_slider {
 
     //When shall we append custom slider style to the global custom inline stylesheet?
     $_bool = 500 != $_custom_height;
-    $_bool = $_bool && ( czr_fn__f('__is_home') || 0 != esc_attr( czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
+    $_bool = $_bool && ( czr_fn__f('__is_home') || czr_fn_is_checked( 'tc_slider_default_height_apply_all' ) );
 
     if ( ! apply_filters( 'tc_print_slider_inline_css' , $_bool ) )
       return $_css;

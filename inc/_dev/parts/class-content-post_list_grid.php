@@ -983,7 +983,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return  boolean
         */
         private function czr_fn_grid_show_thumb() {
-          return CZR_post_thumbnails::$instance -> czr_fn_has_thumb() && 0 != esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) );
+          return CZR_post_thumbnails::$instance -> czr_fn_has_thumb() && czr_fn_is_checked( 'tc_post_list_show_thumb' );
         }
   }//end of class
 endif;

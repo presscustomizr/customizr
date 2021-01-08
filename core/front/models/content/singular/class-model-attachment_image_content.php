@@ -52,7 +52,7 @@ class CZR_attachment_image_content_model_class extends CZR_Model {
         ) ) );
 
         //did we activate the lighbox in customizer?
-        $lightbox_on = 0 != esc_attr( czr_fn_opt( 'tc_fancybox' ) );
+        $lightbox_on = czr_fn_is_checked( 'tc_fancybox' );
 
         //Attachment image caption
         $attachment_caption = !empty( $post->post_excerpt ) ? $post->post_excerpt : null;

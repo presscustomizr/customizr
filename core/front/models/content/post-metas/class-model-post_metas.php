@@ -4,23 +4,23 @@ class CZR_post_metas_model_class extends CZR_Model {
 
   /* PUBLIC GETTERS */
   public function czr_fn_get_cat_list( $limit = false, $sep = '' ) {
-    return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_categories' ) ) ? $this -> czr_fn_get_meta( 'categories', $limit, $sep ) : '';
+    return czr_fn_is_checked( 'tc_show_post_metas_categories' ) ? $this -> czr_fn_get_meta( 'categories', $limit, $sep ) : '';
   }
 
   public function czr_fn_get_tag_list( $limit = false, $sep = '' ) {
-    return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_tags' ) ) ? $this -> czr_fn_get_meta( 'tags', $limit, $sep ) : '';
+    return czr_fn_is_checked( 'tc_show_post_metas_tags' ) ? $this -> czr_fn_get_meta( 'tags', $limit, $sep ) : '';
   }
 
   public function czr_fn_get_author( $before = null ) {
-    return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author', array( $before ) ) : '';
+    return czr_fn_is_checked( 'tc_show_post_metas_author' ) ? $this -> czr_fn_get_meta( 'author', array( $before ) ) : '';
   }
 
   public function czr_fn_get_author_with_avatar( $before = null ) {
-    return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_author' ) ) ? $this -> czr_fn_get_meta( 'author_with_avatar', array( $before ) ) : '';
+    return czr_fn_is_checked( 'tc_show_post_metas_author' ) ? $this -> czr_fn_get_meta( 'author_with_avatar', array( $before ) ) : '';
   }
 
   public function czr_fn_get_publication_date( $permalink = false, $before = null, $only_text = false ) {
-    return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_publication_date' ) ) ? $this -> czr_fn_get_meta( 'pub_date', array(
+    return czr_fn_is_checked( 'tc_show_post_metas_publication_date' ) ? $this -> czr_fn_get_meta( 'pub_date', array(
         '',
         $permalink,
         $before,
@@ -29,9 +29,7 @@ class CZR_post_metas_model_class extends CZR_Model {
 
 
   public function czr_fn_get_update_date( $permalink = false, $before = null, $only_text = false ) {
-    return 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_update_date' ) ) &&
-           false !== czr_fn_post_has_update() ?
-                $this -> czr_fn_get_meta( 'up_date', array( '', $permalink, $before, $only_text ) ) : '';
+    return ( czr_fn_is_checked( 'tc_show_post_metas_update_date' ) && false !== czr_fn_post_has_update() ) ? $this -> czr_fn_get_meta( 'up_date', array( '', $permalink, $before, $only_text ) ) : '';
   }
 
   public function czr_fn_get_attachment_image_info( $permalink = false, $before = null ) {

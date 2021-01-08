@@ -17,7 +17,7 @@ class CZR_post_list_plain_model_class extends CZR_Model {
       'excerpt_length'            => esc_attr( czr_fn_opt( 'tc_post_list_excerpt_length' ) ),
       'show_full_content'         => true, //false for post list plain excerpt
       'contained'                 => false,
-      'split_layout'              => true,//0 != esc_attr( czr_fn_opt( 'tc_post_list_plain_split_layout' ) ), //whether display TAX | CONTENT (horiz) or TAX/CONTENT (vertical)
+      'split_layout'              => true,// czr_fn_is_checked( 'tc_post_list_plain_split_layout' ), //whether display TAX | CONTENT (horiz) or TAX/CONTENT (vertical)
       'wrapped'                   => true,
     );
 

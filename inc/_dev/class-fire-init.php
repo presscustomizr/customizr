@@ -168,13 +168,13 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_set_body_classes( $_classes ) {
-          if ( 0 != esc_attr( czr_fn_opt( 'tc_link_hover_effect' ) ) )
+          if ( czr_fn_is_checked( 'tc_link_hover_effect' ) )
             array_push( $_classes, 'tc-fade-hover-links' );
           if ( czr_fn_is_customizing() )
             array_push( $_classes, 'is-customizing' );
           if ( wp_is_mobile() )
             array_push( $_classes, 'tc-is-mobile' );
-          if ( 0 != esc_attr( czr_fn_opt( 'tc_enable_dropcap' ) ) )
+          if ( czr_fn_is_checked( 'tc_enable_dropcap' ) )
             array_push( $_classes, esc_attr( czr_fn_opt( 'tc_dropcap_design' ) ) );
 
           //adds the layout

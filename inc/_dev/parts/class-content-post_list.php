@@ -152,7 +152,7 @@ class CZR_post_list {
         array(
           $this -> czr_fn_show_excerpt(),
           CZR_post_thumbnails::$instance -> czr_fn_has_thumb(),
-          0 != esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) )
+          czr_fn_is_checked( 'tc_post_list_show_thumb' )
         )
       )
     );

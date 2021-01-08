@@ -147,8 +147,8 @@ class CZR_header_model_class extends CZR_Model {
     /* Sticky header treatment */
     //Classes added here to the header will be the used in CSS and JS to obtain the desired style/effect
     array_push( $element_class,
-        0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') ) ? 'sticky-brand-shrink-on' : '',
-        0 != esc_attr( czr_fn_opt( 'tc_sticky_transparent_on_scroll') ) ? 'sticky-transparent' : ''
+        czr_fn_is_checked( 'tc_sticky_shrink_title_logo' ) ? 'sticky-brand-shrink-on' : '',
+        czr_fn_is_checked( 'tc_sticky_transparent_on_scroll' ) ? 'sticky-transparent' : ''
     );
 
     /*
@@ -242,15 +242,15 @@ class CZR_header_model_class extends CZR_Model {
     }
 
     /* Submenus effect */
-    if ( 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_fade_effect' ) ) ) {
+    if ( czr_fn_is_checked( 'tc_menu_submenu_fade_effect' ) ) {
       $element_class[] = 'czr-submenu-fade';
     }
 
-    if ( 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_item_move_effect' ) ) ) {
+    if ( czr_fn_is_checked( 'tc_menu_submenu_item_move_effect' ) ) {
       $element_class[] = 'czr-submenu-move';
     }
 
-    if ( 0 != esc_attr( czr_fn_opt( 'tc_highlight_contextually_active_menu_items' ) ) ) {
+    if ( czr_fn_is_checked( 'tc_highlight_contextually_active_menu_items' ) ) {
       $element_class[] = 'czr-highlight-contextual-menu-items';
     }
 

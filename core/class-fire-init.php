@@ -146,7 +146,7 @@ if ( !class_exists( 'CZR_init' ) ) :
 
           $_classes = is_array( $_classes ) ? $_classes : array();
 
-          $_classes[] = 0 != esc_attr( czr_fn_opt( 'tc_link_hover_effect' ) ) ? 'czr-link-hover-underline' : 'czr-link-hover-underline-off';
+          $_classes[] = czr_fn_is_checked('tc_link_hover_effect' ) ? 'czr-link-hover-underline' : 'czr-link-hover-underline-off';
 
           if ( czr_fn_is_customizing() )
             $_classes[] = 'is-customizing';

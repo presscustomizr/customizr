@@ -489,7 +489,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 	    }
 
       //STICKY HEADER
-	    if ( 0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') ) || czr_fn_is_customizing() ) {
+	    if ( czr_fn_is_checked( 'tc_sticky_shrink_title_logo' ) || czr_fn_is_customizing() ) {
 	    	$_logo_shrink 	= implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") )	);
 
 	    	$_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
@@ -578,11 +578,11 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 			if ( ! is_array($_classes) )
 				return $_classes;
 
-			$_show_tagline 			= 0 != esc_attr( czr_fn_opt( 'tc_sticky_show_tagline') );
-      $_show_title_logo 		= 0 != esc_attr( czr_fn_opt( 'tc_sticky_show_title_logo') );
+			$_show_tagline 			= czr_fn_is_checked( 'tc_sticky_show_tagline' );
+      $_show_title_logo 		= czr_fn_is_checked( 'tc_sticky_show_title_logo' );
       $_use_sticky_logo 		= $this -> czr_fn_use_sticky_logo();
-			$_shrink_title_logo 	= 0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') );
-			$_show_menu 			  = 0 != esc_attr( czr_fn_opt( 'tc_sticky_show_menu') );
+			$_shrink_title_logo 	= czr_fn_is_checked( 'tc_sticky_shrink_title_logo' );
+			$_show_menu 			  = czr_fn_is_checked( 'tc_sticky_show_menu' );
 			$_header_layout 		= "logo-" . esc_attr( czr_fn_opt( 'tc_header_layout' ) );
 			$_add_classes 			= array(
 				$_show_tagline ? 'tc-tagline-on' : 'tc-tagline-off',

@@ -169,13 +169,13 @@ if ( ! class_exists( 'CZR_controller_content' ) ) :
 
 
       elseif ( is_singular() && ! is_page() && ! czr_fn_is_real_home() )
-        $post_metas = ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_single_post' ) ) );
+        $post_metas = ( czr_fn_is_checked( 'tc_show_post_metas_single_post' ) );
 
       elseif ( ! is_singular() && ! czr_fn_is_real_home() && ! is_page() )
-        $post_metas = ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_post_lists' ) ) );
+        $post_metas = ( czr_fn_is_checked( 'tc_show_post_metas_post_lists' ) );
 
       elseif ( czr_fn_is_real_home() )
-        $post_metas = ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_home' ) ) );
+        $post_metas = ( czr_fn_is_checked( 'tc_show_post_metas_home' ) );
       else
         $post_metas = false;
 
