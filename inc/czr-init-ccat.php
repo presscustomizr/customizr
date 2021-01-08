@@ -254,8 +254,7 @@ if ( ! class_exists( 'CZR___' ) ) :
   }//end of class
 endif;
 
-?>
-<?php
+?><?php
 /**
 * Declares Customizr default settings
 * Adds theme supports using WP functions
@@ -425,13 +424,13 @@ if ( ! class_exists( 'CZR_init' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_set_body_classes( $_classes ) {
-          if ( 0 != esc_attr( czr_fn_opt( 'tc_link_hover_effect' ) ) )
+          if ( czr_fn_is_checked( 'tc_link_hover_effect' ) )
             array_push( $_classes, 'tc-fade-hover-links' );
           if ( czr_fn_is_customizing() )
             array_push( $_classes, 'is-customizing' );
           if ( wp_is_mobile() )
             array_push( $_classes, 'tc-is-mobile' );
-          if ( 0 != esc_attr( czr_fn_opt( 'tc_enable_dropcap' ) ) )
+          if ( czr_fn_is_checked( 'tc_enable_dropcap' ) )
             array_push( $_classes, esc_attr( czr_fn_opt( 'tc_dropcap_design' ) ) );
 
           //adds the layout
@@ -4293,7 +4292,7 @@ if ( ! class_exists( 'CZR_resources' ) ) :
 
   	    //holder.js is loaded when featured pages are enabled AND FP are set to show images and at least one holder should be displayed.
         $tc_show_featured_pages 	         = class_exists('CZR_featured_pages') && CZR_featured_pages::$instance -> czr_fn_show_featured_pages();
-      	if ( 0 != $tc_show_featured_pages && $this -> czr_fn_maybe_is_holder_js_required() ) {
+      	if ( (bool)$tc_show_featured_pages && $this -> czr_fn_maybe_is_holder_js_required() ) {
   	    	wp_enqueue_script(
   	    		'holder',
   	    		sprintf( '%1$sassets/front/js/libs/holder.min.js' , TC_BASE_URL ),

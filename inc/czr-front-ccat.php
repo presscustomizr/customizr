@@ -489,7 +489,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 	    }
 
       //STICKY HEADER
-	    if ( 0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') ) || czr_fn_is_customizing() ) {
+	    if ( czr_fn_is_checked( 'tc_sticky_shrink_title_logo' ) || czr_fn_is_customizing() ) {
 	    	$_logo_shrink 	= implode (';' , apply_filters('tc_logo_shrink_css' , array("height:30px!important","width:auto!important") )	);
 
 	    	$_title_font 	= implode (';' , apply_filters('tc_title_shrink_css' , array("font-size:0.6em","opacity:0.8","line-height:1.2em") ) );
@@ -578,11 +578,11 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 			if ( ! is_array($_classes) )
 				return $_classes;
 
-			$_show_tagline 			= 0 != esc_attr( czr_fn_opt( 'tc_sticky_show_tagline') );
-      $_show_title_logo 		= 0 != esc_attr( czr_fn_opt( 'tc_sticky_show_title_logo') );
+			$_show_tagline 			= czr_fn_is_checked( 'tc_sticky_show_tagline' );
+      $_show_title_logo 		= czr_fn_is_checked( 'tc_sticky_show_title_logo' );
       $_use_sticky_logo 		= $this -> czr_fn_use_sticky_logo();
-			$_shrink_title_logo 	= 0 != esc_attr( czr_fn_opt( 'tc_sticky_shrink_title_logo') );
-			$_show_menu 			  = 0 != esc_attr( czr_fn_opt( 'tc_sticky_show_menu') );
+			$_shrink_title_logo 	= czr_fn_is_checked( 'tc_sticky_shrink_title_logo' );
+			$_show_menu 			  = czr_fn_is_checked( 'tc_sticky_show_menu' );
 			$_header_layout 		= "logo-" . esc_attr( czr_fn_opt( 'tc_header_layout' ) );
 			$_add_classes 			= array(
 				$_show_tagline ? 'tc-tagline-on' : 'tc-tagline-off',
@@ -968,8 +968,8 @@ if ( ! class_exists( 'CZR_menu' ) ) :
     * @since Customizr 3.2.0
     */
     function czr_fn_set_menu_style_options( $_classes ) {
-      $_classes = ( ! wp_is_mobile() && 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_fade_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-fade' ) ) : $_classes;
-      $_classes = ( 0 != esc_attr( czr_fn_opt( 'tc_menu_submenu_item_move_effect') ) ) ? array_merge( $_classes, array( 'tc-submenu-move' ) ) : $_classes;
+      $_classes = ( ! wp_is_mobile() && czr_fn_is_checked( 'tc_menu_submenu_fade_effect' ) ) ? array_merge( $_classes, array( 'tc-submenu-fade' ) ) : $_classes;
+      $_classes = czr_fn_is_checked( 'tc_menu_submenu_item_move_effect' ) ? array_merge( $_classes, array( 'tc-submenu-move' ) ) : $_classes;
       $_classes = ( ! wp_is_mobile() && 'hover' == esc_attr( czr_fn_opt( 'tc_menu_type' ) ) ) ? array_merge( $_classes, array( 'tc-open-on-hover' ) ) : array_merge( $_classes, array( 'tc-open-on-click' ) );
 
       //Navbar menus positions (not sidenav)
@@ -3655,9 +3655,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
 
     function czr_fn_show_featured_pages() {
       //gets display fp option
-      $tc_show_featured_pages         = esc_attr( czr_fn_opt( 'tc_show_featured_pages' ) );
-
-      return apply_filters( 'tc_show_fp', 0 != $tc_show_featured_pages && czr_fn__f('__is_home') );
+      return apply_filters( 'tc_show_fp', czr_fn_is_checked( 'tc_show_featured_pages' ) && czr_fn__f('__is_home') );
     }
 
 
@@ -5030,7 +5028,7 @@ class CZR_post_list {
         array(
           $this -> czr_fn_show_excerpt(),
           CZR_post_thumbnails::$instance -> czr_fn_has_thumb(),
-          0 != esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) )
+          czr_fn_is_checked( 'tc_post_list_show_thumb' )
         )
       )
     );
@@ -6323,7 +6321,7 @@ if ( ! class_exists( 'CZR_post_list_grid' ) ) :
         * @return  boolean
         */
         private function czr_fn_grid_show_thumb() {
-          return CZR_post_thumbnails::$instance -> czr_fn_has_thumb() && 0 != esc_attr( czr_fn_opt( 'tc_post_list_show_thumb' ) );
+          return CZR_post_thumbnails::$instance -> czr_fn_has_thumb() && czr_fn_is_checked( 'tc_post_list_show_thumb' );
         }
   }//end of class
 endif;
@@ -6371,7 +6369,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
             }
           }
           if ( is_singular() && ! is_page() && ! czr_fn__f('__is_home') ) {
-              if ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_single_post' ) ) ) {
+              if ( czr_fn_is_checked( 'tc_show_post_metas_single_post' ) ) {
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
@@ -6385,7 +6383,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
               return;
           }
           if ( ! is_singular() && ! czr_fn__f('__is_home') && ! is_page() ) {
-              if ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_post_lists' ) ) ) {
+              if ( czr_fn_is_checked( 'tc_show_post_metas_post_lists' ) ) {
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
@@ -6399,7 +6397,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
               return;
           }
           if ( czr_fn__f('__is_home') ) {
-              if ( 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_home' ) ) ) {
+              if ( czr_fn_is_checked( 'tc_show_post_metas_home' ) ) {
                   add_filter( 'tc_show_post_metas' , '__return_true' );
                   return;
               }
@@ -6579,13 +6577,13 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         * @since Customizr 3.2.6
         */
         function czr_fn_set_post_metas_elements( $_default , $_args = array() ) {
-            $_show_cats         = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_categories' ) ) && false != $this -> czr_fn_meta_generate_tax_list( true );
-            $_show_tags         = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_tags' ) ) && false != $this -> czr_fn_meta_generate_tax_list( false );
-            $_show_pub_date     = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_publication_date' ) );
-            $_show_upd_date     = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_update_date' ) ) && false !== czr_fn_post_has_update();
+            $_show_cats         = czr_fn_is_checked( 'tc_show_post_metas_categories' ) && false != $this -> czr_fn_meta_generate_tax_list( true );
+            $_show_tags         = czr_fn_is_checked( 'tc_show_post_metas_tags' ) && false != $this -> czr_fn_meta_generate_tax_list( false );
+            $_show_pub_date     = czr_fn_is_checked( 'tc_show_post_metas_publication_date' );
+            $_show_upd_date     = czr_fn_is_checked( 'tc_show_post_metas_update_date' ) && false !== czr_fn_post_has_update();
             $_show_upd_in_days  = 'days' == esc_attr( czr_fn_opt( 'tc_post_metas_update_date_format' ) );
             $_show_date         = $_show_pub_date || $_show_upd_date;
-            $_show_author       = 0 != esc_attr( czr_fn_opt( 'tc_show_post_metas_author' ) );
+            $_show_author       = czr_fn_is_checked( 'tc_show_post_metas_author' );
 
             //extract cat_list, tag_list, pub_date, auth, upd_date from $args if not empty
             if ( empty($_args) )
@@ -7219,8 +7217,7 @@ if ( ! class_exists( 'CZR_post_navigation' ) ) :
   }//end of class
 endif;
 
-?>
-<?php
+?><?php
 /**
 * Posts thumbnails actions
 *
@@ -7410,7 +7407,7 @@ class CZR_post_thumbnails {
       //define a filtrable boolean to set if attached images can be used as thumbnails
       //1) must be a non single and non page post context
       //2) user option should be checked in customizer
-      $_bool = 0 != esc_attr( czr_fn_opt( 'tc_post_list_use_attachment_as_thumb' ) );
+      $_bool = czr_fn_is_checked( 'tc_post_list_use_attachment_as_thumb' );
       if ( ! is_admin() ) {
         $_bool = !CZR_post::$instance -> czr_fn_single_post_display_controller() && $_bool;
         $_bool = !CZR_page::$instance -> czr_fn_page_display_controller() && $_bool;
@@ -8867,7 +8864,7 @@ class CZR_slider {
 
     //When shall we append custom slider style to the global custom inline stylesheet?
     $_bool = 500 != $_custom_height;
-    $_bool = $_bool && ( czr_fn__f('__is_home') || 0 != esc_attr( czr_fn_opt( 'tc_slider_default_height_apply_all') ) );
+    $_bool = $_bool && ( czr_fn__f('__is_home') || czr_fn_is_checked( 'tc_slider_default_height_apply_all' ) );
 
     if ( ! apply_filters( 'tc_print_slider_inline_css' , $_bool ) )
       return $_css;
