@@ -181,7 +181,7 @@ if ( !class_exists( 'CZR___' ) ) :
             // control the display of the update notification for a list of versions
             // typically useful when several versions are released in a short time interval
             // to avoid hammering the wp admin dashboard with a new admin notice each time
-            $this->_hide_update_notification_for_versions = array('4.1.41');
+            $this->_hide_update_notification_for_versions = array('4.4.2');
             if( !defined( 'DISPLAY_UPDATE_NOTIFICATION' ) ) {
                 define( 'DISPLAY_UPDATE_NOTIFICATION' , !in_array( CUSTOMIZR_VER, $this->_hide_update_notification_for_versions ) );
             }
