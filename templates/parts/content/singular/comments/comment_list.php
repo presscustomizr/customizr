@@ -25,7 +25,18 @@
   <?php endif ?>
 </ul>
 <div id="comments" class="tab-content">
-  <?php if ( ! empty( $wp_query->comments_by_type['comment'] ) ) : ?>
+  <?php if ( defined('ELEMENTOR_VERSION') ) : ?>
+    <div id="commentlist-container" class="tab-pane comments active" role="tabpanel">
+      <ul class="comment-list">
+        <?php
+
+        /* Comments list */
+        wp_list_comments( array_merge( czr_fn_get_property( 'comment_args' ),  array( 'type' => 'comment' ) ) );
+
+        ?>
+      </ul>
+    </div>
+  <?php elseif ( !empty( $wp_query->comments_by_type['comment'] ) ) : ?>
     <div id="commentlist-container" class="tab-pane comments active" role="tabpanel">
       <ul class="comment-list">
         <?php
