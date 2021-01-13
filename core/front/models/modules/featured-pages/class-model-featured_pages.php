@@ -101,13 +101,15 @@ class CZR_featured_pages_model_class extends CZR_Model {
   function czr_fn_get_the_featured_pages( $fp_nb, $fp_ids, $show_thumb ) {
         $featured_pages = array();
 
-        foreach ( range(0, $fp_nb - 1 ) as $fp_id )
+        add_filter( 'czr_fp_text', 'do_shortcode' );
+        foreach ( range(0, $fp_nb - 1 ) as $fp_id ) {
           $featured_pages[ $fp_id + 1 ] = $this -> czr_fn_get_single_fp_model(
             $fp_ids[$fp_id],
             $show_thumb,
             $fp_id + 1
           );
-
+        }
+        remove_filter( 'czr_fp_text', 'do_shortcode' );
         return $featured_pages;
   }
 
