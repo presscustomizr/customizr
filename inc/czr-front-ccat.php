@@ -3429,6 +3429,8 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       //force first attachments as thumb in static front page
       //see: https://github.com/presscustomizr/customizr/issues/936
       add_filter( 'tc_use_attachment_as_thumb', '__return_true', 100 );
+
+      add_filter( 'tc_fp_text', 'do_shortcode' );
       ?>
 
       <?php ob_start(); ?>
@@ -3468,7 +3470,7 @@ if ( ! class_exists( 'CZR_featured_pages' ) ) :
       //remove forcing first attachments as thumb in static front page
       //see: https://github.com/presscustomizr/customizr/issues/936
       remove_filter( 'tc_use_attachment_as_thumb', '__return_true', 100 );
-
+      remove_filter( 'tc_fp_text', 'do_shortcode' );
       echo apply_filters( 'tc_fp_block_display' , $html, $args );
      }
 
