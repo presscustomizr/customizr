@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.4.3-beta\n"
+"Project-Id-Version: * Customizr v4.4.3\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2021-01-13 21:07:36+00:00\n"
+"POT-Creation-Date: 2021-01-17 08:36:50+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:07+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Wee Sritippho <weeaix@gmail.com>\n"
@@ -4605,28 +4605,28 @@ msgstr "ความเห็นของคุณอยู่ระหว่า
 #: build/free/customizr/inc/czr-front-ccat.php:3098
 #: build/free/customizr/templates/parts/content/singular/comments/comment_list.php:66
 #: inc/_dev/parts/class-content-comments.php:237 inc/czr-front-ccat.php:3098
-#: templates/parts/content/singular/comments/comment_list.php:66
+#: templates/parts/content/singular/comments/comment_list.php:77
 msgid "Comment navigation"
 msgstr "การนำทางความเห็น"
 
 #: build/free/customizr/inc/czr-front-ccat.php:3104
 #: build/free/customizr/templates/parts/content/singular/comments/comment_list.php:72
 #: inc/_dev/parts/class-content-comments.php:243 inc/czr-front-ccat.php:3104
-#: templates/parts/content/singular/comments/comment_list.php:72
+#: templates/parts/content/singular/comments/comment_list.php:83
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr "<span class=\"meta-nav\">&larr;</span> ความเห็นที่เก่ากว่า"
 
 #: build/free/customizr/inc/czr-front-ccat.php:3112
 #: build/free/customizr/templates/parts/content/singular/comments/comment_list.php:80
 #: inc/_dev/parts/class-content-comments.php:251 inc/czr-front-ccat.php:3112
-#: templates/parts/content/singular/comments/comment_list.php:80
+#: templates/parts/content/singular/comments/comment_list.php:91
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr "ความเห็นที่ใหม่กว่า <span class=\"meta-nav\">&rarr;</span>"
 
 #: build/free/customizr/inc/czr-front-ccat.php:3144
 #: build/free/customizr/templates/parts/content/singular/comments/comment_list.php:89
 #: inc/_dev/parts/class-content-comments.php:283 inc/czr-front-ccat.php:3144
-#: templates/parts/content/singular/comments/comment_list.php:89
+#: templates/parts/content/singular/comments/comment_list.php:100
 msgid "Comments are closed."
 msgstr "ปิดการแสดงความเห็น"
 
