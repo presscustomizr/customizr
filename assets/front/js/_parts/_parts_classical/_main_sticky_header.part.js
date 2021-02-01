@@ -168,13 +168,15 @@ var czrapp = czrapp || {};
                 //make sure custom offset are set and numbers
                 var initialOffset   = 0,
                     that            = this,
-                    customOffset    = +this._get_custom_offset( that.isHeaderSticky() ? '_scrolling' : '_initial' );
+                    customOffset    = +this._get_custom_offset( that.isHeaderSticky() ? '_scrolling' : '_initial' ),
+                    adminBarHeight  = czrapp.$_wpadminbar.length > 0 ? czrapp.$_wpadminbar.height() : 0;
 
-                if ( 1 == this.isUserLogged() && ! this._isCustomizing() ) {
-                      if ( 580 < czrapp.$_window.width() )
-                        initialOffset = czrapp.$_wpadminbar.height();
-                      else
-                        initialOffset = ! this.isHeaderSticky() ? czrapp.$_wpadminbar.height() : 0;
+                if ( 1 == this.isUserLogged() && !this._isCustomizing() ) {
+                      if ( 580 < czrapp.$_window.width() ) {
+                              initialOffset = adminBarHeight;
+                      } else {
+                              initialOffset = ! this.isHeaderSticky() ? adminBarHeight : 0;
+                      }
                 }
                 return initialOffset + customOffset ;
           },
