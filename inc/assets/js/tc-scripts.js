@@ -5572,13 +5572,15 @@ var czrapp = czrapp || {};
           _get_top_offset : function() {
                 var initialOffset   = 0,
                     that            = this,
-                    customOffset    = +this._get_custom_offset( that.isHeaderSticky() ? '_scrolling' : '_initial' );
+                    customOffset    = +this._get_custom_offset( that.isHeaderSticky() ? '_scrolling' : '_initial' ),
+                    adminBarHeight  = czrapp.$_wpadminbar.length > 0 ? czrapp.$_wpadminbar.height() : 0;
 
-                if ( 1 == this.isUserLogged() && ! this._isCustomizing() ) {
-                      if ( 580 < czrapp.$_window.width() )
-                        initialOffset = czrapp.$_wpadminbar.height();
-                      else
-                        initialOffset = ! this.isHeaderSticky() ? czrapp.$_wpadminbar.height() : 0;
+                if ( 1 == this.isUserLogged() && !this._isCustomizing() ) {
+                      if ( 580 < czrapp.$_window.width() ) {
+                              initialOffset = adminBarHeight;
+                      } else {
+                              initialOffset = ! this.isHeaderSticky() ? adminBarHeight : 0;
+                      }
                 }
                 return initialOffset + customOffset ;
           },
@@ -6140,11 +6142,15 @@ var czrapp = czrapp || {};
                 }
           });
           if ( pluginCompatParams.optimizepress_compat && pluginCompatParams.optimizepress_compat.remove_fancybox_loading ) {
-                  var opjq = opjq || 'undefined';
-                  if ( ! _.isUndefined( opjq ) ) {
-                      opjq(document).ready( function() {
-                          opjq('#fancybox-loading').remove();
-                      } );
+                var opjq = window.opjq || 'undefined';
+                if ( !_.isUndefined( opjq ) && _.isFunction(opjq) ) {
+                    try {
+                        opjq(document).ready( function() {
+                            opjq('#fancybox-loading').remove();
+                        });
+                    } catch (error) {
+                        console.log('Optimize Press => error', error );
+                    } 
                 }
           }
     };

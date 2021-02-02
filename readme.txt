@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.6
-Stable tag: 4.4.3
+Stable tag: 4.4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,12 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
+= 4.4.4 February 2nd, 2021 =
+* fixed : Conflict with OptimizePress3
+* fixed : [header] top offset issue when user logged in. fixes #1888
+* updated : Font Awesome icons to latest version (v5.15.2)
+* added : [social links] added Tiktok icon
+
 = 4.4.3 January 17th, 2021 =
 * fixed : [PHP 8] error Uncaught ValueError: Unknown format specifier “;” in core/czr-customize-ccat.php:966
 * added : [social links] mastodon icon
