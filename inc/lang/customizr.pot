@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v2.0 or later.=!>
 msgid ""
 msgstr ""
-"Project-Id-Version: Customizr 4.4.4\n"
+"Project-Id-Version: Customizr 4.4.5\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2021-02-02 14:06:04+00:00\n"
+"POT-Creation-Date: 2021-03-30 15:50:58+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -941,17 +941,17 @@ msgid ""
 "with Customizr and any WordPress theme."
 msgstr ""
 
-#: core/class-plugin-rec.php:90
+#: core/class-plugin-rec.php:92
 msgid ""
 "Customizr theme recommends the simple and smart %1$s companion ( free 😍 ) "
 "to help you build pages %2$s."
 msgstr ""
 
-#: core/class-plugin-rec.php:93
+#: core/class-plugin-rec.php:95
 msgid "Nimble Builder"
 msgstr ""
 
-#: core/class-plugin-rec.php:96
+#: core/class-plugin-rec.php:98
 msgid "like this"
 msgstr ""
 
