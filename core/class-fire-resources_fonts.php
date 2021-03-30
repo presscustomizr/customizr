@@ -122,7 +122,6 @@ if ( !class_exists( 'CZR_resources_fonts' ) ) :
     function czr_fn_write_fonts_inline_css( $_css = null , $_context = null ) {
       $_css               = isset($_css) ? $_css : '';
       $_font_pair         = esc_attr( czr_fn_opt( 'tc_fonts' ) );
-      $_body_font_size    = esc_attr( czr_fn_opt( 'tc_body_font_size' ) );
       $_font_selectors    = CZR_init::$instance->font_selectors;
 
       //create the $body and $titles vars
@@ -181,9 +180,9 @@ if ( !class_exists( 'CZR_resources_fonts' ) ) :
       * invoked in CZR_admin_init::czr_fn_user_defined_tinymce_css
       * @see https://github.com/presscustomizr/customizr/issues/1781
       */
-
-      if ( 15 != $_body_font_size && is_null( $_context ) ) {
-
+      $_body_font_size = (int)esc_attr( czr_fn_opt( 'tc_body_font_size' ) );//<= cast to an int for #1892
+      $_body_font_size = ( empty( $_body_font_size ) || !$_body_font_size ) ? 15 : $_body_font_size;
+      if ( 15 !== $_body_font_size && is_null( $_context ) ) {
           $_line_height = apply_filters('czr_body_line_height_ratio', 1.5 );
           if ( !czr_fn_is_checked( 'tc_ms_respond_css' ) ) {
             //turn into rem
