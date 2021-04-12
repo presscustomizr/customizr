@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.7
-Stable tag: 4.4.5
+Stable tag: 4.4.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,10 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
+
+= 4.4.6 April 12th, 2021 =
+* fixed : [WooCommerce] checkboxes on checkout page can be broken when Font Awesome icons are not loaded. fixes #1896
+
 = 4.4.5 March 30th, 2021 =
 * fixed : [header] when centered on desktop, the site title stays left aligned. fixes #1893
 * fixed : [PHP] error when global font-size left blank. "Unsupported operand types: string / int". fixes #1892
