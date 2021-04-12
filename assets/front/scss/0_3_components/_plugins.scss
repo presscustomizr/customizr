@@ -200,11 +200,12 @@
 .select2-hidden-accessible {
   min-width: 0;
 }
+
 //woocommerce forms can use themeform style
-.variations_form.cart,
-.woocommerce-checkout {
-  @extend .themeform
-}
+// .variations_form.cart,
+// .woocommerce-checkout {
+//   @extend .themeform
+// }
 
 
 //table
