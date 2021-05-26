@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: * Customizr v4.4.6\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2021-03-30 15:50:58+00:00\n"
+"POT-Creation-Date: 2021-05-26 20:25:42+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:04+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -337,7 +337,7 @@ msgstr ""
 #: core/_dev/_czr/class-czr-resources.php:221
 #: core/_dev/_czr/class-czr-resources.php:231 core/czr-admin-ccat.php:2432
 #: core/czr-base-fmk/czr-base-fmk.php:268
-#: core/czr-base-fmk/czr-base-fmk.php:570 core/czr-customize-ccat.php:856
+#: core/czr-base-fmk/czr-base-fmk.php:567 core/czr-customize-ccat.php:856
 #: core/czr-customize-ccat.php:866
 #: core/front/models/modules/common/class-model-breadcrumb.php:624
 #: core/front/models/modules/common/class-model-breadcrumb.php:657
@@ -698,7 +698,7 @@ msgstr "업로드"
 
 #: core/_dev/_czr/controls/class-upload-control.php:68
 #: core/czr-base-fmk/czr-base-fmk.php:280
-#: core/czr-base-fmk/czr-base-fmk.php:570 core/czr-customize-ccat.php:1479
+#: core/czr-base-fmk/czr-base-fmk.php:567 core/czr-customize-ccat.php:1479
 msgid "Remove"
 msgstr "삭제"
 
@@ -1821,12 +1821,12 @@ msgid "in ms : 1000ms = 1s"
 msgstr "기준 : ms(1000ms = 1s)"
 
 #: core/core-settings-map.php:1256 core/core-settings-map.php:1268
-#: core/czr-base-fmk/czr-base-fmk.php:579
+#: core/czr-base-fmk/czr-base-fmk.php:576
 msgid "Yes"
 msgstr ""
 
 #: core/core-settings-map.php:1257 core/core-settings-map.php:1269
-#: core/czr-base-fmk/czr-base-fmk.php:579
+#: core/czr-base-fmk/czr-base-fmk.php:576
 #: inc/_dev/parts/class-content-headings.php:329 inc/czr-front-ccat.php:4084
 msgid "No"
 msgstr "아니오"
@@ -2942,43 +2942,43 @@ msgstr "슬라이더 선택"
 msgid "Customizing"
 msgstr "사용자정의 CSS"
 
-#: core/czr-base-fmk/czr-base-fmk.php:480
+#: core/czr-base-fmk/czr-base-fmk.php:477
 msgid "ac_set_ajax_czr_tmpl => Security check failed."
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:552
+#: core/czr-base-fmk/czr-base-fmk.php:549
 msgid "Add New"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:557
+#: core/czr-base-fmk/czr-base-fmk.php:554
 msgid "Cancel"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:557
+#: core/czr-base-fmk/czr-base-fmk.php:554
 #, fuzzy
 msgid "Add it"
 msgstr "Gérer les widgets"
 
-#: core/czr-base-fmk/czr-base-fmk.php:578
+#: core/czr-base-fmk/czr-base-fmk.php:575
 msgid "Are you sure you want to remove : <strong>{{ data.title }} ?</strong>"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1694
+#: core/czr-base-fmk/czr-base-fmk.php:1691
 msgid "Set a custom url"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1728
-#: core/czr-base-fmk/czr-base-fmk.php:1928
+#: core/czr-base-fmk/czr-base-fmk.php:1725
+#: core/czr-base-fmk/czr-base-fmk.php:1925
 msgid "ajax_load_available_items => Security check failed."
 msgstr ""
 
 #. translators: %d: ID of a post
-#: core/czr-base-fmk/czr-base-fmk.php:1849
-#: core/czr-base-fmk/czr-base-fmk.php:2058
+#: core/czr-base-fmk/czr-base-fmk.php:1846
+#: core/czr-base-fmk/czr-base-fmk.php:2055
 msgid "#%d (no title)"
 msgstr ""
 
-#: core/czr-base-fmk/czr-base-fmk.php:1992
+#: core/czr-base-fmk/czr-base-fmk.php:1989
 #, fuzzy
 msgid "No results found."
 msgstr "Rechercher dans les diapositives"
