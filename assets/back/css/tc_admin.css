@@ -250,6 +250,7 @@ credits : Gutenberg team @wordpress */
     padding: 0;
     z-index: 1;
 }
+
 .czr-toggle-check input[type=checkbox]:checked:before {
     content: "\f147";
     margin: -3px 0 0 -4px;
@@ -263,7 +264,9 @@ credits : Gutenberg team @wordpress */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
+.czr-toggle-check input[type=checkbox]:focus {
+  opacity: 1;
+}
 .czr-toggle-check .czr-toggle-check__track {
     content: "";
     display: inline-block;
