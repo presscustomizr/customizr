@@ -211,7 +211,7 @@ if ( !class_exists( 'CZR_init' ) ) :
 
 
       function czr_fn_base_customizr_setup() {
-          add_theme_support( 'html5', array( 'comment-form', 'caption' ) );
+          add_theme_support( 'html5', array( 'comment-form', 'caption', 'script', 'style' ) );
           // gutenberg alignwide/full cover images.
           add_theme_support( 'align-wide' );
 
