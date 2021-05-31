@@ -36,13 +36,21 @@ if ( ! class_exists( 'CZR_customize' ) ) :
       //add grid/post list buttons in the control views
       add_action( '__before_setting_control'                 , array( $this, 'czr_fn_render_grid_control_link' ) );
 
-      //remove old logo settong if the wp custom logo option has been set
+      //remove old logo setting if the wp custom logo option has been set
       add_action( 'customize_save_custom_logo'               , array( $this, 'czr_fn_remove_old_tc_logo_upload' ) );
+
+      add_action( 'customize_save_after',  array( $this, 'czr_fn_flush_wp_cache' ) );
 
       //load resources class
       $this -> czr_fn_fire_czr_resources();
     }
 
+    //@hook 'customize_save_after'
+    function czr_fn_flush_wp_cache() {
+        // Make sure cached objects are cleaned
+        // for https://github.com/presscustomizr/customizr/issues/1898
+        wp_cache_flush();
+    }
 
 
 
