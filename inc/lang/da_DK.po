@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.4.6\n"
+"Project-Id-Version: * Customizr v4.4.7\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2021-05-26 20:25:42+00:00\n"
+"POT-Creation-Date: 2021-06-01 13:42:31+00:00\n"
 "PO-Revision-Date: 2015-08-22 15:54+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Nicolas G. <contact@presscustomizr.com>\n"
@@ -230,7 +230,7 @@ msgstr "Slet slider"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:775
 #: core/_dev/_czr/controls/class-base-control.php:68
-#: core/czr-admin-ccat.php:1688 core/czr-customize-ccat.php:961
+#: core/czr-admin-ccat.php:1688 core/czr-customize-ccat.php:969
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -347,8 +347,8 @@ msgstr ""
 #: core/_dev/_czr/class-czr-resources.php:221
 #: core/_dev/_czr/class-czr-resources.php:231 core/czr-admin-ccat.php:2432
 #: core/czr-base-fmk/czr-base-fmk.php:268
-#: core/czr-base-fmk/czr-base-fmk.php:567 core/czr-customize-ccat.php:856
-#: core/czr-customize-ccat.php:866
+#: core/czr-base-fmk/czr-base-fmk.php:567 core/czr-customize-ccat.php:864
+#: core/czr-customize-ccat.php:874
 #: core/front/models/modules/common/class-model-breadcrumb.php:624
 #: core/front/models/modules/common/class-model-breadcrumb.php:657
 #: core/front/models/modules/common/class-model-breadcrumb.php:672
@@ -553,31 +553,31 @@ msgid ""
 "results, try different keywords and / or spelling variations"
 msgstr ""
 
-#: core/_dev/_czr/class-czr-init.php:561 core/czr-customize-ccat.php:561
+#: core/_dev/_czr/class-czr-init.php:569 core/czr-customize-ccat.php:569
 #, fuzzy
 msgid "More grid design options"
 msgstr "Udvalgte sider options"
 
-#: core/_dev/_czr/class-czr-init.php:590 core/czr-customize-ccat.php:590
+#: core/_dev/_czr/class-czr-init.php:598 core/czr-customize-ccat.php:598
 msgid "SITE ICON"
 msgstr ""
 
-#: core/_dev/_czr/class-czr-init.php:603 core/_dev/_czr/class-czr-init.php:604
-#: core/czr-customize-ccat.php:603 core/czr-customize-ccat.php:604
+#: core/_dev/_czr/class-czr-init.php:611 core/_dev/_czr/class-czr-init.php:612
+#: core/czr-customize-ccat.php:611 core/czr-customize-ccat.php:612
 msgid "Upgrade WP"
 msgstr "Opgradér WP"
 
-#: core/_dev/_czr/class-czr-init.php:623 core/czr-customize-ccat.php:623
+#: core/_dev/_czr/class-czr-init.php:631 core/czr-customize-ccat.php:631
 msgid "This theme requires WordPress 3.4+"
 msgstr "Detta tema kræver WordPress 3.4+"
 
-#: core/_dev/_czr/class-czr-init.php:626 core/_dev/_czr/class-czr-init.php:627
-#: core/czr-customize-ccat.php:626 core/czr-customize-ccat.php:627
+#: core/_dev/_czr/class-czr-init.php:634 core/_dev/_czr/class-czr-init.php:635
+#: core/czr-customize-ccat.php:634 core/czr-customize-ccat.php:635
 msgid "Upgrade Wordpress Now"
 msgstr "Opgradér WordPress nu"
 
 #: core/_dev/_czr/class-czr-resources.php:222
-#: core/czr-base-fmk/czr-base-fmk.php:269 core/czr-customize-ccat.php:857
+#: core/czr-base-fmk/czr-base-fmk.php:269 core/czr-customize-ccat.php:865
 #: inc/_dev/parts/class-header-menu.php:129
 #: inc/_dev/parts/class-header-menu.php:136 inc/czr-front-ccat.php:776
 #: inc/czr-front-ccat.php:783
@@ -585,24 +585,24 @@ msgid "Close"
 msgstr ""
 
 #: core/_dev/_czr/class-czr-resources.php:223
-#: core/czr-base-fmk/czr-base-fmk.php:270 core/czr-customize-ccat.php:858
+#: core/czr-base-fmk/czr-base-fmk.php:270 core/czr-customize-ccat.php:866
 msgid "Not set"
 msgstr ""
 
-#: core/_dev/_czr/class-czr-resources.php:224 core/czr-customize-ccat.php:859
+#: core/_dev/_czr/class-czr-resources.php:224 core/czr-customize-ccat.php:867
 #: core/czr-modules/social-links/index.php:75
 #: core/czr-modules/social-links/social_links_module.php:77
 msgid "Rss"
 msgstr ""
 
-#: core/_dev/_czr/class-czr-resources.php:225 core/czr-customize-ccat.php:860
+#: core/_dev/_czr/class-czr-resources.php:225 core/czr-customize-ccat.php:868
 #: core/czr-modules/social-links/index.php:76
 #: core/czr-modules/social-links/social_links_module.php:78
 #, fuzzy
 msgid "Select a social icon"
 msgstr "Indstil dine sociale links"
 
-#: core/_dev/_czr/class-czr-resources.php:226 core/czr-customize-ccat.php:861
+#: core/_dev/_czr/class-czr-resources.php:226 core/czr-customize-ccat.php:869
 #: core/czr-modules/social-links/index.php:77
 #: core/czr-modules/social-links/social_links_module.php:79
 #, fuzzy
@@ -610,13 +610,13 @@ msgid "Follow us on"
 msgstr "Følg os"
 
 #: core/_dev/_czr/class-czr-resources.php:227
-#: core/czr-base-fmk/czr-base-fmk.php:271 core/czr-customize-ccat.php:862
+#: core/czr-base-fmk/czr-base-fmk.php:271 core/czr-customize-ccat.php:870
 #: core/czr-modules/social-links/index.php:78
 #: core/czr-modules/social-links/social_links_module.php:80
 msgid "Done !"
 msgstr ""
 
-#: core/_dev/_czr/class-czr-resources.php:228 core/czr-customize-ccat.php:863
+#: core/_dev/_czr/class-czr-resources.php:228 core/czr-customize-ccat.php:871
 #: core/czr-modules/social-links/index.php:79
 #: core/czr-modules/social-links/social_links_module.php:81
 msgid "New Social Link created ! Scroll down to edit it."
@@ -624,56 +624,56 @@ msgstr ""
 
 #: core/_dev/_czr/class-czr-resources.php:229
 #: core/_dev/_czr/class-czr-resources.php:249
-#: core/czr-base-fmk/czr-base-fmk.php:273 core/czr-customize-ccat.php:864
-#: core/czr-customize-ccat.php:884
+#: core/czr-base-fmk/czr-base-fmk.php:273 core/czr-customize-ccat.php:872
+#: core/czr-customize-ccat.php:892
 #, fuzzy
 msgid "Learn more about this in the documentation"
 msgstr "Læs dokumentationen"
 
-#: core/_dev/_czr/class-czr-resources.php:232 core/czr-customize-ccat.php:867
+#: core/_dev/_czr/class-czr-resources.php:232 core/czr-customize-ccat.php:875
 msgid "Close Editor"
 msgstr ""
 
-#: core/_dev/_czr/class-czr-resources.php:234 core/czr-customize-ccat.php:869
+#: core/_dev/_czr/class-czr-resources.php:234 core/czr-customize-ccat.php:877
 msgid "New Slide created ! Scroll down to edit it."
 msgstr ""
 
-#: core/_dev/_czr/class-czr-resources.php:235 core/czr-customize-ccat.php:870
+#: core/_dev/_czr/class-czr-resources.php:235 core/czr-customize-ccat.php:878
 #, fuzzy
 msgid "Slide"
 msgstr "Slide tekst"
 
-#: core/_dev/_czr/class-czr-resources.php:236 core/czr-customize-ccat.php:871
+#: core/_dev/_czr/class-czr-resources.php:236 core/czr-customize-ccat.php:879
 msgid ""
 "This option generates a home page slider based on your last posts, starting "
 "from the most recent or the featured (sticky) post(s) if any."
 msgstr ""
 
-#: core/_dev/_czr/class-czr-resources.php:238 core/czr-customize-ccat.php:873
+#: core/_dev/_czr/class-czr-resources.php:238 core/czr-customize-ccat.php:881
 msgid ""
 "The side on which the menu is revealed depends on the choosen header layout."
 msgstr ""
 
-#: core/_dev/_czr/class-czr-resources.php:239 core/czr-customize-ccat.php:874
+#: core/_dev/_czr/class-czr-resources.php:239 core/czr-customize-ccat.php:882
 msgid "To change the global header layout, %s"
 msgstr ""
 
-#: core/_dev/_czr/class-czr-resources.php:242 core/czr-customize-ccat.php:877
+#: core/_dev/_czr/class-czr-resources.php:242 core/czr-customize-ccat.php:885
 msgid "jump to the Design and Layout section"
 msgstr ""
 
-#: core/_dev/_czr/class-czr-resources.php:243 core/czr-customize-ccat.php:878
+#: core/_dev/_czr/class-czr-resources.php:243 core/czr-customize-ccat.php:886
 msgid "Change the header layout"
 msgstr ""
 
 #: core/_dev/_czr/class-czr-resources.php:250
-#: core/czr-base-fmk/czr-base-fmk.php:274 core/czr-customize-ccat.php:885
+#: core/czr-base-fmk/czr-base-fmk.php:274 core/czr-customize-ccat.php:893
 #, fuzzy
 msgid "Settings"
 msgstr "Diverse billedindstillinger"
 
 #: core/_dev/_czr/class-czr-resources.php:251
-#: core/czr-base-fmk/czr-base-fmk.php:275 core/czr-customize-ccat.php:886
+#: core/czr-base-fmk/czr-base-fmk.php:275 core/czr-customize-ccat.php:894
 msgid "Options for"
 msgstr ""
 
@@ -690,35 +690,35 @@ msgid "Please fill the social link inputs with a valid URLs"
 msgstr ""
 
 #: core/_dev/_czr/controls/class-base-control.php:70
-#: core/czr-customize-ccat.php:963
+#: core/czr-customize-ccat.php:971
 msgid "Create a slider"
 msgstr "Opret en slider"
 
 #: core/_dev/_czr/controls/class-base-control.php:71
-#: core/czr-customize-ccat.php:964
+#: core/czr-customize-ccat.php:972
 #, fuzzy
 msgid "Need help to create a slider ?"
 msgstr "Opret en slider"
 
 #: core/_dev/_czr/controls/class-base-control.php:73
-#: core/czr-customize-ccat.php:966
+#: core/czr-customize-ccat.php:974
 #, fuzzy
 msgid "Check the documentation"
 msgstr "Læs dokumentationen"
 
 #: core/_dev/_czr/controls/class-upload-control.php:67
-#: core/czr-customize-ccat.php:1478
+#: core/czr-customize-ccat.php:1486
 #, fuzzy
 msgid "Upload"
 msgstr "Ladda upp logotyp"
 
 #: core/_dev/_czr/controls/class-upload-control.php:68
 #: core/czr-base-fmk/czr-base-fmk.php:280
-#: core/czr-base-fmk/czr-base-fmk.php:567 core/czr-customize-ccat.php:1479
+#: core/czr-base-fmk/czr-base-fmk.php:567 core/czr-customize-ccat.php:1487
 msgid "Remove"
 msgstr ""
 
-#: core/_dev/_czr/panels/class-panels.php:63 core/czr-customize-ccat.php:1552
+#: core/_dev/_czr/panels/class-panels.php:63 core/czr-customize-ccat.php:1560
 msgid "Press return or enter to open this panel"
 msgstr ""
 

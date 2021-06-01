@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.7
-Stable tag: 4.4.6
+Stable tag: 4.4.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,13 @@ Customizr is a simple and fast WordPress theme designed to help you attract and 
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
+
+= 4.4.7 May 28th, 2021 =
+* fixed : [accessibility] accessibility of toggle checkboxes in the customizer
+* fixed : [performance] Using wp_cache_set() can break sites using persistent caching like Memcached. fixes #1898
+* fixed : [PHP8] compatibility issue ( required parameter follows optional parameter )
+* fixed : [accessibility] improve accessibility of checkbox toggle for slider options. fixes #1901
+* fixed : [markup] remove W3C deprecated attributes for script and style tags. fixes #1902
 
 = 4.4.6 April 12th, 2021 =
 * fixed : [WooCommerce] checkboxes on checkout page can be broken when Font Awesome icons are not loaded. fixes #1896
