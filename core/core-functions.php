@@ -1487,7 +1487,7 @@ function czr_fn_is_home_empty() {
 * @since Customizr 2.1.6
 *
 */
-function czr_fn_wp_title( $title, $sep ) {
+function czr_fn_wp_filter_title( $title, $sep ) {
     if ( function_exists( '_wp_render_title_tag' ) )
       return $title;
 
