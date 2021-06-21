@@ -3645,7 +3645,7 @@ if ( ! class_exists( 'CZR_utils' ) ) :
                 add_filter( 'woocommerce_short_description' , 'czr_fn_parse_imgs' );
             }
         }
-        add_filter( 'wp_title'                            , 'czr_fn_wp_title' , 10, 2 );
+        add_filter( 'wp_title'                            , 'czr_fn_wp_filter_title' , 10, 2 );
       }
 
 
