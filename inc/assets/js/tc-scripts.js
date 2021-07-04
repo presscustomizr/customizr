@@ -4721,7 +4721,7 @@ var czrapp = czrapp || {};
                     return _pattern.test( _url );
               };
 
-              $('a' , '.entry-content').each( function() {
+              $('a' , '.entry-content p, .entry-content li').each( function() {
                     if ( $(this).attr('href') && _isValidURL( $(this).attr('href') ) ) {
                           $(this).extLinks({
                                 addIcon : TCParams.extLinksStyle,
