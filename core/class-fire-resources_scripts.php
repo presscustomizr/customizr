@@ -307,7 +307,8 @@ if ( !class_exists( 'CZR_resources_scripts' ) ) :
                             '.__before_main_wrapper',
                             '.widget-front',
                             '.post-related-articles',
-                            '.tc-singular-thumbnail-wrapper'
+                            '.tc-singular-thumbnail-wrapper',
+                            '.sek-module-inner' //<= Nimble Builder selector, when using {{the_content}} in NB template, Customizr will parse images for lazy load
                        ),
                        'opts'     => array(
                             'excludeImg' => array( '.tc-holder-img' )
