@@ -394,7 +394,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
         //when do we display this block ?
         //1) if customizing: must be enabled
         //2) if not customizing : must be enabled and have social networks.
-        $_nothing_to_render         = 0 == esc_attr( czr_fn_opt( 'tc_social_in_header' ) ) || ! ( $_socials = czr_fn__f( '__get_socials' ) );
+        $_nothing_to_render         = 0 == czr_fn_opt( 'tc_social_in_header' ) || ! ( $_socials = czr_fn__f( '__get_socials' ) );
 
         if ( $_nothing_to_render )
         	return;
@@ -422,7 +422,7 @@ if ( ! class_exists( 'CZR_header_main' ) ) :
 		*/
 		function czr_fn_tagline_display() {
       //do not display tagline if the related option is false or no tagline available
-      if ( 0 == esc_attr( czr_fn_opt( 'tc_show_tagline' ) ) )
+      if ( 0 == czr_fn_opt( 'tc_show_tagline' ) )
         return;
 
       $_tagline_text  = czr_fn_get_tagline_text( $echo = false );
