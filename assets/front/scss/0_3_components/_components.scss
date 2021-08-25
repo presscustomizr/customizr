@@ -366,9 +366,9 @@ a[target="_blank"]:hover:after {
 %table-base {
   width: 100%;
   border-collapse: collapse;
-  @include media-breakpoint-down(sm) {
-    table-layout: fixed;
-  }
+  // @include media-breakpoint-down(sm) {
+  //   table-layout: fixed;
+  // }
   /*&:not([id^=wp-calendar]) {
     border: 2px solid $grey-lightest;
     th { @extend .caps; @extend  .letter-spacing-2; font-family: $serviceFont; }
