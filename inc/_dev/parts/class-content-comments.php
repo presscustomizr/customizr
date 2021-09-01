@@ -373,7 +373,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @since Customizr 3.3.2
     */
     function czr_fn_comment_bubble_inline_css( $_css ) {
-      if ( 0 == esc_attr( czr_fn_opt( 'tc_comment_show_bubble' ) ) )
+      if ( 0 == czr_fn_opt( 'tc_comment_show_bubble' ) )
         return $_css;
 
       $_bubble_color_type   = esc_attr( czr_fn_opt( 'tc_comment_bubble_color_type' ) );

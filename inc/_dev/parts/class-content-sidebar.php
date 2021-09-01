@@ -120,7 +120,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
         //when do we display this block ?
         //1) if customizing: must be enabled
         //2) if not customizing : must be enabled and have social networks.
-        $_nothing_to_render         = 0 == esc_attr( czr_fn_opt( $option ) );
+        $_nothing_to_render         = 0 == czr_fn_opt( $option );
 
         $_nothing_to_render_front   = $_nothing_to_render || ! ( $_socials = czr_fn__f( '__get_socials' ) ) ? true : $_nothing_to_render;
 
@@ -152,8 +152,8 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       function czr_fn_set_sidebar_wrapper_widget_class($_original_classes) {
         $_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
 
-        if ( 1 == esc_attr( czr_fn_opt('tc_show_sidebar_widget_icon' ) ) )
-          return ( 0 == esc_attr( czr_fn_opt('tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
+        if ( 1 == czr_fn_opt('tc_show_sidebar_widget_icon' ) )
+          return 0 == czr_fn_opt('tc_show_title_icon' ) ? $_no_icons_classes : $_original_classes;
          //last condition
         return $_no_icons_classes;
       }

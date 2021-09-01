@@ -157,7 +157,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
         //when do we display the socials?
         //1) must be enabled
         //the whole block will be always displayed for a matter of structure (columns)
-	    	$_hide_socials = ( 0 == esc_attr( czr_fn_opt( 'tc_social_in_footer') ) );
+	    	$_hide_socials = 0 == czr_fn_opt( 'tc_social_in_footer');
 
 
 	      	echo apply_filters(
@@ -213,7 +213,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		*/
         function czr_fn_colophon_right_block() {
           //since 3.4.16 BTT button excludes BTT text
-      if ( ! apply_filters('tc_show_text_btt', 0 == esc_attr( czr_fn_opt( 'tc_show_back_to_top' ) ) ) )
+      if ( ! apply_filters('tc_show_text_btt', 0 == czr_fn_opt( 'tc_show_back_to_top' ) ) )
         return;
 
     	echo apply_filters(
@@ -305,7 +305,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		* @since Customizr 3.2.0
 		*/
 		function czr_fn_render_back_to_top() {
-			if ( 0 == esc_attr( czr_fn_opt( 'tc_show_back_to_top' ) ) )
+			if ( 0 == czr_fn_opt( 'tc_show_back_to_top' ) )
                 return;
             printf('<div id="tc-footer-btt-wrapper" class="tc-btt-wrapper %1$s"><i class="btt-arrow"></i></div>',
                 esc_attr( czr_fn_opt( 'tc_back_to_top_position' ) )
@@ -323,8 +323,8 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		function czr_fn_set_widget_wrapper_class( $_original_classes ) {
 			$_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
 
-			if ( 1 == esc_attr( czr_fn_opt( 'tc_show_footer_widget_icon' ) ) )
-				return ( 0 == esc_attr( czr_fn_opt( 'tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
+			if ( 1 == czr_fn_opt( 'tc_show_footer_widget_icon' ) )
+				return 0 == czr_fn_opt( 'tc_show_title_icon' ) ? $_no_icons_classes : $_original_classes;
 			 //last condition
           	return $_no_icons_classes;
         }
@@ -338,7 +338,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     * @return bool
     */
     function is_sticky_footer_enabled() {
-      return 1 == esc_attr( czr_fn_opt( 'tc_sticky_footer') );
+      return 1 == czr_fn_opt( 'tc_sticky_footer');
     }
   }//end of class
 endif;

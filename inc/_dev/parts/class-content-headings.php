@@ -245,14 +245,14 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_set_post_page_icon( $_bool ) {
-          if ( is_page() )
-            $_bool = ( 0 == esc_attr( czr_fn_opt( 'tc_show_page_title_icon' ) ) ) ? false : $_bool;
-          if ( is_single() && ! is_page() )
-            $_bool = ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_title_icon' ) ) ) ? false : $_bool;
-          if ( ! is_single() )
-            $_bool = ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_list_title_icon' ) ) ) ? false : $_bool;
+          if ( is_singular() && is_page() )
+            $_bool = 0 == czr_fn_opt( 'tc_show_page_title_icon' ) ? false : $_bool;
+          if ( is_singular() && is_single() )
+            $_bool = 0 == czr_fn_opt( 'tc_show_post_title_icon' ) ? false : $_bool;
+          if ( !is_singular() )
+            $_bool = 0 == czr_fn_opt( 'tc_show_post_list_title_icon' ) ? false : $_bool;
           //last condition
-          return ( 0 == esc_attr( czr_fn_opt( 'tc_show_title_icon' ) ) ) ? false : $_bool;
+          return 0 == czr_fn_opt( 'tc_show_title_icon' ) ? false : $_bool;
       }
 
 
@@ -265,9 +265,9 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_set_archive_icon( $_class ) {
-          $_class = ( 0 == esc_attr( czr_fn_opt( 'tc_show_archive_title_icon' ) ) ) ? '' : $_class;
+          $_class = 0 == czr_fn_opt( 'tc_show_archive_title_icon' ) ? '' : $_class;
           //last condition
-          return 0 == esc_attr( czr_fn_opt( 'tc_show_title_icon' ) ) ? '' : $_class;
+          return 0 == czr_fn_opt( 'tc_show_title_icon' ) ? '' : $_class;
       }
 
 
@@ -462,7 +462,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
               return $html;
 
           //Is the notice option enabled AND this post type eligible for updated notice ? (default is post)
-          if ( 0 == esc_attr( czr_fn_opt( 'tc_post_metas_update_notice_in_title' ) ) || ! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
+          if ( 0 == czr_fn_opt( 'tc_post_metas_update_notice_in_title' ) || ! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
               return $html;
 
           //php version check for DateTime

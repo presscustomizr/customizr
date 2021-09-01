@@ -430,7 +430,7 @@ class CZR_slider {
 
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      $args['slider_responsive_images'] = 0 == esc_attr( czr_fn_opt('tc_resp_slider_img') ) ? false : true ;
+      $args['slider_responsive_images'] = 0 == czr_fn_opt('tc_resp_slider_img') ? false : true;
 
     /* Get the pre_model */
     $pre_slides = $pre_slides_posts = array();

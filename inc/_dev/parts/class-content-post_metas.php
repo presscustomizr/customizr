@@ -32,7 +32,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         */
         function czr_fn_set_visibility_options() {
           //if customizing context, always render. Will be hidden in the DOM with a body class filter is disabled.
-          if ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas' ) ) ) {
+          if ( 0 == czr_fn_opt( 'tc_show_post_metas' ) ) {
             if ( czr_fn_is_customizing() )
               add_filter( 'body_class' , array( $this , 'czr_fn_hide_all_post_metas') );
             else{
