@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.4.11\n"
+"Project-Id-Version: * Customizr v4.4.12\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2021-07-20 07:36:03+00:00\n"
+"POT-Creation-Date: 2021-09-01 22:19:08+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:07+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Wee Sritippho <weeaix@gmail.com>\n"
@@ -359,7 +359,7 @@ msgstr ""
 #: inc/czr-front-ccat.php:2501 inc/czr-front-ccat.php:2516
 #: inc/czr-front-ccat.php:2544 inc/czr-front-ccat.php:3052
 #: inc/czr-front-ccat.php:3602 inc/czr-front-ccat.php:3987
-#: inc/czr-front-ccat.php:8544
+#: inc/czr-front-ccat.php:8543
 msgid "Edit"
 msgstr "แก้ไข"
 
@@ -3120,12 +3120,12 @@ msgstr "อ่านต่อ <span class=\"meta-nav\">&rarr;</span>"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:63
 #: core/front/models/content/post-metas/class-model-post_metas.php:69
-#: inc/_dev/parts/class-content-post_metas.php:631 inc/czr-front-ccat.php:6961
+#: inc/_dev/parts/class-content-post_metas.php:631 inc/czr-front-ccat.php:6960
 msgid "by"
 msgstr ""
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:76
-#: inc/_dev/parts/class-content-post_metas.php:202 inc/czr-front-ccat.php:6532
+#: inc/_dev/parts/class-content-post_metas.php:202 inc/czr-front-ccat.php:6531
 msgid "Published"
 msgstr "เผยแพร่แล้ว"
 
@@ -3134,24 +3134,24 @@ msgid "Updated"
 msgstr ""
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:95
-#: inc/_dev/parts/class-content-post_metas.php:205 inc/czr-front-ccat.php:6535
+#: inc/_dev/parts/class-content-post_metas.php:205 inc/czr-front-ccat.php:6534
 msgid "at dimensions"
 msgstr "ณ มิติ"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:95
-#: inc/_dev/parts/class-content-post_metas.php:205 inc/czr-front-ccat.php:6535
+#: inc/_dev/parts/class-content-post_metas.php:205 inc/czr-front-ccat.php:6534
 msgid "Link to full-size image"
 msgstr "ลิงค์ไปยังรูปภาพขนาดเต็ม"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:97
 #: inc/_dev/parts/class-content-post_metas.php:206
-#: inc/_dev/parts/class-content-post_metas.php:607 inc/czr-front-ccat.php:6536
-#: inc/czr-front-ccat.php:6937
+#: inc/_dev/parts/class-content-post_metas.php:607 inc/czr-front-ccat.php:6535
+#: inc/czr-front-ccat.php:6936
 msgid "in"
 msgstr "ใน"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:97
-#: inc/_dev/parts/class-content-post_metas.php:206 inc/czr-front-ccat.php:6536
+#: inc/_dev/parts/class-content-post_metas.php:206 inc/czr-front-ccat.php:6535
 msgid "Return to "
 msgstr "กลับไปยัง"
 
@@ -3161,12 +3161,12 @@ msgid "Permalink to:&nbsp;"
 msgstr "ลิงค์ถาวรไปยัง %s"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:192
-#: inc/_dev/parts/class-content-post_metas.php:537 inc/czr-front-ccat.php:6867
+#: inc/_dev/parts/class-content-post_metas.php:537 inc/czr-front-ccat.php:6866
 msgid "View all posts by %s"
 msgstr "แสดงเรื่องทั้งหมดโดย %s"
 
 #: core/front/models/content/post-metas/class-model-post_metas.php:244
-#: inc/_dev/parts/class-content-post_metas.php:378 inc/czr-front-ccat.php:6708
+#: inc/_dev/parts/class-content-post_metas.php:378 inc/czr-front-ccat.php:6707
 msgid "View all posts in %s"
 msgstr "แสดงรายการทั้งหมดใน %s"
 
@@ -3339,7 +3339,7 @@ msgstr ""
 "Customizr"
 
 #: core/front/models/modules/slider/class-model-slider.php:429
-#: inc/_dev/parts/class-content-slider.php:963 inc/czr-front-ccat.php:8688
+#: inc/_dev/parts/class-content-slider.php:963 inc/czr-front-ccat.php:8687
 msgid "Discover how to replace or remove this demo slider."
 msgstr ""
 
@@ -3352,7 +3352,7 @@ msgid "Easily create sliders and add them in any posts or pages."
 msgstr ""
 
 #: core/front/models/modules/slider/class-model-slider.php:437
-#: inc/_dev/parts/class-content-slider.php:965 inc/czr-front-ccat.php:8690
+#: inc/_dev/parts/class-content-slider.php:965 inc/czr-front-ccat.php:8689
 msgid "Check the slider doc now &raquo;"
 msgstr ""
 
@@ -3366,12 +3366,12 @@ msgid "Customize or remove the posts slider"
 msgstr ""
 
 #: core/front/models/modules/slider/class-model-slider_of_posts.php:385
-#: inc/_dev/parts/class-content-slider.php:1296 inc/czr-front-ccat.php:9021
+#: inc/_dev/parts/class-content-slider.php:1296 inc/czr-front-ccat.php:9020
 msgid "Protected: %s"
 msgstr ""
 
 #: core/front/models/modules/slider/class-model-slider_of_posts.php:408
-#: inc/_dev/parts/class-content-slider.php:1321 inc/czr-front-ccat.php:9046
+#: inc/_dev/parts/class-content-slider.php:1321 inc/czr-front-ccat.php:9045
 msgid "There is no excerpt because this is a protected post."
 msgstr ""
 
@@ -4286,128 +4286,128 @@ msgstr "หน้า:"
 msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "แสดงเรื่องทั้งหมดโดย %s <span class=\"meta-nav\">&rarr;</span>"
 
-#: inc/_dev/parts/class-content-post_metas.php:181 inc/czr-front-ccat.php:6511
+#: inc/_dev/parts/class-content-post_metas.php:181 inc/czr-front-ccat.php:6510
 msgid "This entry was posted on %1$s<span class=\"by-author\"> by %2$s</span>."
 msgstr ""
 
-#: inc/_dev/parts/class-content-post_metas.php:268 inc/czr-front-ccat.php:6598
+#: inc/_dev/parts/class-content-post_metas.php:268 inc/czr-front-ccat.php:6597
 msgid "This entry was posted in %1$s and tagged %2$s"
 msgstr "รายการนี้ถูกเผยแพร่ใน %1$s และถูกกำกับด้วย %2$s"
 
-#: inc/_dev/parts/class-content-post_metas.php:270 inc/czr-front-ccat.php:6600
+#: inc/_dev/parts/class-content-post_metas.php:270 inc/czr-front-ccat.php:6599
 msgid "This entry was posted in %1$s"
 msgstr "รายการนี้ถูกเผยแพร่ใน %1$s"
 
-#: inc/_dev/parts/class-content-post_metas.php:272 inc/czr-front-ccat.php:6602
+#: inc/_dev/parts/class-content-post_metas.php:272 inc/czr-front-ccat.php:6601
 msgid "This entry was tagged %2$s"
 msgstr "รายการนี้ถูกกำกับด้วย %2$s"
 
-#: inc/_dev/parts/class-content-post_metas.php:281 inc/czr-front-ccat.php:6611
+#: inc/_dev/parts/class-content-post_metas.php:281 inc/czr-front-ccat.php:6610
 msgid "This entry was posted on %1$s"
 msgstr ""
 
-#: inc/_dev/parts/class-content-post_metas.php:283 inc/czr-front-ccat.php:6613
+#: inc/_dev/parts/class-content-post_metas.php:283 inc/czr-front-ccat.php:6612
 msgid "on %1$s"
 msgstr ""
 
-#: inc/_dev/parts/class-content-post_metas.php:285 inc/czr-front-ccat.php:6615
+#: inc/_dev/parts/class-content-post_metas.php:285 inc/czr-front-ccat.php:6614
 msgid "and posted on %1$s"
 msgstr ""
 
-#: inc/_dev/parts/class-content-post_metas.php:297 inc/czr-front-ccat.php:6627
+#: inc/_dev/parts/class-content-post_metas.php:297 inc/czr-front-ccat.php:6626
 msgid "This entry was posted"
 msgstr "รายการนี้ถูกเผยแพร่"
 
 #: inc/_dev/parts/class-content-post_metas.php:297
-#: inc/_dev/parts/class-content-post_metas.php:299 inc/czr-front-ccat.php:6627
-#: inc/czr-front-ccat.php:6629
+#: inc/_dev/parts/class-content-post_metas.php:299 inc/czr-front-ccat.php:6626
+#: inc/czr-front-ccat.php:6628
 msgid "by %1$s"
 msgstr ""
 
-#: inc/_dev/parts/class-content-post_metas.php:313 inc/czr-front-ccat.php:6643
+#: inc/_dev/parts/class-content-post_metas.php:313 inc/czr-front-ccat.php:6642
 msgid "(updated today)"
 msgstr "(ถูกแก้ไขวันนี้)"
 
-#: inc/_dev/parts/class-content-post_metas.php:313 inc/czr-front-ccat.php:6643
+#: inc/_dev/parts/class-content-post_metas.php:313 inc/czr-front-ccat.php:6642
 msgid "(updated %s days ago)"
 msgstr ""
 
-#: inc/_dev/parts/class-content-post_metas.php:314 inc/czr-front-ccat.php:6644
+#: inc/_dev/parts/class-content-post_metas.php:314 inc/czr-front-ccat.php:6643
 msgid "(updated 1 day ago)"
 msgstr "(ถูกแก้ไขเมื่อวาน)"
 
-#: inc/_dev/parts/class-content-post_metas.php:317 inc/czr-front-ccat.php:6647
+#: inc/_dev/parts/class-content-post_metas.php:317 inc/czr-front-ccat.php:6646
 msgid "(updated on %1$s)"
 msgstr ""
 
-#: inc/_dev/parts/class-content-post_metas.php:558 inc/czr-front-ccat.php:6888
+#: inc/_dev/parts/class-content-post_metas.php:558 inc/czr-front-ccat.php:6887
 msgid "Open"
 msgstr "เปิด"
 
-#: inc/_dev/parts/class-content-post_metas.php:608 inc/czr-front-ccat.php:6938
+#: inc/_dev/parts/class-content-post_metas.php:608 inc/czr-front-ccat.php:6937
 msgid "tagged"
 msgstr ""
 
 #: inc/_dev/parts/class-content-post_navigation.php:84
 #: inc/_dev/parts/class-content-post_navigation.php:139
-#: inc/czr-front-ccat.php:7066 inc/czr-front-ccat.php:7121
+#: inc/czr-front-ccat.php:7065 inc/czr-front-ccat.php:7120
 #: templates/parts/content/singular/navigation/singular_posts_navigation.php:35
 msgid "Post navigation"
 msgstr "การนำทางของเรื่อง"
 
 #: inc/_dev/parts/class-content-post_navigation.php:152
-#: inc/czr-front-ccat.php:7134
+#: inc/czr-front-ccat.php:7133
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> เรื่องที่เก่ากว่า"
 
 #: inc/_dev/parts/class-content-post_navigation.php:172
-#: inc/czr-front-ccat.php:7154
+#: inc/czr-front-ccat.php:7153
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "เรื่องที่ใหม่กว่า <span class=\"meta-nav\">&rarr;</span>"
 
-#: inc/_dev/parts/class-content-slider.php:858 inc/czr-front-ccat.php:8583
+#: inc/_dev/parts/class-content-slider.php:858 inc/czr-front-ccat.php:8582
 #, fuzzy
 msgid "Customize or remove %s"
 msgstr "หน้าจอปรับแต่ง"
 
-#: inc/_dev/parts/class-content-slider.php:859 inc/czr-front-ccat.php:8584
+#: inc/_dev/parts/class-content-slider.php:859 inc/czr-front-ccat.php:8583
 #, fuzzy
 msgid "the posts slider"
 msgstr "ลบสไลเดอร์นี้"
 
-#: inc/_dev/parts/class-content-slider.php:859 inc/czr-front-ccat.php:8584
+#: inc/_dev/parts/class-content-slider.php:859 inc/czr-front-ccat.php:8583
 #, fuzzy
 msgid "this slider"
 msgstr "แก้ไขสไลด์นี้"
 
-#: inc/_dev/parts/class-content-slider.php:959 inc/czr-front-ccat.php:8684
+#: inc/_dev/parts/class-content-slider.php:959 inc/czr-front-ccat.php:8683
 #, fuzzy
 msgid "Discover the Customizr WordPress theme &raquo;"
 msgstr "พบกับ Customizr Pro"
 
-#: inc/_dev/parts/class-footer-footer_main.php:192 inc/czr-front-ccat.php:9259
+#: inc/_dev/parts/class-footer-footer_main.php:192 inc/czr-front-ccat.php:9258
 #: templates/parts/footer/footer_credits.php:13
 msgid "Powered by"
 msgstr ""
 
-#: inc/_dev/parts/class-footer-footer_main.php:193 inc/czr-front-ccat.php:9260
+#: inc/_dev/parts/class-footer-footer_main.php:193 inc/czr-front-ccat.php:9259
 #: templates/parts/footer/footer_credits.php:13
 #, fuzzy
 msgid "Powered by WordPress"
 msgstr "ติดตามฉันบน Wordpress"
 
-#: inc/_dev/parts/class-footer-footer_main.php:198 inc/czr-front-ccat.php:9265
+#: inc/_dev/parts/class-footer-footer_main.php:198 inc/czr-front-ccat.php:9264
 #: templates/parts/footer/footer_credits.php:13
 msgid "Designed with the %s"
 msgstr ""
 
-#: inc/_dev/parts/class-footer-footer_main.php:198 inc/czr-front-ccat.php:9265
+#: inc/_dev/parts/class-footer-footer_main.php:198 inc/czr-front-ccat.php:9264
 #: templates/parts/footer/footer_credits.php:13
 #, fuzzy
 msgid "Customizr theme"
 msgstr ", ผู้พัฒนาธีม Customizr"
 
-#: inc/_dev/parts/class-footer-footer_main.php:223 inc/czr-front-ccat.php:9290
+#: inc/_dev/parts/class-footer-footer_main.php:223 inc/czr-front-ccat.php:9289
 msgid "Back to top"
 msgstr "กลับไปด้านบน"
 
