@@ -359,7 +359,7 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
 
     /**********************************************************************************
     * UPDATE NOTICE
-    * User gets notified when the version stores in the db option 'last_update_notice'
+    * User gets notified when the version stored in the db option 'last_update_notice'
     * is < current version of the theme (CUSTOMIZR_VER)
     * User can dismiss the notice and the option get updated by ajax to the current version
     * The notice will be displayed a maximum of 5 times and will be automatically dismissed until the next update.
@@ -415,7 +415,7 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
               czr_fn_set_option( $opt_name, $new_val );
           }//end else
       }//end if
-
+      $show_new_notice = ( defined('CZR_DEV') && CZR_DEV ) || $show_new_notice;
       if ( !$show_new_notice )
         return;
 
@@ -429,24 +429,26 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
           <?php
             echo apply_filters(
               'czr_update_notice',
-              sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
-                __( "Good, you've recently upgraded to", "customizr"),
+              sprintf('<h3>%1$s %2$s %3$s %4$s. <a class="" href="%5$s" title="%6$s" target="_blank">%6$s &raquo;</a></h3>',
+                __( "✅ You have recently updated to", "customizr"),
                 CZR_IS_PRO ? 'Customizr Pro' : 'Customizr',
                 __( "version", "customizr"),
-                CUSTOMIZR_VER
+                CUSTOMIZR_VER,
+                CZR_WEBSITE . "category/customizr-releases/",
+                __( "Read the latest release notes" , "customizr" )
               )
             );
           ?>
           <?php
-            echo apply_filters(
-              'czr_update_notice',
-              sprintf( '<h4>%1$s <a class="" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a></h4>%4$s',
-                __( "We'd like to introduce the new features we've been working on.", "customizr"),
-                CZR_WEBSITE . "category/customizr-releases/",
-                __( "Read the latest release notes" , "customizr" ),
-                apply_filters( 'czr_update_notice_after', '' )
-              )
-            );
+            if ( !CZR_IS_PRO && czr_fn_user_started_before_version('4.4.6') ) {
+              echo apply_filters( 'czr_update_notice',
+                sprintf( '<h4><strong>%1$s 🙏</strong></h4>',
+                  sprintf( __( "If you enjoy using the Customizr theme for your website, please consider %s. Your support allows us to keep the theme at the highest level. Thank you!", "customizr"),
+                    sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', 'https://presscustomizr.com/customizr-pro/', __("upgrading to the pro version", "customizr") )
+                  )
+                )
+              );
+            }
           ?>
           <p style="text-align:right;position: absolute;font-size: 1.1em;<?php echo is_rtl()? 'left' : 'right';?>: 7px;bottom: -5px;">
             <?php printf('<a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %1$s <strong>X</strong> ) </a>',
