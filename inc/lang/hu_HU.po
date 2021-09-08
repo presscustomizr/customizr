@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.4.12\n"
+"Project-Id-Version: * Customizr v4.4.13\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2021-09-01 22:19:08+00:00\n"
+"POT-Creation-Date: 2021-09-08 08:42:25+00:00\n"
 "PO-Revision-Date: 2015-08-22 17:03+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: phritzy\n"
@@ -39,101 +39,101 @@ msgstr ""
 msgid "404"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:242 core/czr-admin-ccat.php:1155
+#: core/_dev/_admin/class-admin-meta_boxes.php:242 core/czr-admin-ccat.php:1027
 msgid "Layout Options"
 msgstr "Oldalszerkezet beállítások"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:255
 #: core/_dev/_admin/class-admin-meta_boxes.php:1096
-#: core/czr-admin-ccat.php:1168 core/czr-admin-ccat.php:2009
+#: core/czr-admin-ccat.php:1040 core/czr-admin-ccat.php:1881
 msgid "Slider Options"
 msgstr "Lapozókép beállítások"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:267 core/czr-admin-ccat.php:1180
+#: core/_dev/_admin/class-admin-meta_boxes.php:267 core/czr-admin-ccat.php:1052
 #, fuzzy
 msgid "Format: link"
 msgstr "Nincs link"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:279 core/czr-admin-ccat.php:1192
+#: core/_dev/_admin/class-admin-meta_boxes.php:279 core/czr-admin-ccat.php:1064
 msgid "Format: quote"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:291 core/czr-admin-ccat.php:1204
+#: core/_dev/_admin/class-admin-meta_boxes.php:291 core/czr-admin-ccat.php:1076
 msgid "Format: video"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:303 core/czr-admin-ccat.php:1216
+#: core/_dev/_admin/class-admin-meta_boxes.php:303 core/czr-admin-ccat.php:1088
 msgid "Format: audio"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:332 core/czr-admin-ccat.php:1245
+#: core/_dev/_admin/class-admin-meta_boxes.php:332 core/czr-admin-ccat.php:1117
 msgid "Link title"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:337 core/czr-admin-ccat.php:1250
+#: core/_dev/_admin/class-admin-meta_boxes.php:337 core/czr-admin-ccat.php:1122
 #, fuzzy
 msgid "Enter the title"
 msgstr "Cím után"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:353 core/czr-admin-ccat.php:1266
+#: core/_dev/_admin/class-admin-meta_boxes.php:353 core/czr-admin-ccat.php:1138
 #, fuzzy
 msgid "Link URL"
 msgstr "Linkek"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:358 core/czr-admin-ccat.php:1271
+#: core/_dev/_admin/class-admin-meta_boxes.php:358 core/czr-admin-ccat.php:1143
 msgid "Enter the URL"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:385 core/czr-admin-ccat.php:1298
+#: core/_dev/_admin/class-admin-meta_boxes.php:385 core/czr-admin-ccat.php:1170
 #, fuzzy
 msgid "Quote text"
 msgstr "Nyomógomb szövege"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:390 core/czr-admin-ccat.php:1303
+#: core/_dev/_admin/class-admin-meta_boxes.php:390 core/czr-admin-ccat.php:1175
 #, fuzzy
 msgid "Enter the text"
 msgstr "Cím után"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:405 core/czr-admin-ccat.php:1318
+#: core/_dev/_admin/class-admin-meta_boxes.php:405 core/czr-admin-ccat.php:1190
 #, fuzzy
 msgid "Quote author"
 msgstr "Bejegyzés szerzője"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:411 core/czr-admin-ccat.php:1324
+#: core/_dev/_admin/class-admin-meta_boxes.php:411 core/czr-admin-ccat.php:1196
 #, fuzzy
 msgid "Enter the author"
 msgstr "Kivonatszöveg megjelenítése"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:438 core/czr-admin-ccat.php:1351
+#: core/_dev/_admin/class-admin-meta_boxes.php:438 core/czr-admin-ccat.php:1223
 msgid "Audio url"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:442 core/czr-admin-ccat.php:1355
+#: core/_dev/_admin/class-admin-meta_boxes.php:442 core/czr-admin-ccat.php:1227
 msgid "Enter the audio url"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:472 core/czr-admin-ccat.php:1385
+#: core/_dev/_admin/class-admin-meta_boxes.php:472 core/czr-admin-ccat.php:1257
 msgid "Video url"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:476 core/czr-admin-ccat.php:1389
+#: core/_dev/_admin/class-admin-meta_boxes.php:476 core/czr-admin-ccat.php:1261
 #, fuzzy
 msgid "Enter the video url"
 msgstr "Pinteres profil"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:522 core/czr-admin-ccat.php:1435
+#: core/_dev/_admin/class-admin-meta_boxes.php:522 core/czr-admin-ccat.php:1307
 msgid "Default %1$s layout is set to : %2$s"
 msgstr "Az alap %1$s oldalszerkezet beállítva: %2$s"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:522 core/czr-admin-ccat.php:1435
+#: core/_dev/_admin/class-admin-meta_boxes.php:522 core/czr-admin-ccat.php:1307
 msgid "pages"
 msgstr "oldalak"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:522 core/czr-admin-ccat.php:1435
+#: core/_dev/_admin/class-admin-meta_boxes.php:522 core/czr-admin-ccat.php:1307
 msgid "posts"
 msgstr "bejegyzések"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:525 core/czr-admin-ccat.php:1438
+#: core/_dev/_admin/class-admin-meta_boxes.php:525 core/czr-admin-ccat.php:1310
 msgid ""
 "You can define a specific layout for %1$s by using the pre-defined left and "
 "right sidebars. The default layouts can be defined in the WordPress "
@@ -144,48 +144,48 @@ msgstr ""
 "%2$s definiálhatod."
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:526
-#: core/_dev/_admin/class-admin-meta_boxes.php:531 core/czr-admin-ccat.php:1439
-#: core/czr-admin-ccat.php:1444
+#: core/_dev/_admin/class-admin-meta_boxes.php:531 core/czr-admin-ccat.php:1311
+#: core/czr-admin-ccat.php:1316
 msgid "this page"
 msgstr "jelen oldal"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:526
-#: core/_dev/_admin/class-admin-meta_boxes.php:531 core/czr-admin-ccat.php:1439
-#: core/czr-admin-ccat.php:1444
+#: core/_dev/_admin/class-admin-meta_boxes.php:531 core/czr-admin-ccat.php:1311
+#: core/czr-admin-ccat.php:1316
 msgid "this post"
 msgstr "jelen bejegyzés"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:527
 #: core/core-settings-map.php:1059 core/core-settings-map.php:1064
-#: core/core-settings-map.php:2396 core/czr-admin-ccat.php:1440
+#: core/core-settings-map.php:2396 core/czr-admin-ccat.php:1312
 msgid "here"
 msgstr "itt"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:530 core/czr-admin-ccat.php:1443
+#: core/_dev/_admin/class-admin-meta_boxes.php:530 core/czr-admin-ccat.php:1315
 msgid "Select a specific layout for %1$s"
 msgstr "Oldalszerkezet beállítás: %1$s"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:534 core/czr-admin-ccat.php:1447
+#: core/_dev/_admin/class-admin-meta_boxes.php:534 core/czr-admin-ccat.php:1319
 msgid "Default layout %1s"
 msgstr "Alap oldalszerkezet: %1s"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:580 core/czr-admin-ccat.php:1493
+#: core/_dev/_admin/class-admin-meta_boxes.php:580 core/czr-admin-ccat.php:1365
 msgid "Add a slider to this post/page"
 msgstr "Lapozókép hozzáadása oldalhoz/bejegyszéshez"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:659
 #: core/_dev/_admin/class-admin-meta_boxes.php:1330
-#: core/czr-admin-ccat.php:1572 core/czr-admin-ccat.php:2243
+#: core/czr-admin-ccat.php:1444 core/czr-admin-ccat.php:2115
 msgid "Choose a slider"
 msgstr "Lapozókép kiválasztása"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:665
 #: core/_dev/_admin/class-admin-meta_boxes.php:1345
-#: core/czr-admin-ccat.php:1578 core/czr-admin-ccat.php:2258
+#: core/czr-admin-ccat.php:1450 core/czr-admin-ccat.php:2130
 msgid "&mdash; Select a slider &mdash; "
 msgstr "&mdash; Lapozókép kiválasztása &mdash; "
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:688 core/czr-admin-ccat.php:1601
+#: core/_dev/_admin/class-admin-meta_boxes.php:688 core/czr-admin-ccat.php:1473
 msgid ""
 "To create a new slider : open the media library, edit your images and add "
 "them to your new slider."
@@ -193,32 +193,32 @@ msgstr ""
 "Új lapozókép létrehozásához, nyisd meg a Médiatárat, válaszd ki a kívánt "
 "képet, majd állítsd be mint lapozókép (az oldal alján)"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:692 core/czr-admin-ccat.php:1605
+#: core/_dev/_admin/class-admin-meta_boxes.php:692 core/czr-admin-ccat.php:1477
 msgid "Delay between each slides in milliseconds (default : 5000 ms)"
 msgstr "Lapozóképek közötti váltás ezredmásodpercben (alap: 5000 ms)"
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:699 core/czr-admin-ccat.php:1612
+#: core/_dev/_admin/class-admin-meta_boxes.php:699 core/czr-admin-ccat.php:1484
 msgid "Slider Layout : set the slider in full width"
 msgstr "Lapozókép oldalszerkezete: teljes szélesség"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:718
-#: core/core-settings-map.php:1252 core/czr-admin-ccat.php:1631
+#: core/core-settings-map.php:1252 core/czr-admin-ccat.php:1503
 msgid "Apply a dark overlay on your slider's images"
 msgstr ""
 
-#: core/_dev/_admin/class-admin-meta_boxes.php:737 core/czr-admin-ccat.php:1650
+#: core/_dev/_admin/class-admin-meta_boxes.php:737 core/czr-admin-ccat.php:1522
 msgid "Display navigation dots at the bottom of your slider."
 msgstr ""
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:756
 #: core/_dev/_admin/class-admin-meta_boxes.php:1354
-#: core/czr-admin-ccat.php:1669 core/czr-admin-ccat.php:2267
+#: core/czr-admin-ccat.php:1541 core/czr-admin-ccat.php:2139
 msgid "Delete this slider"
 msgstr "Lapozókép törlése"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:761
 #: core/_dev/_admin/class-admin-meta_boxes.php:1358
-#: core/czr-admin-ccat.php:1674 core/czr-admin-ccat.php:2271
+#: core/czr-admin-ccat.php:1546 core/czr-admin-ccat.php:2143
 msgid ""
 "The slider will be deleted permanently (images, call to actions and link "
 "will be kept)."
@@ -226,13 +226,13 @@ msgstr "A lapozóképet véglegesen töröljük (a képek, linkek megmaradnak)"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:764
 #: core/_dev/_admin/class-admin-meta_boxes.php:1361
-#: core/czr-admin-ccat.php:1677 core/czr-admin-ccat.php:2274
+#: core/czr-admin-ccat.php:1549 core/czr-admin-ccat.php:2146
 msgid "Delete slider"
 msgstr "Lapozókép törlése"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:775
 #: core/_dev/_czr/controls/class-base-control.php:68
-#: core/czr-admin-ccat.php:1688 core/czr-customize-ccat.php:969
+#: core/czr-admin-ccat.php:1560 core/czr-customize-ccat.php:969
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -240,68 +240,68 @@ msgstr ""
 "Még nincs lapozókép kialakítva. Ugorj a Médiatárba és hozz létre egyet."
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1124
-#: core/czr-admin-ccat.php:2037
+#: core/czr-admin-ccat.php:1909
 msgid "Add to a slider (create one if needed)"
 msgstr "Hozzáadás lapozóképhez (szükség esetén csinálj új  lapozóképet)"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1259
-#: core/czr-admin-ccat.php:2172
+#: core/czr-admin-ccat.php:2044
 #, fuzzy
 msgid "Title text (80 char. max length)"
 msgstr "Cím (max. 80 karakter hosszú)"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1266
-#: core/czr-admin-ccat.php:2179
+#: core/czr-admin-ccat.php:2051
 #, fuzzy
 msgid "Description text (below the title, 250 char. max length)"
 msgstr "Leírás (cím alatt, max. 250 karakter)"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1273
-#: core/czr-admin-ccat.php:2186
+#: core/czr-admin-ccat.php:2058
 msgid "Title and text color"
 msgstr "Cím és leírás színe"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1281
-#: core/czr-admin-ccat.php:2194
+#: core/czr-admin-ccat.php:2066
 #, fuzzy
 msgid "Button text (80 char. max length)"
 msgstr "Nyomógomb szöveg (max. 80 karakter)"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1288
-#: core/czr-admin-ccat.php:2201
+#: core/czr-admin-ccat.php:2073
 msgid "Choose a linked page or post (among the last 100)."
 msgstr "Linkelt oldal/bejegyzés kiválasztása (az utolsó 100 közül)"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1293
-#: core/czr-admin-ccat.php:2206
+#: core/czr-admin-ccat.php:2078
 msgid "No link"
 msgstr "Nincs link"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1302
-#: core/czr-admin-ccat.php:2215
+#: core/czr-admin-ccat.php:2087
 msgid ""
 "or a custom link (leave this empty if you already selected a page or post "
 "above)"
 msgstr ""
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1308
-#: core/czr-admin-ccat.php:2221
+#: core/czr-admin-ccat.php:2093
 msgid "Open link in a new page/tab"
 msgstr ""
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1319
-#: core/czr-admin-ccat.php:2232
+#: core/czr-admin-ccat.php:2104
 msgid "Link the whole slide"
 msgstr ""
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1351
 #: core/_dev/_admin/class-admin-meta_boxes.php:1380
-#: core/czr-admin-ccat.php:2264 core/czr-admin-ccat.php:2293
+#: core/czr-admin-ccat.php:2136 core/czr-admin-ccat.php:2165
 msgid "Add a slider"
 msgstr "Lapozókép létrehozás"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1378
-#: core/czr-admin-ccat.php:2291
+#: core/czr-admin-ccat.php:2163
 msgid ""
 "You haven't create any slider yet. Write a slider name and click on the "
 "button to add you first slider."
@@ -310,7 +310,7 @@ msgstr ""
 "létrehozásához."
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1504
-#: core/czr-admin-ccat.php:2417
+#: core/czr-admin-ccat.php:2289
 msgid ""
 "This slider has not slides to show. Go to the media library and start adding "
 "images to it."
@@ -319,34 +319,34 @@ msgstr ""
 "képet."
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1514
-#: core/czr-admin-ccat.php:2427
+#: core/czr-admin-ccat.php:2299
 msgid "Slide Image"
 msgstr "Lapozókép"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1515
-#: core/czr-admin-ccat.php:2428 core/czr-modules/social-links/index.php:121
+#: core/czr-admin-ccat.php:2300 core/czr-modules/social-links/index.php:121
 #: core/czr-modules/social-links/social_links_module.php:123
 msgid "Title"
 msgstr "Cím"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1516
-#: core/czr-admin-ccat.php:2429
+#: core/czr-admin-ccat.php:2301
 msgid "Slide Text"
 msgstr "Lapozókép szöveg"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1517
-#: core/czr-admin-ccat.php:2430
+#: core/czr-admin-ccat.php:2302
 msgid "Button Text"
 msgstr "Nyomógomb szöveg"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1518
-#: core/czr-admin-ccat.php:2431
+#: core/czr-admin-ccat.php:2303
 msgid "Link"
 msgstr ""
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1519
 #: core/_dev/_czr/class-czr-resources.php:221
-#: core/_dev/_czr/class-czr-resources.php:231 core/czr-admin-ccat.php:2432
+#: core/_dev/_czr/class-czr-resources.php:231 core/czr-admin-ccat.php:2304
 #: core/czr-base-fmk/czr-base-fmk.php:268
 #: core/czr-base-fmk/czr-base-fmk.php:567 core/czr-customize-ccat.php:864
 #: core/czr-customize-ccat.php:874
@@ -372,22 +372,22 @@ msgid "Edit"
 msgstr "Szerkesztés"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1561
-#: core/czr-admin-ccat.php:2474
+#: core/czr-admin-ccat.php:2346
 msgid "No Image Selected"
 msgstr "Nincs kép kiválasztva"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1587
-#: core/czr-admin-ccat.php:2500
+#: core/czr-admin-ccat.php:2372
 msgid "Edit this slide"
 msgstr "Lapozókép szerkesztése"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1589
-#: core/czr-admin-ccat.php:2502
+#: core/czr-admin-ccat.php:2374
 msgid "Current slide"
 msgstr "Jelenlegi lapozókép"
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1600
-#: core/czr-admin-ccat.php:2513
+#: core/czr-admin-ccat.php:2385
 msgid ""
 "To add another slide : navigate to your media library (click on Media), open "
 "the edit screen of an image ( or add a new image ), and add it to your "
@@ -395,166 +395,105 @@ msgid ""
 msgstr ""
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1601
-#: core/czr-admin-ccat.php:2514
+#: core/czr-admin-ccat.php:2386
 msgid "For more informations about sliders, check the documentation page :"
 msgstr ""
 
 #: core/_dev/_admin/class-admin-meta_boxes.php:1603
-#: core/czr-admin-ccat.php:2516
+#: core/czr-admin-ccat.php:2388
 #, fuzzy
 msgid "Slider documentation"
 msgstr "Olvasd el a dokumentációt"
 
 #: core/_dev/_admin/class-fire-admin_init.php:433 core/czr-admin-ccat.php:433
-msgid "Good, you've recently upgraded to"
-msgstr ""
+#, fuzzy
+msgid "✅ You have recently updated to"
+msgstr "Frissítve!"
 
 #: core/_dev/_admin/class-fire-admin_init.php:435 core/czr-admin-ccat.php:435
 msgid "version"
 msgstr ""
 
-#: core/_dev/_admin/class-fire-admin_init.php:444 core/czr-admin-ccat.php:444
-msgid "We'd like to introduce the new features we've been working on."
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_init.php:446 core/czr-admin-ccat.php:446
+#: core/_dev/_admin/class-fire-admin_init.php:438 core/czr-admin-ccat.php:438
 msgid "Read the latest release notes"
 msgstr ""
 
-#: core/_dev/_admin/class-fire-admin_init.php:453 core/czr-admin-ccat.php:453
+#: core/_dev/_admin/class-fire-admin_init.php:446
+#: core/_dev/_admin/class-fire-admin_page.php:68 core/czr-admin-ccat.php:446
+#: core/czr-admin-ccat.php:551
+msgid ""
+"If you enjoy using the Customizr theme for your website, please consider %s. "
+"Your support allows us to keep the theme at the highest level. Thank you!"
+msgstr ""
+
+#: core/_dev/_admin/class-fire-admin_init.php:447
+#: core/_dev/_admin/class-fire-admin_page.php:69 core/czr-admin-ccat.php:447
+#: core/czr-admin-ccat.php:552
+#, fuzzy
+msgid "upgrading to the pro version"
+msgstr "Címikonok beállításai"
+
+#: core/_dev/_admin/class-fire-admin_init.php:455 core/czr-admin-ccat.php:455
 msgid "close"
 msgstr ""
 
-#: core/_dev/_admin/class-fire-admin_page.php:37 core/czr-admin-ccat.php:518
+#: core/_dev/_admin/class-fire-admin_page.php:29 core/czr-admin-ccat.php:512
 msgid "About Customizr"
 msgstr "Customizr névjegy"
 
-#: core/_dev/_admin/class-fire-admin_page.php:69 core/czr-admin-ccat.php:550
+#: core/_dev/_admin/class-fire-admin_page.php:58 core/czr-admin-ccat.php:541
 msgid "Thank you for using"
 msgstr ""
 
-#: core/_dev/_admin/class-fire-admin_page.php:87 core/czr-admin-ccat.php:568
-msgid "The best way to start with %s is to read the %s and visit the %s."
+#: core/_dev/_admin/class-fire-admin_page.php:80 core/czr-admin-ccat.php:563
+msgid "Knowledge base"
 msgstr ""
 
-#: core/_dev/_admin/class-fire-admin_page.php:89 core/czr-admin-ccat.php:570
-msgid "documentation"
+#: core/_dev/_admin/class-fire-admin_page.php:81 core/czr-admin-ccat.php:564
+msgid "We have prepared a complete online documentation of the theme."
 msgstr ""
 
-#: core/_dev/_admin/class-fire-admin_page.php:90 core/czr-admin-ccat.php:571
-msgid "demo website"
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_page.php:94 core/czr-admin-ccat.php:575
+#: core/_dev/_admin/class-fire-admin_page.php:82 core/czr-admin-ccat.php:565
 #, fuzzy
-msgid "Read the changelog"
+msgid "Customizr Documentation"
 msgstr "Olvasd el a dokumentációt"
 
-#: core/_dev/_admin/class-fire-admin_page.php:107 core/czr-admin-ccat.php:588
-msgid ""
-"You are using a child theme of Customizr %1$s : always check the %2$s after "
-"upgrading to see if a function or a template has been deprecated."
+#: core/_dev/_admin/class-fire-admin_page.php:87 core/czr-admin-ccat.php:570
+msgid "Share your feedback"
 msgstr ""
-"A Customizr %1$s egyik gyerek (child) témáját használod. Frissítés után "
-"mindig ellenőrizd a %2$s , s győződj meg róla, hogy mely funkciók és "
-"sablonok lettek elavulttá nyilvánítva."
 
-#: core/_dev/_admin/class-fire-admin_page.php:126 core/czr-admin-ccat.php:607
-msgid "Happy user of Customizr?"
-msgstr "Elégedett Customizr felhasználó?"
-
-#: core/_dev/_admin/class-fire-admin_page.php:127 core/czr-admin-ccat.php:608
+#: core/_dev/_admin/class-fire-admin_page.php:88 core/czr-admin-ccat.php:571
+#, fuzzy
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
-"a nice review! <br />(We are addicted to your feedbacks...)"
+"a nice review!"
 msgstr ""
 "Akkor írjon egy pozitív véleményt a wordpress.org honlapjára. (Minden "
 "visszajelzésre ki vagyunk éhezve)"
 
-#: core/_dev/_admin/class-fire-admin_page.php:132 core/czr-admin-ccat.php:613
-msgid "Follow us"
-msgstr "Kövess minket"
+#: core/_dev/_admin/class-fire-admin_page.php:89 core/czr-admin-ccat.php:572
+msgid "Share a review"
+msgstr ""
 
-#: core/_dev/_admin/class-fire-admin_page.php:146 core/czr-admin-ccat.php:627
-msgid "Go to Dashboard &rarr; Home"
-msgstr "Ugorj a Vezérlőpulthoz &rarr; Kezdőlap"
-
-#: core/_dev/_admin/class-fire-admin_page.php:146 core/czr-admin-ccat.php:627
-msgid "Go to Dashboard"
-msgstr "Ugorj a Vezérlőpulthoz"
-
-#: core/_dev/_admin/class-fire-admin_page.php:198 core/czr-admin-ccat.php:679
+#: core/_dev/_admin/class-fire-admin_page.php:142 core/czr-admin-ccat.php:625
 msgid "Changelog in version %1$s"
 msgstr "Változások a %1$s verzióban"
 
-#: core/_dev/_admin/class-fire-admin_page.php:221 core/czr-admin-ccat.php:702
+#: core/_dev/_admin/class-fire-admin_page.php:177 core/czr-admin-ccat.php:660
 msgid "System Informations"
 msgstr "Rendszer infó"
 
-#: core/_dev/_admin/class-fire-admin_page.php:222 core/czr-admin-ccat.php:703
+#: core/_dev/_admin/class-fire-admin_page.php:178 core/czr-admin-ccat.php:661
 msgid "Please include the following informations when posting support requests"
 msgstr "Támogatás kérés esetén kérlek a következő infókat is csatold"
 
-#: core/_dev/_admin/class-fire-admin_page.php:223 core/czr-admin-ccat.php:704
+#: core/_dev/_admin/class-fire-admin_page.php:179 core/czr-admin-ccat.php:662
 msgid ""
 "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
 "(Mac)."
 msgstr ""
 "A rendszer infó kimásolásához klikk ide lejjebb majd Ctrl + C (PC) vagy Cmd "
 "+ C (Mac) alatt."
-
-#: core/_dev/_admin/class-fire-admin_page.php:381 core/czr-admin-ccat.php:862
-msgid "We found {count} article that may help:"
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_page.php:382 core/czr-admin-ccat.php:863
-msgid "We found {count} articles that may help:"
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_page.php:383 core/czr-admin-ccat.php:864
-msgid "No results found&hellip;"
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_page.php:384 core/czr-admin-ccat.php:865
-msgid "Please enter a search term."
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_page.php:385 core/czr-admin-ccat.php:866
-msgid "Search must be at least {minLength} characters."
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_page.php:386 core/czr-admin-ccat.php:867
-msgid "There was an error fetching search results."
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_page.php:392 core/czr-admin-ccat.php:873
-#, fuzzy
-msgid "Read the full article"
-msgstr "Olvasd el a dokumentációt"
-
-#: core/_dev/_admin/class-fire-admin_page.php:393 core/czr-admin-ccat.php:874
-#, fuzzy
-msgid "read more"
-msgstr "Részletek &raquo;"
-
-#: core/_dev/_admin/class-fire-admin_page.php:416 core/czr-admin-ccat.php:897
-msgid "Search the knowledge base"
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_page.php:417 core/czr-admin-ccat.php:898
-msgid "In a few keywords, describe the information you are looking for."
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_page.php:420 core/czr-admin-ccat.php:901
-msgid "Ex. Logo upload"
-msgstr ""
-
-#: core/_dev/_admin/class-fire-admin_page.php:422 core/czr-admin-ccat.php:903
-msgid ""
-"<u>Search tips</u> : If you get too many results, try to narrow down your "
-"search by prefixing it with \"customizr\" for example. If there are no "
-"results, try different keywords and / or spelling variations"
-msgstr ""
 
 #: core/_dev/_czr/class-czr-init.php:569 core/czr-customize-ccat.php:569
 #, fuzzy
@@ -4677,6 +4616,38 @@ msgstr ""
 msgctxt "title"
 msgid "Search &hellip;"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Read the changelog"
+#~ msgstr "Olvasd el a dokumentációt"
+
+#~ msgid ""
+#~ "You are using a child theme of Customizr %1$s : always check the %2$s "
+#~ "after upgrading to see if a function or a template has been deprecated."
+#~ msgstr ""
+#~ "A Customizr %1$s egyik gyerek (child) témáját használod. Frissítés után "
+#~ "mindig ellenőrizd a %2$s , s győződj meg róla, hogy mely funkciók és "
+#~ "sablonok lettek elavulttá nyilvánítva."
+
+#~ msgid "Happy user of Customizr?"
+#~ msgstr "Elégedett Customizr felhasználó?"
+
+#~ msgid "Follow us"
+#~ msgstr "Kövess minket"
+
+#~ msgid "Go to Dashboard &rarr; Home"
+#~ msgstr "Ugorj a Vezérlőpulthoz &rarr; Kezdőlap"
+
+#~ msgid "Go to Dashboard"
+#~ msgstr "Ugorj a Vezérlőpulthoz"
+
+#, fuzzy
+#~ msgid "Read the full article"
+#~ msgstr "Olvasd el a dokumentációt"
+
+#, fuzzy
+#~ msgid "read more"
+#~ msgstr "Részletek &raquo;"
 
 #~ msgid "Easily take your web design one step further"
 #~ msgstr "Egy lépéssel könnyebb a továbblépés :)"

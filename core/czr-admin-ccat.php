@@ -359,7 +359,7 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
 
     /**********************************************************************************
     * UPDATE NOTICE
-    * User gets notified when the version stores in the db option 'last_update_notice'
+    * User gets notified when the version stored in the db option 'last_update_notice'
     * is < current version of the theme (CUSTOMIZR_VER)
     * User can dismiss the notice and the option get updated by ajax to the current version
     * The notice will be displayed a maximum of 5 times and will be automatically dismissed until the next update.
@@ -415,7 +415,7 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
               czr_fn_set_option( $opt_name, $new_val );
           }//end else
       }//end if
-
+      $show_new_notice = ( defined('CZR_DEV') && CZR_DEV ) || $show_new_notice;
       if ( !$show_new_notice )
         return;
 
@@ -429,24 +429,26 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
           <?php
             echo apply_filters(
               'czr_update_notice',
-              sprintf('<h3>%1$s %2$s %3$s %4$s :D</h3>',
-                __( "Good, you've recently upgraded to", "customizr"),
+              sprintf('<h3>%1$s %2$s %3$s %4$s. <a class="" href="%5$s" title="%6$s" target="_blank">%6$s &raquo;</a></h3>',
+                __( "✅ You have recently updated to", "customizr"),
                 CZR_IS_PRO ? 'Customizr Pro' : 'Customizr',
                 __( "version", "customizr"),
-                CUSTOMIZR_VER
+                CUSTOMIZR_VER,
+                CZR_WEBSITE . "category/customizr-releases/",
+                __( "Read the latest release notes" , "customizr" )
               )
             );
           ?>
           <?php
-            echo apply_filters(
-              'czr_update_notice',
-              sprintf( '<h4>%1$s <a class="" href="%2$s" title="%3$s" target="_blank">%3$s &raquo;</a></h4>%4$s',
-                __( "We'd like to introduce the new features we've been working on.", "customizr"),
-                CZR_WEBSITE . "category/customizr-releases/",
-                __( "Read the latest release notes" , "customizr" ),
-                apply_filters( 'czr_update_notice_after', '' )
-              )
-            );
+            if ( !CZR_IS_PRO && czr_fn_user_started_before_version('4.4.6') ) {
+              echo apply_filters( 'czr_update_notice',
+                sprintf( '<h4><strong>%1$s 🙏</strong></h4>',
+                  sprintf( __( "If you enjoy using the Customizr theme for your website, please consider %s. Your support allows us to keep the theme at the highest level. Thank you!", "customizr"),
+                    sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', 'https://presscustomizr.com/customizr-pro/', __("upgrading to the pro version", "customizr") )
+                  )
+                )
+              );
+            }
           ?>
           <p style="text-align:right;position: absolute;font-size: 1.1em;<?php echo is_rtl()? 'left' : 'right';?>: 7px;bottom: -5px;">
             <?php printf('<a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %1$s <strong>X</strong> ) </a>',
@@ -493,18 +495,10 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
       self::$instance =& $this;
       //add welcome page in menu
       add_action( 'admin_menu'             , array( $this , 'czr_fn_add_welcome_page' ));
-      //config infos
-      add_action( '__after_welcome_panel'  , array( $this , 'czr_fn_config_infos' ), 10 );
-      //changelog
-      add_action( '__after_welcome_panel'  , array( $this , 'czr_fn_print_changelog' ), 20);
       //build the support url
       $this->support_url = CZR_IS_PRO ? esc_url( sprintf('%ssupport' , CZR_WEBSITE ) ) : esc_url('wordpress.org/support/theme/customizr');
       //fix #wpfooter absolute positioning in the welcome and about pages
       add_action( 'admin_print_styles'     , array( $this, 'czr_fn_fix_wp_footer_link_style') );
-      //knowledgebase
-      if ( CZR_IS_PRO ) {
-          add_action( 'current_screen'         , array( $this , 'czr_schedule_welcome_page_actions') );
-      }
     }
 
 
@@ -535,101 +529,56 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
      * @since Customizr 3.0.4
      */
       function czr_fn_welcome_panel() {
-
-        $is_help        = isset($_GET['help'])  ?  true : false;
-        $_faq_url       = esc_url('http://docs.presscustomizr.com/category/90-faq-and-common-issues');
+        $_faq_url       = esc_url('https://docs.presscustomizr.com/category/90-faq-and-common-issues');
         $_support_url   = $this->support_url;
         $_theme_name    = CZR_IS_PRO ? 'Customizr Pro' : 'Customizr';
 
-        do_action('__before_welcome_panel');
-
         ?>
-        <div id="customizr-admin-panel" class="wrap about-wrap">
-          <?php
-            $title = sprintf( '<h1 class="need-help-title">%1$s %2$s %3$s :)</h1>',
-              __( "Thank you for using", "customizr" ),
-              $_theme_name,
-              CUSTOMIZR_VER
-            );
-            echo convert_smilies( $title );
-          ?>
+        <div class="customizr-admin-panel">
+          <div class="about-text tc-welcome">
+            <?php
+              $title = sprintf( '<h1 class="czr-welcome-title">%1$s %2$s %3$s :)</h1>',
+                __( "Thank you for using", "customizr" ),
+                $_theme_name,
+                CUSTOMIZR_VER
+              );
+              echo convert_smilies( $title );
+            ?>
 
-          <?php if ( $is_help && !CZR_IS_PRO ) : ?>
-
-              <div class="">
-
-              </div><!-- .changelog -->
-
-          <?php else : ?>
-
-            <div class="about-text tc-welcome">
-              <?php
-                printf( '<p>%1$s</p>',
-                  sprintf( __( "The best way to start with %s is to read the %s and visit the %s.", "customizr"),
-                    $_theme_name,
-                    sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('docs.presscustomizr.com'), __("documentation", "customizr") ),
-                    sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', esc_url('demo.presscustomizr.com'), __("demo website", "customizr") )
+            <?php
+              if ( !CZR_IS_PRO ) {
+                printf( '<h4>%1$s 🙏</h4>',
+                  sprintf( __( "If you enjoy using the Customizr theme for your website, please consider %s. Your support allows us to keep the theme at the highest level. Thank you!", "customizr"),
+                    sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', 'https://presscustomizr.com/customizr-pro/', __("upgrading to the pro version", "customizr") )
                   )
                 );
-                printf( '<p><a href="#customizr-changelog">%1$s</a></p>',
-                  __( "Read the changelog", "customizr")
-                );
-              ?>
-            </div>
+              }
+            ?>
+          </div>
+            
+          <?php echo $this->czr_fn_print_changelog(); ?>
 
-          <?php endif; ?>
+          
+          <div class="czr-col-50 first-col">
+            <h3 style="font-size:1.3em;"><?php _e( 'Knowledge base','customizr' ); ?></h3>
+            <p><?php _e( "We have prepared a complete online documentation of the theme.",'customizr' ) ?></br>
+            <a class="button-primary review-customizr" href="<?php echo 'https://docs.presscustomizr.com/' ?>" target="_blank"><?php _e('Customizr Documentation','customizr'); ?></a></p>
+            <!-- Place this tag where you want the widget to render. -->
+          </div>
+          
+          <div class="czr-col-50">
+            <h3 style="font-size:1.3em;"><?php _e( 'Share your feedback','customizr' ); ?></h3>
+            <p><?php _e( 'If you are happy with the theme, say it on wordpress.org and give Customizr a nice review!','customizr' ) ?></br>
+            <a class="button-primary review-customizr" href="<?php echo esc_url('wordpress.org/support/view/theme-reviews/customizr') ?>" target="_blank"><?php _e('Share a review','customizr'); ?></a></p>
+          </div>
 
-          <?php if ( czr_fn_is_child() ) : ?>
-            <div class="changelog point-releases"></div>
-
-            <div class="tc-upgrade-notice">
-              <p>
-              <?php
-                printf( __('You are using a child theme of Customizr %1$s : always check the %2$s after upgrading to see if a function or a template has been deprecated.' , 'customizr'),
-                  'v'.CUSTOMIZR_VER,
-                  '<strong><a href="#customizr-changelog">changelog</a></strong>'
-                  );
-                ?>
-              </p>
-            </div>
-          <?php endif; ?>
-
-          <?php do_action( 'czr_after_welcome_admin_intro' ); ?>
-
-          <div class="changelog point-releases"></div>
-
-          <?php if ( !CZR_IS_PRO ) : ?>
-            <div class="changelog">
-
-                <div class="feature-section col two-col">
-
-                  <div class="col">
-                    <h3 style="font-size:1.3em;"><?php _e( 'Happy user of Customizr?','customizr' ); ?></h3>
-                    <p><?php _e( 'If you are happy with the theme, say it on wordpress.org and give Customizr a nice review! <br />(We are addicted to your feedbacks...)','customizr' ) ?></br>
-                    <a class="button-primary review-customizr" title="Customizr WordPress Theme" href="<?php echo esc_url('wordpress.org/support/view/theme-reviews/customizr') ?>" target="_blank">Review Customizr &raquo;</a></p>
-                  </div>
-
-                  <div class="last-feature col">
-                    <h3 style="font-size:1.3em;"><?php _e( 'Follow us','customizr' ); ?></h3>
-                    <p class="tc-follow"><a href="<?php echo esc_url( CZR_WEBSITE . 'blog' ); ?>" target="_blank"><img style="border:none;width:auto;" src="<?php echo CZR_BASE_URL . CZR_ASSETS_PREFIX.'back/img/pc.png?' . CUSTOMIZR_VER ?>" alt="Press Customizr" /></a></p>
-                    <!-- Place this tag where you want the widget to render. -->
-
-                  </div><!-- .feature-section -->
-                </div><!-- .feature-section col three-col -->
-
-            </div><!-- .changelog -->
-          <?php endif; //end if ! is_pro ?>
-
-        <?php do_action( '__after_welcome_panel' ); ?>
-
-        <div class="return-to-dashboard">
-          <a href="<?php echo esc_url( self_admin_url() ); ?>"><?php
-            is_blog_admin() ? _e( 'Go to Dashboard &rarr; Home','customizr' ) : _e( 'Go to Dashboard','customizr' ); ?></a>
-        </div>
-
+        <?php echo $this->czr_fn_print_config_infos() ?>
       </div><!-- //#customizr-admin-panel -->
       <?php
     }
+
+
+
 
 
 
@@ -641,8 +590,6 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
    * @since Customizr 3.0.5
    */
     function czr_fn_print_changelog() {
-      if ( isset($_GET['help']) )
-        return;
       if( !file_exists( CZR_BASE . "readme.txt" ) ) {
         return;
       }
@@ -655,7 +602,7 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
       $stylelines = explode("\n", implode('', file( CZR_BASE . "readme.txt" ) ) );
       $read = false;
       $is_title = false;
-
+      
       foreach ($stylelines as $line) {
           $is_title = 0 === strpos($line, '= ');
 
@@ -673,9 +620,8 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
             $html .= sprintf( '<i>%1$s</i><br/>', esc_attr( $line ) );
           }
       }
-      do_action('__before_changelog')
       ?>
-      <div id="customizr-changelog" class="changelog">
+      <div id="customizr-changelog" class="">
         <h3><?php printf( __( 'Changelog in version %1$s' , 'customizr' ) , CUSTOMIZR_VER ); ?></h3>
           <p><?php echo $html ?></p>
       </div>
@@ -684,11 +630,23 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     /*
     * Inspired by Easy Digital Download plugin by Pippin Williamson
     * @since 3.2.1
     */
-    function czr_fn_config_infos() {
+    function czr_fn_print_config_infos() {
       global $wpdb;
       $theme_data   = wp_get_theme();
       $theme        = $theme_data->Name . ' ' . $theme_data->Version;
@@ -698,10 +656,10 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
         $parent_theme      = $parent_theme_data->Name . ' ' . $parent_theme_data->Version;
       }
       ?>
-<div class="wrap tc-config-info">
+<div class="tc-config-info">
 <h3><?php _e( 'System Informations', 'customizr' ); ?></h3>
 <h4 style="text-align: left"><?php _e( 'Please include the following informations when posting support requests' , 'customizr' ) ?></h4>
-<textarea readonly="readonly" onclick="this.focus();this.select()" id="system-info-textarea" name="tc-sysinfo" title="<?php _e( 'To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C (Mac).', 'customizr' ); ?>" style="width: 800px;min-height: 800px;font-family: Menlo,Monaco,monospace;background: 0 0;white-space: pre;overflow: auto;display:block;">
+<textarea readonly="readonly" onclick="this.focus();this.select()" id="system-info-textarea" name="tc-sysinfo" title="<?php _e( 'To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C (Mac).', 'customizr' ); ?>" style="width: 100%;min-height: 800px;font-family: Menlo,Monaco,monospace;background: 0 0;white-space: pre;overflow: auto;display:block;">
 <?php do_action( '__system_config_before' ); ?>
 # SITE_URL:                 <?php echo esc_url( site_url() ) . "\n"; ?>
 # HOME_URL:                 <?php echo esc_url( home_url() ) . "\n"; ?>
@@ -773,7 +731,6 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
 <?php do_action( '__system_config_after' ); ?>
 </textarea>
 </div>
-</div>
       <?php
       }//end of function
 
@@ -821,91 +778,6 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
           .wp-admin #wpfooter {bottom: inherit;}
         </style>
       <?php
-    }
-
-    //hook : current_screen
-    function czr_schedule_welcome_page_actions() {
-        $screen = get_current_screen();
-        if ( 'appearance_page_welcome' != $screen-> id )
-          return;
-
-        add_action( 'czr_after_welcome_admin_intro', array( $this, 'czr_print_hs_doc_content') );
-        add_action( 'admin_enqueue_scripts', array( $this, 'czr_enqueue_hs_assets' ) );
-    }
-
-    //hook : admin_enqueue_scripts
-    function czr_enqueue_hs_assets() {
-        $screen = get_current_screen();
-        if ( 'appearance_page_welcome' != $screen-> id )
-          return;
-        wp_enqueue_style(
-          'czr-admin-hs-css',
-          sprintf('%1$sback/css/czr-hs-doc%2$s.css' , CZR_BASE_URL . CZR_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
-          array(),
-          ( defined('WP_DEBUG') && true === WP_DEBUG ) ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER
-        );
-        wp_enqueue_script(
-          'czr-hs-js',
-          sprintf('%1$sback/js/czr-hs-doc%2$s.js' , CZR_BASE_URL . CZR_ASSETS_PREFIX, ( defined('WP_DEBUG') && true === WP_DEBUG ) ? '' : '.min' ),
-          array( 'jquery', 'underscore' ),
-          ( defined('WP_DEBUG') && true === WP_DEBUG ) ? CUSTOMIZR_VER . time() : CUSTOMIZR_VER,
-          $in_footer = false
-        );
-
-        $script_settings = array(
-          'debug' => false, // Print debug logs or not
-          'searchDelay' => 750, // Delay time in ms after a user stops typing and before search is performed
-          'minLength' => 3, // Minimum number of characters required to trigger search
-          'limit' => 25, // Max limit for # of results to show
-          'text' => array(
-            //@translators : keep the strings inside brackets ( like {count} and {minLength} ) untranslated as it will be replaced by a number when parsed in javascript
-            'result_found' => __('We found {count} article that may help:' , 'customizr'),
-            'results_found' => __('We found {count} articles that may help:' , 'customizr'),
-            'no_results_found' => __('No results found&hellip;' , 'customizr'),
-            'enter_search' => __('Please enter a search term.' , 'customizr'),
-            'not_long_enough' => __('Search must be at least {minLength} characters.' , 'customizr'),
-            'error' => __('There was an error fetching search results.' , 'customizr'),
-          ),
-          'template' => array(
-            'wrap_class' => 'docs-search-wrap',
-            'before' => '<ul class="docs-search-results">',
-            'item' => sprintf( '<li class="article"><a href="{url}" title="%1$s" target="_blank">{name}<span class="article--open-original" ></span></a><p class="article-preview">{preview} ... <a href="{url}" title="%1$s" target="_blank">%2$s</a></p></li>',
-              __( 'Read the full article', 'customizr' ),
-              __( 'read more', 'customizr' )
-            ),
-            'after' => '</ul>',
-            'results_found' => '<span class="{css_class}">{text}</span>',
-          ),
-          'collections' => array(), // The collection IDs to search in
-
-          // Do not modify
-          '_subdomain' => 'presscustomizr',
-        );
-
-        wp_localize_script( 'czr-hs-js', 'CZRHSParams', $script_settings );
-    }
-
-
-    //hook : czr_after_welcome_admin_intro
-    function czr_print_hs_doc_content() {
-        ?>
-          <form enctype="multipart/form-data" method="post" class="frm-show-form " id="form_m3j26q22">
-            <div class="frm_form_fields ">
-              <fieldset>
-                <div id="frm_field_335_container" class="frm_form_field form-field  frm_top_container helpscout-docs">
-                  <label for="field_6woxqa" class="frm_primary_label">
-                    <h2><?php _e( 'Search the knowledge base', 'customizr' ); ?></h2>
-                    <h4 style="text-align:center;font-style: italic;font-weight: normal;"><?php _e( 'In a few keywords, describe the information you are looking for.', 'customizr' ); ?></h4>
-                      <span class="frm_required"></span>
-                  </label>
-                  <input type="text" id="field_6woxqa" name="item_meta[335]" value="" placeholder="<?php _e( 'Ex. Logo upload', 'customizr' ) ;?>" autocomplete="off">
-
-                  <div class="frm_description"><?php _e('<u>Search tips</u> : If you get too many results, try to narrow down your search by prefixing it with "customizr" for example. If there are no results, try different keywords and / or spelling variations', 'customizr' ); ?> </div>
-                </div>
-              </fieldset>
-            </div>
-          </form>
-        <?php
     }
 
   }//end of class

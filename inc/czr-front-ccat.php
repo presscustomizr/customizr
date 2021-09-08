@@ -3234,7 +3234,7 @@ if ( ! class_exists( 'CZR_comments' ) ) :
     * @since Customizr 3.3.2
     */
     function czr_fn_comment_bubble_inline_css( $_css ) {
-      if ( 0 == esc_attr( czr_fn_opt( 'tc_comment_show_bubble' ) ) )
+      if ( 0 == czr_fn_opt( 'tc_comment_show_bubble' ) )
         return $_css;
 
       $_bubble_color_type   = esc_attr( czr_fn_opt( 'tc_comment_bubble_color_type' ) );
@@ -4000,14 +4000,14 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_set_post_page_icon( $_bool ) {
-          if ( is_page() )
-            $_bool = ( 0 == esc_attr( czr_fn_opt( 'tc_show_page_title_icon' ) ) ) ? false : $_bool;
-          if ( is_single() && ! is_page() )
-            $_bool = ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_title_icon' ) ) ) ? false : $_bool;
-          if ( ! is_single() )
-            $_bool = ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_list_title_icon' ) ) ) ? false : $_bool;
+          if ( is_singular() && is_page() )
+            $_bool = 0 == czr_fn_opt( 'tc_show_page_title_icon' ) ? false : $_bool;
+          if ( is_singular() && is_single() )
+            $_bool = 0 == czr_fn_opt( 'tc_show_post_title_icon' ) ? false : $_bool;
+          if ( !is_singular() )
+            $_bool = 0 == czr_fn_opt( 'tc_show_post_list_title_icon' ) ? false : $_bool;
           //last condition
-          return ( 0 == esc_attr( czr_fn_opt( 'tc_show_title_icon' ) ) ) ? false : $_bool;
+          return 0 == czr_fn_opt( 'tc_show_title_icon' ) ? false : $_bool;
       }
 
 
@@ -4020,9 +4020,9 @@ if ( ! class_exists( 'CZR_headings' ) ) :
       * @since Customizr 3.2.0
       */
       function czr_fn_set_archive_icon( $_class ) {
-          $_class = ( 0 == esc_attr( czr_fn_opt( 'tc_show_archive_title_icon' ) ) ) ? '' : $_class;
+          $_class = 0 == czr_fn_opt( 'tc_show_archive_title_icon' ) ? '' : $_class;
           //last condition
-          return 0 == esc_attr( czr_fn_opt( 'tc_show_title_icon' ) ) ? '' : $_class;
+          return 0 == czr_fn_opt( 'tc_show_title_icon' ) ? '' : $_class;
       }
 
 
@@ -4217,7 +4217,7 @@ if ( ! class_exists( 'CZR_headings' ) ) :
               return $html;
 
           //Is the notice option enabled AND this post type eligible for updated notice ? (default is post)
-          if ( 0 == esc_attr( czr_fn_opt( 'tc_post_metas_update_notice_in_title' ) ) || ! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
+          if ( 0 == czr_fn_opt( 'tc_post_metas_update_notice_in_title' ) || ! in_array( get_post_type(), apply_filters('tc_show_update_notice_for_post_types' , array( 'post') ) ) )
               return $html;
 
           //php version check for DateTime
@@ -5225,8 +5225,7 @@ class CZR_post_list {
   function czr_fn_set_post_list_layout( $_layout ) {
     $_position                  = esc_attr( czr_fn_opt( 'tc_post_list_thumb_position' ) );
     //since 3.4.16 the alternate layout is not available when the position is top or bottom
-    $_layout['alternate']        = ( 0 == esc_attr( czr_fn_opt( 'tc_post_list_thumb_alternate' ) )
-                                   || in_array( $_position, array( 'top', 'bottom') ) ) ? false : true;
+    $_layout['alternate']        = ( 0 == czr_fn_opt( 'tc_post_list_thumb_alternate' ) || in_array( $_position, array( 'top', 'bottom') ) ) ? false : true;
     $_layout['show_thumb_first'] = ( 'left' == $_position || 'top' == $_position ) ? true : false;
     $_layout['content']          = ( 'left' == $_position || 'right' == $_position ) ? $_layout['content'] : 'span12';
     $_layout['thumb']            = ( 'top' == $_position || 'bottom' == $_position ) ? 'span12' : $_layout['thumb'];
@@ -6362,7 +6361,7 @@ if ( ! class_exists( 'CZR_post_metas' ) ) :
         */
         function czr_fn_set_visibility_options() {
           //if customizing context, always render. Will be hidden in the DOM with a body class filter is disabled.
-          if ( 0 == esc_attr( czr_fn_opt( 'tc_show_post_metas' ) ) ) {
+          if ( 0 == czr_fn_opt( 'tc_show_post_metas' ) ) {
             if ( czr_fn_is_customizing() )
               add_filter( 'body_class' , array( $this , 'czr_fn_hide_all_post_metas') );
             else{
@@ -7682,7 +7681,7 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
         //when do we display this block ?
         //1) if customizing: must be enabled
         //2) if not customizing : must be enabled and have social networks.
-        $_nothing_to_render         = 0 == esc_attr( czr_fn_opt( $option ) );
+        $_nothing_to_render         = 0 == czr_fn_opt( $option );
 
         $_nothing_to_render_front   = $_nothing_to_render || ! ( $_socials = czr_fn__f( '__get_socials' ) ) ? true : $_nothing_to_render;
 
@@ -7714,8 +7713,8 @@ if ( ! class_exists( 'CZR_sidebar' ) ) :
       function czr_fn_set_sidebar_wrapper_widget_class($_original_classes) {
         $_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
 
-        if ( 1 == esc_attr( czr_fn_opt('tc_show_sidebar_widget_icon' ) ) )
-          return ( 0 == esc_attr( czr_fn_opt('tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
+        if ( 1 == czr_fn_opt('tc_show_sidebar_widget_icon' ) )
+          return 0 == czr_fn_opt('tc_show_title_icon' ) ? $_no_icons_classes : $_original_classes;
          //last condition
         return $_no_icons_classes;
       }
@@ -8155,7 +8154,7 @@ class CZR_slider {
 
     //allow responsive images?
     if ( version_compare( $GLOBALS['wp_version'], '4.4', '>=' ) )
-      $args['slider_responsive_images'] = 0 == esc_attr( czr_fn_opt('tc_resp_slider_img') ) ? false : true ;
+      $args['slider_responsive_images'] = 0 == czr_fn_opt('tc_resp_slider_img') ? false : true;
 
     /* Get the pre_model */
     $pre_slides = $pre_slides_posts = array();
@@ -9224,7 +9223,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
         //when do we display the socials?
         //1) must be enabled
         //the whole block will be always displayed for a matter of structure (columns)
-	    	$_hide_socials = ( 0 == esc_attr( czr_fn_opt( 'tc_social_in_footer') ) );
+	    	$_hide_socials = 0 == czr_fn_opt( 'tc_social_in_footer');
 
 
 	      	echo apply_filters(
@@ -9280,7 +9279,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		*/
         function czr_fn_colophon_right_block() {
           //since 3.4.16 BTT button excludes BTT text
-      if ( ! apply_filters('tc_show_text_btt', 0 == esc_attr( czr_fn_opt( 'tc_show_back_to_top' ) ) ) )
+      if ( ! apply_filters('tc_show_text_btt', 0 == czr_fn_opt( 'tc_show_back_to_top' ) ) )
         return;
 
     	echo apply_filters(
@@ -9372,7 +9371,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		* @since Customizr 3.2.0
 		*/
 		function czr_fn_render_back_to_top() {
-			if ( 0 == esc_attr( czr_fn_opt( 'tc_show_back_to_top' ) ) )
+			if ( 0 == czr_fn_opt( 'tc_show_back_to_top' ) )
                 return;
             printf('<div id="tc-footer-btt-wrapper" class="tc-btt-wrapper %1$s"><i class="btt-arrow"></i></div>',
                 esc_attr( czr_fn_opt( 'tc_back_to_top_position' ) )
@@ -9390,8 +9389,8 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
 		function czr_fn_set_widget_wrapper_class( $_original_classes ) {
 			$_no_icons_classes = array_merge($_original_classes, array('no-widget-icons'));
 
-			if ( 1 == esc_attr( czr_fn_opt( 'tc_show_footer_widget_icon' ) ) )
-				return ( 0 == esc_attr( czr_fn_opt( 'tc_show_title_icon' ) ) ) ? $_no_icons_classes : $_original_classes;
+			if ( 1 == czr_fn_opt( 'tc_show_footer_widget_icon' ) )
+				return 0 == czr_fn_opt( 'tc_show_title_icon' ) ? $_no_icons_classes : $_original_classes;
 			 //last condition
           	return $_no_icons_classes;
         }
@@ -9405,7 +9404,7 @@ if ( ! class_exists( 'CZR_footer_main' ) ) :
     * @return bool
     */
     function is_sticky_footer_enabled() {
-      return 1 == esc_attr( czr_fn_opt( 'tc_sticky_footer') );
+      return 1 == czr_fn_opt( 'tc_sticky_footer');
     }
   }//end of class
 endif;
