@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: * Customizr v4.4.13\n"
+"Project-Id-Version: * Customizr v4.4.14\n"
 "Report-Msgid-Bugs-To: https://presscustomizr.com/contact/\n"
-"POT-Creation-Date: 2021-09-08 08:50:56+00:00\n"
+"POT-Creation-Date: 2021-09-09 20:34:13+00:00\n"
 "PO-Revision-Date: 2016-08-30 14:42+0200\n"
 "Last-Translator: Nicolas <contact@presscustomizr.com>\n"
 "Language-Team: Customizr translation contributors <contact@presscustomizr."
@@ -1343,10 +1343,10 @@ msgstr ""
 #: build/free/customizr/core/core-settings-map.php:1059
 #: build/free/customizr/core/core-settings-map.php:1064
 #: build/free/customizr/core/core-settings-map.php:2396
-#: build/free/customizr/core/czr-admin-ccat.php:1312
+#: build/free/customizr/core/czr-admin-ccat.php:1304
 #: core/_dev/_admin/class-admin-meta_boxes.php:527
 #: core/core-settings-map.php:1059 core/core-settings-map.php:1064
-#: core/core-settings-map.php:2396 core/czr-admin-ccat.php:1312
+#: core/core-settings-map.php:2396 core/czr-admin-ccat.php:1304
 msgid "here"
 msgstr "disini"
 
@@ -1530,9 +1530,9 @@ msgid "in ms : 1000ms = 1s"
 msgstr "pada ms : 1000ms = 1detik"
 
 #: build/free/customizr/core/core-settings-map.php:1252
-#: build/free/customizr/core/czr-admin-ccat.php:1503
+#: build/free/customizr/core/czr-admin-ccat.php:1495
 #: core/_dev/_admin/class-admin-meta_boxes.php:718
-#: core/core-settings-map.php:1252 core/czr-admin-ccat.php:1503
+#: core/core-settings-map.php:1252 core/czr-admin-ccat.php:1495
 msgid "Apply a dark overlay on your slider's images"
 msgstr ""
 
@@ -2895,80 +2895,75 @@ msgstr ""
 "Anda harus memilih laman terlebih dahulu. Biarkan bidang ini kosong jika "
 "Anda ingin menggunakan kutipan laman."
 
-#: build/free/customizr/core/czr-admin-ccat.php:433
-#: core/_dev/_admin/class-fire-admin_init.php:433 core/czr-admin-ccat.php:433
+#: build/free/customizr/core/czr-admin-ccat.php:432
+#: core/_dev/_admin/class-fire-admin_init.php:432 core/czr-admin-ccat.php:432
 #, fuzzy
 msgid "✅ You have recently updated to"
 msgstr "Bagus, Anda sudah upgrade ke"
 
-#: build/free/customizr/core/czr-admin-ccat.php:435
-#: core/_dev/_admin/class-fire-admin_init.php:435 core/czr-admin-ccat.php:435
+#: build/free/customizr/core/czr-admin-ccat.php:434
+#: core/_dev/_admin/class-fire-admin_init.php:434 core/czr-admin-ccat.php:434
 msgid "version"
 msgstr "versi"
 
-#: build/free/customizr/core/czr-admin-ccat.php:438
-#: core/_dev/_admin/class-fire-admin_init.php:438 core/czr-admin-ccat.php:438
-msgid "Read the latest release notes"
-msgstr "Baca nota rilis terbaru"
+#: build/free/customizr/core/czr-admin-ccat.php:437
+#: core/_dev/_admin/class-fire-admin_init.php:437 core/czr-admin-ccat.php:437
+#, fuzzy
+msgid "Changelog here"
+msgstr "Changelog pada versi %1$s"
 
-#: build/free/customizr/core/czr-admin-ccat.php:446
-#: build/free/customizr/core/czr-admin-ccat.php:551
-#: core/_dev/_admin/class-fire-admin_init.php:446
-#: core/_dev/_admin/class-fire-admin_page.php:68 core/czr-admin-ccat.php:446
-#: core/czr-admin-ccat.php:551
+#: build/free/customizr/core/czr-admin-ccat.php:444
+#: core/_dev/_admin/class-fire-admin_init.php:444 core/czr-admin-ccat.php:444
+msgid "close"
+msgstr "tutup"
+
+#: build/free/customizr/core/czr-admin-ccat.php:501
+#: core/_dev/_admin/class-fire-admin_page.php:29 core/czr-admin-ccat.php:501
+msgid "About Customizr"
+msgstr "Tentang Customizr"
+
+#: build/free/customizr/core/czr-admin-ccat.php:528
+#: core/_dev/_admin/class-fire-admin_page.php:56 core/czr-admin-ccat.php:528
+#, fuzzy
+msgid "Thank you for using"
+msgstr "Terimakasih sudah menggunakan %s!"
+
+#: build/free/customizr/core/czr-admin-ccat.php:538
+#: core/_dev/_admin/class-fire-admin_page.php:66 core/czr-admin-ccat.php:538
 msgid ""
 "If you enjoy using the Customizr theme for your website, please consider %s. "
 "Your support allows us to keep the theme at the highest level. Thank you!"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:447
-#: build/free/customizr/core/czr-admin-ccat.php:552
-#: core/_dev/_admin/class-fire-admin_init.php:447
-#: core/_dev/_admin/class-fire-admin_page.php:69 core/czr-admin-ccat.php:447
-#: core/czr-admin-ccat.php:552
+#: build/free/customizr/core/czr-admin-ccat.php:539
+#: core/_dev/_admin/class-fire-admin_page.php:67 core/czr-admin-ccat.php:539
 #, fuzzy
 msgid "upgrading to the pro version"
 msgstr "Lompat ke opsi blog desain"
 
-#: build/free/customizr/core/czr-admin-ccat.php:455
-#: core/_dev/_admin/class-fire-admin_init.php:455 core/czr-admin-ccat.php:455
-msgid "close"
-msgstr "tutup"
-
-#: build/free/customizr/core/czr-admin-ccat.php:512
-#: core/_dev/_admin/class-fire-admin_page.php:29 core/czr-admin-ccat.php:512
-msgid "About Customizr"
-msgstr "Tentang Customizr"
-
-#: build/free/customizr/core/czr-admin-ccat.php:541
-#: core/_dev/_admin/class-fire-admin_page.php:58 core/czr-admin-ccat.php:541
-#, fuzzy
-msgid "Thank you for using"
-msgstr "Terimakasih sudah menggunakan %s!"
-
-#: build/free/customizr/core/czr-admin-ccat.php:563
-#: core/_dev/_admin/class-fire-admin_page.php:80 core/czr-admin-ccat.php:563
+#: build/free/customizr/core/czr-admin-ccat.php:550
+#: core/_dev/_admin/class-fire-admin_page.php:78 core/czr-admin-ccat.php:550
 msgid "Knowledge base"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:564
-#: core/_dev/_admin/class-fire-admin_page.php:81 core/czr-admin-ccat.php:564
+#: build/free/customizr/core/czr-admin-ccat.php:551
+#: core/_dev/_admin/class-fire-admin_page.php:79 core/czr-admin-ccat.php:551
 msgid "We have prepared a complete online documentation of the theme."
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:565
-#: core/_dev/_admin/class-fire-admin_page.php:82 core/czr-admin-ccat.php:565
+#: build/free/customizr/core/czr-admin-ccat.php:552
+#: core/_dev/_admin/class-fire-admin_page.php:80 core/czr-admin-ccat.php:552
 #, fuzzy
 msgid "Customizr Documentation"
 msgstr "Dokumentasi Customizr theme"
 
-#: build/free/customizr/core/czr-admin-ccat.php:570
-#: core/_dev/_admin/class-fire-admin_page.php:87 core/czr-admin-ccat.php:570
+#: build/free/customizr/core/czr-admin-ccat.php:557
+#: core/_dev/_admin/class-fire-admin_page.php:85 core/czr-admin-ccat.php:557
 msgid "Share your feedback"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:571
-#: core/_dev/_admin/class-fire-admin_page.php:88 core/czr-admin-ccat.php:571
+#: build/free/customizr/core/czr-admin-ccat.php:558
+#: core/_dev/_admin/class-fire-admin_page.php:86 core/czr-admin-ccat.php:558
 #, fuzzy
 msgid ""
 "If you are happy with the theme, say it on wordpress.org and give Customizr "
@@ -2978,28 +2973,33 @@ msgstr ""
 "Customizr tinjauan yang baik!<br/>(Kami kecanduan dengan timbal balik "
 "Anda...)"
 
-#: build/free/customizr/core/czr-admin-ccat.php:572
-#: core/_dev/_admin/class-fire-admin_page.php:89 core/czr-admin-ccat.php:572
+#: build/free/customizr/core/czr-admin-ccat.php:559
+#: core/_dev/_admin/class-fire-admin_page.php:87 core/czr-admin-ccat.php:559
 msgid "Share a review"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:625
-#: core/_dev/_admin/class-fire-admin_page.php:142 core/czr-admin-ccat.php:625
+#: build/free/customizr/core/czr-admin-ccat.php:612
+#: core/_dev/_admin/class-fire-admin_page.php:140 core/czr-admin-ccat.php:612
 msgid "Changelog in version %1$s"
 msgstr "Changelog pada versi %1$s"
 
-#: build/free/customizr/core/czr-admin-ccat.php:660
-#: core/_dev/_admin/class-fire-admin_page.php:177 core/czr-admin-ccat.php:660
+#: build/free/customizr/core/czr-admin-ccat.php:616
+#: core/_dev/_admin/class-fire-admin_page.php:144 core/czr-admin-ccat.php:616
+msgid "Read the latest release notes"
+msgstr "Baca nota rilis terbaru"
+
+#: build/free/customizr/core/czr-admin-ccat.php:652
+#: core/_dev/_admin/class-fire-admin_page.php:180 core/czr-admin-ccat.php:652
 msgid "System Informations"
 msgstr "Sistem Informasi"
 
-#: build/free/customizr/core/czr-admin-ccat.php:661
-#: core/_dev/_admin/class-fire-admin_page.php:178 core/czr-admin-ccat.php:661
+#: build/free/customizr/core/czr-admin-ccat.php:653
+#: core/_dev/_admin/class-fire-admin_page.php:181 core/czr-admin-ccat.php:653
 msgid "Please include the following informations when posting support requests"
 msgstr "Silahkan masukkan informasi tersebut ketika post support dibutuhkan"
 
-#: build/free/customizr/core/czr-admin-ccat.php:662
-#: core/_dev/_admin/class-fire-admin_page.php:179 core/czr-admin-ccat.php:662
+#: build/free/customizr/core/czr-admin-ccat.php:654
+#: core/_dev/_admin/class-fire-admin_page.php:182 core/czr-admin-ccat.php:654
 msgid ""
 "To copy the system infos, click below then press Ctrl + C (PC) or Cmd + C "
 "(Mac)."
@@ -3007,124 +3007,124 @@ msgstr ""
 "Untuk menyalin info sistem, klik dibawah kemudian tekan CTRL + C (PC) atau "
 "Cmd + C (Mac)."
 
-#: build/free/customizr/core/czr-admin-ccat.php:1027
-#: core/_dev/_admin/class-admin-meta_boxes.php:242 core/czr-admin-ccat.php:1027
+#: build/free/customizr/core/czr-admin-ccat.php:1019
+#: core/_dev/_admin/class-admin-meta_boxes.php:242 core/czr-admin-ccat.php:1019
 msgid "Layout Options"
 msgstr "Opsi Layout"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1040
-#: build/free/customizr/core/czr-admin-ccat.php:1881
+#: build/free/customizr/core/czr-admin-ccat.php:1032
+#: build/free/customizr/core/czr-admin-ccat.php:1873
 #: core/_dev/_admin/class-admin-meta_boxes.php:255
 #: core/_dev/_admin/class-admin-meta_boxes.php:1096
-#: core/czr-admin-ccat.php:1040 core/czr-admin-ccat.php:1881
+#: core/czr-admin-ccat.php:1032 core/czr-admin-ccat.php:1873
 msgid "Slider Options"
 msgstr "Opsi Slider"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1052
-#: core/_dev/_admin/class-admin-meta_boxes.php:267 core/czr-admin-ccat.php:1052
+#: build/free/customizr/core/czr-admin-ccat.php:1044
+#: core/_dev/_admin/class-admin-meta_boxes.php:267 core/czr-admin-ccat.php:1044
 #, fuzzy
 msgid "Format: link"
 msgstr "Tidak ada link"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1064
-#: core/_dev/_admin/class-admin-meta_boxes.php:279 core/czr-admin-ccat.php:1064
+#: build/free/customizr/core/czr-admin-ccat.php:1056
+#: core/_dev/_admin/class-admin-meta_boxes.php:279 core/czr-admin-ccat.php:1056
 msgid "Format: quote"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:1076
-#: core/_dev/_admin/class-admin-meta_boxes.php:291 core/czr-admin-ccat.php:1076
+#: build/free/customizr/core/czr-admin-ccat.php:1068
+#: core/_dev/_admin/class-admin-meta_boxes.php:291 core/czr-admin-ccat.php:1068
 msgid "Format: video"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:1088
-#: core/_dev/_admin/class-admin-meta_boxes.php:303 core/czr-admin-ccat.php:1088
+#: build/free/customizr/core/czr-admin-ccat.php:1080
+#: core/_dev/_admin/class-admin-meta_boxes.php:303 core/czr-admin-ccat.php:1080
 msgid "Format: audio"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:1117
-#: core/_dev/_admin/class-admin-meta_boxes.php:332 core/czr-admin-ccat.php:1117
+#: build/free/customizr/core/czr-admin-ccat.php:1109
+#: core/_dev/_admin/class-admin-meta_boxes.php:332 core/czr-admin-ccat.php:1109
 msgid "Link title"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:1122
-#: core/_dev/_admin/class-admin-meta_boxes.php:337 core/czr-admin-ccat.php:1122
+#: build/free/customizr/core/czr-admin-ccat.php:1114
+#: core/_dev/_admin/class-admin-meta_boxes.php:337 core/czr-admin-ccat.php:1114
 #, fuzzy
 msgid "Enter the title"
 msgstr "Setelah judul"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1138
-#: core/_dev/_admin/class-admin-meta_boxes.php:353 core/czr-admin-ccat.php:1138
+#: build/free/customizr/core/czr-admin-ccat.php:1130
+#: core/_dev/_admin/class-admin-meta_boxes.php:353 core/czr-admin-ccat.php:1130
 #, fuzzy
 msgid "Link URL"
 msgstr "Link"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1143
-#: core/_dev/_admin/class-admin-meta_boxes.php:358 core/czr-admin-ccat.php:1143
+#: build/free/customizr/core/czr-admin-ccat.php:1135
+#: core/_dev/_admin/class-admin-meta_boxes.php:358 core/czr-admin-ccat.php:1135
 msgid "Enter the URL"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:1170
-#: core/_dev/_admin/class-admin-meta_boxes.php:385 core/czr-admin-ccat.php:1170
+#: build/free/customizr/core/czr-admin-ccat.php:1162
+#: core/_dev/_admin/class-admin-meta_boxes.php:385 core/czr-admin-ccat.php:1162
 #, fuzzy
 msgid "Quote text"
 msgstr "Teks tombol"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1175
-#: core/_dev/_admin/class-admin-meta_boxes.php:390 core/czr-admin-ccat.php:1175
+#: build/free/customizr/core/czr-admin-ccat.php:1167
+#: core/_dev/_admin/class-admin-meta_boxes.php:390 core/czr-admin-ccat.php:1167
 #, fuzzy
 msgid "Enter the text"
 msgstr "Setelah judul"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1190
-#: core/_dev/_admin/class-admin-meta_boxes.php:405 core/czr-admin-ccat.php:1190
+#: build/free/customizr/core/czr-admin-ccat.php:1182
+#: core/_dev/_admin/class-admin-meta_boxes.php:405 core/czr-admin-ccat.php:1182
 #, fuzzy
 msgid "Quote author"
 msgstr "Post author"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1196
-#: core/_dev/_admin/class-admin-meta_boxes.php:411 core/czr-admin-ccat.php:1196
+#: build/free/customizr/core/czr-admin-ccat.php:1188
+#: core/_dev/_admin/class-admin-meta_boxes.php:411 core/czr-admin-ccat.php:1188
 #, fuzzy
 msgid "Enter the author"
 msgstr "Tampilkan penulis"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1223
-#: core/_dev/_admin/class-admin-meta_boxes.php:438 core/czr-admin-ccat.php:1223
+#: build/free/customizr/core/czr-admin-ccat.php:1215
+#: core/_dev/_admin/class-admin-meta_boxes.php:438 core/czr-admin-ccat.php:1215
 msgid "Audio url"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:1227
-#: core/_dev/_admin/class-admin-meta_boxes.php:442 core/czr-admin-ccat.php:1227
+#: build/free/customizr/core/czr-admin-ccat.php:1219
+#: core/_dev/_admin/class-admin-meta_boxes.php:442 core/czr-admin-ccat.php:1219
 msgid "Enter the audio url"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:1257
-#: core/_dev/_admin/class-admin-meta_boxes.php:472 core/czr-admin-ccat.php:1257
+#: build/free/customizr/core/czr-admin-ccat.php:1249
+#: core/_dev/_admin/class-admin-meta_boxes.php:472 core/czr-admin-ccat.php:1249
 msgid "Video url"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:1261
-#: core/_dev/_admin/class-admin-meta_boxes.php:476 core/czr-admin-ccat.php:1261
+#: build/free/customizr/core/czr-admin-ccat.php:1253
+#: core/_dev/_admin/class-admin-meta_boxes.php:476 core/czr-admin-ccat.php:1253
 #, fuzzy
 msgid "Enter the video url"
 msgstr "Url profil Pinterest"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1307
-#: core/_dev/_admin/class-admin-meta_boxes.php:522 core/czr-admin-ccat.php:1307
+#: build/free/customizr/core/czr-admin-ccat.php:1299
+#: core/_dev/_admin/class-admin-meta_boxes.php:522 core/czr-admin-ccat.php:1299
 msgid "Default %1$s layout is set to : %2$s"
 msgstr "Default %1$s layout di set ke : %2$s"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1307
-#: core/_dev/_admin/class-admin-meta_boxes.php:522 core/czr-admin-ccat.php:1307
+#: build/free/customizr/core/czr-admin-ccat.php:1299
+#: core/_dev/_admin/class-admin-meta_boxes.php:522 core/czr-admin-ccat.php:1299
 msgid "pages"
 msgstr "laman"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1307
-#: core/_dev/_admin/class-admin-meta_boxes.php:522 core/czr-admin-ccat.php:1307
+#: build/free/customizr/core/czr-admin-ccat.php:1299
+#: core/_dev/_admin/class-admin-meta_boxes.php:522 core/czr-admin-ccat.php:1299
 msgid "posts"
 msgstr "post"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1310
-#: core/_dev/_admin/class-admin-meta_boxes.php:525 core/czr-admin-ccat.php:1310
+#: build/free/customizr/core/czr-admin-ccat.php:1302
+#: core/_dev/_admin/class-admin-meta_boxes.php:525 core/czr-admin-ccat.php:1302
 msgid ""
 "You can define a specific layout for %1$s by using the pre-defined left and "
 "right sidebars. The default layouts can be defined in the WordPress "
@@ -3134,55 +3134,55 @@ msgstr ""
 "ulang kiri dan kanan sidebar. Default layout bisa ditetapkan di layar "
 "Wordpress customizer %2$s.<br/>"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1311
-#: build/free/customizr/core/czr-admin-ccat.php:1316
+#: build/free/customizr/core/czr-admin-ccat.php:1303
+#: build/free/customizr/core/czr-admin-ccat.php:1308
 #: core/_dev/_admin/class-admin-meta_boxes.php:526
-#: core/_dev/_admin/class-admin-meta_boxes.php:531 core/czr-admin-ccat.php:1311
-#: core/czr-admin-ccat.php:1316
+#: core/_dev/_admin/class-admin-meta_boxes.php:531 core/czr-admin-ccat.php:1303
+#: core/czr-admin-ccat.php:1308
 msgid "this page"
 msgstr "laman ini"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1311
-#: build/free/customizr/core/czr-admin-ccat.php:1316
+#: build/free/customizr/core/czr-admin-ccat.php:1303
+#: build/free/customizr/core/czr-admin-ccat.php:1308
 #: core/_dev/_admin/class-admin-meta_boxes.php:526
-#: core/_dev/_admin/class-admin-meta_boxes.php:531 core/czr-admin-ccat.php:1311
-#: core/czr-admin-ccat.php:1316
+#: core/_dev/_admin/class-admin-meta_boxes.php:531 core/czr-admin-ccat.php:1303
+#: core/czr-admin-ccat.php:1308
 msgid "this post"
 msgstr "post ini"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1315
-#: core/_dev/_admin/class-admin-meta_boxes.php:530 core/czr-admin-ccat.php:1315
+#: build/free/customizr/core/czr-admin-ccat.php:1307
+#: core/_dev/_admin/class-admin-meta_boxes.php:530 core/czr-admin-ccat.php:1307
 msgid "Select a specific layout for %1$s"
 msgstr "Pilih spesifikasi layout untuk %1$s"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1319
-#: core/_dev/_admin/class-admin-meta_boxes.php:534 core/czr-admin-ccat.php:1319
+#: build/free/customizr/core/czr-admin-ccat.php:1311
+#: core/_dev/_admin/class-admin-meta_boxes.php:534 core/czr-admin-ccat.php:1311
 msgid "Default layout %1s"
 msgstr "Default layout %1s"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1365
-#: core/_dev/_admin/class-admin-meta_boxes.php:580 core/czr-admin-ccat.php:1365
+#: build/free/customizr/core/czr-admin-ccat.php:1357
+#: core/_dev/_admin/class-admin-meta_boxes.php:580 core/czr-admin-ccat.php:1357
 msgid "Add a slider to this post/page"
 msgstr "Tambahkan slider ke post/laman ini"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1444
-#: build/free/customizr/core/czr-admin-ccat.php:2115
+#: build/free/customizr/core/czr-admin-ccat.php:1436
+#: build/free/customizr/core/czr-admin-ccat.php:2107
 #: core/_dev/_admin/class-admin-meta_boxes.php:659
 #: core/_dev/_admin/class-admin-meta_boxes.php:1330
-#: core/czr-admin-ccat.php:1444 core/czr-admin-ccat.php:2115
+#: core/czr-admin-ccat.php:1436 core/czr-admin-ccat.php:2107
 msgid "Choose a slider"
 msgstr "Pilih slider"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1450
-#: build/free/customizr/core/czr-admin-ccat.php:2130
+#: build/free/customizr/core/czr-admin-ccat.php:1442
+#: build/free/customizr/core/czr-admin-ccat.php:2122
 #: core/_dev/_admin/class-admin-meta_boxes.php:665
 #: core/_dev/_admin/class-admin-meta_boxes.php:1345
-#: core/czr-admin-ccat.php:1450 core/czr-admin-ccat.php:2130
+#: core/czr-admin-ccat.php:1442 core/czr-admin-ccat.php:2122
 msgid "&mdash; Select a slider &mdash; "
 msgstr "&mdash; Pilih slider &mdash;"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1473
-#: core/_dev/_admin/class-admin-meta_boxes.php:688 core/czr-admin-ccat.php:1473
+#: build/free/customizr/core/czr-admin-ccat.php:1465
+#: core/_dev/_admin/class-admin-meta_boxes.php:688 core/czr-admin-ccat.php:1465
 msgid ""
 "To create a new slider : open the media library, edit your images and add "
 "them to your new slider."
@@ -3190,53 +3190,53 @@ msgstr ""
 "Untuk membuat slider baru : buka pustaka media, edit gambar dan tambahkan ke "
 "slider."
 
-#: build/free/customizr/core/czr-admin-ccat.php:1477
-#: core/_dev/_admin/class-admin-meta_boxes.php:692 core/czr-admin-ccat.php:1477
+#: build/free/customizr/core/czr-admin-ccat.php:1469
+#: core/_dev/_admin/class-admin-meta_boxes.php:692 core/czr-admin-ccat.php:1469
 msgid "Delay between each slides in milliseconds (default : 5000 ms)"
 msgstr "Delay antara slider dengan millisecond (default : 5000 ms)"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1484
-#: core/_dev/_admin/class-admin-meta_boxes.php:699 core/czr-admin-ccat.php:1484
+#: build/free/customizr/core/czr-admin-ccat.php:1476
+#: core/_dev/_admin/class-admin-meta_boxes.php:699 core/czr-admin-ccat.php:1476
 msgid "Slider Layout : set the slider in full width"
 msgstr "Slider layout : set slider dengan lebar full"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1522
-#: core/_dev/_admin/class-admin-meta_boxes.php:737 core/czr-admin-ccat.php:1522
+#: build/free/customizr/core/czr-admin-ccat.php:1514
+#: core/_dev/_admin/class-admin-meta_boxes.php:737 core/czr-admin-ccat.php:1514
 msgid "Display navigation dots at the bottom of your slider."
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:1541
-#: build/free/customizr/core/czr-admin-ccat.php:2139
+#: build/free/customizr/core/czr-admin-ccat.php:1533
+#: build/free/customizr/core/czr-admin-ccat.php:2131
 #: core/_dev/_admin/class-admin-meta_boxes.php:756
 #: core/_dev/_admin/class-admin-meta_boxes.php:1354
-#: core/czr-admin-ccat.php:1541 core/czr-admin-ccat.php:2139
+#: core/czr-admin-ccat.php:1533 core/czr-admin-ccat.php:2131
 msgid "Delete this slider"
 msgstr "Hapus slider ini"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1546
-#: build/free/customizr/core/czr-admin-ccat.php:2143
+#: build/free/customizr/core/czr-admin-ccat.php:1538
+#: build/free/customizr/core/czr-admin-ccat.php:2135
 #: core/_dev/_admin/class-admin-meta_boxes.php:761
 #: core/_dev/_admin/class-admin-meta_boxes.php:1358
-#: core/czr-admin-ccat.php:1546 core/czr-admin-ccat.php:2143
+#: core/czr-admin-ccat.php:1538 core/czr-admin-ccat.php:2135
 msgid ""
 "The slider will be deleted permanently (images, call to actions and link "
 "will be kept)."
 msgstr ""
 "Slider ini akan dihapus secara permanen (gambar, tombol dan link tetap ada)."
 
-#: build/free/customizr/core/czr-admin-ccat.php:1549
-#: build/free/customizr/core/czr-admin-ccat.php:2146
+#: build/free/customizr/core/czr-admin-ccat.php:1541
+#: build/free/customizr/core/czr-admin-ccat.php:2138
 #: core/_dev/_admin/class-admin-meta_boxes.php:764
 #: core/_dev/_admin/class-admin-meta_boxes.php:1361
-#: core/czr-admin-ccat.php:1549 core/czr-admin-ccat.php:2146
+#: core/czr-admin-ccat.php:1541 core/czr-admin-ccat.php:2138
 msgid "Delete slider"
 msgstr "Hapus slider"
 
-#: build/free/customizr/core/czr-admin-ccat.php:1560
+#: build/free/customizr/core/czr-admin-ccat.php:1552
 #: build/free/customizr/core/czr-customize-ccat.php:969
 #: core/_dev/_admin/class-admin-meta_boxes.php:775
 #: core/_dev/_czr/controls/class-base-control.php:68
-#: core/czr-admin-ccat.php:1560 core/czr-customize-ccat.php:969
+#: core/czr-admin-ccat.php:1552 core/czr-customize-ccat.php:969
 msgid ""
 "You haven't create any slider yet. Go to the media library, edit your images "
 "and add them to your sliders."
@@ -3244,51 +3244,51 @@ msgstr ""
 "Anda belum mebuat satu slider pun. Pindah ke pustaka media, edit gambar dan "
 "tambahkan ke slider."
 
-#: build/free/customizr/core/czr-admin-ccat.php:1909
+#: build/free/customizr/core/czr-admin-ccat.php:1901
 #: core/_dev/_admin/class-admin-meta_boxes.php:1124
-#: core/czr-admin-ccat.php:1909
+#: core/czr-admin-ccat.php:1901
 msgid "Add to a slider (create one if needed)"
 msgstr "Tambahkan ke slider (buat jika dibutuhkan)"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2044
+#: build/free/customizr/core/czr-admin-ccat.php:2036
 #: core/_dev/_admin/class-admin-meta_boxes.php:1259
-#: core/czr-admin-ccat.php:2044
+#: core/czr-admin-ccat.php:2036
 msgid "Title text (80 char. max length)"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:2051
+#: build/free/customizr/core/czr-admin-ccat.php:2043
 #: core/_dev/_admin/class-admin-meta_boxes.php:1266
-#: core/czr-admin-ccat.php:2051
+#: core/czr-admin-ccat.php:2043
 msgid "Description text (below the title, 250 char. max length)"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:2058
+#: build/free/customizr/core/czr-admin-ccat.php:2050
 #: core/_dev/_admin/class-admin-meta_boxes.php:1273
-#: core/czr-admin-ccat.php:2058
+#: core/czr-admin-ccat.php:2050
 msgid "Title and text color"
 msgstr "Warna judul dan teks"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2066
+#: build/free/customizr/core/czr-admin-ccat.php:2058
 #: core/_dev/_admin/class-admin-meta_boxes.php:1281
-#: core/czr-admin-ccat.php:2066
+#: core/czr-admin-ccat.php:2058
 msgid "Button text (80 char. max length)"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:2073
+#: build/free/customizr/core/czr-admin-ccat.php:2065
 #: core/_dev/_admin/class-admin-meta_boxes.php:1288
-#: core/czr-admin-ccat.php:2073
+#: core/czr-admin-ccat.php:2065
 msgid "Choose a linked page or post (among the last 100)."
 msgstr "Pilih laman atau post yang ada (100 terbaru)."
 
-#: build/free/customizr/core/czr-admin-ccat.php:2078
+#: build/free/customizr/core/czr-admin-ccat.php:2070
 #: core/_dev/_admin/class-admin-meta_boxes.php:1293
-#: core/czr-admin-ccat.php:2078
+#: core/czr-admin-ccat.php:2070
 msgid "No link"
 msgstr "Tidak ada link"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2087
+#: build/free/customizr/core/czr-admin-ccat.php:2079
 #: core/_dev/_admin/class-admin-meta_boxes.php:1302
-#: core/czr-admin-ccat.php:2087
+#: core/czr-admin-ccat.php:2079
 msgid ""
 "or a custom link (leave this empty if you already selected a page or post "
 "above)"
@@ -3296,29 +3296,29 @@ msgstr ""
 "atau buat link (biarkan kosong jika Anda sudah memilih laman atau post "
 "diatas)"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2093
+#: build/free/customizr/core/czr-admin-ccat.php:2085
 #: core/_dev/_admin/class-admin-meta_boxes.php:1308
-#: core/czr-admin-ccat.php:2093
+#: core/czr-admin-ccat.php:2085
 msgid "Open link in a new page/tab"
 msgstr "Buka link di laman/tab baru"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2104
+#: build/free/customizr/core/czr-admin-ccat.php:2096
 #: core/_dev/_admin/class-admin-meta_boxes.php:1319
-#: core/czr-admin-ccat.php:2104
+#: core/czr-admin-ccat.php:2096
 msgid "Link the whole slide"
 msgstr "Link di seluruh slide"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2136
-#: build/free/customizr/core/czr-admin-ccat.php:2165
+#: build/free/customizr/core/czr-admin-ccat.php:2128
+#: build/free/customizr/core/czr-admin-ccat.php:2157
 #: core/_dev/_admin/class-admin-meta_boxes.php:1351
 #: core/_dev/_admin/class-admin-meta_boxes.php:1380
-#: core/czr-admin-ccat.php:2136 core/czr-admin-ccat.php:2165
+#: core/czr-admin-ccat.php:2128 core/czr-admin-ccat.php:2157
 msgid "Add a slider"
 msgstr "Tambahkan slider"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2163
+#: build/free/customizr/core/czr-admin-ccat.php:2155
 #: core/_dev/_admin/class-admin-meta_boxes.php:1378
-#: core/czr-admin-ccat.php:2163
+#: core/czr-admin-ccat.php:2155
 msgid ""
 "You haven't create any slider yet. Write a slider name and click on the "
 "button to add you first slider."
@@ -3326,9 +3326,9 @@ msgstr ""
 "Anda belum membuat slider apapun. Tulis nama slider dan klik pada tombol "
 "untuk menambahkan slider pertama."
 
-#: build/free/customizr/core/czr-admin-ccat.php:2289
+#: build/free/customizr/core/czr-admin-ccat.php:2281
 #: core/_dev/_admin/class-admin-meta_boxes.php:1504
-#: core/czr-admin-ccat.php:2289
+#: core/czr-admin-ccat.php:2281
 msgid ""
 "This slider has not slides to show. Go to the media library and start adding "
 "images to it."
@@ -3336,40 +3336,40 @@ msgstr ""
 "Slider ini tidak muncul. Pergi ke pustaka media dan mulai menambahkan gambar "
 "kesini."
 
-#: build/free/customizr/core/czr-admin-ccat.php:2299
+#: build/free/customizr/core/czr-admin-ccat.php:2291
 #: core/_dev/_admin/class-admin-meta_boxes.php:1514
-#: core/czr-admin-ccat.php:2299
+#: core/czr-admin-ccat.php:2291
 msgid "Slide Image"
 msgstr "Gambar slide"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2300
+#: build/free/customizr/core/czr-admin-ccat.php:2292
 #: build/free/customizr/core/czr-modules/social-links/index.php:121
 #: build/free/customizr/core/czr-modules/social-links/social_links_module.php:123
 #: core/_dev/_admin/class-admin-meta_boxes.php:1515
-#: core/czr-admin-ccat.php:2300 core/czr-modules/social-links/index.php:121
+#: core/czr-admin-ccat.php:2292 core/czr-modules/social-links/index.php:121
 #: core/czr-modules/social-links/social_links_module.php:123
 msgid "Title"
 msgstr "Judul"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2301
+#: build/free/customizr/core/czr-admin-ccat.php:2293
 #: core/_dev/_admin/class-admin-meta_boxes.php:1516
-#: core/czr-admin-ccat.php:2301
+#: core/czr-admin-ccat.php:2293
 msgid "Slide Text"
 msgstr "Teks slide"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2302
+#: build/free/customizr/core/czr-admin-ccat.php:2294
 #: core/_dev/_admin/class-admin-meta_boxes.php:1517
-#: core/czr-admin-ccat.php:2302
+#: core/czr-admin-ccat.php:2294
 msgid "Button Text"
 msgstr "Teks tombol"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2303
+#: build/free/customizr/core/czr-admin-ccat.php:2295
 #: core/_dev/_admin/class-admin-meta_boxes.php:1518
-#: core/czr-admin-ccat.php:2303
+#: core/czr-admin-ccat.php:2295
 msgid "Link"
 msgstr "Link"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2304
+#: build/free/customizr/core/czr-admin-ccat.php:2296
 #: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:268
 #: build/free/customizr/core/czr-base-fmk/czr-base-fmk.php:567
 #: build/free/customizr/core/czr-customize-ccat.php:864
@@ -3390,7 +3390,7 @@ msgstr "Link"
 #: build/free/customizr/inc/czr-front-ccat.php:8543
 #: core/_dev/_admin/class-admin-meta_boxes.php:1519
 #: core/_dev/_czr/class-czr-resources.php:221
-#: core/_dev/_czr/class-czr-resources.php:231 core/czr-admin-ccat.php:2304
+#: core/_dev/_czr/class-czr-resources.php:231 core/czr-admin-ccat.php:2296
 #: core/czr-base-fmk/czr-base-fmk.php:268
 #: core/czr-base-fmk/czr-base-fmk.php:567 core/czr-customize-ccat.php:864
 #: core/czr-customize-ccat.php:874
@@ -3415,42 +3415,42 @@ msgstr "Link"
 msgid "Edit"
 msgstr "Ubah"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2346
+#: build/free/customizr/core/czr-admin-ccat.php:2338
 #: core/_dev/_admin/class-admin-meta_boxes.php:1561
-#: core/czr-admin-ccat.php:2346
+#: core/czr-admin-ccat.php:2338
 msgid "No Image Selected"
 msgstr "Tidak Ada Gambar Dipilih"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2372
+#: build/free/customizr/core/czr-admin-ccat.php:2364
 #: core/_dev/_admin/class-admin-meta_boxes.php:1587
-#: core/czr-admin-ccat.php:2372
+#: core/czr-admin-ccat.php:2364
 msgid "Edit this slide"
 msgstr "Ubah slide"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2374
+#: build/free/customizr/core/czr-admin-ccat.php:2366
 #: core/_dev/_admin/class-admin-meta_boxes.php:1589
-#: core/czr-admin-ccat.php:2374
+#: core/czr-admin-ccat.php:2366
 msgid "Current slide"
 msgstr "Slide baru"
 
-#: build/free/customizr/core/czr-admin-ccat.php:2385
+#: build/free/customizr/core/czr-admin-ccat.php:2377
 #: core/_dev/_admin/class-admin-meta_boxes.php:1600
-#: core/czr-admin-ccat.php:2385
+#: core/czr-admin-ccat.php:2377
 msgid ""
 "To add another slide : navigate to your media library (click on Media), open "
 "the edit screen of an image ( or add a new image ), and add it to your "
 "desired slider by using the dedicated option block at the bottom of the page."
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:2386
+#: build/free/customizr/core/czr-admin-ccat.php:2378
 #: core/_dev/_admin/class-admin-meta_boxes.php:1601
-#: core/czr-admin-ccat.php:2386
+#: core/czr-admin-ccat.php:2378
 msgid "For more informations about sliders, check the documentation page :"
 msgstr ""
 
-#: build/free/customizr/core/czr-admin-ccat.php:2388
+#: build/free/customizr/core/czr-admin-ccat.php:2380
 #: core/_dev/_admin/class-admin-meta_boxes.php:1603
-#: core/czr-admin-ccat.php:2388
+#: core/czr-admin-ccat.php:2380
 msgid "Slider documentation"
 msgstr ""
 

@@ -336,8 +336,6 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
                 // Check for cheaters.
                 if ( '-1' === response )
                   return;
-
-                $_el.closest('.updated').slideToggle('fast');
               });
           };//end of fn
 
@@ -345,6 +343,7 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
           $( function($) {
             $('.tc-dismiss-update-notice').on('click', function( e ) {
               e.preventDefault();
+              $(this).closest('.updated').slideToggle('fast');
               _ajax_action( $(this) );
             });
           });
@@ -429,26 +428,16 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
           <?php
             echo apply_filters(
               'czr_update_notice',
-              sprintf('<h3>%1$s %2$s %3$s %4$s. <a class="" href="%5$s" title="%6$s" target="_blank">%6$s &raquo;</a></h3>',
+              sprintf('<h3>%1$s %2$s %3$s %4$s. <a class="" href="%5$s" title="%6$s">%6$s %7$s</a></h3>',
                 __( "✅ You have recently updated to", "customizr"),
                 CZR_IS_PRO ? 'Customizr Pro' : 'Customizr',
                 __( "version", "customizr"),
                 CUSTOMIZR_VER,
-                CZR_WEBSITE . "category/customizr-releases/",
-                __( "Read the latest release notes" , "customizr" )
+                admin_url() .'themes.php?page=welcome.php',
+                __( "Changelog here" , "customizr" ),
+                is_rtl() ? '&laquo;' : '&raquo;'
               )
             );
-          ?>
-          <?php
-            if ( !CZR_IS_PRO && czr_fn_user_started_before_version('4.4.6') ) {
-              echo apply_filters( 'czr_update_notice',
-                sprintf( '<h4><strong>%1$s 🙏</strong></h4>',
-                  sprintf( __( "If you enjoy using the Customizr theme for your website, please consider %s. Your support allows us to keep the theme at the highest level. Thank you!", "customizr"),
-                    sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', 'https://presscustomizr.com/customizr-pro/', __("upgrading to the pro version", "customizr") )
-                  )
-                )
-              );
-            }
           ?>
           <p style="text-align:right;position: absolute;font-size: 1.1em;<?php echo is_rtl()? 'left' : 'right';?>: 7px;bottom: -5px;">
             <?php printf('<a href="#" title="%1$s" class="tc-dismiss-update-notice"> ( %1$s <strong>X</strong> ) </a>',
@@ -529,8 +518,6 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
      * @since Customizr 3.0.4
      */
       function czr_fn_welcome_panel() {
-        $_faq_url       = esc_url('https://docs.presscustomizr.com/category/90-faq-and-common-issues');
-        $_support_url   = $this->support_url;
         $_theme_name    = CZR_IS_PRO ? 'Customizr Pro' : 'Customizr';
 
         ?>
@@ -547,7 +534,7 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
 
             <?php
               if ( !CZR_IS_PRO ) {
-                printf( '<h4>%1$s 🙏</h4>',
+                printf( '<h3>%1$s 🙏</h3>',
                   sprintf( __( "If you enjoy using the Customizr theme for your website, please consider %s. Your support allows us to keep the theme at the highest level. Thank you!", "customizr"),
                     sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', 'https://presscustomizr.com/customizr-pro/', __("upgrading to the pro version", "customizr") )
                   )
@@ -624,6 +611,11 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
       <div id="customizr-changelog" class="">
         <h3><?php printf( __( 'Changelog in version %1$s' , 'customizr' ) , CUSTOMIZR_VER ); ?></h3>
           <p><?php echo $html ?></p>
+          <p><strong><?php printf('<a href="%1$s" title="%2$s" target="_blank" rel="noopener noreferrer">%2$s %3$s</a>',
+                    CZR_WEBSITE . "category/customizr-releases/",
+                    __( "Read the latest release notes" , "customizr" ),
+                    is_rtl() ? '&laquo;' : '&raquo;'
+          ); ?></strong></p>
       </div>
       <?php
     }
