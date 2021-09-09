@@ -378,7 +378,7 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
       $opt_name                   = CZR_IS_PRO ? 'last_update_notice_pro' : 'last_update_notice';
       $last_update_notice_values  = czr_fn_opt($opt_name);
       $show_new_notice = false;
-      $display_ct = 50;
+      $display_ct = 10;
 
       if ( !$last_update_notice_values || !is_array($last_update_notice_values) ) {
         //first time user of the theme, the option does not exist
