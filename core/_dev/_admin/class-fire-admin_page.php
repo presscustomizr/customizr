@@ -46,8 +46,6 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
      * @since Customizr 3.0.4
      */
       function czr_fn_welcome_panel() {
-        $_faq_url       = esc_url('https://docs.presscustomizr.com/category/90-faq-and-common-issues');
-        $_support_url   = $this->support_url;
         $_theme_name    = CZR_IS_PRO ? 'Customizr Pro' : 'Customizr';
 
         ?>
@@ -64,7 +62,7 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
 
             <?php
               if ( !CZR_IS_PRO ) {
-                printf( '<h4>%1$s 🙏</h4>',
+                printf( '<h3>%1$s 🙏</h3>',
                   sprintf( __( "If you enjoy using the Customizr theme for your website, please consider %s. Your support allows us to keep the theme at the highest level. Thank you!", "customizr"),
                     sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', 'https://presscustomizr.com/customizr-pro/', __("upgrading to the pro version", "customizr") )
                   )
@@ -141,6 +139,11 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
       <div id="customizr-changelog" class="">
         <h3><?php printf( __( 'Changelog in version %1$s' , 'customizr' ) , CUSTOMIZR_VER ); ?></h3>
           <p><?php echo $html ?></p>
+          <p><strong><?php printf('<a href="%1$s" title="%2$s" target="_blank" rel="noopener noreferrer">%2$s %3$s</a>',
+                    CZR_WEBSITE . "category/customizr-releases/",
+                    __( "Read the latest release notes" , "customizr" ),
+                    is_rtl() ? '&laquo;' : '&raquo;'
+          ); ?></strong></p>
       </div>
       <?php
     }
