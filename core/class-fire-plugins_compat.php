@@ -768,11 +768,6 @@ if ( !class_exists( 'CZR_plugins_compat' ) ) :
       function czr_fn_et_ticket_fix_custom_page( $what ) {
         return str_replace( __( 'Custom Page Example', 'customizr' ), 'custom-page.php', $what );
       }
-
-      add_filter( 'czr_is_list_of_posts', 'czr_fn_et_ticket_disable_post_list' );
-      function czr_fn_et_ticket_disable_post_list( $bool ) {
-        return function_exists( 'tribe' ) && tribe( 'tickets.attendee_registration' )->is_on_page() ? false : $bool;
-      }
     }//end event-tickets compat
 
 
