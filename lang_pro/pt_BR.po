@@ -981,7 +981,7 @@ msgid "or a custom link (leave this empty if you already selected a page or post
 msgstr "ou um link personalizado (deixe este campo vazio se você já selecionou uma página ou post acima)"
 
 #: inc/czr-admin.php:1509
-msgid "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
 msgstr "Abrir link em nova página/aba"
 
 #: inc/czr-customize.php:158

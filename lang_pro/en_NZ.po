@@ -1014,8 +1014,8 @@ msgid "or a custom link (leave this empty if you already selected a page or post
 msgstr "or a custom link (leave this empty if you already selected a page or post above)"
 
 #: inc/czr-admin.php:1521
-msgid "Open link in a new page/tab"
-msgstr "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
+msgstr "Open link in a new browser tab"
 
 #: inc/czr-customize.php:158
 msgid "&mdash; Select &mdash;"

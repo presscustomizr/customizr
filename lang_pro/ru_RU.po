@@ -1699,7 +1699,7 @@ msgid "or a custom link (leave this empty if you already selected a page or post
 msgstr "или пользовательские ссылки (оставьте это поле пустым, если вы уже выбрали страницу или публикацию выше)"
 
 #: core/czr-admin-ccat.php:2220
-msgid "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
 msgstr "Открыть ссылку в новой странице/вкладке"
 
 #. Template Name of the plugin/theme

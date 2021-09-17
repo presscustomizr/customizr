@@ -1605,7 +1605,7 @@ msgid "or a custom link (leave this empty if you already selected a page or post
 msgstr "או קישור מותאם אישית (יש להשאיר ריק אם כבר נבחר עמוד או פוסט לעיל)"
 
 #: core/czr-admin-ccat.php:2220
-msgid "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
 msgstr "פתיחת קישור בעמוד חדש או לשונית חדשה"
 
 #. Template Name of the plugin/theme

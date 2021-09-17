@@ -978,7 +978,7 @@ msgid "or a custom link (leave this empty if you already selected a page or post
 msgstr "ali povezava po meri (pusti prazno, če si zgoraj že izbral stran ali prispevek)"
 
 #: inc/czr-admin.php:1521
-msgid "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
 msgstr "Odpri povezavo na novi strani/zavihku"
 
 #: inc/czr-customize.php:158

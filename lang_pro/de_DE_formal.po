@@ -559,7 +559,7 @@ msgstr "Website-Link"
 #: addons/bundle/footer-customizer/footer-customizer.php:235
 #: addons/bundle/footer-customizer/footer-customizer.php:290
 #: core/czr-admin-ccat.php:2237
-msgid "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
 msgstr "Link in einer neuen Seite/Tab öffnen"
 
 #: addons/bundle/footer-customizer/footer-customizer.php:244

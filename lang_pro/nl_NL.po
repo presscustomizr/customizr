@@ -978,7 +978,7 @@ msgid "or a custom link (leave this empty if you already selected a page or post
 msgstr "of een aangepaste link (laat leeg als je reeds een pagina of bericht hebt geselecteerd hierboven)"
 
 #: inc/czr-admin.php:1521
-msgid "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
 msgstr "Open de link in een nieuwe pagina of tab van de browser"
 
 #: inc/czr-customize.php:158

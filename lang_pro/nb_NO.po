@@ -1673,7 +1673,7 @@ msgid "or a custom link (leave this empty if you already selected a page or post
 msgstr "eller en egendefinert lenke (la denne være tom hvis du allerede har valgt en side eller et bilde ovenfor)"
 
 #: core/czr-admin-ccat.php:2220
-msgid "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
 msgstr "Åpne lenken i en ny side / fane"
 
 #. Template Name of the plugin/theme

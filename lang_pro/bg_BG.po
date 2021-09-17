@@ -982,7 +982,7 @@ msgid "WordPress documentation"
 msgstr "Wordpress документация"
 
 #: inc/czr-admin.php:1521
-msgid "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
 msgstr "Отваряне на препратката в нова страница/подпрозорец"
 
 #: inc/czr-customize.php:206

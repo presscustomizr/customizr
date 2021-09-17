@@ -2082,7 +2082,7 @@ if ( !class_exists( 'CZR_meta_boxes' ) ) :
                <input class="widefat" name="<?php echo $custom_link_id; ?>" id="<?php echo $custom_link_id; ?>" value="<?php echo $custom_link_value; ?>" style="width:50%">
            </div>
            <div class="meta-box-item-title">
-               <h4><?php _e("Open link in a new page/tab", 'customizr' );  ?></h4>
+               <h4><?php _e("Open link in a new browser tab", 'customizr' );  ?></h4>
            </div>
            <div class="meta-box-item-content">
                <?php

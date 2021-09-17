@@ -1018,7 +1018,7 @@ msgid "or a custom link (leave this empty if you already selected a page or post
 msgstr "atau tautan khusus (tinggalkan kosong jika anda sudah memilih sebuah lama atau pos diatas)"
 
 #: inc/czr-admin.php:1521
-msgid "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
 msgstr "Buka tautan di laman/tab baru"
 
 #: inc/czr-customize.php:158

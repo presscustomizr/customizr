@@ -3250,7 +3250,7 @@ msgstr ""
 #: build/free/customizr/core/czr-admin-ccat.php:2085
 #: core/_dev/_admin/class-admin-meta_boxes.php:1308
 #: core/czr-admin-ccat.php:2085
-msgid "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
 msgstr ""
 
 #: build/free/customizr/core/czr-admin-ccat.php:2096

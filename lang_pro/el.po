@@ -1014,7 +1014,7 @@ msgid "or a custom link (leave this empty if you already selected a page or post
 msgstr "ή μια προσαρμοσμένη σύνδεση (αφήστε αυτό το κενό, αν παραπάνω έχετε ήδη επιλέξει μια σελίδα ή άρθρο)"
 
 #: inc/czr-admin.php:1521
-msgid "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
 msgstr "Άνοιγμα συνδέσμου σε μια νέα σελίδα/καρτέλα"
 
 #: inc/czr-customize.php:158

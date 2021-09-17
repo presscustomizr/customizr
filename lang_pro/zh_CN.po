@@ -957,7 +957,7 @@ msgid "Link the whole slide"
 msgstr "链接整个幻灯片"
 
 #: inc/czr-admin.php:1521
-msgid "Open link in a new page/tab"
+msgid "Open link in a new browser tab"
 msgstr "在新页面或标签中打开链接"
 
 #: inc/czr-customize.php:205
