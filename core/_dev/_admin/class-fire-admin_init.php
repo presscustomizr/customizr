@@ -343,7 +343,7 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
           $( function($) {
             $('.tc-dismiss-update-notice').on('click', function( e ) {
               e.preventDefault();
-              $(this).closest('.updated').slideToggle('fast');
+              $(this).closest('.czr-update-notice').slideToggle('fast');
               _ajax_action( $(this) );
             });
           });
