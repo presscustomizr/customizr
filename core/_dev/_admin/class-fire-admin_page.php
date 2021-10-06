@@ -62,10 +62,11 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
 
             <?php
               if ( !CZR_IS_PRO ) {
-                printf( '<h3>%1$s 🙏</h3>',
-                  sprintf( __( "If you enjoy using the Customizr theme for your website, please consider %s. Your support allows us to keep the theme at the highest level. Thank you!", "customizr"),
-                    sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', 'https://presscustomizr.com/customizr-pro/', __("upgrading to the pro version", "customizr") )
-                  )
+                printf( '<h3>%1$s</h3><h3>%2$s 🙏 </h3>',
+                  sprintf( __( "If you enjoy using the Customizr theme for your website, please consider %s.", "customizr"),
+                    sprintf( '<a style="color:#d87f00" href="%1$s" title="%2$s" target="_blank">%2$s</a>', 'https://presscustomizr.com/customizr-pro/', __("upgrading to the pro version", "customizr") )
+                ),
+                __('Your support allows us to keep the theme at the highest level. Thank you!', 'customizr')
                 );
               }
             ?>
