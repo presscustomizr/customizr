@@ -187,4 +187,5 @@ li[id*="customize-control-"].tc-sub-control:before {
   background: #394143;
   color: #95ff0c;
   min-height: 250px;
+  width: 100%;
 }
