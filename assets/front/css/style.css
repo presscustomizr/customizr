@@ -7144,7 +7144,7 @@ section[class^="post-"] .gallery.row {
 
 .hamburger-menu .primary-navbar__wrapper {
   height: auto;
-  line-height: auto;
+  line-height: inherit;
 }
 
 #tc-page-wrap {

@@ -22,7 +22,9 @@ https://github.com/presscustomizr/customizr/releases
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
 = 4.4.16 October 6th 2021 =
+* fixed : [CSS] minor CSS W3C validation error
 * fixed : [CSS][customizer] improved style for textareas
+* improved : [admin] update notice style and wording
 
 = 4.4.15 September 16th 2021 =
 * fixed : Using Tickets add-on for The Events Calendar breaks website. fixes #1907

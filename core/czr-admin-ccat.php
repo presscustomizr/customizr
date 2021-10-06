@@ -373,6 +373,9 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
       //to avoid hammering the wp admin dashboard with a new admin notice each time
       if ( ( defined('DISPLAY_UPDATE_NOTIFICATION') && !DISPLAY_UPDATE_NOTIFICATION ) || ( defined('DISPLAY_PRO_UPDATE_NOTIFICATION') && !DISPLAY_PRO_UPDATE_NOTIFICATION ) )
         return;
+      $screen = get_current_screen();
+      if ( is_object($screen) && 'appearance_page_welcome' === $screen-> id )
+        return;
 
       $opt_name                   = CZR_IS_PRO ? 'last_update_notice_pro' : 'last_update_notice';
       $last_update_notice_values  = czr_fn_opt($opt_name);
@@ -424,17 +427,17 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
 
       ob_start();
         ?>
-        <div class="updated czr-update-notice" style="position:relative">
+        <div class="notice notice-info czr-update-notice" style="position:relative">
           <?php
             echo apply_filters(
               'czr_update_notice',
-              sprintf('<h3>%1$s %2$s %3$s %4$s. <a class="" href="%5$s" title="%6$s">%6$s %7$s</a></h3>',
-                __( "✅ You have recently updated to", "customizr"),
+              sprintf('<h3>➡️ %1$s %2$s %3$s %4$s. <strong><a href="%5$s" title="%6$s">%6$s %7$s</a></strong></h3>',
+                __( "You have recently updated to", "customizr"),
                 CZR_IS_PRO ? 'Customizr Pro' : 'Customizr',
                 __( "version", "customizr"),
                 CUSTOMIZR_VER,
                 admin_url() .'themes.php?page=welcome.php',
-                __( "Changelog here" , "customizr" ),
+                __( "Make sure to read the changelog" , "customizr" ),
                 is_rtl() ? '&laquo;' : '&raquo;'
               )
             );
@@ -534,10 +537,11 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
 
             <?php
               if ( !CZR_IS_PRO ) {
-                printf( '<h3>%1$s 🙏</h3>',
-                  sprintf( __( "If you enjoy using the Customizr theme for your website, please consider %s. Your support allows us to keep the theme at the highest level. Thank you!", "customizr"),
-                    sprintf( '<a href="%1$s" title="%2$s" target="_blank">%2$s</a>', 'https://presscustomizr.com/customizr-pro/', __("upgrading to the pro version", "customizr") )
-                  )
+                printf( '<h3>%1$s</h3><h3>%2$s 🙏 </h3>',
+                  sprintf( __( "If you enjoy using the Customizr theme for your website, please consider %s.", "customizr"),
+                    sprintf( '<a style="color:#d87f00" href="%1$s" title="%2$s" target="_blank">%2$s</a>', 'https://presscustomizr.com/customizr-pro/', __("upgrading to the pro version", "customizr") )
+                ),
+                __('Your support allows us to keep the theme at the highest level. Thank you!', 'customizr')
                 );
               }
             ?>
