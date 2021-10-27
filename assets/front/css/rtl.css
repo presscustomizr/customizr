@@ -3319,8 +3319,8 @@ img.v-centered {
 }
 
 .bottom-mask, .grid-container__classic:not(.tc-gc) .entry-summary {
-  mask-image: linear-gradient(top, #000 70%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: -webkit-linear-gradient(top, #000 70%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to top, #000 70%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: -webkit-linear-gradient(to top, #000 70%, rgba(0, 0, 0, 0) 100%);
 }
 
 .czr-btn-link {
@@ -4433,10 +4433,10 @@ li#wp-admin-bar-tc-customizr-help a {
   text-decoration: none;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #8DA65A;
-  background-image: -moz-linear-gradient(top, #008ec2, #006799);
+  background-image: -moz-linear-gradient(to top, #008ec2, #006799);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#008ec2), to(#006799));
-  background-image: -webkit-linear-gradient(top, #008ec2, #006799);
-  background-image: -o-linear-gradient(top, #008ec2, #006799);
+  background-image: -webkit-linear-gradient(to top, #008ec2, #006799);
+  background-image: -o-linear-gradient(to top, #008ec2, #006799);
   background-image: linear-gradient(to bottom, #008ec2, #006799);
   background-repeat: repeat-x;
   border-color: #006799;
@@ -8255,15 +8255,15 @@ a.czr-format-link {
   text-align: center;
   margin: 0;
   transition: all 0.5s ease-in-out;
-  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #777777 100%);
+  background: -moz-linear-gradient(to top, rgba(255, 255, 255, 0) 0%, #777777 100%);
   /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #777777));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #777777 100%);
+  background: -webkit-linear-gradient(to top, rgba(255, 255, 255, 0) 0%, #777777 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #777777 100%);
+  background: -o-linear-gradient(to top, rgba(255, 255, 255, 0) 0%, #777777 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #777777 100%);
+  background: -ms-linear-gradient(to top, rgba(255, 255, 255, 0) 0%, #777777 100%);
   /* IE10+ */
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #777777 100%);
   /* W3C */
@@ -8685,8 +8685,8 @@ a.czr-format-link {
     overflow: hidden;
     width: auto;
     height: auto;
-    mask-image: linear-gradient(top, #000 70%, rgba(0, 0, 0, 0) 100%);
-    -webkit-mask-image: -webkit-linear-gradient(top, #000 70%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to top, #000 70%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: -webkit-linear-gradient(to top, #000 70%, rgba(0, 0, 0, 0) 100%);
   }
   .grid-container__square-mini .tc-content-inner {
     display: block;
@@ -9288,7 +9288,7 @@ section.post-related-articles .entry-meta {
 .action-link span:last-of-type, .comment-reply-link span:last-of-type {
   display: none;
   border-bottom: none;
-  box-shadow: 0;
+  box-shadow: 0px;
 }
 
 .action-link span:first-of-type, .comment-reply-link span:first-of-type {

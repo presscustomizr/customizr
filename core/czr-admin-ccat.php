@@ -314,7 +314,7 @@ if ( !class_exists( 'CZR_admin_init' ) ) :
     */
     function czr_fn_write_ajax_dismis_script() {
       ?>
-      <script type="text/javascript" id="tc-dismiss-update-notice">
+      <script id="tc-dismiss-update-notice">
         ( function($){
           var _ajax_action = function( $_el ) {
               var AjaxUrl = "<?php echo admin_url( 'admin-ajax.php' ); ?>",
@@ -771,7 +771,7 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
       if ( 'appearance_page_welcome' != $screen-> id )
         return;
       ?>
-        <style type="text/css" id="tc-fix-wp-footer-position">
+        <style id="tc-fix-wp-footer-position">
           .wp-admin #wpfooter {bottom: inherit;}
         </style>
       <?php

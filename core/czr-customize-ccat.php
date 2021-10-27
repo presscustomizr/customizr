@@ -848,7 +848,7 @@ if ( ! class_exists( 'CZR_customize_resources' ) ) :
       }
 
       ?>
-        <script type="text/javascript" id="czr-customizer-data">
+        <script id="czr-customizer-data">
           (function ( _export ){
             _export.czr_wp_conditionals = <?php echo wp_json_encode( $_wp_conditionals ) ?>;
           })( _wpCustomizeSettings );

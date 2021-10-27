@@ -1,5 +1,5 @@
 /*!
- * Customizr v4.4.17
+ * Customizr v4.4.18
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -86,10 +86,10 @@ blockquote {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #000000;
-  background-image: -moz-linear-gradient(top, #000, #000000);
+  background-image: -moz-linear-gradient(to top, #000, #000000);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(#000000));
-  background-image: -webkit-linear-gradient(top, #000, #000000);
-  background-image: -o-linear-gradient(top, #000, #000000);
+  background-image: -webkit-linear-gradient(to top, #000, #000000);
+  background-image: -o-linear-gradient(to top, #000, #000000);
   background-image: linear-gradient(to bottom, #000, #000000);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff000000' , endColorstr='#ff000000' , GradientType=0);
@@ -117,10 +117,10 @@ blockquote {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #333333;
-  background-image: -moz-linear-gradient(top, #333333, #333333);
+  background-image: -moz-linear-gradient(to top, #333333, #333333);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333333), to(#333333));
-  background-image: -webkit-linear-gradient(top, #333333, #333333);
-  background-image: -o-linear-gradient(top, #333333, #333333);
+  background-image: -webkit-linear-gradient(to top, #333333, #333333);
+  background-image: -o-linear-gradient(to top, #333333, #333333);
   background-image: linear-gradient(to bottom, #333333, #333333);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff333333' , endColorstr='#ff333333' , GradientType=0);
@@ -169,10 +169,10 @@ blockquote {
   text-decoration: none;
   outline: 0;
   background-color: #000000;
-  background-image: -moz-linear-gradient(top, #000, #000000);
+  background-image: -moz-linear-gradient(to top, #000, #000000);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(#000000));
-  background-image: -webkit-linear-gradient(top, #000, #000000);
-  background-image: -o-linear-gradient(top, #000, #000000);
+  background-image: -webkit-linear-gradient(to top, #000, #000000);
+  background-image: -o-linear-gradient(to top, #000, #000000);
   background-image: linear-gradient(to bottom, #000, #000000);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff000000' , endColorstr='#ff000000' , GradientType=0);
@@ -256,10 +256,10 @@ input[type="checkbox"]:focus {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #000000;
-  background-image: -moz-linear-gradient(top, #000000, #000000);
+  background-image: -moz-linear-gradient(to top, #000000, #000000);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000000), to(#000000));
-  background-image: -webkit-linear-gradient(top, #000000, #000000);
-  background-image: -o-linear-gradient(top, #000000, #000000);
+  background-image: -webkit-linear-gradient(to top, #000000, #000000);
+  background-image: -o-linear-gradient(to top, #000000, #000000);
   background-image: linear-gradient(to bottom, #000000, #000000);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff000000' , endColorstr='#ff000000' , GradientType=0);

@@ -1,5 +1,5 @@
 /*!
- * Customizr v4.4.17
+ * Customizr v4.4.18
  *
  * Licensed under the GNU General Public License v2 or later
  * http://www.gnu.org/licenses/gpl-2.0.html
@@ -86,10 +86,10 @@ blockquote {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #4b4b4b;
-  background-image: -moz-linear-gradient(top, #5A5A5A, #343434);
+  background-image: -moz-linear-gradient(to top, #5A5A5A, #343434);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5A5A5A), to(#343434));
-  background-image: -webkit-linear-gradient(top, #5A5A5A, #343434);
-  background-image: -o-linear-gradient(top, #5A5A5A, #343434);
+  background-image: -webkit-linear-gradient(to top, #5A5A5A, #343434);
+  background-image: -o-linear-gradient(to top, #5A5A5A, #343434);
   background-image: linear-gradient(to bottom, #5A5A5A, #343434);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5a5a5a' , endColorstr='#ff343434' , GradientType=0);
@@ -117,10 +117,10 @@ blockquote {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #7e7e7e;
-  background-image: -moz-linear-gradient(top, #8d8d8d, #676767);
+  background-image: -moz-linear-gradient(to top, #8d8d8d, #676767);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8d8d8d), to(#676767));
-  background-image: -webkit-linear-gradient(top, #8d8d8d, #676767);
-  background-image: -o-linear-gradient(top, #8d8d8d, #676767);
+  background-image: -webkit-linear-gradient(to top, #8d8d8d, #676767);
+  background-image: -o-linear-gradient(to top, #8d8d8d, #676767);
   background-image: linear-gradient(to bottom, #8d8d8d, #676767);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8d8d8d' , endColorstr='#ff676767' , GradientType=0);
@@ -169,10 +169,10 @@ blockquote {
   text-decoration: none;
   outline: 0;
   background-color: #555555;
-  background-image: -moz-linear-gradient(top, #5A5A5A, #4d4d4d);
+  background-image: -moz-linear-gradient(to top, #5A5A5A, #4d4d4d);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5A5A5A), to(#4d4d4d));
-  background-image: -webkit-linear-gradient(top, #5A5A5A, #4d4d4d);
-  background-image: -o-linear-gradient(top, #5A5A5A, #4d4d4d);
+  background-image: -webkit-linear-gradient(to top, #5A5A5A, #4d4d4d);
+  background-image: -o-linear-gradient(to top, #5A5A5A, #4d4d4d);
   background-image: linear-gradient(to bottom, #5A5A5A, #4d4d4d);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5a5a5a' , endColorstr='#ff4d4d4d' , GradientType=0);
@@ -256,10 +256,10 @@ input[type="checkbox"]:focus {
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #3e3e3e;
-  background-image: -moz-linear-gradient(top, #4d4d4d, #272727);
+  background-image: -moz-linear-gradient(to top, #4d4d4d, #272727);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4d4d4d), to(#272727));
-  background-image: -webkit-linear-gradient(top, #4d4d4d, #272727);
-  background-image: -o-linear-gradient(top, #4d4d4d, #272727);
+  background-image: -webkit-linear-gradient(to top, #4d4d4d, #272727);
+  background-image: -o-linear-gradient(to top, #4d4d4d, #272727);
   background-image: linear-gradient(to bottom, #4d4d4d, #272727);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff4d4d4d' , endColorstr='#ff272727' , GradientType=0);

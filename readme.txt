@@ -3,7 +3,7 @@ Contributors: nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.8
-Stable tag: 4.4.17
+Stable tag: 4.4.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,13 @@ https://github.com/presscustomizr/customizr/releases
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
+
+= 4.4.18 October 27th 2021 =
+* fixed : [HTML] removed type attribute for script elements
+* fixed : [HTML] removed type attribute for style elements
+* fixed : [CSS] The first argument to the linear-gradient function should be "to top", not "top" as per w3 specification ( https://drafts.csswg.org/css-images-3/#linear-gradients )
+* fixed : [CSS] minor box-shadow property fix
+* fixed : [CSS] value hidden doesn't exist for property webkit-backface-visibility
 
 = 4.4.17 October 6th 2021 =
 * fixed : [admin] minor js issue on notice dismiss

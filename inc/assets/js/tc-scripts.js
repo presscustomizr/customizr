@@ -5961,7 +5961,7 @@ var czrapp = czrapp || {};
               if ( $_dyn_style_el.length > 0 )
                 $_dyn_style_el.remove();
               if ( this._dyn_style )
-                $("<style type='text/css' id='" + this._dyn_style_id +"'>" + this._dyn_style + "</style>")
+                $("<style id='" + this._dyn_style_id +"'>" + this._dyn_style + "</style>")
                   .appendTo( this.$_head );
             },
             _move_dropdown : function( $dropdown_menu ) {
