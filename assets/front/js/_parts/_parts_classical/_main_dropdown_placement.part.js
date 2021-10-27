@@ -159,7 +159,7 @@ var czrapp = czrapp || {};
                 // I'm probabably missing something. Ref: http://www.w3.org/TR/DOM-Level-2-Style/css.html#CSS-CSSStyleDeclaration
                 // probably not very supported by browsers?
                 // getOverrideStyle($_dropdown[0], ':before');
-                $("<style type='text/css' id='" + this._dyn_style_id +"'>" + this._dyn_style + "</style>")
+                $("<style id='" + this._dyn_style_id +"'>" + this._dyn_style + "</style>")
                   .appendTo( this.$_head );
             },
 
