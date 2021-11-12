@@ -29,7 +29,7 @@
                   _doWhenJqueryIsReady( attempts );
               }, 200 );
           } else {
-              alert('Customizr problem : jQuery.js was not detected on your website');
+              console.log('Customizr problem : jQuery.js was not detected on your website');
           }
       };
       // if jQuery has already be printed, let's listen to the load event
