@@ -24,7 +24,7 @@ https://github.com/presscustomizr/customizr/releases
 
 = 4.4.20 December 23rd 2021 =
 * update : [admin] minor code updates
-* checked : [WP 5.9] Customizr successfully tested with the WordPress 5.9-beta4 
+* checked : [WP 5.9] Customizr successfully tested with WordPress 5.9-beta4 
 
 = 4.4.19 December 6th 2021 =
 * checked : [WP 5.9] preliminary successfull tests with the beta version of WordPress 5.9
