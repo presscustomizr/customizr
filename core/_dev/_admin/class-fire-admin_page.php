@@ -20,87 +20,6 @@ if ( !class_exists( 'CZR_admin_page' ) ) :
 
 
 
-   /**
-   * Add fallback admin page.
-   * @package Customizr
-   * @since Customizr 1.1
-   */
-    function czr_fn_add_welcome_page() {
-        $_name = __( 'About Customizr' , 'customizr' );
-        $_name = CZR_IS_PRO ? sprintf( '%s Pro', $_name ) : $_name;
-
-        $theme_page = add_theme_page(
-            $_name,   // Name of page
-            $_name,   // Label in menu
-            'edit_theme_options' ,          // Capability required
-            'welcome.php' ,             // Menu slug, used to uniquely identify the page
-            array( $this , 'czr_fn_welcome_panel' )         //function to be called to output the content of this page
-        );
-    }
-
-
-
-      /**
-     * Render welcome admin page.
-     * @package Customizr
-     * @since Customizr 3.0.4
-     */
-      function czr_fn_welcome_panel() {
-        $_theme_name    = CZR_IS_PRO ? 'Customizr Pro' : 'Customizr';
-
-        ?>
-        <div class="customizr-admin-panel">
-          <div class="about-text tc-welcome">
-            <?php
-              $title = sprintf( '<h1 class="czr-welcome-title">%1$s %2$s %3$s :)</h1>',
-                __( "Thank you for using", "customizr" ),
-                $_theme_name,
-                CUSTOMIZR_VER
-              );
-              echo convert_smilies( $title );
-            ?>
-
-            <?php
-              if ( !CZR_IS_PRO ) {
-                printf( '<h3>%1$s ❤️.</h3><h4>%2$s</h4><h4>%3$s 🙏</h4><h4 style="font-weight:bold">%4$s</h4>',
-                  sprintf( __( "If you enjoy using the Customizr theme for your website, you will love %s", "customizr"),
-                    sprintf( '<a style="color:#d87f00" href="%1$s" title="%2$s" target="_blank" rel="noopener noreferrer">%2$s</a>', 'https://presscustomizr.com/customizr-pro/', __("Customizr Pro", "customizr") )
-                  ),
-                  __("With Customizr Pro, you get premium features like infinite scrolling, footer and header customization, font customizer and many more. In addition, our premium support will be there to help you resolve any issue you may have with the theme. When installing Customizr Pro, all your previous options used in Customizr free are kept.", 'customizr'),
-                  __('And of course your support allows us to keep the theme at the highest level for your website. Thank you!', 'customizr'),
-                  'Limited offer : get 25% off with code EOY2021 at checkout.' . ' <a class="tc-pro-link-in-dashboard" href="https://presscustomizr.com/customizr-pro/" rel="noopener noreferrer" title="Go Pro" target="_blank">Go Pro</a> <span style="color: #f07829;" class="dashicons dashicons-external"></span>'
-                );
-              }
-            ?>
-          </div>
-            
-          <?php echo $this->czr_fn_print_changelog(); ?>
-
-          
-          <div class="czr-col-50 first-col">
-            <h3 style="font-size:1.3em;"><?php _e( 'Knowledge base','customizr' ); ?></h3>
-            <p><?php _e( "We have prepared a complete online documentation of the theme.",'customizr' ) ?></br>
-            <a class="button-primary review-customizr" href="<?php echo 'https://docs.presscustomizr.com/' ?>" target="_blank"><?php _e('Customizr Documentation','customizr'); ?></a></p>
-            <!-- Place this tag where you want the widget to render. -->
-          </div>
-          
-          <div class="czr-col-50">
-            <h3 style="font-size:1.3em;"><?php _e( 'Share your feedback','customizr' ); ?></h3>
-            <p><?php _e( 'If you are happy with the theme, say it on wordpress.org and give Customizr a nice review!','customizr' ) ?></br>
-            <a class="button-primary review-customizr" href="<?php echo esc_url('wordpress.org/support/view/theme-reviews/customizr') ?>" target="_blank"><?php _e('Share a review','customizr'); ?></a></p>
-          </div>
-
-        <?php echo $this->czr_fn_print_config_infos() ?>
-      </div><!-- //#customizr-admin-panel -->
-      <?php
-    }
-
-
-
-
-
-
-
     /**
    * Extract changelog of latest version from readme.txt file
    *
@@ -302,6 +221,85 @@ Page For Posts:           <?php $id = get_option( 'page_for_posts' ); echo get_t
         </style>
       <?php
     }
+
+
+
+   /**
+   * Add fallback admin page.
+   * @package Customizr
+   * @since Customizr 1.1
+   */
+    function czr_fn_add_welcome_page() {
+      $_name = __( 'About Customizr' , 'customizr' );
+      $_name = CZR_IS_PRO ? sprintf( '%s Pro', $_name ) : $_name;
+
+      $theme_page = add_theme_page(
+          $_name,   // Name of page
+          $_name,   // Label in menu
+          'edit_theme_options' ,          // Capability required
+          'welcome.php' ,             // Menu slug, used to uniquely identify the page
+          array( $this , 'czr_fn_welcome_panel' )         //function to be called to output the content of this page
+      );
+  }
+
+
+
+    /**
+   * Render welcome admin page.
+   * @package Customizr
+   * @since Customizr 3.0.4
+   */
+    function czr_fn_welcome_panel() {
+      $_theme_name    = CZR_IS_PRO ? 'Customizr Pro' : 'Customizr';
+
+      ?>
+      <div class="customizr-admin-panel">
+        <div class="about-text tc-welcome">
+          <?php
+            $title = sprintf( '<h1 class="czr-welcome-title">%1$s %2$s %3$s :)</h1>',
+              __( "Thank you for using", "customizr" ),
+              $_theme_name,
+              CUSTOMIZR_VER
+            );
+            echo convert_smilies( $title );
+          ?>
+
+          <?php
+            if ( !CZR_IS_PRO ) {
+              printf( '<h4>%1$s ❤️.</h4><h4>%2$s</h4><h4>%3$s 🙏</h4><h3 style="font-weight:bold">%4$s</h3>',
+                sprintf( __( "If you enjoy using the Customizr theme for your website, you will love %s", "customizr"),
+                  sprintf( '<a style="color:#d87f00" href="%1$s" title="%2$s" target="_blank" rel="noopener noreferrer">%2$s</a>', 'https://presscustomizr.com/customizr-pro/', __("Customizr Pro", "customizr") )
+                ),
+                __("With Customizr Pro, you get premium features like infinite scrolling, footer and header customization, font customizer and many more. In addition, our premium support will be there to help you resolve any issue you may have with the theme. When installing Customizr Pro, all your previous options used in Customizr free are kept.", 'customizr'),
+                __('And of course your support allows us to keep the theme at the highest level for your website. Thank you!', 'customizr'),
+                'Limited offer : get 25% off with code HELLO2022.' . ' <a class="tc-pro-link-in-dashboard" href="https://presscustomizr.com/customizr-pro/" rel="noopener noreferrer" title="Go Pro" target="_blank">Go Pro</a> <span style="color: #f07829;font-size: 26px;" class="dashicons dashicons-external"></span>'
+              );
+            }
+          ?>
+        </div>
+          
+        <?php echo $this->czr_fn_print_changelog(); ?>
+
+        
+        <div class="czr-col-50 first-col">
+          <h3 style="font-size:1.3em;"><?php _e( 'Knowledge base','customizr' ); ?></h3>
+          <p><?php _e( "We have prepared a complete online documentation of the theme.",'customizr' ) ?></br>
+          <a class="button-primary review-customizr" href="<?php echo 'https://docs.presscustomizr.com/' ?>" target="_blank"><?php _e('Customizr Documentation','customizr'); ?></a></p>
+          <!-- Place this tag where you want the widget to render. -->
+        </div>
+        
+        <div class="czr-col-50">
+          <h3 style="font-size:1.3em;"><?php _e( 'Share your feedback','customizr' ); ?></h3>
+          <p><?php _e( 'If you are happy with the theme, say it on wordpress.org and give Customizr a nice review!','customizr' ) ?></br>
+          <a class="button-primary review-customizr" href="<?php echo esc_url('wordpress.org/support/view/theme-reviews/customizr') ?>" target="_blank"><?php _e('Share a review','customizr'); ?></a></p>
+        </div>
+
+      <?php echo $this->czr_fn_print_config_infos() ?>
+    </div><!-- //#customizr-admin-panel -->
+    <?php
+  }
+
+
 
   }//end of class
 endif;
