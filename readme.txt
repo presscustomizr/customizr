@@ -1,9 +1,9 @@
 === Customizr ===
-Contributors: nikeo, d4z_c0nf
+Contributors: presscustomizr, nikeo, d4z_c0nf
 Tags: one-column, two-columns, three-columns, left-sidebar, right-sidebar, buddypress, custom-menu, custom-colors, featured-images, full-width-template, theme-options, threaded-comments, translation-ready, sticky-post, post-formats, rtl-language-support, editor-style
 Requires at least: 4.6
 Tested up to: 5.8
-Stable tag: 4.4.19
+Stable tag: 4.4.20
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,10 @@ https://github.com/presscustomizr/customizr/releases
 
 == Changelog ==
 https://github.com/presscustomizr/customizr/releases
+
+= 4.4.20 December 23rd 2021 =
+* update : [admin] minor code updates
+* checked : [WP 5.9] Customizr successfully tested with the WordPress 5.9-beta4 
 
 = 4.4.19 December 6th 2021 =
 * checked : [WP 5.9] preliminary successfull tests with the beta version of WordPress 5.9
