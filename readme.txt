@@ -65,5 +65,5 @@ https://github.com/presscustomizr/customizr/releases
 * fixed : [PHP8] theme updater possible error with PHP8
 
 = 4.4.9 July 19th, 2021 =
-* 100% compatible with WordPress 5.8
+* 100% compatible with WordPress 5.9
 * fixed : [lazy load] compatibility with Nimble Builder
