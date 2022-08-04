@@ -288,6 +288,18 @@ function czr_fn_skin_option_map( $get_default = null ) {
 ------------------------------------------------------------------------------------------------------*/
 function czr_fn_fonts_option_map( $get_default = null ) {
       return array(
+            'tc_disable_google_fonts' =>  array(
+                              'default'       => 0,
+                              'label'       => __( 'Disable Loading Google Fonts?' , 'customizr' ),
+                              'control'   =>  'CZR_controls' ,
+                              'section'     => 'fonts_sec',
+                              'type'        => 'nimblecheck' ,
+                              'priority'       => 5,
+                              'ubq_section'   => array(
+                                                  'section' => 'fonts_sec',
+                                                  'priority' => '2'
+                                               )
+            ),
             'tc_fonts'      => array(
                             'default'       => czr_fn_user_started_before_version( '3.4.39' , '1.2.39') ? '_g_fjalla_cantarell': '_g_sourcesanspro',
                             'label'         => __( 'Select a beautiful font pair (headings &amp; default fonts) or single font for your website.' , 'customizr' ),
@@ -2150,6 +2162,7 @@ function czr_fn_post_navigation_option_map( $get_default = null ) {
 /*-----------------------------------------------------------------------------------------------------
                                SIDEBAR SOCIAL LINKS SETTINGS SECTION
 ------------------------------------------------------------------------------------------------------*/
+
 function czr_fn_sidebars_option_map( $get_default = null ) {
   return array(
           'tc_social_in_left-sidebar' =>  array(

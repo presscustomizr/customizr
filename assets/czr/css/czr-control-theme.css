@@ -189,3 +189,8 @@ li[id*="customize-control-"].tc-sub-control:before {
   min-height: 250px;
   width: 100%;
 }
+
+.remove_google_fonts .czrSelect2-container--default .czrSelect2-results__option[role=group][aria-label="Google fonts pairs"], 
+.remove_google_fonts .czrSelect2-container--default .czrSelect2-results__option[role=group][aria-label="Single fonts"] {
+    display: none;
+}
