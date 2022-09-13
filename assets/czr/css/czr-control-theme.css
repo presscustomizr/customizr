@@ -191,6 +191,8 @@ li[id*="customize-control-"].tc-sub-control:before {
 }
 
 .remove_google_fonts .czrSelect2-container--default .czrSelect2-results__option[role=group][aria-label="Google fonts pairs"], 
-.remove_google_fonts .czrSelect2-container--default .czrSelect2-results__option[role=group][aria-label="Single fonts"] {
+.remove_google_fonts .czrSelect2-container--default .czrSelect2-results__option[role=group][aria-label="Single fonts"],
+.remove_google_fonts .czrSelect2-container--default .czrSelect2-results__option[role=group]:first-child, 
+.remove_google_fonts .czrSelect2-container--default .czrSelect2-results__option[role=group]:last-child {
     display: none;
 }

@@ -57,6 +57,20 @@
                             },
                     },
                     {
+                            dominus : 'tc_disable_google_fonts',
+                            servi   : ['tc_fonts'],
+                            visibility : function( to, servusShortId ){
+                                  if( to ){
+                                      $('.wp-customizer').addClass('remove_google_fonts');
+                                      api( api.CZR_Helpers.build_setId( servusShortId ) ).set('impact_palatino');
+                                      var font_title = $('select[data-customize-setting-link="tc_theme_options[tc_fonts]"] option:selected').text();
+                                      $('select[data-customize-setting-link="tc_theme_options[tc_fonts]"]').next('.czrSelect2').find('.tc-czrSelect2-font').html( font_title );
+                                  }else{
+                                      $('.wp-customizer').removeClass('remove_google_fonts');
+                                  }
+                            },
+                    },
+                    {
                             dominus : 'show_on_front',
                             servi   : ['tc_blog_restrict_by_cat', 'tc_show_post_navigation_home'],
                             visibility : function( to, servusShortId ) {
