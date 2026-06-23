@@ -24,6 +24,9 @@ if ( !class_exists( 'CZR_init' ) ) :
       function __construct () {
           self::$instance =& $this;
 
+          //Initialize translatable properties at priority 1
+          add_action( 'init'                    , array( $this , 'czr_fn_init_translatable_properties' ), 1 );
+
           //html5
           //tag cloud - same font size
           //tag cloud add button classes
@@ -39,38 +42,8 @@ if ( !class_exists( 'CZR_init' ) ) :
 
           add_action( 'template_redirect'       , array( $this, 'czr_fn_ajax_response' ) );
 
-          $right_sidebar_text_alignment = is_rtl() ? 'text-md-left' : 'text-md-right';
           //Default layout settings
-          $this->global_layout      = array(
-              'r' => array(
-                  'content'       => 'col-12 col-md-9',
-                  'l-sidebar'     => false,
-                  'r-sidebar'     => 'col-12 col-md-3 ' . $right_sidebar_text_alignment,
-                  'customizer'    => __( 'Right sidebar' , 'customizr' ),
-                  'metabox'       => __( 'Right sidebar' , 'customizr' ),
-              ),
-              'l' => array(
-                  'content'       => 'col-12 col-md-9',
-                  'l-sidebar'     => 'col-12 col-md-3 order-md-first',
-                  'r-sidebar'     => false,
-                  'customizer'    => __( 'Left sidebar' , 'customizr' ),
-                  'metabox'       => __( 'Left sidebar' , 'customizr' ),
-              ),
-              'b' => array(
-                  'content'       => 'col-12 col-md-6',
-                  'l-sidebar'     => 'col-12 col-md-3 order-md-first',
-                  'r-sidebar'     => 'col-12 col-md-3 ' . $right_sidebar_text_alignment,
-                  'customizer'    => __( '2 sidebars : Right and Left' , 'customizr' ),
-                  'metabox'       => __( '2 sidebars : Right and Left' , 'customizr' ),
-              ),
-              'f' => array(
-                  'content'       => 'col-12',
-                  'l-sidebar'     => false,
-                  'r-sidebar'     => false,
-                  'customizer'    => __( 'No sidebars : full width layout', 'customizr' ),
-                  'metabox'       => __( 'No sidebars : full width layout' , 'customizr' ),
-              ),
-          );
+          $this->global_layout      = array();
 
 
 
@@ -97,36 +70,10 @@ if ( !class_exists( 'CZR_init' ) ) :
 
 
           //Default footer widgets
-          $this->footer_widgets     = array(
-              'footer_one'    => array(
-                              'name'                 => __( 'Footer Widget Area One' , 'customizr' ),
-                              'description'          => __( 'Just use it as you want !' , 'customizr' ),
-                              'before_title'            => '<h5 class="widget-title">',
-                              'after_title'             => '</h5>'
-              ),
-              'footer_two'    => array(
-                              'name'                 => __( 'Footer Widget Area Two' , 'customizr' ),
-                              'description'          => __( 'Just use it as you want !' , 'customizr' ),
-                              'before_title'            => '<h5 class="widget-title">',
-                              'after_title'             => '</h5>'
-              ),
-              'footer_three'   => array(
-                              'name'                 => __( 'Footer Widget Area Three' , 'customizr' ),
-                              'description'          => __( 'Just use it as you want !' , 'customizr' ),
-                              'before_title'            => '<h5 class="widget-title">',
-                              'after_title'             => '</h5>'
-              )
-          );//end of array
+          $this->footer_widgets     = array();
 
           //Default horizontal footer widget area
-          $this->footer_horizontal_widgets     = array(
-              'footer_horizontal'    => array(
-                              'name'                 => __( 'Footer Horizontal Widget Area' , 'customizr' ),
-                              'description'          => __( 'Appears before the site footer' , 'customizr' ),
-                              'before_title'            => '<h5 class="widget-title">',
-                              'after_title'             => '</h5>'
-              ),
-          );//end of array
+          $this->footer_horizontal_widgets     = array();
       }//end of constructor
 
 
@@ -206,6 +153,79 @@ if ( !class_exists( 'CZR_init' ) ) :
               $_classes = array_merge( $_classes , array( 'tc-link-not-underlined' ) );
           }
           return $_classes;
+      }
+
+
+
+      /**
+       * Initialize translatable properties when text domain is loaded.
+       * Fired at after_setup_theme priority 9.
+       */
+      function czr_fn_init_translatable_properties() {
+          $right_sidebar_text_alignment = is_rtl() ? 'text-md-left' : 'text-md-right';
+          //Default layout settings
+          $this->global_layout      = array(
+              'r' => array(
+                  'content'       => 'col-12 col-md-9',
+                  'l-sidebar'     => false,
+                  'r-sidebar'     => 'col-12 col-md-3 ' . $right_sidebar_text_alignment,
+                  'customizer'    => __( 'Right sidebar' , 'customizr' ),
+                  'metabox'       => __( 'Right sidebar' , 'customizr' ),
+              ),
+              'l' => array(
+                  'content'       => 'col-12 col-md-9',
+                  'l-sidebar'     => 'col-12 col-md-3 order-md-first',
+                  'r-sidebar'     => false,
+                  'customizer'    => __( 'Left sidebar' , 'customizr' ),
+                  'metabox'       => __( 'Left sidebar' , 'customizr' ),
+              ),
+              'b' => array(
+                  'content'       => 'col-12 col-md-6',
+                  'l-sidebar'     => 'col-12 col-md-3 order-md-first',
+                  'r-sidebar'     => 'col-12 col-md-3 ' . $right_sidebar_text_alignment,
+                  'customizer'    => __( '2 sidebars : Right and Left' , 'customizr' ),
+                  'metabox'       => __( '2 sidebars : Right and Left' , 'customizr' ),
+              ),
+              'f' => array(
+                  'content'       => 'col-12',
+                  'l-sidebar'     => false,
+                  'r-sidebar'     => false,
+                  'customizer'    => __( 'No sidebars : full width layout', 'customizr' ),
+                  'metabox'       => __( 'No sidebars : full width layout' , 'customizr' ),
+              ),
+          );
+
+          //Default footer widgets
+          $this->footer_widgets     = array(
+              'footer_one'    => array(
+                              'name'                 => __( 'Footer Widget Area One' , 'customizr' ),
+                              'description'          => __( 'Just use it as you want !' , 'customizr' ),
+                              'before_title'            => '<h5 class="widget-title">',
+                              'after_title'             => '</h5>'
+              ),
+              'footer_two'    => array(
+                              'name'                 => __( 'Footer Widget Area Two' , 'customizr' ),
+                              'description'          => __( 'Just use it as you want !' , 'customizr' ),
+                              'before_title'            => '<h5 class="widget-title">',
+                              'after_title'             => '</h5>'
+              ),
+              'footer_three'   => array(
+                              'name'                 => __( 'Footer Widget Area Three' , 'customizr' ),
+                              'description'          => __( 'Just use it as you want !' , 'customizr' ),
+                              'before_title'            => '<h5 class="widget-title">',
+                              'after_title'             => '</h5>'
+              )
+          );//end of array
+
+          //Default horizontal footer widget area
+          $this->footer_horizontal_widgets     = array(
+              'footer_horizontal'    => array(
+                              'name'                 => __( 'Footer Horizontal Widget Area' , 'customizr' ),
+                              'description'          => __( 'Appears before the site footer' , 'customizr' ),
+                              'before_title'            => '<h5 class="widget-title">',
+                              'after_title'             => '</h5>'
+              ),
+          );//end of array
       }
 
 

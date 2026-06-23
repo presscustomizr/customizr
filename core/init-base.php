@@ -36,19 +36,25 @@ if ( !class_exists( 'CZR_BASE' ) ) :
         public static $cached_thumbnail_models = array();
 
         function __construct( $_args = array()) {
+            //add the text domain, various theme supports : editor style, automatic-feed-links, post formats, post-thumbnails
+            add_action( 'after_setup_theme'       , array( $this , 'czr_fn_base_customizr_setup' ), 8 );
+
+            //Load textdomain on after_setup_theme priority 1
+            add_action( 'after_setup_theme'       , array( $this , 'czr_fn_load_theme_textdomain' ), 1 );
+
+            //Initialize translatable properties at priority 1
+            add_action( 'init'                    , array( $this , 'czr_fn_init_translatable_properties' ), 1 );
+
             //init properties
-            add_action( 'after_setup_theme'       , array( $this , 'czr_fn_init_properties') );
+            add_action( 'init'                    , array( $this , 'czr_fn_init_properties'), 2 );
 
             //Set image options set by user @since v3.2.0
             //!must be available in admin for plugins like regenerate thumbnails
             add_action( 'after_setup_theme'       , array( $this, 'czr_fn_set_user_defined_settings'));
 
 
-            //add the text domain, various theme supports : editor style, automatic-feed-links, post formats, post-thumbnails
-            add_action( 'after_setup_theme'       , array( $this , 'czr_fn_base_customizr_setup' ) );
-
             //IMPORTANT : this callback needs to be ran AFTER czr_fn_init_properties.
-            add_action( 'after_setup_theme'       , array( $this , 'czr_fn_cache_theme_setting_list' ), 100 );
+            add_action( 'init'                    , array( $this , 'czr_fn_cache_theme_setting_list' ), 100 );
 
             //refresh the theme options right after the _preview_filter when previewing
             add_action( 'customize_preview_init'  , array( $this , 'czr_fn_customize_refresh_db_opt' ) );
@@ -63,7 +69,7 @@ if ( !class_exists( 'CZR_BASE' ) ) :
 
 
             //registers the menus
-            add_action( 'after_setup_theme'       , array( $this, 'czr_fn_register_menus'));
+            add_action( 'init'                    , array( $this, 'czr_fn_register_menus'), 2 );
 
             //add retina support for high resolution devices
             add_filter( 'wp_generate_attachment_metadata'        , array( $this , 'czr_fn_add_retina_support') , 10 , 2 );
@@ -120,168 +126,16 @@ if ( !class_exists( 'CZR_BASE' ) ) :
 
 
             //Default sidebar widgets
-            $this->sidebar_widgets    = array(
-              'left'          => array(
-                              'name'                 => __( 'Left Sidebar' , 'customizr' ),
-                              'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
-              ),
-              'right'         => array(
-                              'name'                 => __( 'Right Sidebar' , 'customizr' ),
-                              'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
-              )
-            );//end of array
-
+            $this->sidebar_widgets    = array();
 
             //Default social networks
-            $this->old_socials            = array(
-              'tc_rss'            => array(
-                                      'link_title'    => __( 'Subscribe to my rss feed' , 'customizr' ),
-                                      'default'       => get_bloginfo( 'rss_url' ) //kept as it's the only one used in the transition
-                                  ),
-              'tc_email'          => array(
-                                      'link_title'    => __( 'E-mail' , 'customizr' ),
-                                    ),
-              'tc_twitter'        => array(
-                                      'link_title'    => __( 'Follow me on Twitter' , 'customizr' ),
-                                    ),
-              'tc_facebook'       => array(
-                                      'link_title'    => __( 'Follow me on Facebook' , 'customizr' ),
-                                    ),
-              'tc_google'         => array(
-                                      'link_title'    => __( 'Follow me on Google+' , 'customizr' ),
-                                    ),
-              'tc_instagram'      => array(
-                                      'link_title'    => __( 'Follow me on Instagram' , 'customizr' ),
-                                    ),
-              'tc_tumblr'       => array(
-                                      'link_title'    => __( 'Follow me on Tumblr' , 'customizr' ),
-                                    ),
-              'tc_flickr'       => array(
-                                      'link_title'    => __( 'Follow me on Flickr' , 'customizr' ),
-                                    ),
-              'tc_wordpress'      => array(
-                                      'link_title'    => __( 'Follow me on WordPress' , 'customizr' ),
-                                    ),
-              'tc_youtube'        => array(
-                                      'link_title'    => __( 'Follow me on Youtube' , 'customizr' ),
-                                    ),
-              'tc_pinterest'      => array(
-                                      'link_title'    => __( 'Pin me on Pinterest' , 'customizr' ),
-                                    ),
-              'tc_github'         => array(
-                                      'link_title'    => __( 'Follow me on Github' , 'customizr' ),
-                                    ),
-              'tc_dribbble'       => array(
-                                      'link_title'    => __( 'Follow me on Dribbble' , 'customizr' ),
-                                    ),
-              'tc_linkedin'       => array(
-                                      'link_title'    => __( 'Follow me on LinkedIn' , 'customizr' ),
-                                    ),
-              'tc_vk'             => array(
-                                      'link_title'    => __( 'Follow me on VKontakte' , 'customizr' ),
-                                    ),
-              'tc_yelp'           => array(
-                                      'link_title'    => __( 'Follow me on Yelp' , 'customizr' ),
-                                    ),
-              'tc_xing'           => array(
-                                      'link_title'    => __( 'Follow me on Xing' , 'customizr' ),
-                                    ),
-              'tc_snapchat'       => array(
-                                      'link_title'    => __( 'Contact me on Snapchat' , 'customizr' ),
-                                    )
-            );//end of social array
+            $this->old_socials        = array();
 
             //Default fonts pairs
-            $this->font_pairs             = array(
-              'gfont' => array(
-                'name'  => __('Google fonts pairs' , 'customizr'),
-                'list'  => apply_filters( 'tc_gfont_pairs' , array(
-                  '_g_sintony_poppins'              => array( 'Sintony &amp; Poppins' , 'Sintony|Poppins' ),
-                  '_g_fjalla_cantarell'              => array( 'Fjalla One &amp; Cantarell' , 'Fjalla+One:400|Cantarell:400' ),
-                  '_g_lobster_raleway'               => array( 'Lobster &amp; Raleway' , 'Lobster:400|Raleway' ),
-                  '_g_alegreya_roboto'               => array( 'Alegreya &amp; Roboto' , 'Alegreya:700|Roboto' ),
-                  '_g_lato_grand_hotel'              => array( 'Lato &amp; Grand Hotel', 'Lato:400|Grand+Hotel' ),
-                  '_g_dosis_opensans'                => array( 'Dosis &amp; Open Sans' , 'Dosis:400|Open+Sans' ),
-                  '_g_dancing_script_eb_garamond'    => array( 'Dancing Script &amp; EB Garamond' , 'Dancing+Script:700|EB+Garamond' ),
-                  '_g_amatic_josephin'               => array( 'Amatic SC &amp; Josefin Sans' , 'Amatic+SC|Josefin+Sans:700' ),
-                  '_g_oswald_droid'                  => array( 'Oswald &amp; Droid Serif' , 'Oswald:700|Droid+Serif:400' ),
-                  '_g_playfair_alice'                => array( 'Playfair Display &amp; Alice' , 'Playfair+Display:700|Alice' ),
-                  '_g_medula_abel'                   => array( 'Medula One &amp; Abel' , 'Medula+One:400|Abel' ),
-                  '_g_coustard_leckerli'             => array( 'Coustard Ultra &amp; Leckerli One' , 'Coustard:900|Leckerli+One' ),
-                  '_g_sacramento_alice'              => array( 'Sacramento &amp; Alice' , 'Sacramento:400|Alice' ),
-                  '_g_squada_allerta'                => array( 'Squada One &amp; Allerta' , 'Squada+One:400|Allerta' ),
-                  '_g_bitter_sourcesanspro'          => array( 'Bitter &amp; Source Sans Pro' , 'Bitter:400|Source+Sans+Pro' ),
-                  '_g_montserrat_neuton'             => array( 'Montserrat &amp; Neuton' , 'Montserrat:400|Neuton' )
-                ) )
-              ),
-              'wsfont' => array(
-                'name'  => __('Web safe fonts pairs' , 'customizr'),
-                'list'  => apply_filters( 'tc_wsfont_pairs' , array(
-                  'impact_palatino'               => array( 'Impact &amp; Palatino' , 'Impact,Charcoal,sans-serif|Palatino Linotype,Book Antiqua,Palatino,serif'),
-                  'georgia_verdana'               => array( 'Georgia &amp; Verdana' , 'Georgia,Georgia,serif|Verdana,Geneva,sans-serif' ),
-                  'tahoma_times'                  => array( 'Tahoma &amp; Times' , 'Tahoma,Geneva,sans-serif|Times New Roman,Times,serif'),
-                  'lucida_courrier'               => array( 'Lucida &amp; Courrier' , 'Lucida Sans Unicode,Lucida Grande,sans-serif|Courier New,Courier New,Courier,monospace')
-                ) )
-              ),
-             'default' => array(
-              'name'  => __('Single fonts' , 'customizr'),
-              'list'  => apply_filters( 'tc_single_fonts' , array(
-                    '_g_poppins'                    => array( 'Poppins' , 'Poppins|Poppins' ),
-                    '_g_cantarell'                  => array( 'Cantarell' , 'Cantarell:400|Cantarell:400' ),
-                    '_g_raleway'                    => array( 'Raleway' , 'Raleway|Raleway' ),
-                    '_g_roboto'                     => array( 'Roboto' , 'Roboto|Roboto' ),
-                    '_g_grand_hotel'                => array( 'Grand Hotel', 'Grand+Hotel|Grand+Hotel' ),
-                    '_g_opensans'                   => array( 'Open Sans' , 'Open+Sans|Open+Sans' ),
-                    '_g_script_eb_garamond'         => array( 'EB Garamond' , 'EB+Garamond|EB+Garamond' ),
-                    '_g_josephin'                   => array( 'Josefin Sans' , 'Josefin+Sans:700|Josefin+Sans:700' ),
-                    '_g_droid'                      => array( 'Droid Serif' , 'Droid+Serif:400|Droid+Serif:400' ),
-                    '_g_alice'                      => array( 'Alice' , 'Alice|Alice' ),
-                    '_g_abel'                       => array( 'Abel' , 'Abel|Abel' ),
-                    '_g_leckerli'                   => array( 'Leckerli One' , 'Leckerli+One|Leckerli+One' ),
-                    '_g_allerta'                    => array( 'Allerta' , 'Allerta|Allerta' ),
-                    '_g_sourcesanspro'              => array( 'Source Sans Pro' , 'Source+Sans+Pro|Source+Sans+Pro' ),
-                    '_g_neuton'                     => array( 'Neuton' , 'Neuton|Neuton' ),
-                    'helvetica_arial'               => array( 'Helvetica' , 'Helvetica Neue,Helvetica,Arial,sans-serif|Helvetica Neue,Helvetica,Arial,sans-serif' ),
-                    'palatino'                      => array( 'Palatino Linotype' , 'Palatino Linotype,Book Antiqua,Palatino,serif|Palatino Linotype,Book Antiqua,Palatino,serif' ),
-                    'verdana'                       => array( 'Verdana' , 'Verdana,Geneva,sans-serif|Verdana,Geneva,sans-serif' ),
-                    'time_new_roman'                => array( 'Times New Roman' , 'Times New Roman,Times,serif|Times New Roman,Times,serif' ),
-                    'courier_new'                   => array( 'Courier New' , 'Courier New,Courier New,Courier,monospace|Courier New,Courier New,Courier,monospace' )
-                  )
-                )
-              )
-            );//end of font pairs
-
+            $this->font_pairs         = array();
 
             //Default slides content
-            $this->default_slides     = array(
-                1 => array(
-                  'title'         =>  '',
-                  'text'          =>  '',
-                  'button_text'   =>  '',
-                  'link_id'       =>  null,
-                  'link_url'      =>  null,
-                  'active'        =>  'active',
-                  'color_style'   =>  '',
-                  'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                              TC_BASE_URL.'assets/front/img/customizr-theme.jpg',
-                                              __( 'Customizr is a clean responsive theme' , 'customizr' )
-                                      )
-                ),
-
-                2 => array(
-                  'title'         =>  '',
-                  'text'          =>  '',
-                  'button_text'   =>  '',
-                  'link_id'       =>  null,
-                  'link_url'      =>  null,
-                  'active'        =>  '',
-                  'color_style'   =>  '',
-                  'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
-                                              TC_BASE_URL.'assets/front/img/demo_slide_2.jpg',
-                                              __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
-                                      )
-                )
-            );///end of slides array
+            $this->default_slides     = array();
         }//construct
 
 
@@ -290,6 +144,18 @@ if ( !class_exists( 'CZR_BASE' ) ) :
 
 
 
+
+        function czr_fn_load_theme_textdomain() {
+            /*
+             * Makes Customizr available for translation.
+             * Translations can be added to the /inc/lang/ directory.
+             */
+            if ( czr_fn_is_pro() ) {
+              load_theme_textdomain( 'customizr-pro', TC_BASE . 'lang' );
+            }else {
+              load_theme_textdomain( 'customizr' , TC_BASE . '/inc/lang' );
+            }
+        }
 
         /**
          * Sets up theme defaults and registers the various WordPress features
@@ -301,16 +167,6 @@ if ( !class_exists( 'CZR_BASE' ) ) :
             global $content_width;
             if (!isset( $content_width ) ) {
                 $content_width = apply_filters( 'czr_content_width' , CZR_IS_MODERN_STYLE ? 1140 : 1170 );
-            }
-
-            /*
-             * Makes Customizr available for translation.
-             * Translations can be added to the /inc/lang/ directory.
-             */
-            if ( czr_fn_is_pro() ) {
-              load_theme_textdomain( 'customizr-pro', TC_BASE . 'lang' );
-            }else {
-              load_theme_textdomain( 'customizr' , TC_BASE . '/inc/lang' );
             }
 
             /* Adds RSS feed links to <head> for posts and comments. */
@@ -963,10 +819,175 @@ if ( !class_exists( 'CZR_BASE' ) ) :
 
         }
 
+        /**
+         * Initialize translatable properties when text domain is loaded.
+         * Fired at after_setup_theme priority 9.
+         */
+        function czr_fn_init_translatable_properties() {
+            //Default sidebar widgets
+            $this->sidebar_widgets    = array(
+              'left'          => array(
+                              'name'                 => __( 'Left Sidebar' , 'customizr' ),
+                              'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
+              ),
+              'right'         => array(
+                              'name'                 => __( 'Right Sidebar' , 'customizr' ),
+                              'description'          => __( 'Appears on posts, static pages, archives and search pages' , 'customizr' )
+              )
+            );//end of array
 
 
+            //Default social networks
+            $this->old_socials            = array(
+              'tc_rss'            => array(
+                                       'link_title'    => __( 'Subscribe to my rss feed' , 'customizr' ),
+                                       'default'       => get_bloginfo( 'rss_url' ) //kept as it's the only one used in the transition
+                                   ),
+              'tc_email'          => array(
+                                       'link_title'    => __( 'E-mail' , 'customizr' ),
+                                     ),
+              'tc_twitter'        => array(
+                                       'link_title'    => __( 'Follow me on Twitter' , 'customizr' ),
+                                     ),
+              'tc_facebook'       => array(
+                                       'link_title'    => __( 'Follow me on Facebook' , 'customizr' ),
+                                     ),
+              'tc_google'         => array(
+                                       'link_title'    => __( 'Follow me on Google+' , 'customizr' ),
+                                     ),
+              'tc_instagram'      => array(
+                                       'link_title'    => __( 'Follow me on Instagram' , 'customizr' ),
+                                     ),
+              'tc_tumblr'       => array(
+                                       'link_title'    => __( 'Follow me on Tumblr' , 'customizr' ),
+                                     ),
+              'tc_flickr'       => array(
+                                       'link_title'    => __( 'Follow me on Flickr' , 'customizr' ),
+                                     ),
+              'tc_wordpress'      => array(
+                                       'link_title'    => __( 'Follow me on WordPress' , 'customizr' ),
+                                     ),
+              'tc_youtube'        => array(
+                                       'link_title'    => __( 'Follow me on Youtube' , 'customizr' ),
+                                     ),
+              'tc_pinterest'      => array(
+                                       'link_title'    => __( 'Pin me on Pinterest' , 'customizr' ),
+                                     ),
+              'tc_github'         => array(
+                                       'link_title'    => __( 'Follow me on Github' , 'customizr' ),
+                                     ),
+              'tc_dribbble'       => array(
+                                       'link_title'    => __( 'Follow me on Dribbble' , 'customizr' ),
+                                     ),
+              'tc_linkedin'       => array(
+                                       'link_title'    => __( 'Follow me on LinkedIn' , 'customizr' ),
+                                     ),
+              'tc_vk'             => array(
+                                       'link_title'    => __( 'Follow me on VKontakte' , 'customizr' ),
+                                     ),
+              'tc_yelp'           => array(
+                                       'link_title'    => __( 'Follow me on Yelp' , 'customizr' ),
+                                     ),
+              'tc_xing'           => array(
+                                       'link_title'    => __( 'Follow me on Xing' , 'customizr' ),
+                                     ),
+              'tc_snapchat'       => array(
+                                       'link_title'    => __( 'Contact me on Snapchat' , 'customizr' ),
+                                     )
+            );//end of social array
+
+            //Default fonts pairs
+            $this->font_pairs             = array(
+              'gfont' => array(
+                'name'  => __('Google fonts pairs' , 'customizr'),
+                'list'  => apply_filters( 'tc_gfont_pairs' , array(
+                  '_g_sintony_poppins'              => array( 'Sintony &amp; Poppins' , 'Sintony|Poppins' ),
+                  '_g_fjalla_cantarell'              => array( 'Fjalla One &amp; Cantarell' , 'Fjalla+One:400|Cantarell:400' ),
+                  '_g_lobster_raleway'               => array( 'Lobster &amp; Raleway' , 'Lobster:400|Raleway' ),
+                  '_g_alegreya_roboto'               => array( 'Alegreya &amp; Roboto' , 'Alegreya:700|Roboto' ),
+                  '_g_lato_grand_hotel'              => array( 'Lato &amp; Grand Hotel', 'Lato:400|Grand+Hotel' ),
+                  '_g_dosis_opensans'                => array( 'Dosis &amp; Open Sans' , 'Dosis:400|Open+Sans' ),
+                  '_g_dancing_script_eb_garamond'    => array( 'Dancing Script &amp; EB Garamond' , 'Dancing+Script:700|EB+Garamond' ),
+                  '_g_amatic_josephin'               => array( 'Amatic SC &amp; Josefin Sans' , 'Amatic+SC|Josefin+Sans:700' ),
+                  '_g_oswald_droid'                  => array( 'Oswald &amp; Droid Serif' , 'Oswald:700|Droid+Serif:400' ),
+                  '_g_playfair_alice'                => array( 'Playfair Display &amp; Alice' , 'Playfair+Display:700|Alice' ),
+                  '_g_medula_abel'                   => array( 'Medula One &amp; Abel' , 'Medula+One:400|Abel' ),
+                  '_g_coustard_leckerli'             => array( 'Coustard Ultra &amp; Leckerli One' , 'Coustard:900|Leckerli+One' ),
+                  '_g_sacramento_alice'              => array( 'Sacramento &amp; Alice' , 'Sacramento:400|Alice' ),
+                  '_g_squada_allerta'                => array( 'Squada One &amp; Allerta' , 'Squada+One:400|Allerta' ),
+                  '_g_bitter_sourcesanspro'          => array( 'Bitter &amp; Source Sans Pro' , 'Bitter:400|Source+Sans+Pro' ),
+                  '_g_montserrat_neuton'             => array( 'Montserrat &amp; Neuton' , 'Montserrat:400|Neuton' )
+                ) )
+              ),
+              'wsfont' => array(
+                'name'  => __('Web safe fonts pairs' , 'customizr'),
+                'list'  => apply_filters( 'tc_wsfont_pairs' , array(
+                  'impact_palatino'               => array( 'Impact &amp; Palatino' , 'Impact,Charcoal,sans-serif|Palatino Linotype,Book Antiqua,Palatino,serif'),
+                  'georgia_verdana'               => array( 'Georgia &amp; Verdana' , 'Georgia,Georgia,serif|Verdana,Geneva,sans-serif' ),
+                  'tahoma_times'                  => array( 'Tahoma &amp; Times' , 'Tahoma,Geneva,sans-serif|Times New Roman,Times,serif'),
+                  'lucida_courrier'               => array( 'Lucida &amp; Courrier' , 'Lucida Sans Unicode,Lucida Grande,sans-serif|Courier New,Courier New,Courier,monospace')
+                ) )
+              ),
+             'default' => array(
+              'name'  => __('Single fonts' , 'customizr'),
+              'list'  => apply_filters( 'tc_single_fonts' , array(
+                    '_g_poppins'                    => array( 'Poppins' , 'Poppins|Poppins' ),
+                    '_g_cantarell'                  => array( 'Cantarell' , 'Cantarell:400|Cantarell:400' ),
+                    '_g_raleway'                    => array( 'Raleway' , 'Raleway|Raleway' ),
+                    '_g_roboto'                     => array( 'Roboto' , 'Roboto|Roboto' ),
+                    '_g_grand_hotel'                => array( 'Grand Hotel', 'Grand+Hotel|Grand+Hotel' ),
+                    '_g_opensans'                   => array( 'Open Sans' , 'Open+Sans|Open+Sans' ),
+                    '_g_script_eb_garamond'         => array( 'EB Garamond' , 'EB+Garamond|EB+Garamond' ),
+                    '_g_josephin'                   => array( 'Josefin Sans' , 'Josefin+Sans:700|Josefin+Sans:700' ),
+                    '_g_droid'                      => array( 'Droid Serif' , 'Droid+Serif:400|Droid+Serif:400' ),
+                    '_g_alice'                      => array( 'Alice' , 'Alice|Alice' ),
+                    '_g_abel'                       => array( 'Abel' , 'Abel|Abel' ),
+                    '_g_leckerli'                   => array( 'Leckerli One' , 'Leckerli+One|Leckerli+One' ),
+                    '_g_allerta'                    => array( 'Allerta' , 'Allerta|Allerta' ),
+                    '_g_sourcesanspro'              => array( 'Source Sans Pro' , 'Source+Sans+Pro|Source+Sans+Pro' ),
+                    '_g_neuton'                     => array( 'Neuton' , 'Neuton|Neuton' ),
+                    'helvetica_arial'               => array( 'Helvetica' , 'Helvetica Neue,Helvetica,Arial,sans-serif|Helvetica Neue,Helvetica,Arial,sans-serif' ),
+                    'palatino'                      => array( 'Palatino Linotype' , 'Palatino Linotype,Book Antiqua,Palatino,serif|Palatino Linotype,Book Antiqua,Palatino,serif' ),
+                    'verdana'                       => array( 'Verdana' , 'Verdana,Geneva,sans-serif|Verdana,Geneva,sans-serif' ),
+                    'time_new_roman'                => array( 'Times New Roman' , 'Times New Roman,Times,serif|Times New Roman,Times,serif' ),
+                    'courier_new'                   => array( 'Courier New' , 'Courier New,Courier New,Courier,monospace|Courier New,Courier New,Courier,monospace' )
+                  )
+                )
+              )
+            );//end of font pairs
 
 
+            //Default slides content
+            $this->default_slides     = array(
+                1 => array(
+                  'title'         =>  '',
+                  'text'          =>  '',
+                  'button_text'   =>  '',
+                  'link_id'       =>  null,
+                  'link_url'      =>  null,
+                  'active'        =>  'active',
+                  'color_style'   =>  '',
+                  'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
+                                              TC_BASE_URL.'assets/front/img/customizr-theme.jpg',
+                                              __( 'Customizr is a clean responsive theme' , 'customizr' )
+                                      )
+                ),
+
+                2 => array(
+                  'title'         =>  '',
+                  'text'          =>  '',
+                  'button_text'   =>  '',
+                  'link_id'       =>  null,
+                  'link_url'      =>  null,
+                  'active'        =>  '',
+                  'color_style'   =>  '',
+                  'slide_background'       =>  sprintf('<img width="1910" height="750" src="%1$s" class="" alt="%2$s" />',
+                                              TC_BASE_URL.'assets/front/img/demo_slide_2.jpg',
+                                              __( 'Many layout and design options are available from the WordPress customizer screen : see your changes live !' , 'customizr' )
+                                      )
+                )
+            );///end of slides array
+        }
 
         /**
         * Init CZR_utils class properties after_setup_theme
@@ -1084,7 +1105,7 @@ function czr_fn_load_czr_base_fmk() {
     }
 }
 
-add_action( 'after_setup_theme', 'czr_fn_load_social_links_module', 20 );
+add_action( 'init', 'czr_fn_load_social_links_module', 20 );
 function czr_fn_load_social_links_module() {
     // load the social links module
     require_once( CZR_BASE . CZR_CORE_PATH . 'czr-modules/social-links/social_links_module.php' );

@@ -196,23 +196,28 @@ if ( !class_exists( 'CZR___' ) ) :
 
               self::$instance->czr_fn_setup_loading();
 
+              // Defer bootstrapping to after_setup_theme priority 2
+              add_action( 'after_setup_theme', array( self::$instance, 'czr_fn_bootstrap_theme' ), 2 );
+            }
+            return self::$instance;
+        }
+
+        public function czr_fn_bootstrap_theme() {
               //fire an action hook before loading the theme class groups
               do_action( 'czr_before_load' );
 
-              self::$instance->czr_fn_load();
+              $this->czr_fn_load();
 
               //fire an action hook after loading the theme class groups
               do_action( 'czr_after_load' );
 
               //FMK
-              self::$instance->collection = new CZR_Collection();
-              self::$instance->controllers = new CZR_Controllers();
+              $this->collection = new CZR_Collection();
+              $this->controllers = new CZR_Controllers();
 
               //register the model's map in front
               if ( !is_admin() )
-                add_action('wp'         , array(self::$instance, 'czr_fn_register_model_map') );
-            }
-            return self::$instance;
+                add_action('wp'         , array($this, 'czr_fn_register_model_map') );
         }
 
 
