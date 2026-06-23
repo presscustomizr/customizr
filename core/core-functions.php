@@ -91,9 +91,9 @@ if ( !function_exists( 'czr_fn_setup_constants' ) ):
           //Get infos from parent theme if using a child theme
           $tc_theme = $tc_theme->parent() ? $tc_theme->parent() : $tc_theme;
 
-          $tc_base_data['prefix']       = $tc_base_data['title'] = $tc_theme->name;
-          $tc_base_data['version']      = $tc_theme->version;
-          $tc_base_data['authoruri']    = $tc_theme->{'Author URI'};
+          $tc_base_data['prefix']       = $tc_base_data['title'] = $tc_theme->get( 'Name' );
+          $tc_base_data['version']      = $tc_theme->get( 'Version' );
+          $tc_base_data['authoruri']    = $tc_theme->get( 'AuthorURI' );
         }
 
         // get themedata for lower versions (get_stylesheet_directory() points to the current theme root, child or parent)

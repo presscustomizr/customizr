@@ -18,7 +18,7 @@ if ( !class_exists( 'CZR_resources_styles' ) ) :
         function __construct () {
             self::$instance =& $this;
             //setup version param and is_css_minified bool
-            add_action( 'after_setup_theme'                   , array( $this , 'czr_fn_setup_properties' ), 20 );
+            add_action( 'init'                                , array( $this , 'czr_fn_setup_properties' ), 10 );
             add_action( 'wp_enqueue_scripts'                  , array( $this , 'czr_fn_enqueue_front_styles' ) );
 
             add_filter( 'czr_user_options_style'              , array( $this , 'czr_fn_maybe_write_skin_inline_css') );

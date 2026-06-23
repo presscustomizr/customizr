@@ -4821,17 +4821,20 @@ new CZR___;
 do_action( 'czr_after_init' );
 
 
-//fire an action hook before loading the theme class groups
-do_action( 'czr_before_load' );
+add_action( 'after_setup_theme', 'czr_fn_bootstrap_classic_theme', 2 );
+function czr_fn_bootstrap_classic_theme() {
+    //fire an action hook before loading the theme class groups
+    do_action( 'czr_before_load' );
 
-//classic CZR___ will hook here to instantiate theme class groups
-do_action('czr_load');
+    //classic CZR___ will hook here to instantiate theme class groups
+    do_action('czr_load');
 
-//may be load pro
-if ( CZR_IS_PRO ) {
-    new CZR_init_pro(CZR___::$theme_name );
+    //may be load pro
+    if ( CZR_IS_PRO ) {
+        new CZR_init_pro(CZR___::$theme_name );
+    }
+
+    //fire an action hook after loading the theme class groups
+    do_action( 'czr_after_load' );
 }
-
-//fire an action hook after loading the theme class groups
-do_action( 'czr_after_load' );
 ?>
